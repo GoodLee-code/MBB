@@ -816,7 +816,6 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
           <div class="select custom-select" id="fieldVersionStatusFilter" data-value=""><span class="select-value">配置状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="已配置">已配置</div><div class="dropdown-option" data-value="停用">停用</div></div></div>
           <div class="filter-actions"><button class="btn line" onclick="searchFieldVersionRecords()">搜索</button><button class="btn gray" onclick="resetFieldVersionRecords()">重置</button></div>
         </div>
-        <div class="action-row"><button class="btn" onclick="openFieldVersionAdd()">字段说明新增</button></div>
         <div class="table-card" style="margin-top:10px">
           <table>
             <thead><tr><th>页面名称</th><th>字段名称</th><th>当前版本号</th><th>有帮助次数</th><th>没有帮助次数</th><th>帮助率</th><th>配置状态</th><th>修改人</th><th>更新时间</th><th class="sticky-action">操作</th></tr></thead>
@@ -1485,7 +1484,7 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {device:'设备管理', config:'二次认证配置', sim:'二次认证SIM卡管理', detail:'二次认证配置详情', flow:'设备流量', wallet:'钱包余额管理', workOrder:'换货/补发工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', package:'用户套餐管理', task:'批量任务', fieldVersion:'字段说明版本管理', deviceDetail:'设备详情'};
+const pageTitles = {device:'设备管理', config:'二次认证配置', sim:'二次认证SIM卡管理', detail:'二次认证配置详情', flow:'设备流量', wallet:'钱包余额管理', workOrder:'换货/补发工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', package:'用户套餐管理', task:'批量任务', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情'};
 let openTabs = [];
 let activePage = '';
 let currentDetailBatch = '';
@@ -1639,7 +1638,7 @@ function applyPageState(type){
   document.getElementById('strategyPage').classList.toggle('hidden', type !== 'strategy');
   document.getElementById('packagePage').classList.toggle('hidden', type !== 'package');
   document.getElementById('taskPage').classList.toggle('hidden', type !== 'task');
-  document.getElementById('fieldVersionPage').classList.toggle('hidden', type !== 'fieldVersion');
+  document.getElementById('fieldVersionPage').classList.toggle('hidden', !['fieldVersion','fieldVersionEdit'].includes(type));
   document.getElementById('deviceDetailPage').classList.toggle('hidden', type !== 'deviceDetail');
   document.getElementById('menuDeviceManage').classList.toggle('active', type === 'device');
   document.getElementById('menuConfig').classList.toggle('active', type === 'config');
@@ -1651,7 +1650,7 @@ function applyPageState(type){
   document.getElementById('menuStrategy').classList.toggle('active', type === 'strategy');
   document.getElementById('menuUserPackage').classList.toggle('active', type === 'package');
   document.getElementById('menuBatchTask').classList.toggle('active', type === 'task');
-  document.getElementById('menuFieldVersion').classList.toggle('active', type === 'fieldVersion');
+  document.getElementById('menuFieldVersion').classList.toggle('active', ['fieldVersion','fieldVersionEdit'].includes(type));
   if(type === 'device'){
     searchDeviceManageRecords();
     setActiveBatch('');
@@ -1694,6 +1693,12 @@ function applyPageState(type){
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'fieldVersion'){
+    fieldVersionViewMode = 'list';
+    renderFieldVersionPage();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'fieldVersionEdit'){
+    fieldVersionViewMode = 'edit';
     renderFieldVersionPage();
     setActiveBatch('');
     setActiveDeviceSn('');
@@ -2752,12 +2757,17 @@ function openFieldVersionEdit(index){
   currentFieldVersionIndex = index;
   fieldVersionViewMode = 'edit';
   selectedFieldCompareVersions = [];
-  renderFieldVersionPage();
+  ensureTab('fieldVersion');
+  ensureTab('fieldVersionEdit');
+  activateTab('fieldVersionEdit');
 }
 function backFieldVersionList(){
   fieldVersionViewMode = 'list';
   selectedFieldCompareVersions = [];
-  renderFieldVersionPage();
+  ensureTab('fieldVersion');
+  activePage = 'fieldVersion';
+  applyPageState('fieldVersion');
+  renderTabs();
 }
 function setFieldVersionPageHead(title){}
 function renderFieldVersionAdd(){
