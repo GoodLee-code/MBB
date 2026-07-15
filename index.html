@@ -17,9 +17,9 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .side{width:226px;background:#fff;border-right:1px solid #e5eaf1;padding-top:10px;flex-shrink:0;color:#4d5664;line-height:1.5}
 .menu{height:47px;padding:0 17px 0 19px;color:#4d5664;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;font-weight:400;line-height:inherit;border-right:3px solid transparent}
 .menu:hover{color:#1687e8;background:#eef6ff}
-.device-icon,.finance-icon,.aftersale-icon,.exchange-icon,.ops-icon,.package-icon,.task-icon,.system-icon{width:15px;height:14px;color:#5e6d80;display:inline-block;flex:none}
-.device-icon *,.finance-icon *,.aftersale-icon *,.exchange-icon *,.ops-icon *,.package-icon *,.task-icon *,.system-icon *{stroke-width:1.3px!important;vector-effect:non-scaling-stroke}
-.menu:hover .device-icon,.menu:hover .finance-icon,.menu:hover .aftersale-icon,.menu:hover .exchange-icon,.menu:hover .ops-icon,.menu:hover .package-icon,.menu:hover .task-icon,.menu:hover .system-icon{color:#5e6d80}
+.device-icon,.payment-icon,.finance-icon,.aftersale-icon,.exchange-icon,.ops-icon,.package-icon,.task-icon,.system-icon{width:15px;height:14px;color:#5e6d80;display:inline-block;flex:none}
+.device-icon *,.payment-icon *,.finance-icon *,.aftersale-icon *,.exchange-icon *,.ops-icon *,.package-icon *,.task-icon *,.system-icon *{stroke-width:1.3px!important;vector-effect:non-scaling-stroke}
+.menu:hover .device-icon,.menu:hover .payment-icon,.menu:hover .finance-icon,.menu:hover .aftersale-icon,.menu:hover .exchange-icon,.menu:hover .ops-icon,.menu:hover .package-icon,.menu:hover .task-icon,.menu:hover .system-icon{color:#5e6d80}
 .menu-title{flex:1}
 .collapse-icon{width:7px;height:7px;border-right:1px solid #8b96a6;border-bottom:1px solid #8b96a6;transform:rotate(45deg);transition:transform .2s;margin-bottom:3px;flex:none}
 .menu.collapsed .collapse-icon{transform:rotate(-45deg);margin-bottom:0}
@@ -32,11 +32,11 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .tab{min-width:92px;height:34px;line-height:34px;text-align:center;border-right:1px solid #edf0f5;color:#5d6675;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;cursor:pointer}.tab.active{color:#1687e8;background:#f9fbff;border-bottom:2px solid #1687e8}.tab-close{color:#8b95a5;font-size:14px;line-height:1;cursor:pointer}.tab-close:hover{color:#1687e8}
 .content{min-height:calc(100vh - 108px);padding:18px;display:flex;flex-direction:column}
 .inner-tabs{height:34px;border-bottom:1px solid #e6ebf2;margin-bottom:24px}.inner-tab{display:inline-block;height:34px;line-height:34px;margin-right:28px}.inner-tab.active{color:#1687e8;border-bottom:2px solid #1687e8}
-.device-filter,.config-filter,.sim-filter,.flow-filter,.wallet-filter,.strategy-filter,.package-filter,.task-filter,.factory-filter,.system-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 12px;margin:0 0 12px;width:100%;background:#fff}
-.device-filter .input,.device-filter .select,.device-filter .condition-control,.device-filter .input-combo,.device-filter .device-date-range,.config-filter .input,.config-filter .select,.config-filter .date-picker,.sim-filter .input,.sim-filter .select,.flow-filter .flow-date-control,.flow-filter .input,.flow-filter .select,.flow-filter .range-control,.wallet-filter .input,.wallet-filter .select,.wallet-filter .range-control,.strategy-filter .input,.strategy-filter .select,.package-filter .input,.package-filter .select,.task-filter .select,.factory-filter .input,.factory-filter .select,.factory-filter .date-range-control,.factory-filter .device-date-range,.system-filter .input,.system-filter .select,.system-filter .input-combo{width:100%;min-width:0}
-.device-filter .input,.device-filter .select,.config-filter .input,.config-filter .select,.config-filter .date,.sim-filter .input,.sim-filter .select,.flow-filter .input,.flow-filter .select,.wallet-filter .input,.wallet-filter .select,.strategy-filter .input,.strategy-filter .select,.package-filter .input,.package-filter .select,.task-filter .select,.factory-filter .input,.factory-filter .select,.system-filter .input,.system-filter .select{height:34px;border:1px solid #e5e7eb;border-radius:4px;font-size:12px}
-.device-filter .input,.config-filter .input,.sim-filter .input,.flow-filter .input,.wallet-filter .input,.strategy-filter .input,.package-filter .input,.factory-filter .input,.system-filter .input{padding:0 9px}
-.device-filter .select,.config-filter .select,.sim-filter .select,.flow-filter .select,.wallet-filter .select,.strategy-filter .select,.package-filter .select,.task-filter .select,.factory-filter .select,.system-filter .select{line-height:32px;padding-left:9px}
+.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.package-filter,.task-filter,.factory-filter,.system-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 12px;margin:0 0 12px;width:100%;background:#fff}
+.device-filter .input,.device-filter .select,.device-filter .condition-control,.device-filter .input-combo,.device-filter .device-date-range,.config-filter .input,.config-filter .select,.config-filter .date-picker,.sim-filter .input,.sim-filter .select,.flow-filter .flow-date-control,.flow-filter .input,.flow-filter .select,.flow-filter .range-control,.payment-filter .input,.payment-filter .select,.payment-filter .device-date-range,.wallet-filter .input,.wallet-filter .select,.wallet-filter .range-control,.strategy-filter .input,.strategy-filter .select,.package-filter .input,.package-filter .select,.task-filter .select,.factory-filter .input,.factory-filter .select,.factory-filter .date-range-control,.factory-filter .device-date-range,.system-filter .input,.system-filter .select,.system-filter .input-combo{width:100%;min-width:0}
+.device-filter .input,.device-filter .select,.config-filter .input,.config-filter .select,.config-filter .date,.sim-filter .input,.sim-filter .select,.flow-filter .input,.flow-filter .select,.payment-filter .input,.payment-filter .select,.wallet-filter .input,.wallet-filter .select,.strategy-filter .input,.strategy-filter .select,.package-filter .input,.package-filter .select,.task-filter .select,.factory-filter .input,.factory-filter .select,.system-filter .input,.system-filter .select{height:34px;border:1px solid #e5e7eb;border-radius:4px;font-size:12px}
+.device-filter .input,.config-filter .input,.sim-filter .input,.flow-filter .input,.payment-filter .input,.wallet-filter .input,.strategy-filter .input,.package-filter .input,.factory-filter .input,.system-filter .input{padding:0 9px}
+.device-filter .select,.config-filter .select,.sim-filter .select,.flow-filter .select,.payment-filter .select,.wallet-filter .select,.strategy-filter .select,.package-filter .select,.task-filter .select,.factory-filter .select,.system-filter .select{line-height:32px;padding-left:9px}
 .device-filter.collapsed > :nth-child(n+5):not(.filter-actions){display:none}
 .device-filter.collapsed > .filter-actions{display:flex}
 .config-filter .date{width:100%}
@@ -49,6 +49,17 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .flow-summary-sub{display:flex;flex-wrap:wrap;gap:6px 14px;color:#606a78;line-height:18px}
 .flow-breakdown{display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;line-height:18px;white-space:nowrap}
 .flow-breakdown strong{font-weight:700;color:#4b5563}
+.order-table{min-width:4200px}
+.order-table th,.order-table td{white-space:nowrap}
+.refund-table{min-width:1680px}
+.refund-table th,.refund-table td{white-space:nowrap}
+.refund-management-table{min-width:3180px}
+.refund-management-table th,.refund-management-table td{white-space:nowrap}
+.refund-work-order-table{min-width:3480px}
+.refund-work-order-table th,.refund-work-order-table td{white-space:nowrap}
+.work-status-stack{display:flex;flex-direction:column;gap:4px;align-items:flex-start;line-height:18px;text-align:left}
+.work-status-stack span{display:block}
+.work-status-stack strong{font-weight:700;color:#4b5563}
 .package-table{min-width:3000px}
 .package-table th,.package-table td{white-space:nowrap}
 .placeholder-panel{min-height:96px;border:1px dashed #cfd6e2;background:#fff;color:#8b95a5;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
@@ -79,6 +90,15 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .field-version-config-status.disabled{color:#d92d20;background:#fff0ee;border:1px solid #f4aaa3}
 .text-action.danger{color:#f04438}
 .text-action.danger:hover{color:#d92d20}
+.work-no-cell{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.work-no-link{color:var(--theme-color);cursor:pointer}
+.work-no-link:hover{color:#0b4ea2;text-decoration:underline}
+.copy-icon{position:relative;width:14px;height:14px;display:inline-block;cursor:pointer;transition:transform .16s ease,color .16s ease}
+.copy-icon:before,.copy-icon:after{content:"";position:absolute;width:8px;height:8px;border:1px solid currentColor;border-radius:2px;background:#fff}
+.copy-icon:before{left:4px;top:2px}
+.copy-icon:after{left:1px;top:5px}
+.copy-icon:hover{color:var(--theme-color);transform:translateY(-1px)}
+.countdown-expired{color:#f04438;font-weight:600}
 .field-option-disabled{color:#b8c0cc!important;cursor:not-allowed!important;background:#f8fafc}
 .field-feedback-demo{border:1px solid #e7ebf1;background:#fbfcfe;padding:14px;color:#4b5563;line-height:1.8}
 .field-feedback-demo .feedback-actions{margin-top:8px;display:flex;gap:8px}
@@ -485,6 +505,12 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="sub" id="menuSim" onclick="showPage('sim')">二次认证SIM卡管理</div>
       <div class="sub" id="menuFlow" onclick="showPage('flow')">设备流量</div>
     </div>
+    <div class="menu" id="menuPayment" onclick="toggleMenuGroup('paymentSubMenu','menuPayment')"><svg class="payment-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 7.5h17A2.5 2.5 0 0 1 23 10v7a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 17v-7a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M1.5 11h21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 15.5h4.5M15 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">支付管理</span><span class="collapse-icon"></span></div>
+    <div class="sub-group" id="paymentSubMenu">
+      <div class="sub" id="menuOrder" onclick="showPage('order')">订单管理</div>
+      <div class="sub" id="menuRefund" onclick="showPage('refund')">退费单管理</div>
+      <div class="sub" id="menuRefundManage" onclick="showPage('refundManage')">退费管理</div>
+    </div>
     <div class="menu" id="menuFinance" onclick="toggleMenuGroup('financeSubMenu','menuFinance')"><svg class="finance-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5h14.5A2.5 2.5 0 0 1 21 10v7a2.5 2.5 0 0 1-2.5 2.5h-14A2.5 2.5 0 0 1 2 17V7.5A3 3 0 0 1 5 4.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 13.5H21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16.5" cy="13.5" r="1" fill="currentColor"/></svg><span class="menu-title">财务管理</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="financeSubMenu">
       <div class="sub" id="menuWallet" onclick="showPage('wallet')">钱包余额管理</div>
@@ -492,6 +518,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="menu" id="menuAfterSale" onclick="toggleMenuGroup('afterSaleSubMenu','menuAfterSale')"><svg class="aftersale-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12a7 7 0 0 1 2-5M19 12a7 7 0 0 1-2 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 10.5h5.5a1.5 1.5 0 0 1 1.5 1.5v4.5H4.5V12A1.5 1.5 0 0 1 6 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 8h4a1.5 1.5 0 0 1 1.5 1.5V14H17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">售后管理</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="afterSaleSubMenu">
       <div class="sub" id="menuExchangeOrder" onclick="showPage('workOrder')">换货/补发工单</div>
+      <div class="sub" id="menuRefundWorkOrder" onclick="showPage('refundWorkOrder')">退费工单</div>
       <div class="sub" id="menuFactoryReturn" onclick="openFactoryReturnPage()">设备返厂</div>
     </div>
     <div class="menu" id="menuOps" onclick="toggleMenuGroup('opsSubMenu','menuOps')"><svg class="ops-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="6" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="15" cy="12" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="18" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg><span class="menu-title">运营管理</span><span class="collapse-icon"></span></div>
@@ -657,6 +684,79 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="pagination" id="flowPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
+    <section id="orderPage" class="content hidden">
+      <div class="payment-filter">
+        <div class="select custom-select" id="orderTypeFilter" data-value=""><span class="select-value">订单类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="套餐充值">套餐充值</div><div class="dropdown-option" data-value="加速包购买">加速包购买</div><div class="dropdown-option" data-value="钱包充值">钱包充值</div><div class="dropdown-option" data-value="自动续费">自动续费</div></div></div>
+        <div class="select custom-select" id="orderPayTypeFilter" data-value=""><span class="select-value">支付类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="微信支付">微信支付</div><div class="dropdown-option" data-value="钱包支付">钱包支付</div><div class="dropdown-option" data-value="混合支付">混合支付</div></div></div>
+        <div class="select custom-select" id="orderStatusFilter" data-value=""><span class="select-value">订单状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="待支付">待支付</div><div class="dropdown-option" data-value="已支付">已支付</div><div class="dropdown-option" data-value="已取消">已取消</div><div class="dropdown-option" data-value="已退款">已退款</div><div class="dropdown-option" data-value="支付失败">支付失败</div></div></div>
+        <input class="input" id="orderSnInput" placeholder="设备SN" oninput="searchOrderRecords()">
+        <input class="input" id="orderNoInput" placeholder="订单号" oninput="searchOrderRecords()">
+        <input class="input" id="orderMerchantInput" placeholder="商户名称" oninput="searchOrderRecords()">
+        <input class="input" id="orderMainMerchantInput" placeholder="主商户" oninput="searchOrderRecords()">
+        <input class="input" id="orderPayNoInput" placeholder="支付单号" oninput="searchOrderRecords()">
+        <input class="input" id="orderPackageInput" placeholder="充值套餐" oninput="searchOrderRecords()">
+        <div class="device-date-range" id="orderCreateRange" data-range="orderCreate" onclick="openUnifiedRangePicker(event,'orderCreate')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">创建开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">创建结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'orderCreate')"></span>
+          <input id="orderCreateStartInput" type="hidden"><input id="orderCreateEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="orderCreatePanel"></div>
+        </div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchOrderRecords()">搜索</button><button class="btn gray" onclick="resetOrderRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button class="btn" onclick="exportOrderRecords()">导出</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="order-table">
+          <thead><tr><th>序号</th><th>订单号</th><th>订单类型</th><th>设备SN</th><th>套餐名称</th><th>商户号</th><th>商户名称</th><th>主商户</th><th>优惠券名称</th><th>套餐价格</th><th>加速包价格</th><th>折扣价</th><th>应付价格</th><th>优惠券减免金额（元）</th><th>实际支付价格</th><th>微信支付金额</th><th>钱包支付金额</th><th>订单状态</th><th>支付类型</th><th>支付时间</th><th>支付单号</th><th>续费前的服务有效期</th><th>续费后的服务有效期</th><th>优惠券</th><th>创建人</th><th>创建时间</th><th>余额自动续费状态</th></tr></thead>
+          <tbody id="orderRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="orderPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="refundPage" class="content hidden">
+      <div class="payment-filter">
+        <input class="input" id="refundSnInput" placeholder="设备SN" oninput="searchRefundRecords()">
+        <input class="input" id="refundPackageInput" placeholder="套餐名称" oninput="searchRefundRecords()">
+        <input class="input" id="refundOrderInput" placeholder="订单号" oninput="searchRefundRecords()">
+        <input class="input" id="refundMerchantInput" placeholder="所属商户" oninput="searchRefundRecords()">
+        <div class="select custom-select" id="refundMethodFilter" data-value=""><span class="select-value">退费方式</span><div class="dropdown-menu"><div class="dropdown-option" data-value="原路退费">原路退费</div><div class="dropdown-option" data-value="线下退费">线下退费</div><div class="dropdown-option" data-value="商户转账">商户转账</div></div></div>
+        <div class="device-date-range" id="refundCreateRange" data-range="refundCreate" onclick="openUnifiedRangePicker(event,'refundCreate')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">创建开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">创建结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'refundCreate')"></span>
+          <input id="refundCreateStartInput" type="hidden"><input id="refundCreateEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="refundCreatePanel"></div>
+        </div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchRefundRecords()">搜索</button><button class="btn gray" onclick="resetRefundRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button class="btn" onclick="exportRefundRecords()">导出</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="refund-table">
+          <thead><tr><th>序号</th><th>订单号</th><th>设备SN</th><th>所属商户</th><th>退费原因</th><th>套餐名称</th><th>退费金额</th><th>退费方式</th><th>备注</th><th>状态</th><th>创建时间</th><th>更新时间</th><th>操作人</th></tr></thead>
+          <tbody id="refundRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="refundPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="refundManagePage" class="content hidden">
+      <div class="payment-filter">
+        <input class="input" id="refundManageDeviceInput" placeholder="设备号" oninput="searchRefundManageRecords()">
+        <input class="input" id="refundManageOrderInput" placeholder="订单号" oninput="searchRefundManageRecords()">
+        <input class="input" id="refundManageMainMerchantInput" placeholder="主商户" oninput="searchRefundManageRecords()">
+        <div class="select custom-select" id="refundManageStatusFilter" data-value=""><span class="select-value">状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="已处理">已处理</div><div class="dropdown-option" data-value="未处理">未处理</div></div></div>
+        <div class="select custom-select" id="refundManageMethodFilter" data-value=""><span class="select-value">退费方式</span><div class="dropdown-menu"><div class="dropdown-option" data-value="原路退费">原路退费</div><div class="dropdown-option" data-value="线下退费">线下退费</div><div class="dropdown-option" data-value="商户转账">商户转账</div></div></div>
+        <div class="device-date-range" id="refundManageCreateRange" data-range="refundManageCreate" onclick="openUnifiedRangePicker(event,'refundManageCreate')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">创建开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">创建结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'refundManageCreate')"></span>
+          <input id="refundManageCreateStartInput" type="hidden"><input id="refundManageCreateEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="refundManageCreatePanel"></div>
+        </div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchRefundManageRecords()">搜索</button><button class="btn gray" onclick="resetRefundManageRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button class="btn">新增</button><button class="btn line" onclick="exportRefundManageTxt()">导出TXT</button><button class="btn line" onclick="exportRefundManageExcel()">导出Excel</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="refund-management-table">
+          <thead><tr><th>序号</th><th>订单号</th><th>订单支付时间</th><th>设备号</th><th>微信支付单号</th><th>主商户</th><th>代理商</th><th>套餐名称</th><th>支付金额</th><th>退款金额</th><th>微信退费金额</th><th>余额退费金额</th><th>退款状态</th><th>退费方式</th><th>备注</th><th>创建人</th><th>创建时间</th><th>退费时间</th><th class="sticky-action">操作</th></tr></thead>
+          <tbody id="refundManageRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="refundManagePagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
     <section id="walletPage" class="content hidden">
       <div class="wallet-filter">
         <input class="input" id="walletSnInput" placeholder="SN" oninput="searchWalletRecords()">
@@ -687,6 +787,38 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="placeholder-panel">查询区占位符</div>
       <div class="action-row"><button class="btn" onclick="openAfterSaleModal()">换货补发工单新增</button></div>
       <div class="placeholder-panel list">列表区占位符</div>
+    </section>
+
+    <section id="refundWorkOrderPage" class="content hidden">
+      <div class="factory-filter">
+        <input class="input" id="refundWorkApplicantInput" placeholder="申请人" oninput="searchRefundWorkOrderRecords()">
+        <input class="input" id="refundWorkReviewerInput" placeholder="审核人" oninput="searchRefundWorkOrderRecords()">
+        <input class="input" id="refundWorkShopOrderInput" placeholder="店铺订单号" oninput="searchRefundWorkOrderRecords()">
+        <input class="input" id="refundWorkNoInput" placeholder="退费工单号" oninput="searchRefundWorkOrderRecords()">
+        <input class="input" id="refundWorkSnInput" placeholder="SN" oninput="searchRefundWorkOrderRecords()">
+        <input class="input" id="refundWorkCustomerInput" placeholder="客户昵称" oninput="searchRefundWorkOrderRecords()">
+        <div class="select custom-select" id="refundWorkRefundStatusFilter" data-value=""><span class="select-value">退费状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="未退费">未退费</div><div class="dropdown-option" data-value="已退费">已退费</div><div class="dropdown-option" data-value="退费失败">退费失败</div></div></div>
+        <div class="select custom-select" id="refundWorkMethodFilter" data-value=""><span class="select-value">退费方式</span><div class="dropdown-menu"><div class="dropdown-option" data-value="原路退费">原路退费</div><div class="dropdown-option" data-value="线下退费">线下退费</div><div class="dropdown-option" data-value="商户转账">商户转账</div></div></div>
+        <div class="device-date-range" id="refundWorkAuditRange" data-range="refundWorkAudit" onclick="openUnifiedRangePicker(event,'refundWorkAudit')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">审核开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">审核结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'refundWorkAudit')"></span>
+          <input id="refundWorkAuditStartInput" type="hidden"><input id="refundWorkAuditEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="refundWorkAuditPanel"></div>
+        </div>
+        <div class="device-date-range" id="refundWorkApplyRange" data-range="refundWorkApply" onclick="openUnifiedRangePicker(event,'refundWorkApply')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">申请开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">申请结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'refundWorkApply')"></span>
+          <input id="refundWorkApplyStartInput" type="hidden"><input id="refundWorkApplyEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="refundWorkApplyPanel"></div>
+        </div>
+        <input class="input" id="refundWorkShopInput" placeholder="店铺名称" oninput="searchRefundWorkOrderRecords()">
+        <div class="select custom-select" id="refundWorkStatusFilter" data-value=""><span class="select-value">工单状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="审核中">审核中</div><div class="dropdown-option" data-value="待执行">待执行</div><div class="dropdown-option" data-value="已完成">已完成</div><div class="dropdown-option" data-value="已驳回">已驳回</div></div></div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchRefundWorkOrderRecords()">搜索</button><button class="btn gray" onclick="resetRefundWorkOrderRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button class="btn">新增退费工单</button><button class="btn line" onclick="exportRefundWorkOrderRecords()">导出</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="refund-work-order-table">
+          <thead><tr><th>序号</th><th>退费工单号</th><th>申请时间</th><th>申请人</th><th>工单状态</th><th>SN</th><th>店铺订单号</th><th>客户昵称</th><th>退费类型</th><th>退费方式</th><th>已核实退费金额</th><th>店铺名称</th><th>退费原因</th><th>登记人备注</th><th>支付截图</th><th>实际退费金额</th><th>客户类型</th><th>审核人</th><th>审核人备注</th><th>审核时间</th><th>执行人</th><th>执行时间</th><th class="sticky-action">操作</th></tr></thead>
+          <tbody id="refundWorkOrderRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="refundWorkOrderPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
     <section id="factoryReturnPage" class="content hidden">
@@ -1335,6 +1467,37 @@ const walletBalanceData = [
   {sn:'MBB202604300086', merchant:'广州启明商贸', appkey:'app_trade_005', openid:'o7crs64vkd9t4...', unionid:'oK2G56CR2a11...', phone:'13500135005', balance:0.00, createdAt:'2026-04-30 11:05:20', remark:'余额不足'},
   {sn:'MBB202604150021', merchant:'深圳远帆科技', appkey:'app_enterprise_006', openid:'o7crs64vkd1n8...', unionid:'oK2G56CR8d48...', phone:'13400134006', balance:560.20, createdAt:'2026-04-15 14:36:55', remark:'重点客户'}
 ];
+const paymentOrderData = [
+  {orderNo:'ORD202606180001', orderType:'套餐充值', sn:'MBB202605290001', packageName:'月包100GB畅享版', merchantNo:'MCH100001', merchant:'上海智联商贸', mainMerchant:'上海智联商贸', couponName:'首单立减券', packagePrice:'99.00', speedPackPrice:'0.00', discountPrice:'79.00', payablePrice:'79.00', couponDeduct:'20.00', paidPrice:'79.00', wechatAmount:'79.00', walletAmount:'0.00', status:'已支付', payType:'微信支付', paidAt:'2026-06-18 10:20:12', payNo:'WX20260618102012001', beforeExpire:'2026-06-30', afterExpire:'2026-07-30', coupon:'已使用', creator:'系统', createdAt:'2026-06-18 10:18:36', autoRenew:'开启'},
+  {orderNo:'ORD202606170008', orderType:'自动续费', sn:'MBB202605290002', packageName:'旅游渠道200GB套餐', merchantNo:'MCH100002', merchant:'杭州云旅科技', mainMerchant:'杭州云旅科技', couponName:'渠道续费券', packagePrice:'168.00', speedPackPrice:'0.00', discountPrice:'139.00', payablePrice:'139.00', couponDeduct:'0.00', paidPrice:'139.00', wechatAmount:'0.00', walletAmount:'139.00', status:'已支付', payType:'钱包支付', paidAt:'2026-06-17 15:18:02', payNo:'WALLET20260617151802008', beforeExpire:'2026-06-20', afterExpire:'2026-07-20', coupon:'未使用', creator:'自动续费任务', createdAt:'2026-06-17 15:18:02', autoRenew:'开启'},
+  {orderNo:'ORD202606160012', orderType:'加速包购买', sn:'MBB202605290003', packageName:'酒店轻量50GB套餐', merchantNo:'MCH100003', merchant:'苏州星河酒店', mainMerchant:'苏州星河酒店', couponName:'', packagePrice:'0.00', speedPackPrice:'19.00', discountPrice:'19.00', payablePrice:'19.00', couponDeduct:'0.00', paidPrice:'19.00', wechatAmount:'9.00', walletAmount:'10.00', status:'已支付', payType:'混合支付', paidAt:'2026-06-16 09:42:51', payNo:'MIX20260616094251012', beforeExpire:'2026-06-28', afterExpire:'2026-06-28', coupon:'未使用', creator:'陈启安', createdAt:'2026-06-16 09:40:21', autoRenew:'关闭'},
+  {orderNo:'ORD202606150006', orderType:'套餐充值', sn:'MBB202605280018', packageName:'物流300GB高稳套餐', merchantNo:'MCH100004', merchant:'南京万联物流', mainMerchant:'南京万联物流', couponName:'企业合约优惠', packagePrice:'239.00', speedPackPrice:'0.00', discountPrice:'199.00', payablePrice:'199.00', couponDeduct:'40.00', paidPrice:'0.00', wechatAmount:'0.00', walletAmount:'0.00', status:'待支付', payType:'微信支付', paidAt:'', payNo:'', beforeExpire:'2026-06-15', afterExpire:'2026-07-15', coupon:'待使用', creator:'段玉', createdAt:'2026-06-15 18:06:27', autoRenew:'关闭'},
+  {orderNo:'ORD202606120019', orderType:'钱包充值', sn:'MBB202604300086', packageName:'', merchantNo:'MCH100005', merchant:'广州启明商贸', mainMerchant:'广州启明商贸', couponName:'', packagePrice:'0.00', speedPackPrice:'0.00', discountPrice:'0.00', payablePrice:'300.00', couponDeduct:'0.00', paidPrice:'300.00', wechatAmount:'300.00', walletAmount:'0.00', status:'已退款', payType:'微信支付', paidAt:'2026-06-12 11:33:48', payNo:'WX20260612113348019', beforeExpire:'2026-04-30', afterExpire:'2026-04-30', coupon:'未使用', creator:'张可昕', createdAt:'2026-06-12 11:30:12', autoRenew:'关闭'},
+  {orderNo:'ORD202606100021', orderType:'套餐充值', sn:'MBB202604150021', packageName:'企业500GB专享包', merchantNo:'MCH100006', merchant:'深圳远帆科技', mainMerchant:'深圳远帆科技', couponName:'大客户折扣券', packagePrice:'399.00', speedPackPrice:'0.00', discountPrice:'299.00', payablePrice:'299.00', couponDeduct:'100.00', paidPrice:'299.00', wechatAmount:'99.00', walletAmount:'200.00', status:'支付失败', payType:'混合支付', paidAt:'', payNo:'MIX20260610084216021', beforeExpire:'2026-06-30', afterExpire:'2026-07-30', coupon:'已锁定', creator:'王敏', createdAt:'2026-06-10 08:42:16', autoRenew:'开启'}
+];
+const refundOrderData = [
+  {orderNo:'RFUND202606180001', sn:'MBB202605290001', merchant:'上海智联商贸', reason:'套餐重复购买', packageName:'月包100GB畅享版', amount:'79.00', refundMethod:'原路退费', remark:'客户误操作重复下单', status:'已退费', createdAt:'2026-06-18 10:24:36', updatedAt:'2026-06-18 11:02:18', operator:'王敏'},
+  {orderNo:'RFUND202606170008', sn:'MBB202605290002', merchant:'杭州云旅科技', reason:'设备返厂退费', packageName:'旅游渠道200GB套餐', amount:'139.00', refundMethod:'线下退费', remark:'设备返厂后套餐未使用', status:'处理中', createdAt:'2026-06-17 15:18:02', updatedAt:'2026-06-17 16:45:10', operator:'李凡'},
+  {orderNo:'RFUND202606160012', sn:'MBB202605290003', merchant:'苏州星河酒店', reason:'套餐配置错误', packageName:'酒店轻量50GB套餐', amount:'49.00', refundMethod:'原路退费', remark:'已重新配置正确套餐', status:'已退费', createdAt:'2026-06-16 09:42:51', updatedAt:'2026-06-16 10:20:35', operator:'陈启安'},
+  {orderNo:'RFUND202606150006', sn:'MBB202605280018', merchant:'南京万联物流', reason:'商户取消订单', packageName:'物流300GB高稳套餐', amount:'199.00', refundMethod:'商户转账', remark:'企业客户取消本次充值', status:'待处理', createdAt:'2026-06-15 18:06:27', updatedAt:'2026-06-15 18:06:27', operator:'段玉'},
+  {orderNo:'RFUND202606120019', sn:'MBB202604300086', merchant:'广州启明商贸', reason:'支付异常', packageName:'华南代理60GB体验包', amount:'29.00', refundMethod:'线下退费', remark:'支付回调异常产生退费单', status:'退费失败', createdAt:'2026-06-12 11:33:48', updatedAt:'2026-06-12 14:10:12', operator:'张可昕'},
+  {orderNo:'RFUND202606100021', sn:'MBB202604150021', merchant:'深圳远帆科技', reason:'余额抵扣异常', packageName:'企业500GB专享包', amount:'299.00', refundMethod:'商户转账', remark:'钱包余额抵扣后人工退差价', status:'已退费', createdAt:'2026-06-10 08:42:16', updatedAt:'2026-06-10 09:35:40', operator:'王敏'}
+];
+const refundManageData = [
+  {orderNo:'ORD202606180001', paidAt:'2026-06-18 10:20:12', deviceNo:'MBB202605290001', wechatPayNo:'WX20260618102012001', mainMerchant:'上海智联商贸', agent:'华东直营代理', packageName:'月包100GB畅享版', payAmount:'79.00', refundAmount:'79.00', wechatRefundAmount:'79.00', balanceRefundAmount:'0.00', status:'已处理', refundMethod:'原路退费', remark:'套餐重复购买，全额原路退回', creator:'王敏', createdAt:'2026-06-18 10:24:36', refundedAt:'2026-06-18 11:02:18'},
+  {orderNo:'ORD202606170008', paidAt:'2026-06-17 15:18:02', deviceNo:'MBB202605290002', wechatPayNo:'', mainMerchant:'杭州云旅科技', agent:'旅游渠道代理', packageName:'旅游渠道200GB套餐', payAmount:'139.00', refundAmount:'139.00', wechatRefundAmount:'0.00', balanceRefundAmount:'139.00', status:'未处理', refundMethod:'', remark:'设备返厂后套餐未使用', creator:'李凡', createdAt:'2026-06-17 16:45:10', refundedAt:''},
+  {orderNo:'ORD202606160012', paidAt:'2026-06-16 09:42:51', deviceNo:'MBB202605290003', wechatPayNo:'MIX20260616094251012', mainMerchant:'苏州星河酒店', agent:'酒店渠道代理', packageName:'酒店轻量50GB套餐', payAmount:'49.00', refundAmount:'49.00', wechatRefundAmount:'39.00', balanceRefundAmount:'10.00', status:'未处理', refundMethod:'', remark:'套餐配置错误，等待财务确认', creator:'陈启安', createdAt:'2026-06-16 10:20:35', refundedAt:''},
+  {orderNo:'ORD202606150006', paidAt:'', deviceNo:'MBB202605280018', wechatPayNo:'', mainMerchant:'南京万联物流', agent:'物流行业代理', packageName:'物流300GB高稳套餐', payAmount:'199.00', refundAmount:'0.00', wechatRefundAmount:'0.00', balanceRefundAmount:'0.00', status:'已处理', refundMethod:'商户转账', remark:'订单未完成支付，无需退款', creator:'段玉', createdAt:'2026-06-15 18:06:27', refundedAt:''},
+  {orderNo:'ORD202606120019', paidAt:'2026-06-12 11:33:48', deviceNo:'MBB202604300086', wechatPayNo:'WX20260612113348019', mainMerchant:'广州启明商贸', agent:'华南代理商', packageName:'华南代理60GB体验包', payAmount:'29.00', refundAmount:'29.00', wechatRefundAmount:'29.00', balanceRefundAmount:'0.00', status:'未处理', refundMethod:'', remark:'微信退款接口返回失败，需人工处理', creator:'张可昕', createdAt:'2026-06-12 14:10:12', refundedAt:''}
+];
+const refundWorkOrderData = [
+  {workNo:'RFW202607150001', applyAt:'2026-07-15 09:18:32', applicant:'王敏', workStatus:'审核中', refundStatus:'未退费', timeout:'否', sn:'MBB202605290001', shopOrderNo:'SHOP202607150001', customerNick:'星联客户A', refundType:'押金退费', refundMethod:'', verifiedAmount:'199.00', shopName:'上海智联旗舰店', reason:'设备归还后押金退回', registerRemark:'客户已上传归还凭证', payScreenshot:'已上传', actualAmount:'', customerType:'个人客户', reviewer:'李凡', reviewRemark:'资料完整', reviewAt:'', executor:'', executeAt:''},
+  {workNo:'RFW202607140002', applyAt:'2026-07-14 11:36:08', applicant:'陈启安', workStatus:'待执行', refundStatus:'未退费', timeout:'否', sn:'MBB202605290002', shopOrderNo:'SHOP202607140018', customerNick:'旅途小店', refundType:'套餐退费', refundMethod:'', verifiedAmount:'139.00', shopName:'杭州云旅专营店', reason:'套餐未生效申请退费', registerRemark:'已核验订单支付记录', payScreenshot:'已上传', actualAmount:'', customerType:'商户客户', reviewer:'王敏', reviewRemark:'同意退费', reviewAt:'2026-07-14 13:14:36', executor:'段玉', executeAt:''},
+  {workNo:'RFW202607130009', applyAt:'2026-07-13 15:42:20', applicant:'段玉', workStatus:'已完成', refundStatus:'已退费', timeout:'否', sn:'MBB202605290003', shopOrderNo:'SHOP202607130006', customerNick:'苏州住客', refundType:'押金退费', refundMethod:'原路退费', verifiedAmount:'99.00', shopName:'苏州星河酒店店', reason:'押金订单关闭', registerRemark:'客户提供收款信息', payScreenshot:'已上传', actualAmount:'99.00', customerType:'个人客户', reviewer:'李凡', reviewRemark:'金额一致', reviewAt:'2026-07-13 16:10:09', executor:'张可昕', executeAt:'2026-07-13 17:20:15'},
+  {workNo:'RFW202607120011', applyAt:'2026-07-12 18:08:51', applicant:'李凡', workStatus:'已驳回', refundStatus:'未退费', timeout:'否', sn:'MBB202605280018', shopOrderNo:'SHOP202607120021', customerNick:'南京物流用户', refundType:'套餐退费', refundMethod:'', verifiedAmount:'0.00', shopName:'南京万联物流店', reason:'客户重复提交', registerRemark:'与上一单重复', payScreenshot:'未上传', actualAmount:'0.00', customerType:'企业客户', reviewer:'陈启安', reviewRemark:'重复工单驳回', reviewAt:'2026-07-13 09:25:17', executor:'', executeAt:''},
+  {workNo:'RFW202607120018', applyAt:'2026-07-12 10:28:36', applicant:'王敏', workStatus:'已完成', refundStatus:'已退费', timeout:'否', sn:'MBB202606010011', shopOrderNo:'SHOP202607120018', customerNick:'北方渠道客户', refundType:'套餐退费', refundMethod:'商户转账', verifiedAmount:'168.00', shopName:'北京数联科技店', reason:'商户线下结算退款', registerRemark:'商户转账凭证已回传', payScreenshot:'已上传', actualAmount:'168.00', customerType:'渠道客户', reviewer:'李凡', reviewRemark:'商户转账已确认', reviewAt:'2026-07-12 11:02:18', executor:'张可昕', executeAt:'2026-07-12 14:36:55'},
+  {workNo:'RFW202607110006', applyAt:'2026-07-11 08:54:14', applicant:'张可昕', workStatus:'待执行', refundStatus:'退费失败', timeout:'是', sn:'MBB202604300086', shopOrderNo:'SHOP202607110016', customerNick:'启明代理', refundType:'订单异常退费', refundMethod:'商户转账', verifiedAmount:'29.00', shopName:'广州启明代理店', reason:'支付异常需人工退费', registerRemark:'等待财务复核', payScreenshot:'已上传', actualAmount:'', customerType:'渠道客户', reviewer:'王敏', reviewRemark:'同意退费', reviewAt:'2026-07-11 10:06:18', executor:'', executeAt:''}
+];
 const speedStrategyData = [
   {name:'高流量设备夜间限速', merchant:'上海智联商贸', status:'生效', usageEnabled:true, timeEnabled:true, creator:'王敏', createdAt:'2026-05-20 09:18:32', updatedAt:'2026-05-29 11:06:48'},
   {name:'旅游渠道基础限速', merchant:'杭州云旅科技', status:'生效', usageEnabled:true, timeEnabled:false, creator:'李凡', createdAt:'2026-05-18 14:36:20', updatedAt:'2026-05-28 15:22:10'},
@@ -1484,7 +1647,7 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {device:'设备管理', config:'二次认证配置', sim:'二次认证SIM卡管理', detail:'二次认证配置详情', flow:'设备流量', wallet:'钱包余额管理', workOrder:'换货/补发工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', package:'用户套餐管理', task:'批量任务', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情'};
+const pageTitles = {device:'设备管理', config:'二次认证配置', sim:'二次认证SIM卡管理', detail:'二次认证配置详情', flow:'设备流量', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', workOrder:'换货/补发工单', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', package:'用户套餐管理', task:'批量任务', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情'};
 let openTabs = [];
 let activePage = '';
 let currentDetailBatch = '';
@@ -1630,8 +1793,12 @@ function applyPageState(type){
   document.getElementById('simPage').classList.toggle('hidden', type !== 'sim');
   document.getElementById('detailPage').classList.toggle('hidden', type !== 'detail');
   document.getElementById('flowPage').classList.toggle('hidden', type !== 'flow');
+  document.getElementById('orderPage').classList.toggle('hidden', type !== 'order');
+  document.getElementById('refundPage').classList.toggle('hidden', type !== 'refund');
+  document.getElementById('refundManagePage').classList.toggle('hidden', type !== 'refundManage');
   document.getElementById('walletPage').classList.toggle('hidden', type !== 'wallet');
   document.getElementById('workOrderPage').classList.toggle('hidden', type !== 'workOrder');
+  document.getElementById('refundWorkOrderPage').classList.toggle('hidden', type !== 'refundWorkOrder');
   document.getElementById('factoryReturnPage').classList.toggle('hidden', type !== 'factoryReturn');
   document.getElementById('factoryReturnDetailPage').classList.toggle('hidden', type !== 'factoryReturnDetail');
   document.getElementById('factoryReturnCheckDetailPage').classList.toggle('hidden', type !== 'factoryReturnCheckDetail');
@@ -1644,8 +1811,12 @@ function applyPageState(type){
   document.getElementById('menuConfig').classList.toggle('active', type === 'config');
   document.getElementById('menuSim').classList.toggle('active', type === 'sim');
   document.getElementById('menuFlow').classList.toggle('active', type === 'flow');
+  document.getElementById('menuOrder').classList.toggle('active', type === 'order');
+  document.getElementById('menuRefund').classList.toggle('active', type === 'refund');
+  document.getElementById('menuRefundManage').classList.toggle('active', type === 'refundManage');
   document.getElementById('menuWallet').classList.toggle('active', type === 'wallet');
   document.getElementById('menuExchangeOrder').classList.toggle('active', type === 'workOrder');
+  document.getElementById('menuRefundWorkOrder').classList.toggle('active', type === 'refundWorkOrder');
   document.getElementById('menuFactoryReturn').classList.toggle('active', ['factoryReturn','factoryReturnDetail'].includes(type));
   document.getElementById('menuStrategy').classList.toggle('active', type === 'strategy');
   document.getElementById('menuUserPackage').classList.toggle('active', type === 'package');
@@ -1661,11 +1832,27 @@ function applyPageState(type){
   }else if(type === 'flow'){
     searchDeviceFlowRecords();
     setActiveDeviceSn(currentDeviceSn);
+  }else if(type === 'order'){
+    searchOrderRecords();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'refund'){
+    searchRefundRecords();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'refundManage'){
+    searchRefundManageRecords();
+    setActiveBatch('');
+    setActiveDeviceSn('');
   }else if(type === 'wallet'){
     searchWalletRecords();
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'workOrder'){
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'refundWorkOrder'){
+    searchRefundWorkOrderRecords();
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'factoryReturn'){
@@ -2477,6 +2664,349 @@ function resetWalletRecords(){
   document.getElementById('walletMinInput').value = '';
   document.getElementById('walletMaxInput').value = '';
   searchWalletRecords();
+}
+function renderOrderTable(rows){
+  document.getElementById('orderRows').innerHTML = rows.map((row,index) => `
+    <tr>
+      <td>${index + 1}</td><td>${escapeHtml(row.orderNo)}</td><td>${escapeHtml(row.orderType)}</td><td>${escapeHtml(row.sn)}</td>
+      <td>${escapeHtml(row.packageName)}</td><td>${escapeHtml(row.merchantNo)}</td><td>${escapeHtml(row.merchant)}</td><td>${escapeHtml(row.mainMerchant)}</td>
+      <td>${escapeHtml(row.couponName)}</td><td>${escapeHtml(row.packagePrice)}</td><td>${escapeHtml(row.speedPackPrice)}</td><td>${escapeHtml(row.discountPrice)}</td>
+      <td>${escapeHtml(row.payablePrice)}</td><td>${escapeHtml(row.couponDeduct)}</td><td>${escapeHtml(row.paidPrice)}</td>
+      <td>${escapeHtml(row.wechatAmount)}</td><td>${escapeHtml(row.walletAmount)}</td><td>${escapeHtml(row.status)}</td><td>${escapeHtml(row.payType)}</td>
+      <td>${escapeHtml(row.paidAt)}</td><td>${escapeHtml(row.payNo)}</td><td>${escapeHtml(row.beforeExpire)}</td><td>${escapeHtml(row.afterExpire)}</td>
+      <td>${escapeHtml(row.coupon)}</td><td>${escapeHtml(row.creator)}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.autoRenew)}</td>
+    </tr>
+  `).join('');
+  updatePagination('orderPagination', rows.length);
+}
+function getFilteredOrderRows(){
+  const orderType = getSelectValue('orderTypeFilter');
+  const payType = getSelectValue('orderPayTypeFilter');
+  const status = getSelectValue('orderStatusFilter');
+  const sn = normalizeText(document.getElementById('orderSnInput').value);
+  const orderNo = normalizeText(document.getElementById('orderNoInput').value);
+  const merchant = normalizeText(document.getElementById('orderMerchantInput').value);
+  const mainMerchant = normalizeText(document.getElementById('orderMainMerchantInput').value);
+  const payNo = normalizeText(document.getElementById('orderPayNoInput').value);
+  const packageName = normalizeText(document.getElementById('orderPackageInput').value);
+  const start = document.getElementById('orderCreateStartInput').value;
+  const end = document.getElementById('orderCreateEndInput').value;
+  return paymentOrderData.filter(row => {
+    const orderTypeOk = !orderType || row.orderType === orderType;
+    const payTypeOk = !payType || row.payType === payType;
+    const statusOk = !status || row.status === status;
+    const snOk = !sn || normalizeText(row.sn).includes(sn);
+    const orderOk = !orderNo || normalizeText(row.orderNo).includes(orderNo);
+    const merchantOk = !merchant || normalizeText(row.merchant).includes(merchant);
+    const mainMerchantOk = !mainMerchant || normalizeText(row.mainMerchant).includes(mainMerchant);
+    const payNoOk = !payNo || normalizeText(row.payNo).includes(payNo);
+    const packageOk = !packageName || normalizeText(row.packageName).includes(packageName);
+    const dateOk = dateInRange(row.createdAt, start, end);
+    return orderTypeOk && payTypeOk && statusOk && snOk && orderOk && merchantOk && mainMerchantOk && payNoOk && packageOk && dateOk;
+  });
+}
+function searchOrderRecords(){
+  const rowsNode = document.getElementById('orderRows');
+  if(!rowsNode){return}
+  renderOrderTable(getFilteredOrderRows());
+}
+function resetOrderRecords(){
+  resetCustomSelect('orderTypeFilter','订单类型');
+  resetCustomSelect('orderPayTypeFilter','支付类型');
+  resetCustomSelect('orderStatusFilter','订单状态');
+  document.getElementById('orderSnInput').value = '';
+  document.getElementById('orderNoInput').value = '';
+  document.getElementById('orderMerchantInput').value = '';
+  document.getElementById('orderMainMerchantInput').value = '';
+  document.getElementById('orderPayNoInput').value = '';
+  document.getElementById('orderPackageInput').value = '';
+  setUnifiedRangeValues('orderCreate','','',false);
+  searchOrderRecords();
+}
+function exportOrderRecords(){
+  const rows = getFilteredOrderRows();
+  const header = ['序号','订单号','订单类型','设备SN','套餐名称','商户号','商户名称','主商户','优惠券名称','套餐价格','加速包价格','折扣价','应付价格','优惠券减免金额（元）','实际支付价格','微信支付金额','钱包支付金额','订单状态','支付类型','支付时间','支付单号','续费前的服务有效期','续费后的服务有效期','优惠券','创建人','创建时间','余额自动续费状态'];
+  const body = rows.map((row,index) => [index + 1,row.orderNo,row.orderType,row.sn,row.packageName,row.merchantNo,row.merchant,row.mainMerchant,row.couponName,row.packagePrice,row.speedPackPrice,row.discountPrice,row.payablePrice,row.couponDeduct,row.paidPrice,row.wechatAmount,row.walletAmount,row.status,row.payType,row.paidAt,row.payNo,row.beforeExpire,row.afterExpire,row.coupon,row.creator,row.createdAt,row.autoRenew]);
+  const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item || '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '订单管理.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+function renderRefundTable(rows){
+  document.getElementById('refundRows').innerHTML = rows.map((row,index) => `
+    <tr>
+      <td>${index + 1}</td><td>${escapeHtml(row.orderNo)}</td><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.merchant)}</td>
+      <td>${escapeHtml(row.reason)}</td><td>${escapeHtml(row.packageName)}</td><td>${escapeHtml(row.amount)}</td>
+      <td>${escapeHtml(row.refundMethod || '--')}</td><td>${escapeHtml(row.remark)}</td><td>${escapeHtml(row.status)}</td><td>${escapeHtml(row.createdAt)}</td>
+      <td>${escapeHtml(row.updatedAt)}</td><td>${escapeHtml(row.operator)}</td>
+    </tr>
+  `).join('');
+  updatePagination('refundPagination', rows.length);
+}
+function getFilteredRefundRows(){
+  const sn = normalizeText(document.getElementById('refundSnInput').value);
+  const packageName = normalizeText(document.getElementById('refundPackageInput').value);
+  const orderNo = normalizeText(document.getElementById('refundOrderInput').value);
+  const merchant = normalizeText(document.getElementById('refundMerchantInput').value);
+  const refundMethod = getSelectValue('refundMethodFilter');
+  const start = document.getElementById('refundCreateStartInput').value;
+  const end = document.getElementById('refundCreateEndInput').value;
+  return refundOrderData.filter(row => {
+    const snOk = !sn || normalizeText(row.sn).includes(sn);
+    const packageOk = !packageName || normalizeText(row.packageName).includes(packageName);
+    const orderOk = !orderNo || normalizeText(row.orderNo).includes(orderNo);
+    const merchantOk = !merchant || normalizeText(row.merchant).includes(merchant);
+    const methodOk = !refundMethod || row.refundMethod === refundMethod;
+    const dateOk = dateInRange(row.createdAt, start, end);
+    return snOk && packageOk && orderOk && merchantOk && methodOk && dateOk;
+  });
+}
+function searchRefundRecords(){
+  const rowsNode = document.getElementById('refundRows');
+  if(!rowsNode){return}
+  renderRefundTable(getFilteredRefundRows());
+}
+function resetRefundRecords(){
+  document.getElementById('refundSnInput').value = '';
+  document.getElementById('refundPackageInput').value = '';
+  document.getElementById('refundOrderInput').value = '';
+  document.getElementById('refundMerchantInput').value = '';
+  resetCustomSelect('refundMethodFilter','退费方式');
+  setUnifiedRangeValues('refundCreate','','',false);
+  searchRefundRecords();
+}
+function exportRefundRecords(){
+  const rows = getFilteredRefundRows();
+  const header = ['序号','订单号','设备SN','所属商户','退费原因','套餐名称','退费金额','退费方式','备注','状态','创建时间','更新时间','操作人'];
+  const body = rows.map((row,index) => [index + 1,row.orderNo,row.sn,row.merchant,row.reason,row.packageName,row.amount,row.refundMethod,row.remark,row.status,row.createdAt,row.updatedAt,row.operator]);
+  const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item || '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '退费单管理.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+function getRefundManageActionLabels(row){
+  const actions = [];
+  if(row.status === '未处理'){
+    actions.push('删除','处理退款');
+  }
+  if(row.refundMethod === '商户转账'){
+    actions.push('撤销转账');
+  }
+  return actions;
+}
+function renderRefundManageActions(row){
+  return getRefundManageActionLabels(row).map(label => `<span class="text-action${['删除','撤销转账'].includes(label) ? ' danger' : ''}">${label}</span>`).join('');
+}
+function renderRefundManageTable(rows){
+  document.getElementById('refundManageRows').innerHTML = rows.map((row,index) => `
+    <tr>
+      <td>${index + 1}</td><td>${escapeHtml(row.orderNo)}</td><td>${escapeHtml(row.paidAt || '--')}</td>
+      <td>${escapeHtml(row.deviceNo)}</td><td>${escapeHtml(row.wechatPayNo || '--')}</td><td>${escapeHtml(row.mainMerchant)}</td>
+      <td>${escapeHtml(row.agent)}</td><td>${escapeHtml(row.packageName)}</td><td>${escapeHtml(row.payAmount)}</td>
+      <td>${escapeHtml(row.refundAmount)}</td><td>${escapeHtml(row.wechatRefundAmount)}</td><td>${escapeHtml(row.balanceRefundAmount)}</td>
+      <td>${escapeHtml(row.status)}</td><td>${escapeHtml(row.refundMethod || '--')}</td><td>${escapeHtml(row.remark)}</td><td>${escapeHtml(row.creator)}</td>
+      <td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.refundedAt || '--')}</td>
+      <td class="sticky-action">${renderRefundManageActions(row)}</td>
+    </tr>
+  `).join('');
+  updatePagination('refundManagePagination', rows.length);
+}
+function getFilteredRefundManageRows(){
+  const deviceNo = normalizeText(document.getElementById('refundManageDeviceInput').value);
+  const orderNo = normalizeText(document.getElementById('refundManageOrderInput').value);
+  const mainMerchant = normalizeText(document.getElementById('refundManageMainMerchantInput').value);
+  const status = getSelectValue('refundManageStatusFilter');
+  const refundMethod = getSelectValue('refundManageMethodFilter');
+  const start = document.getElementById('refundManageCreateStartInput').value;
+  const end = document.getElementById('refundManageCreateEndInput').value;
+  return refundManageData.filter(row => {
+    const deviceOk = !deviceNo || normalizeText(row.deviceNo).includes(deviceNo);
+    const orderOk = !orderNo || normalizeText(row.orderNo).includes(orderNo);
+    const merchantOk = !mainMerchant || normalizeText(row.mainMerchant).includes(mainMerchant);
+    const statusOk = !status || row.status === status;
+    const methodOk = !refundMethod || row.refundMethod === refundMethod;
+    const dateOk = dateInRange(row.createdAt, start, end);
+    return deviceOk && orderOk && merchantOk && statusOk && methodOk && dateOk;
+  });
+}
+function searchRefundManageRecords(){
+  const rowsNode = document.getElementById('refundManageRows');
+  if(!rowsNode){return}
+  renderRefundManageTable(getFilteredRefundManageRows());
+}
+function resetRefundManageRecords(){
+  document.getElementById('refundManageDeviceInput').value = '';
+  document.getElementById('refundManageOrderInput').value = '';
+  document.getElementById('refundManageMainMerchantInput').value = '';
+  resetCustomSelect('refundManageStatusFilter','状态');
+  resetCustomSelect('refundManageMethodFilter','退费方式');
+  setUnifiedRangeValues('refundManageCreate','','',false);
+  searchRefundManageRecords();
+}
+function getRefundManageExportData(){
+  const header = ['序号','订单号','订单支付时间','设备号','微信支付单号','主商户','代理商','套餐名称','支付金额','退款金额','微信退费金额','余额退费金额','退款状态','退费方式','备注','创建人','创建时间','退费时间','操作'];
+  const body = getFilteredRefundManageRows().map((row,index) => [index + 1,row.orderNo,row.paidAt,row.deviceNo,row.wechatPayNo,row.mainMerchant,row.agent,row.packageName,row.payAmount,row.refundAmount,row.wechatRefundAmount,row.balanceRefundAmount,row.status,row.refundMethod,row.remark,row.creator,row.createdAt,row.refundedAt,getRefundManageActionLabels(row).join('/')]);
+  return {header,body};
+}
+function downloadRefundManageFile(content,type,filename){
+  const blob = new Blob([content], {type});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+function exportRefundManageTxt(){
+  const data = getRefundManageExportData();
+  const text = '\ufeff' + [data.header].concat(data.body).map(items => items.map(item => String(item || '')).join('\t')).join('\n');
+  downloadRefundManageFile(text,'text/plain;charset=utf-8;','退费管理.txt');
+}
+function exportRefundManageExcel(){
+  const data = getRefundManageExportData();
+  const rows = [data.header].concat(data.body).map(items => `<tr>${items.map(item => `<td>${escapeHtml(String(item || ''))}</td>`).join('')}</tr>`).join('');
+  const html = `\ufeff<html><head><meta charset="UTF-8"></head><body><table>${rows}</table></body></html>`;
+  downloadRefundManageFile(html,'application/vnd.ms-excel;charset=utf-8;','退费管理.xls');
+}
+function getRefundWorkCountdown(row){
+  const start = new Date(String(row.applyAt || '').replace(' ','T')).getTime();
+  if(!start || Number.isNaN(start)){return {label:'--',expired:false}}
+  const deadline = start + 48 * 60 * 60 * 1000;
+  const remain = deadline - Date.now();
+  if(remain <= 0){return {label:'已超时',expired:true}}
+  const hours = Math.floor(remain / (60 * 60 * 1000));
+  const minutes = Math.floor((remain % (60 * 60 * 1000)) / (60 * 1000));
+  return {label:`剩余${hours}小时${String(minutes).padStart(2,'0')}分钟`,expired:false};
+}
+function copyRefundWorkNo(event,workNo){
+  if(event){event.stopPropagation()}
+  const value = String(workNo || '');
+  if(!value){return}
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(value);
+    return;
+  }
+  const input = document.createElement('textarea');
+  input.value = value;
+  input.style.position = 'fixed';
+  input.style.opacity = '0';
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+}
+function renderRefundWorkStatus(row){
+  const countdown = getRefundWorkCountdown(row);
+  return `
+    <div class="work-status-stack">
+      <span><strong>工单状态：</strong>${escapeHtml(row.workStatus)}</span>
+      <span><strong>退费状态：</strong>${escapeHtml(row.refundStatus)}</span>
+      <span><strong>48小时倒计时：</strong><span class="${countdown.expired ? 'countdown-expired' : ''}">${escapeHtml(countdown.label)}</span></span>
+    </div>
+  `;
+}
+function renderRefundWorkNo(row){
+  return `<span class="work-no-cell"><span class="work-no-link" onclick="copyRefundWorkNo(event,'${row.workNo}')">${escapeHtml(row.workNo)}</span><span class="copy-icon" title="复制退费工单号" onclick="copyRefundWorkNo(event,'${row.workNo}')"></span></span>`;
+}
+function getRefundWorkActionLabels(row){
+  let actions = [];
+  if(row.workStatus === '审核中'){
+    actions = ['编辑','审核','驳回'];
+  }else if(row.refundStatus === '退费失败'){
+    actions = ['线下退费'];
+  }else if(row.workStatus === '待执行' && row.refundStatus === '未退费'){
+    actions = ['处理退款','驳回'];
+  }
+  if(row.refundMethod === '商户转账' && row.refundStatus !== '退费失败' && !actions.includes('撤销转账')){
+    actions.push('撤销转账');
+  }
+  return actions;
+}
+function renderRefundWorkActions(row){
+  return getRefundWorkActionLabels(row).map(label => `<span class="text-action${['驳回','撤销转账'].includes(label) ? ' danger' : ''}">${label}</span>`).join('');
+}
+function renderRefundWorkOrderTable(rows){
+  document.getElementById('refundWorkOrderRows').innerHTML = rows.map((row,index) => `
+    <tr>
+      <td>${index + 1}</td><td>${renderRefundWorkNo(row)}</td><td>${escapeHtml(row.applyAt)}</td><td>${escapeHtml(row.applicant)}</td>
+      <td>${renderRefundWorkStatus(row)}</td><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.shopOrderNo)}</td>
+      <td>${escapeHtml(row.customerNick)}</td><td>${escapeHtml(row.refundType)}</td><td>${escapeHtml(row.refundMethod || '--')}</td><td>${escapeHtml(row.verifiedAmount)}</td>
+      <td>${escapeHtml(row.shopName)}</td><td>${escapeHtml(row.reason)}</td><td>${escapeHtml(row.registerRemark)}</td>
+      <td>${row.payScreenshot === '已上传' ? '<span class="text-action">查看</span>' : '--'}</td><td>${escapeHtml(row.actualAmount || '--')}</td>
+      <td>${escapeHtml(row.customerType)}</td><td>${escapeHtml(row.reviewer || '--')}</td><td>${escapeHtml(row.reviewRemark || '--')}</td>
+      <td>${escapeHtml(row.reviewAt || '--')}</td><td>${escapeHtml(row.executor || '--')}</td><td>${escapeHtml(row.executeAt || '--')}</td>
+      <td class="sticky-action">${renderRefundWorkActions(row)}</td>
+    </tr>
+  `).join('');
+  updatePagination('refundWorkOrderPagination', rows.length);
+}
+function getFilteredRefundWorkOrderRows(){
+  const applicant = normalizeText(document.getElementById('refundWorkApplicantInput').value);
+  const reviewer = normalizeText(document.getElementById('refundWorkReviewerInput').value);
+  const shopOrderNo = normalizeText(document.getElementById('refundWorkShopOrderInput').value);
+  const workNo = normalizeText(document.getElementById('refundWorkNoInput').value);
+  const sn = normalizeText(document.getElementById('refundWorkSnInput').value);
+  const customer = normalizeText(document.getElementById('refundWorkCustomerInput').value);
+  const refundStatus = getSelectValue('refundWorkRefundStatusFilter');
+  const refundMethod = getSelectValue('refundWorkMethodFilter');
+  const auditStart = document.getElementById('refundWorkAuditStartInput').value;
+  const auditEnd = document.getElementById('refundWorkAuditEndInput').value;
+  const applyStart = document.getElementById('refundWorkApplyStartInput').value;
+  const applyEnd = document.getElementById('refundWorkApplyEndInput').value;
+  const shop = normalizeText(document.getElementById('refundWorkShopInput').value);
+  const workStatus = getSelectValue('refundWorkStatusFilter');
+  return refundWorkOrderData.filter(row => {
+    const applicantOk = !applicant || normalizeText(row.applicant).includes(applicant);
+    const reviewerOk = !reviewer || normalizeText(row.reviewer).includes(reviewer);
+    const shopOrderOk = !shopOrderNo || normalizeText(row.shopOrderNo).includes(shopOrderNo);
+    const workNoOk = !workNo || normalizeText(row.workNo).includes(workNo);
+    const snOk = !sn || normalizeText(row.sn).includes(sn);
+    const customerOk = !customer || normalizeText(row.customerNick).includes(customer);
+    const refundStatusOk = !refundStatus || row.refundStatus === refundStatus;
+    const methodOk = !refundMethod || row.refundMethod === refundMethod;
+    const auditDateOk = dateInRange(row.reviewAt, auditStart, auditEnd);
+    const applyDateOk = dateInRange(row.applyAt, applyStart, applyEnd);
+    const shopOk = !shop || normalizeText(row.shopName).includes(shop);
+    const workStatusOk = !workStatus || row.workStatus === workStatus;
+    return applicantOk && reviewerOk && shopOrderOk && workNoOk && snOk && customerOk && refundStatusOk && methodOk && auditDateOk && applyDateOk && shopOk && workStatusOk;
+  });
+}
+function searchRefundWorkOrderRecords(){
+  const rowsNode = document.getElementById('refundWorkOrderRows');
+  if(!rowsNode){return}
+  renderRefundWorkOrderTable(getFilteredRefundWorkOrderRows());
+}
+function resetRefundWorkOrderRecords(){
+  document.getElementById('refundWorkApplicantInput').value = '';
+  document.getElementById('refundWorkReviewerInput').value = '';
+  document.getElementById('refundWorkShopOrderInput').value = '';
+  document.getElementById('refundWorkNoInput').value = '';
+  document.getElementById('refundWorkSnInput').value = '';
+  document.getElementById('refundWorkCustomerInput').value = '';
+  resetCustomSelect('refundWorkRefundStatusFilter','退费状态');
+  resetCustomSelect('refundWorkMethodFilter','退费方式');
+  setUnifiedRangeValues('refundWorkAudit','','',false);
+  setUnifiedRangeValues('refundWorkApply','','',false);
+  document.getElementById('refundWorkShopInput').value = '';
+  resetCustomSelect('refundWorkStatusFilter','工单状态');
+  searchRefundWorkOrderRecords();
+}
+function exportRefundWorkOrderRecords(){
+  const rows = getFilteredRefundWorkOrderRows();
+  const header = ['序号','退费工单号','申请时间','申请人','工单状态','退费状态','48小时倒计时','SN','店铺订单号','客户昵称','退费类型','退费方式','已核实退费金额','店铺名称','退费原因','登记人备注','支付截图','实际退费金额','客户类型','审核人','审核人备注','审核时间','执行人','执行时间','操作'];
+  const body = rows.map((row,index) => [index + 1,row.workNo,row.applyAt,row.applicant,row.workStatus,row.refundStatus,getRefundWorkCountdown(row).label,row.sn,row.shopOrderNo,row.customerNick,row.refundType,row.refundMethod,row.verifiedAmount,row.shopName,row.reason,row.registerRemark,row.payScreenshot,row.actualAmount,row.customerType,row.reviewer,row.reviewRemark,row.reviewAt,row.executor,row.executeAt,getRefundWorkActionLabels(row).join('/')]);
+  const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item || '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '退费工单.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
 }
 function renderStrategyTable(rows){
   document.getElementById('strategyRows').innerHTML = rows.map(row => `
@@ -3963,6 +4493,15 @@ function setCustomSelectValue(target,value,label,emitChange){
   if(select.id === 'factoryReturnInfoStatusFilter'){
     searchFactoryReturnInfoRecords();
   }
+  if(select.id === 'refundMethodFilter'){
+    searchRefundRecords();
+  }
+  if(['refundWorkRefundStatusFilter','refundWorkStatusFilter','refundWorkMethodFilter'].includes(select.id)){
+    searchRefundWorkOrderRecords();
+  }
+  if(['refundManageStatusFilter','refundManageMethodFilter'].includes(select.id)){
+    searchRefundManageRecords();
+  }
 }
 function initCustomSelectState(select){
   const valueNode = select.querySelector('.select-value');
@@ -4022,6 +4561,11 @@ function initDropdowns(){
 }
 const extraRangePickerState = {
   config:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'configDatePicker',panelId:'configDatePanel',displayInputId:'configDateInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'},
+  orderCreate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'orderCreateRange',panelId:'orderCreatePanel',startId:'orderCreateStartInput',endId:'orderCreateEndInput',startPlaceholder:'创建开始时间',endPlaceholder:'创建结束时间'},
+  refundCreate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'refundCreateRange',panelId:'refundCreatePanel',startId:'refundCreateStartInput',endId:'refundCreateEndInput',startPlaceholder:'创建开始时间',endPlaceholder:'创建结束时间'},
+  refundManageCreate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'refundManageCreateRange',panelId:'refundManageCreatePanel',startId:'refundManageCreateStartInput',endId:'refundManageCreateEndInput',startPlaceholder:'创建开始时间',endPlaceholder:'创建结束时间'},
+  refundWorkAudit:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'refundWorkAuditRange',panelId:'refundWorkAuditPanel',startId:'refundWorkAuditStartInput',endId:'refundWorkAuditEndInput',startPlaceholder:'审核开始时间',endPlaceholder:'审核结束时间'},
+  refundWorkApply:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'refundWorkApplyRange',panelId:'refundWorkApplyPanel',startId:'refundWorkApplyStartInput',endId:'refundWorkApplyEndInput',startPlaceholder:'申请开始时间',endPlaceholder:'申请结束时间'},
   factoryReturn:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'factoryReturnOperationRange',panelId:'factoryReturnOperationPanel',startId:'factoryReturnStartInput',endId:'factoryReturnEndInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'},
   factoryReturnDetail:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'factoryReturnDetailOperationRange',panelId:'factoryReturnDetailOperationPanel',startId:'factoryReturnDetailStartInput',endId:'factoryReturnDetailEndInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'}
 };
@@ -4195,6 +4739,10 @@ function applyUnifiedRangeShortcut(event,key,type){
 function triggerUnifiedRangeChange(key){
   if(key === 'config'){searchConfigRecords()}
   if(key === 'service' || key === 'active'){searchDeviceManageRecords()}
+  if(key === 'orderCreate'){searchOrderRecords()}
+  if(key === 'refundCreate'){searchRefundRecords()}
+  if(key === 'refundManageCreate'){searchRefundManageRecords()}
+  if(key === 'refundWorkAudit' || key === 'refundWorkApply'){searchRefundWorkOrderRecords()}
   if(key === 'factoryReturn'){searchFactoryReturnRecords()}
   if(key === 'factoryReturnDetail'){searchFactoryReturnDetailRecords()}
 }
