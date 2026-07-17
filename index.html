@@ -1497,6 +1497,8 @@ const refundOrderData = [
   {orderNo:'RFUND202606100021', sn:'MBB202604150021', merchant:'深圳远帆科技', reason:'余额抵扣异常', packageName:'企业500GB专享包', amount:'299.00', refundMethod:'商户转账', remark:'钱包余额抵扣后人工退差价', status:'已退费', createdAt:'2026-06-10 08:42:16', updatedAt:'2026-06-10 09:35:40', operator:'王敏'}
 ];
 const refundManageData = [
+  {orderNo:'ORD202607170031', paidAt:'2026-07-17 09:16:42', deviceNo:'MBB202607170031', wechatPayNo:'WX20260717091642031', mainMerchant:'上海智联商贸', agent:'华东直营代理', packageName:'月包100GB畅享版', payAmount:'99.00', refundAmount:'99.00', wechatRefundAmount:'99.00', balanceRefundAmount:'0.00', status:'未处理', refundMethod:'', refundPrompt:'当前转账商户已经达到每日可转账金额上限，请联系管理员处理。', remark:'商户当日转账额度已达上限', creator:'王敏', createdAt:'2026-07-17 09:20:18', refundedAt:''},
+  {orderNo:'ORD202607170032', paidAt:'2026-07-17 10:08:25', deviceNo:'MBB202607170032', wechatPayNo:'WX20260717100825032', mainMerchant:'杭州云旅科技', agent:'旅游渠道代理', packageName:'旅游渠道200GB套餐', payAmount:'6888.00', refundAmount:'6888.00', wechatRefundAmount:'0.00', balanceRefundAmount:'6888.00', status:'未处理', refundMethod:'', refundPrompt:'转账金额超出当前转账商户单笔可转账金额上限，请联系管理员处理。', remark:'单笔转账金额超出商户限额', creator:'李凡', createdAt:'2026-07-17 10:12:36', refundedAt:''},
   {orderNo:'ORD202606180001', paidAt:'2026-06-18 10:20:12', deviceNo:'MBB202605290001', wechatPayNo:'WX20260618102012001', mainMerchant:'上海智联商贸', agent:'华东直营代理', packageName:'月包100GB畅享版', payAmount:'79.00', refundAmount:'79.00', wechatRefundAmount:'79.00', balanceRefundAmount:'0.00', status:'已处理', refundMethod:'原路退费', remark:'套餐重复购买，全额原路退回', creator:'王敏', createdAt:'2026-06-18 10:24:36', refundedAt:'2026-06-18 11:02:18'},
   {orderNo:'ORD202606170008', paidAt:'2026-06-17 15:18:02', deviceNo:'MBB202605290002', wechatPayNo:'', mainMerchant:'杭州云旅科技', agent:'旅游渠道代理', packageName:'旅游渠道200GB套餐', payAmount:'139.00', refundAmount:'139.00', wechatRefundAmount:'0.00', balanceRefundAmount:'139.00', status:'未处理', refundMethod:'', remark:'设备返厂后套餐未使用', creator:'李凡', createdAt:'2026-06-17 16:45:10', refundedAt:''},
   {orderNo:'ORD202606160012', paidAt:'2026-06-16 09:42:51', deviceNo:'MBB202605290003', wechatPayNo:'MIX20260616094251012', mainMerchant:'苏州星河酒店', agent:'酒店渠道代理', packageName:'酒店轻量50GB套餐', payAmount:'49.00', refundAmount:'49.00', wechatRefundAmount:'39.00', balanceRefundAmount:'10.00', status:'未处理', refundMethod:'', remark:'套餐配置错误，等待财务确认', creator:'陈启安', createdAt:'2026-06-16 10:20:35', refundedAt:''},
@@ -1504,6 +1506,8 @@ const refundManageData = [
   {orderNo:'ORD202606120019', paidAt:'2026-06-12 11:33:48', deviceNo:'MBB202604300086', wechatPayNo:'WX20260612113348019', mainMerchant:'广州启明商贸', agent:'华南代理商', packageName:'华南代理60GB体验包', payAmount:'29.00', refundAmount:'29.00', wechatRefundAmount:'29.00', balanceRefundAmount:'0.00', status:'未处理', refundMethod:'', remark:'微信退款接口返回失败，需人工处理', creator:'张可昕', createdAt:'2026-06-12 14:10:12', refundedAt:''}
 ];
 const refundWorkOrderData = [
+  {workNo:'RFW202607170031', applyAt:'2026-07-17 09:28:16', applicant:'王敏', workStatus:'待执行', refundStatus:'未退费', timeout:'否', sn:'MBB202607170031', shopOrderNo:'SHOP202607170031', customerNick:'星联企业客户', refundType:'套餐退费', refundMethod:'', refundPrompt:'当前转账商户已经达到每日可转账金额上限，请联系管理员处理。', verifiedAmount:'99.00', shopName:'上海智联旗舰店', reason:'套餐未生效申请退费', registerRemark:'等待财务执行退款', payScreenshot:'已上传', actualAmount:'', customerType:'商户客户', reviewer:'李凡', reviewRemark:'同意退费', reviewAt:'2026-07-17 09:42:11', executor:'段玉', executeAt:''},
+  {workNo:'RFW202607170032', applyAt:'2026-07-17 10:18:54', applicant:'陈启安', workStatus:'待执行', refundStatus:'未退费', timeout:'否', sn:'MBB202607170032', shopOrderNo:'SHOP202607170032', customerNick:'云旅大客户', refundType:'押金退费', refundMethod:'', refundPrompt:'转账金额超出当前转账商户单笔可转账金额上限，请联系管理员处理。', verifiedAmount:'6888.00', shopName:'杭州云旅专营店', reason:'大额押金退费需人工处理', registerRemark:'转账金额超过单笔限额', payScreenshot:'已上传', actualAmount:'', customerType:'渠道客户', reviewer:'王敏', reviewRemark:'同意退费', reviewAt:'2026-07-17 10:40:22', executor:'张可昕', executeAt:''},
   {workNo:'RFW202607150001', applyAt:'2026-07-15 09:18:32', applicant:'王敏', workStatus:'审核中', refundStatus:'未退费', timeout:'否', sn:'MBB202605290001', shopOrderNo:'SHOP202607150001', customerNick:'星联客户A', refundType:'押金退费', refundMethod:'', verifiedAmount:'199.00', shopName:'上海智联旗舰店', reason:'设备归还后押金退回', registerRemark:'客户已上传归还凭证', payScreenshot:'已上传', actualAmount:'', customerType:'个人客户', reviewer:'李凡', reviewRemark:'资料完整', reviewAt:'', executor:'', executeAt:''},
   {workNo:'RFW202607140002', applyAt:'2026-07-14 11:36:08', applicant:'陈启安', workStatus:'待执行', refundStatus:'未退费', timeout:'否', sn:'MBB202605290002', shopOrderNo:'SHOP202607140018', customerNick:'旅途小店', refundType:'套餐退费', refundMethod:'', verifiedAmount:'139.00', shopName:'杭州云旅专营店', reason:'套餐未生效申请退费', registerRemark:'已核验订单支付记录', payScreenshot:'已上传', actualAmount:'', customerType:'商户客户', reviewer:'王敏', reviewRemark:'同意退费', reviewAt:'2026-07-14 13:14:36', executor:'段玉', executeAt:''},
   {workNo:'RFW202607130009', applyAt:'2026-07-13 15:42:20', applicant:'段玉', workStatus:'已完成', refundStatus:'已退费', timeout:'否', sn:'MBB202605290003', shopOrderNo:'SHOP202607130006', customerNick:'苏州住客', refundType:'押金退费', refundMethod:'原路退费', verifiedAmount:'99.00', shopName:'苏州星河酒店店', reason:'押金订单关闭', registerRemark:'客户提供收款信息', payScreenshot:'已上传', actualAmount:'99.00', customerType:'个人客户', reviewer:'李凡', reviewRemark:'金额一致', reviewAt:'2026-07-13 16:10:09', executor:'张可昕', executeAt:'2026-07-13 17:20:15'},
@@ -2813,18 +2817,19 @@ function getRefundManageActionLabels(row){
   }
   return actions;
 }
-function renderRefundActionButton(label, merchantName){
+function renderRefundActionButton(label, merchantName, promptText){
   const danger = ['删除','撤销转账','驳回'].includes(label) ? ' danger' : '';
   const merchant = escapeHtml(merchantName || '用于转账的商户名称');
-  const clickAttrs = label === '处理退款' ? ` onclick="openRefundBalanceModal(this.dataset.merchant)" data-merchant="${merchant}"` : '';
+  const prompt = escapeHtml(promptText || '');
+  const clickAttrs = label === '处理退款' ? ` onclick="openRefundBalanceModal(this.dataset.merchant,this.dataset.prompt)" data-merchant="${merchant}" data-prompt="${prompt}"` : '';
   return `<span class="text-action${danger}"${clickAttrs}>${escapeHtml(label)}</span>`;
 }
-function openRefundBalanceModal(merchantName){
+function openRefundBalanceModal(merchantName,promptText){
   const modal = document.getElementById('refundBalanceModalMask');
   const message = document.getElementById('refundBalanceMessage');
   const merchant = merchantName || '用于转账的商户名称';
   if(message){
-    message.innerHTML = `当前转账商户【<span class="merchant-name">${escapeHtml(merchant)}</span>】余额不足，请前往充值！`;
+    message.innerHTML = promptText ? escapeHtml(promptText) : `当前转账商户【<span class="merchant-name">${escapeHtml(merchant)}</span>】余额不足，请前往充值！`;
   }
   if(modal){modal.style.display = 'flex'}
 }
@@ -2833,7 +2838,7 @@ function closeRefundBalanceModal(){
   if(modal){modal.style.display = 'none'}
 }
 function renderRefundManageActions(row){
-  return getRefundManageActionLabels(row).map(label => renderRefundActionButton(label,row.mainMerchant)).join('');
+  return getRefundManageActionLabels(row).map(label => renderRefundActionButton(label,row.mainMerchant,row.refundPrompt)).join('');
 }
 function renderRefundManageTable(rows){
   document.getElementById('refundManageRows').innerHTML = rows.map((row,index) => `
@@ -2960,7 +2965,7 @@ function getRefundWorkActionLabels(row){
   return actions;
 }
 function renderRefundWorkActions(row){
-  return getRefundWorkActionLabels(row).map(label => renderRefundActionButton(label,row.shopName)).join('');
+  return getRefundWorkActionLabels(row).map(label => renderRefundActionButton(label,row.shopName,row.refundPrompt)).join('');
 }
 function renderRefundWorkOrderTable(rows){
   document.getElementById('refundWorkOrderRows').innerHTML = rows.map((row,index) => `
