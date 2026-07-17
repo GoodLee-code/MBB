@@ -475,6 +475,8 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .modal-actions,.factory-return-modal .modal-actions,.strategy-footer{height:64px!important;flex:0 0 64px;margin:0!important;padding:0 24px!important;border-top:1px solid #edf0f5;display:flex!important;align-items:center;justify-content:flex-end;gap:8px;text-align:right;background:#fff}
 .modal-actions button,.factory-return-modal .modal-actions button,.strategy-footer button{width:80px!important;min-width:80px!important;height:32px!important;margin:0!important;padding:0!important;border-radius:3px;font-size:13px!important;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,border-color .16s ease,color .16s ease}
 .modal-actions button:hover,.modal-actions button:active,.strategy-footer button:hover,.strategy-footer button:active{transform:translateY(-1px);box-shadow:0 5px 14px rgba(31,35,41,.14)}
+.refund-balance-message{font-size:13px;line-height:22px;color:#1F2329}
+.refund-balance-message .merchant-name{font-weight:500;color:#1F2329}
 .record-filter,.record-table-wrap,.record-pagination{margin-left:24px;margin-right:24px}
 .record-filter{margin-top:20px;margin-bottom:16px;gap:8px}
 .record-filter .input,.record-filter .select,.record-btn{height:32px!important;font-size:13px!important}
@@ -1394,6 +1396,17 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="modal-title">版本对比</div>
     <div class="modal-body" id="fieldVersionCompareBody"></div>
     <div class="modal-actions"><button class="confirm" onclick="closeFieldVersionCompareModal()">关闭</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="refundBalanceModalMask">
+  <div class="modal">
+    <div class="close" onclick="closeRefundBalanceModal()">×</div>
+    <div class="modal-title">提示</div>
+    <div class="modal-body">
+      <div class="refund-balance-message" id="refundBalanceMessage"></div>
+    </div>
+    <div class="modal-actions"><button class="confirm" onclick="closeRefundBalanceModal()">确认</button></div>
   </div>
 </div>
 
@@ -2800,8 +2813,27 @@ function getRefundManageActionLabels(row){
   }
   return actions;
 }
+function renderRefundActionButton(label, merchantName){
+  const danger = ['删除','撤销转账','驳回'].includes(label) ? ' danger' : '';
+  const merchant = escapeHtml(merchantName || '用于转账的商户名称');
+  const clickAttrs = label === '处理退款' ? ` onclick="openRefundBalanceModal(this.dataset.merchant)" data-merchant="${merchant}"` : '';
+  return `<span class="text-action${danger}"${clickAttrs}>${escapeHtml(label)}</span>`;
+}
+function openRefundBalanceModal(merchantName){
+  const modal = document.getElementById('refundBalanceModalMask');
+  const message = document.getElementById('refundBalanceMessage');
+  const merchant = merchantName || '用于转账的商户名称';
+  if(message){
+    message.innerHTML = `当前转账商户【<span class="merchant-name">${escapeHtml(merchant)}</span>】余额不足，请前往充值！`;
+  }
+  if(modal){modal.style.display = 'flex'}
+}
+function closeRefundBalanceModal(){
+  const modal = document.getElementById('refundBalanceModalMask');
+  if(modal){modal.style.display = 'none'}
+}
 function renderRefundManageActions(row){
-  return getRefundManageActionLabels(row).map(label => `<span class="text-action${['删除','撤销转账'].includes(label) ? ' danger' : ''}">${label}</span>`).join('');
+  return getRefundManageActionLabels(row).map(label => renderRefundActionButton(label,row.mainMerchant)).join('');
 }
 function renderRefundManageTable(rows){
   document.getElementById('refundManageRows').innerHTML = rows.map((row,index) => `
@@ -2928,7 +2960,7 @@ function getRefundWorkActionLabels(row){
   return actions;
 }
 function renderRefundWorkActions(row){
-  return getRefundWorkActionLabels(row).map(label => `<span class="text-action${['驳回','撤销转账'].includes(label) ? ' danger' : ''}">${label}</span>`).join('');
+  return getRefundWorkActionLabels(row).map(label => renderRefundActionButton(label,row.shopName)).join('');
 }
 function renderRefundWorkOrderTable(rows){
   document.getElementById('refundWorkOrderRows').innerHTML = rows.map((row,index) => `
