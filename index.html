@@ -17,9 +17,9 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .side{width:226px;background:#fff;border-right:1px solid #e5eaf1;padding-top:10px;flex-shrink:0;color:#4d5664;line-height:1.5}
 .menu{height:47px;padding:0 17px 0 19px;color:#4d5664;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;font-weight:400;line-height:inherit;border-right:3px solid transparent}
 .menu:hover{color:#1687e8;background:#eef6ff}
-.device-icon,.payment-icon,.finance-icon,.aftersale-icon,.exchange-icon,.ops-icon,.package-icon,.task-icon,.system-icon{width:15px;height:14px;color:#5e6d80;display:inline-block;flex:none}
-.device-icon *,.payment-icon *,.finance-icon *,.aftersale-icon *,.exchange-icon *,.ops-icon *,.package-icon *,.task-icon *,.system-icon *{stroke-width:1.3px!important;vector-effect:non-scaling-stroke}
-.menu:hover .device-icon,.menu:hover .payment-icon,.menu:hover .finance-icon,.menu:hover .aftersale-icon,.menu:hover .exchange-icon,.menu:hover .ops-icon,.menu:hover .package-icon,.menu:hover .task-icon,.menu:hover .system-icon{color:#5e6d80}
+.device-icon,.payment-icon,.finance-icon,.aftersale-icon,.exchange-icon,.ops-icon,.package-icon,.task-icon,.log-icon,.system-icon{width:15px;height:14px;color:#5e6d80;display:inline-block;flex:none}
+.device-icon *,.payment-icon *,.finance-icon *,.aftersale-icon *,.exchange-icon *,.ops-icon *,.package-icon *,.task-icon *,.log-icon *,.system-icon *{stroke-width:1.3px!important;vector-effect:non-scaling-stroke}
+.menu:hover .device-icon,.menu:hover .payment-icon,.menu:hover .finance-icon,.menu:hover .aftersale-icon,.menu:hover .exchange-icon,.menu:hover .ops-icon,.menu:hover .package-icon,.menu:hover .task-icon,.menu:hover .log-icon,.menu:hover .system-icon{color:#5e6d80}
 .menu-title{flex:1}
 .collapse-icon{width:7px;height:7px;border-right:1px solid #8b96a6;border-bottom:1px solid #8b96a6;transform:rotate(45deg);transition:transform .2s;margin-bottom:3px;flex:none}
 .menu.collapsed .collapse-icon{transform:rotate(-45deg);margin-bottom:0}
@@ -32,11 +32,11 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .tab{min-width:92px;height:34px;line-height:34px;text-align:center;border-right:1px solid #edf0f5;color:#5d6675;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;cursor:pointer}.tab.active{color:#1687e8;background:#f9fbff;border-bottom:2px solid #1687e8}.tab-close{color:#8b95a5;font-size:14px;line-height:1;cursor:pointer}.tab-close:hover{color:#1687e8}
 .content{min-height:calc(100vh - 108px);padding:18px;display:flex;flex-direction:column}
 .inner-tabs{height:34px;border-bottom:1px solid #e6ebf2;margin-bottom:24px}.inner-tab{display:inline-block;height:34px;line-height:34px;margin-right:28px}.inner-tab.active{color:#1687e8;border-bottom:2px solid #1687e8}
-.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.system-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 12px;margin:0 0 12px;width:100%;background:#fff}
-.device-filter .input,.device-filter .select,.device-filter .condition-control,.device-filter .input-combo,.device-filter .device-date-range,.config-filter .input,.config-filter .select,.config-filter .date-picker,.sim-filter .input,.sim-filter .select,.flow-filter .flow-date-control,.flow-filter .input,.flow-filter .select,.flow-filter .range-control,.payment-filter .input,.payment-filter .select,.payment-filter .device-date-range,.wallet-filter .input,.wallet-filter .select,.wallet-filter .range-control,.strategy-filter .input,.strategy-filter .select,.activity-filter .input,.activity-filter .select,.activity-filter .device-date-range,.package-filter .input,.package-filter .select,.task-filter .select,.factory-filter .input,.factory-filter .select,.factory-filter .date-range-control,.factory-filter .device-date-range,.system-filter .input,.system-filter .select,.system-filter .input-combo{width:100%;min-width:0}
-.device-filter .input,.device-filter .select,.config-filter .input,.config-filter .select,.config-filter .date,.sim-filter .input,.sim-filter .select,.flow-filter .input,.flow-filter .select,.payment-filter .input,.payment-filter .select,.wallet-filter .input,.wallet-filter .select,.strategy-filter .input,.strategy-filter .select,.activity-filter .input,.activity-filter .select,.package-filter .input,.package-filter .select,.task-filter .select,.factory-filter .input,.factory-filter .select,.system-filter .input,.system-filter .select{height:34px;border:1px solid #e5e7eb;border-radius:4px;font-size:12px}
-.device-filter .input,.config-filter .input,.sim-filter .input,.flow-filter .input,.payment-filter .input,.wallet-filter .input,.strategy-filter .input,.activity-filter .input,.package-filter .input,.factory-filter .input,.system-filter .input{padding:0 9px}
-.device-filter .select,.config-filter .select,.sim-filter .select,.flow-filter .select,.payment-filter .select,.wallet-filter .select,.strategy-filter .select,.activity-filter .select,.package-filter .select,.task-filter .select,.factory-filter .select,.system-filter .select{line-height:32px;padding-left:9px}
+.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 12px;margin:0 0 12px;width:100%;background:#fff}
+.device-filter .input,.device-filter .select,.device-filter .condition-control,.device-filter .input-combo,.device-filter .device-date-range,.config-filter .input,.config-filter .select,.config-filter .date-picker,.sim-filter .input,.sim-filter .select,.flow-filter .flow-date-control,.flow-filter .input,.flow-filter .select,.flow-filter .range-control,.payment-filter .input,.payment-filter .select,.payment-filter .device-date-range,.wallet-filter .input,.wallet-filter .select,.wallet-filter .range-control,.strategy-filter .input,.strategy-filter .select,.activity-filter .input,.activity-filter .select,.activity-filter .device-date-range,.package-filter .input,.package-filter .select,.task-filter .input,.task-filter .select,.task-filter .device-date-range,.factory-filter .input,.factory-filter .select,.factory-filter .date-range-control,.factory-filter .device-date-range,.network-log-filter .input,.network-log-filter .select,.network-log-filter .device-date-range,.system-filter .input,.system-filter .select,.system-filter .input-combo{width:100%;min-width:0}
+.device-filter .input,.device-filter .select,.config-filter .input,.config-filter .select,.config-filter .date,.sim-filter .input,.sim-filter .select,.flow-filter .input,.flow-filter .select,.payment-filter .input,.payment-filter .select,.wallet-filter .input,.wallet-filter .select,.strategy-filter .input,.strategy-filter .select,.activity-filter .input,.activity-filter .select,.package-filter .input,.package-filter .select,.task-filter .input,.task-filter .select,.factory-filter .input,.factory-filter .select,.network-log-filter .input,.network-log-filter .select,.system-filter .input,.system-filter .select{height:34px;border:1px solid #e5e7eb;border-radius:4px;font-size:12px}
+.device-filter .input,.config-filter .input,.sim-filter .input,.flow-filter .input,.payment-filter .input,.wallet-filter .input,.strategy-filter .input,.activity-filter .input,.package-filter .input,.task-filter .input,.factory-filter .input,.network-log-filter .input,.system-filter .input{padding:0 9px}
+.device-filter .select,.config-filter .select,.sim-filter .select,.flow-filter .select,.payment-filter .select,.wallet-filter .select,.strategy-filter .select,.activity-filter .select,.package-filter .select,.task-filter .select,.factory-filter .select,.network-log-filter .select,.system-filter .select{line-height:32px;padding-left:9px}
 .device-filter.collapsed > :nth-child(n+5):not(.filter-actions){display:none}
 .device-filter.collapsed > .filter-actions{display:flex}
 .config-filter .date{width:100%}
@@ -94,6 +94,15 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .work-status-stack strong{font-weight:700;color:#4b5563}
 .package-table{min-width:3000px}
 .package-table th,.package-table td{white-space:nowrap}
+.network-log-table{min-width:2200px}
+.network-log-table th,.network-log-table td{white-space:nowrap}
+.batch-task-detail-table{min-width:980px}
+.batch-task-detail-table th,.batch-task-detail-table td{white-space:nowrap}
+.batch-task-count-link{color:var(--theme-color);cursor:pointer}
+.batch-task-count-link:hover{color:#0b4ea2;text-decoration:underline}
+.batch-task-detail-status{font-weight:600}
+.batch-task-detail-status.success{color:#16a34a}
+.batch-task-detail-status.fail{color:#f04438}
 .placeholder-panel{min-height:96px;border:1px dashed #cfd6e2;background:#fff;color:#8b95a5;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
 .placeholder-panel.list{min-height:260px;margin-top:10px;margin-bottom:0}
 .field-version-card{background:#fff;border:1px solid #e7ebf1;margin-bottom:12px}
@@ -236,6 +245,18 @@ th.sticky-action{background:#fbfcfe;z-index:3}
 .input,.select{height:32px;border:1px solid #dfe5ee;border-radius:3px;background:#fff;color:#b8c0cc;padding:0 12px}
 .input:focus{border-color:var(--theme-color);outline:0}
 .input::placeholder{color:#b8c0cc;opacity:1}
+.query-input-wrap{position:relative;display:flex;align-items:center;width:100%;min-width:0}
+.query-input-wrap>input{width:100%;min-width:0;padding-right:30px!important}
+.query-input-clear{display:none;position:absolute;right:8px;top:50%;width:16px;height:16px;border-radius:50%;transform:translateY(-50%);color:#a4adba;cursor:pointer;transition:transform .16s ease,background-color .16s ease,color .16s ease,box-shadow .16s ease;z-index:3}
+.query-input-wrap.has-value>.query-input-clear{display:block}
+.query-input-clear:before,.query-input-clear:after{content:"";position:absolute;left:4px;top:7px;width:8px;height:1.5px;background:currentColor;border-radius:2px}
+.query-input-clear:before{transform:rotate(45deg)}
+.query-input-clear:after{transform:rotate(-45deg)}
+.query-input-clear:hover{background:#edf3fb;color:var(--theme-color);box-shadow:0 4px 10px rgba(22,135,232,.18);transform:translateY(calc(-50% - 2px))}
+.query-input-clear:active{background:#e2efff;color:#0b6ed0;transform:translateY(calc(-50% + 1px)) scale(.94)}
+.range-control .query-input-wrap,.condition-control .query-input-wrap{width:0;min-width:44px;flex:1}
+.condition-control .query-input-wrap{min-width:64px}
+.range-control .query-input-wrap>input,.condition-control .query-input-wrap>input{width:100%;min-width:0}
 input[type="checkbox"],input[type="radio"]{accent-color:var(--theme-color)}
 .custom-select{position:relative;line-height:30px;cursor:pointer;user-select:none;padding-right:30px;z-index:2}
 .custom-select.has-value{padding-right:56px}
@@ -568,6 +589,10 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="menu" id="menuTask" onclick="toggleMenuGroup('taskSubMenu','menuTask')"><svg class="task-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5h8M8 10.5h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h11A2.5 2.5 0 0 1 20 6v12a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 2.5h6v3H9z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">任务管理</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="taskSubMenu">
       <div class="sub" id="menuBatchTask" onclick="showPage('task')">批量任务</div>
+    </div>
+    <div class="menu" id="menuLog" onclick="toggleMenuGroup('logSubMenu','menuLog')"><svg class="log-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5h8M8 10.5h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h11A2.5 2.5 0 0 1 20 6v12a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 2.5h6v3H9z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">日志管理</span><span class="collapse-icon"></span></div>
+    <div class="sub-group" id="logSubMenu">
+      <div class="sub" id="menuNetworkLog" onclick="showPage('networkLog')">网络状态日志中心</div>
     </div>
     <div class="menu" id="menuSystem" onclick="toggleMenuGroup('systemSubMenu','menuSystem')"><svg class="system-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5v3M12 17.5v3M4.65 7.75l2.6 1.5M16.75 14.75l2.6 1.5M4.65 16.25l2.6-1.5M16.75 9.25l2.6-1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span class="menu-title">系统设置</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="systemSubMenu">
@@ -991,18 +1016,60 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 
     <section id="taskPage" class="content hidden">
       <div class="task-filter">
-        <div class="select custom-select" id="batchTaskTypeFilter" data-value=""><span class="select-value">操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="批量操作设备解禁、禁用">批量操作设备解禁、禁用</div><div class="dropdown-option" data-value="以旧换新单号数据同步">以旧换新单号数据同步</div><div class="dropdown-option" data-value="SIM卡信息查询">SIM卡信息查询</div><div class="dropdown-option" data-value="以旧换新数据导入">以旧换新数据导入</div><div class="dropdown-option" data-value="手动推送模版消息">手动推送模版消息</div><div class="dropdown-option" data-value="设备批量查询">设备批量查询</div></div></div>
+        <div class="select custom-select" id="batchTaskTypeFilter" data-value=""><span class="select-value">操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="批量操作设备解禁、禁用">批量操作设备解禁、禁用</div><div class="dropdown-option" data-value="以旧换新单号数据同步">以旧换新单号数据同步</div><div class="dropdown-option" data-value="SIM卡信息查询">SIM卡信息查询</div><div class="dropdown-option" data-value="以旧换新数据导入">以旧换新数据导入</div><div class="dropdown-option" data-value="手动推送模版消息">手动推送模版消息</div><div class="dropdown-option" data-value="设备批量查询">设备批量查询</div><div class="dropdown-option" data-value="返修再售检测">返修再售检测</div></div></div>
         <div class="select custom-select" id="batchTaskStatusFilter" data-value=""><span class="select-value">任务状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="处理中">处理中</div><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="失败">失败</div></div></div>
         <div class="filter-actions"><button class="btn line" onclick="searchBatchTaskRecords()">搜索</button><button class="btn gray" onclick="resetBatchTaskRecords()">重置</button></div>
       </div>
       <div class="action-row"><button class="btn" onclick="openBatchTaskModal()">添加批量操作</button></div>
       <div class="table-card" style="margin-top:10px">
         <table>
-          <thead><tr><th>任务编号</th><th>操作类型</th><th>任务状态</th><th>处理总数</th><th>成功数</th><th>失败数</th><th>创建时间</th><th>创建人</th><th>备注</th></tr></thead>
+          <thead><tr><th>ID</th><th>操作类型</th><th>操作数量</th><th>任务状态</th><th>备注</th><th>操作人</th><th>操作时间</th><th class="sticky-action">操作</th></tr></thead>
           <tbody id="batchTaskRows"></tbody>
         </table>
       </div>
       <div class="pagination" id="batchTaskPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="batchTaskDetailPage" class="content hidden">
+      <div class="task-filter">
+        <div class="select custom-select" id="batchTaskDetailStatusFilter" data-value=""><span class="select-value">任务状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="失败">失败</div></div></div>
+        <input class="input" id="batchTaskDetailSnInput" placeholder="SN" oninput="searchBatchTaskDetailRecords()">
+        <input class="input" id="batchTaskDetailRepairCountInput" inputmode="numeric" placeholder="返修次数" oninput="sanitizeBatchTaskRepairCount(this)">
+        <div class="device-date-range" id="batchTaskActivationRange" data-range="batchTaskActivation" onclick="openUnifiedRangePicker(event,'batchTaskActivation')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">客户首次激活开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">客户首次激活结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'batchTaskActivation')"></span>
+          <input id="batchTaskActivationStartInput" type="hidden"><input id="batchTaskActivationEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="batchTaskActivationPanel"></div>
+        </div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchBatchTaskDetailRecords()">搜索</button><button class="btn gray" onclick="resetBatchTaskDetailRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button class="btn" onclick="exportBatchTaskDetailRecords()">导出</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="batch-task-detail-table">
+          <thead><tr><th>SN</th><th>任务状态</th><th>返修次数</th><th>客户首次激活时间</th><th>返修再售检测时间</th></tr></thead>
+          <tbody id="batchTaskDetailRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="batchTaskDetailPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="networkLogPage" class="content hidden">
+      <div class="network-log-filter">
+        <input class="input" id="networkLogSnInput" placeholder="SN" oninput="searchNetworkLogRecords()">
+        <input class="input" id="networkLogIccidInput" placeholder="ICCID" oninput="searchNetworkLogRecords()">
+        <div class="select custom-select" id="networkLogCarrierFilter" data-value=""><span class="select-value">SIM卡运营商</span><div class="dropdown-menu"><div class="dropdown-option" data-value="中国移动">中国移动</div><div class="dropdown-option" data-value="中国联通">中国联通</div><div class="dropdown-option" data-value="中国电信">中国电信</div></div></div>
+        <input class="input" id="networkLogModelInput" placeholder="设备型号" oninput="searchNetworkLogRecords()">
+        <div class="device-date-range" id="networkLogDateRange" data-range="networkLogDate" onclick="openUnifiedRangePicker(event,'networkLogDate')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">日志开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">日志结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'networkLogDate')"></span>
+          <input id="networkLogDateStartInput" type="hidden"><input id="networkLogDateEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="networkLogDatePanel"></div>
+        </div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchNetworkLogRecords()">搜索</button><button class="btn gray" onclick="resetNetworkLogRecords()">重置</button></div>
+      </div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="network-log-table">
+          <thead><tr><th>SN</th><th>ICCID</th><th>SIM卡运营商</th><th>设备型号</th><th>上行速率</th><th>下行速率</th><th>rsrp</th><th>rsrq</th><th>sinr</th><th>rssi</th><th>eci</th><th>tac</th><th>pci</th><th>band</th><th>软件版本</th><th>日志记录时间</th></tr></thead>
+          <tbody id="networkLogRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="networkLogPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
     <section id="fieldVersionPage" class="content hidden">
@@ -1201,7 +1268,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="form-row">
         <div class="form-label req">操作类型</div>
         <div>
-          <div class="select custom-select" id="batchOperationType" data-value="" data-change="switchBatchOperationType"><span class="select-value">请选择操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="批量操作设备解禁、禁用">批量操作设备解禁、禁用</div><div class="dropdown-option" data-value="以旧换新单号数据同步">以旧换新单号数据同步</div><div class="dropdown-option" data-value="SIM卡信息查询">SIM卡信息查询</div><div class="dropdown-option" data-value="以旧换新数据导入">以旧换新数据导入</div><div class="dropdown-option" data-value="手动推送模版消息">手动推送模版消息</div><div class="dropdown-option" data-value="设备批量查询">设备批量查询</div></div></div>
+          <div class="select custom-select" id="batchOperationType" data-value="" data-change="switchBatchOperationType"><span class="select-value">请选择操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="设备批量查询">设备批量查询</div><div class="dropdown-option" data-value="批量操作设备解禁、禁用">批量操作设备解禁、禁用</div><div class="dropdown-option" data-value="手动推送模版信息">手动推送模版信息</div><div class="dropdown-option" data-value="SIM卡信息查询">SIM卡信息查询</div><div class="dropdown-option" data-value="返修再售检测">返修再售检测</div></div></div>
         </div>
       </div>
       <div class="form-row hidden" id="batchTemplateRow">
@@ -1633,12 +1700,31 @@ const userPackageData = [
   {name:'华南代理60GB体验包', type:'体验包', totalFlow:61440, price:'39.00', discountPrice:'29.00', tag:'体验', frontPrice:'￥29/30天', desc:'代理渠道体验设备使用', discountStrength:'立减10元', discountDesc:'体验期优惠', validDays:30, status:'下架', nextMonthRestore:'是', merchant:'广州启明商贸', rechargeStrategy:'手动充值', scienceStrategy:'代理体验计算策略', couponDeduct:'不支持', creator:'王敏', payMethods:'微信、支付宝', createdAt:'2026-04-12 11:54:02', updatedAt:'2026-05-01 12:00:00'}
 ];
 const batchTaskData = [
-  {taskNo:'BT202606020018', type:'批量操作设备解禁、禁用', status:'成功', total:42, success:42, fail:0, createdAt:'2026-06-02 16:38:09', creator:'李凡', remark:'渠道设备解禁'},
-  {taskNo:'BT202606020011', type:'以旧换新单号数据同步', status:'失败', total:18, success:12, fail:6, createdAt:'2026-06-02 11:05:33', creator:'陈启安', remark:'部分单号不存在'},
-  {taskNo:'BT202606010027', type:'SIM卡信息查询', status:'成功', total:300, success:300, fail:0, createdAt:'2026-06-01 18:26:47', creator:'段玉', remark:''},
-  {taskNo:'BT202605310009', type:'以旧换新数据导入', status:'成功', total:76, success:74, fail:2, createdAt:'2026-05-31 10:12:21', creator:'李凡', remark:'导入售后数据'},
-  {taskNo:'BT202605300032', type:'手动推送模版消息', status:'处理中', total:520, success:410, fail:0, createdAt:'2026-05-30 14:44:02', creator:'王敏', remark:'返厂通知'},
-  {taskNo:'BT202605290015', type:'设备批量查询', status:'成功', total:980, success:980, fail:0, createdAt:'2026-05-29 09:31:55', creator:'陈启安', remark:''}
+  {id:'BT202607220036', type:'返修再售检测', operationCount:8, status:'成功', remark:'返修设备再售前批量检测', operator:'王敏', operatedAt:'2026-07-22 15:26:18'},
+  {id:'BT202606020018', type:'批量操作设备解禁、禁用', operationCount:42, status:'成功', remark:'渠道设备解禁', operator:'李凡', operatedAt:'2026-06-02 16:38:09'},
+  {id:'BT202606020011', type:'以旧换新单号数据同步', operationCount:18, status:'失败', remark:'部分单号不存在', operator:'陈启安', operatedAt:'2026-06-02 11:05:33'},
+  {id:'BT202606010027', type:'SIM卡信息查询', operationCount:300, status:'成功', remark:'', operator:'段玉', operatedAt:'2026-06-01 18:26:47'},
+  {id:'BT202605310009', type:'以旧换新数据导入', operationCount:76, status:'成功', remark:'导入售后数据', operator:'李凡', operatedAt:'2026-05-31 10:12:21'},
+  {id:'BT202605300032', type:'手动推送模版消息', operationCount:520, status:'处理中', remark:'返厂通知', operator:'王敏', operatedAt:'2026-05-30 14:44:02'},
+  {id:'BT202605290015', type:'设备批量查询', operationCount:980, status:'成功', remark:'', operator:'陈启安', operatedAt:'2026-05-29 09:31:55'}
+];
+const batchTaskDetailData = [
+  {taskId:'BT202607220036', sn:'MBB202512180021', status:'成功', repairCount:0, firstActivatedAt:'2025-12-18 10:26:41', checkedAt:'2026-07-22 15:26:20'},
+  {taskId:'BT202607220036', sn:'MBB202511090038', status:'成功', repairCount:1, firstActivatedAt:'2025-11-09 14:08:12', checkedAt:'2026-07-22 15:26:21'},
+  {taskId:'BT202607220036', sn:'MBB202603120016', status:'成功', repairCount:2, firstActivatedAt:'2026-03-12 09:45:36', checkedAt:'2026-07-22 15:26:23'},
+  {taskId:'BT202607220036', sn:'MBB202601270052', status:'失败', repairCount:'', firstActivatedAt:'', checkedAt:''},
+  {taskId:'BT202607220036', sn:'MBB202510230017', status:'成功', repairCount:3, firstActivatedAt:'2025-10-23 18:11:05', checkedAt:'2026-07-22 15:26:26'},
+  {taskId:'BT202607220036', sn:'MBB202602140029', status:'成功', repairCount:1, firstActivatedAt:'2026-02-14 11:32:48', checkedAt:'2026-07-22 15:26:27'},
+  {taskId:'BT202607220036', sn:'MBB202604080063', status:'失败', repairCount:'', firstActivatedAt:'', checkedAt:''},
+  {taskId:'BT202607220036', sn:'MBB202509160044', status:'成功', repairCount:2, firstActivatedAt:'2025-09-16 16:54:19', checkedAt:'2026-07-22 15:26:31'}
+];
+const networkLogData = [
+  {sn:'MBB202607220001', iccid:'898604C01925D0207595', carrier:'中国移动', model:'畅连MIFI Pro', upRate:'12.48 Mbps', downRate:'68.32 Mbps', rsrp:'-86 dBm', rsrq:'-10 dB', sinr:'21 dB', rssi:'-58 dBm', eci:'12345678', tac:'10241', pci:'186', band:'B41', version:'V2.2.0', loggedAt:'2026-07-22 10:35:18'},
+  {sn:'MBB202607220002', iccid:'89860321845190067852', carrier:'中国联通', model:'星云CPE X3', upRate:'8.76 Mbps', downRate:'52.14 Mbps', rsrp:'-92 dBm', rsrq:'-12 dB', sinr:'17 dB', rssi:'-66 dBm', eci:'23896411', tac:'21806', pci:'302', band:'B3', version:'V3.1.6', loggedAt:'2026-07-22 10:28:42'},
+  {sn:'MBB202607220003', iccid:'89861124266000654127', carrier:'中国电信', model:'畅享随行W5', upRate:'15.03 Mbps', downRate:'74.81 Mbps', rsrp:'-81 dBm', rsrq:'-9 dB', sinr:'24 dB', rssi:'-55 dBm', eci:'31682409', tac:'16432', pci:'97', band:'B1', version:'V1.9.8', loggedAt:'2026-07-22 09:56:03'},
+  {sn:'MBB202607210018', iccid:'898604C01925D0207668', carrier:'中国移动', model:'畅连MIFI Pro', upRate:'5.64 Mbps', downRate:'31.27 Mbps', rsrp:'-101 dBm', rsrq:'-15 dB', sinr:'9 dB', rssi:'-73 dBm', eci:'12345902', tac:'10241', pci:'214', band:'B39', version:'V2.2.0', loggedAt:'2026-07-21 18:42:36'},
+  {sn:'MBB202607210026', iccid:'89860321845190068116', carrier:'中国联通', model:'云行MIFI S2', upRate:'10.19 Mbps', downRate:'46.72 Mbps', rsrp:'-89 dBm', rsrq:'-11 dB', sinr:'19 dB', rssi:'-62 dBm', eci:'23896785', tac:'21809', pci:'145', band:'B8', version:'V2.5.3', loggedAt:'2026-07-21 16:15:27'},
+  {sn:'MBB202607200011', iccid:'89861124266000654803', carrier:'中国电信', model:'智联CPE A6', upRate:'3.92 Mbps', downRate:'22.86 Mbps', rsrp:'-106 dBm', rsrq:'-17 dB', sinr:'6 dB', rssi:'-78 dBm', eci:'31682954', tac:'16435', pci:'331', band:'B5', version:'V1.7.2', loggedAt:'2026-07-20 14:09:51'}
 ];
 const factoryReturnData = [
   {batchNo:'RF202606180001', operationType:'设备返厂（停卡）', importStatus:'导入成功', returnStatus:'已返厂', total:128, success:124, fail:4, remark:'华东直营组设备返厂检测', operator:'王敏', operatedAt:'2026-06-18 10:24:36'},
@@ -1776,7 +1862,7 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {device:'设备管理', config:'二次认证配置', sim:'二次认证SIM卡管理', detail:'二次认证配置详情', flow:'设备流量', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', workOrder:'换货/补发工单', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动中心', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情'};
+const pageTitles = {device:'设备管理', config:'二次认证配置', sim:'二次认证SIM卡管理', detail:'二次认证配置详情', flow:'设备流量', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', workOrder:'换货/补发工单', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动中心', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情'};
 let openTabs = [];
 let activePage = '';
 let currentDetailBatch = '';
@@ -1789,6 +1875,7 @@ let flowDateMode = 'day';
 let currentFactoryReturnBatch = factoryReturnData[0].batchNo;
 let currentActivityId = activityCenterData[0].id;
 let currentShippingEditIndex = null;
+let currentBatchTaskId = batchTaskData[0].id;
 const datePickerState = {viewDate:new Date(2026,4,1), start:'', end:''};
 const deviceRangeState = {
   service:{viewDate:new Date(2026,4,1), start:'', end:'', startId:'deviceServiceStartInput', endId:'deviceServiceEndInput', rangeId:'deviceServiceRange', panelId:'deviceServicePanel', startPlaceholder:'服务开始日期', endPlaceholder:'服务结束日期'},
@@ -1939,6 +2026,8 @@ function applyPageState(type){
   document.getElementById('activityDetailPage').classList.toggle('hidden', type !== 'activityDetail');
   document.getElementById('packagePage').classList.toggle('hidden', type !== 'package');
   document.getElementById('taskPage').classList.toggle('hidden', type !== 'task');
+  document.getElementById('batchTaskDetailPage').classList.toggle('hidden', type !== 'batchTaskDetail');
+  document.getElementById('networkLogPage').classList.toggle('hidden', type !== 'networkLog');
   document.getElementById('fieldVersionPage').classList.toggle('hidden', !['fieldVersion','fieldVersionEdit'].includes(type));
   document.getElementById('deviceDetailPage').classList.toggle('hidden', type !== 'deviceDetail');
   document.getElementById('menuDeviceManage').classList.toggle('active', type === 'device');
@@ -1955,7 +2044,8 @@ function applyPageState(type){
   document.getElementById('menuStrategy').classList.toggle('active', type === 'strategy');
   document.getElementById('menuActivityCenter').classList.toggle('active', ['activityCenter','activityDetail'].includes(type));
   document.getElementById('menuUserPackage').classList.toggle('active', type === 'package');
-  document.getElementById('menuBatchTask').classList.toggle('active', type === 'task');
+  document.getElementById('menuBatchTask').classList.toggle('active', ['task','batchTaskDetail'].includes(type));
+  document.getElementById('menuNetworkLog').classList.toggle('active', type === 'networkLog');
   document.getElementById('menuFieldVersion').classList.toggle('active', ['fieldVersion','fieldVersionEdit'].includes(type));
   if(type === 'device'){
     searchDeviceManageRecords();
@@ -2020,6 +2110,14 @@ function applyPageState(type){
     setActiveDeviceSn('');
   }else if(type === 'task'){
     searchBatchTaskRecords();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'batchTaskDetail'){
+    searchBatchTaskDetailRecords();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'networkLog'){
+    searchNetworkLogRecords();
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'fieldVersion'){
@@ -2176,6 +2274,60 @@ function initInputCombos(){
         event.stopPropagation();
       }
     });
+  });
+}
+const queryFilterSelector = '.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter';
+const queryInputSelector = queryFilterSelector.split(',').map(selector => `${selector} input`).join(',');
+const queryWrappedInputSelector = queryFilterSelector.split(',').map(selector => `${selector} .query-input-wrap>input`).join(',');
+function syncQueryInputClear(input){
+  const wrapper = input ? input.closest('.query-input-wrap') : null;
+  if(wrapper){wrapper.classList.toggle('has-value', Boolean(input.value))}
+}
+function syncAllQueryInputClears(){
+  document.querySelectorAll(queryWrappedInputSelector).forEach(syncQueryInputClear);
+}
+function clearQueryInput(event,input){
+  if(event){event.stopPropagation()}
+  input.value = '';
+  input.dispatchEvent(new Event('input',{bubbles:true}));
+  syncQueryInputClear(input);
+  input.focus();
+}
+function initQueryInputClears(){
+  document.querySelectorAll(queryInputSelector).forEach(input => {
+    const type = (input.getAttribute('type') || 'text').toLowerCase();
+    if(['hidden','date','month','datetime-local','file','checkbox','radio'].includes(type) || input.readOnly || input.closest('.input-combo')){return}
+    let wrapper = input.closest('.query-input-wrap');
+    if(!wrapper){
+      wrapper = document.createElement('span');
+      wrapper.className = 'query-input-wrap';
+      input.parentNode.insertBefore(wrapper,input);
+      wrapper.appendChild(input);
+    }
+    if(!wrapper.querySelector('.query-input-clear')){
+      const clear = document.createElement('span');
+      clear.className = 'query-input-clear';
+      clear.setAttribute('role','button');
+      clear.setAttribute('tabindex','0');
+      clear.setAttribute('aria-label',`清除${input.getAttribute('placeholder') || '输入内容'}`);
+      clear.setAttribute('title','清除');
+      clear.addEventListener('click', event => clearQueryInput(event,input));
+      clear.addEventListener('keydown', event => {
+        if(event.key === 'Enter' || event.key === ' '){
+          event.preventDefault();
+          clearQueryInput(event,input);
+        }
+      });
+      wrapper.appendChild(clear);
+    }
+    input.addEventListener('input', () => syncQueryInputClear(input));
+    syncQueryInputClear(input);
+  });
+  document.addEventListener('click', event => {
+    const resetButton = event.target.closest('.filter-actions .btn.gray');
+    if(resetButton && resetButton.closest(queryFilterSelector)){
+      setTimeout(syncAllQueryInputClears,0);
+    }
   });
 }
 function closeDeviceRangePickers(except){
@@ -3430,12 +3582,25 @@ function resetUserPackageRecords(){
 function renderBatchTaskTable(rows){
   document.getElementById('batchTaskRows').innerHTML = rows.map(row => `
     <tr>
-      <td>${escapeHtml(row.taskNo)}</td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.status)}</td>
-      <td>${row.total}</td><td>${row.success}</td><td>${row.fail}</td>
-      <td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.creator)}</td><td>${escapeHtml(row.remark)}</td>
+      <td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.type)}</td><td><span class="batch-task-count-link" onclick="openBatchTaskDetail('${row.id}')">${row.operationCount}</span></td><td>${escapeHtml(row.status)}</td>
+      <td>${escapeHtml(row.remark)}</td><td>${escapeHtml(row.operator)}</td><td>${escapeHtml(row.operatedAt)}</td>
+      <td class="sticky-action"><span class="text-action" onclick="downloadBatchTaskResult('${row.id}')">下载</span></td>
     </tr>
   `).join('');
   updatePagination('batchTaskPagination', rows.length);
+}
+function downloadBatchTaskResult(taskId){
+  const row = batchTaskData.find(item => item.id === taskId);
+  if(!row){return}
+  const header = ['ID','操作类型','操作数量','任务状态','备注','操作人','操作时间'];
+  const body = [[row.id,row.type,row.operationCount,row.status,row.remark,row.operator,row.operatedAt]];
+  const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item || '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `${row.id}-批量任务结果.csv`;
+  link.click();
+  URL.revokeObjectURL(link.href);
 }
 function getFilteredBatchTaskRows(){
   const type = getSelectValue('batchTaskTypeFilter');
@@ -3455,6 +3620,137 @@ function resetBatchTaskRecords(){
   resetCustomSelect('batchTaskTypeFilter','操作类型');
   resetCustomSelect('batchTaskStatusFilter','任务状态');
   searchBatchTaskRecords();
+}
+function openBatchTaskDetail(taskId){
+  currentBatchTaskId = taskId;
+  resetCustomSelect('batchTaskDetailStatusFilter','任务状态');
+  document.getElementById('batchTaskDetailSnInput').value = '';
+  document.getElementById('batchTaskDetailRepairCountInput').value = '';
+  setUnifiedRangeValues('batchTaskActivation','','',false);
+  ensureTab('batchTaskDetail');
+  activateTab('batchTaskDetail');
+}
+function sanitizeBatchTaskRepairCount(input){
+  input.value = input.value.replace(/[^0-9]/g,'');
+  searchBatchTaskDetailRecords();
+}
+function renderBatchTaskDetailTable(rows){
+  const rowsNode = document.getElementById('batchTaskDetailRows');
+  if(!rowsNode){return}
+  const task = batchTaskData.find(item => item.id === currentBatchTaskId);
+  if(!rows.length){
+    const message = task && task.type !== '返修再售检测' ? '该操作类型暂无详情字段配置' : '暂无匹配数据';
+    rowsNode.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#8b95a5">${message}</td></tr>`;
+    updatePagination('batchTaskDetailPagination',0);
+    return;
+  }
+  rowsNode.innerHTML = rows.map(row => `
+    <tr>
+      <td>${escapeHtml(row.sn)}</td>
+      <td><span class="batch-task-detail-status ${row.status === '成功' ? 'success' : 'fail'}">${escapeHtml(row.status)}</span></td>
+      <td>${row.status === '失败' ? '' : escapeHtml(row.repairCount)}</td>
+      <td>${row.status === '失败' ? '' : escapeHtml(row.firstActivatedAt)}</td>
+      <td>${row.status === '失败' ? '' : escapeHtml(row.checkedAt)}</td>
+    </tr>
+  `).join('');
+  updatePagination('batchTaskDetailPagination',rows.length);
+}
+function getFilteredBatchTaskDetailRows(){
+  const status = getSelectValue('batchTaskDetailStatusFilter');
+  const sn = normalizeText(document.getElementById('batchTaskDetailSnInput').value);
+  const repairCount = document.getElementById('batchTaskDetailRepairCountInput').value;
+  const start = document.getElementById('batchTaskActivationStartInput').value;
+  const end = document.getElementById('batchTaskActivationEndInput').value;
+  return batchTaskDetailData.filter(row => {
+    const taskOk = row.taskId === currentBatchTaskId;
+    const statusOk = !status || row.status === status;
+    const snOk = !sn || normalizeText(row.sn).includes(sn);
+    const repairCountOk = repairCount === '' || String(row.repairCount) === repairCount;
+    const activationOk = dateInRange(row.firstActivatedAt,start,end);
+    return taskOk && statusOk && snOk && repairCountOk && activationOk;
+  });
+}
+function searchBatchTaskDetailRecords(){
+  if(!document.getElementById('batchTaskDetailRows')){return}
+  renderBatchTaskDetailTable(getFilteredBatchTaskDetailRows());
+}
+function resetBatchTaskDetailRecords(){
+  resetCustomSelect('batchTaskDetailStatusFilter','任务状态');
+  document.getElementById('batchTaskDetailSnInput').value = '';
+  document.getElementById('batchTaskDetailRepairCountInput').value = '';
+  setUnifiedRangeValues('batchTaskActivation','','',false);
+  searchBatchTaskDetailRecords();
+}
+function exportBatchTaskDetailRecords(){
+  const rows = getFilteredBatchTaskDetailRows();
+  const header = ['SN','任务状态','返修次数','客户首次激活时间','返修再售检测时间'];
+  const body = rows.map(row => [row.sn,row.status,row.status === '失败' ? '' : row.repairCount,row.status === '失败' ? '' : row.firstActivatedAt,row.status === '失败' ? '' : row.checkedAt]);
+  const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `${currentBatchTaskId}-批量任务详情.csv`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+function renderNetworkLogTable(rows){
+  const rowsNode = document.getElementById('networkLogRows');
+  if(!rowsNode){return}
+  rowsNode.innerHTML = rows.map(row => `
+    <tr>
+      <td><span class="work-no-cell"><span>${escapeHtml(row.sn)}</span><span class="copy-icon" title="复制SN" onclick="copyNetworkLogValue(event,'${row.sn}')"></span></span></td>
+      <td><span class="work-no-cell"><span>${escapeHtml(row.iccid)}</span><span class="copy-icon" title="复制ICCID" onclick="copyNetworkLogValue(event,'${row.iccid}')"></span></span></td>
+      <td>${escapeHtml(row.carrier)}</td><td>${escapeHtml(row.model)}</td>
+      <td>${escapeHtml(row.upRate)}</td><td>${escapeHtml(row.downRate)}</td><td>${escapeHtml(row.rsrp)}</td><td>${escapeHtml(row.rsrq)}</td>
+      <td>${escapeHtml(row.sinr)}</td><td>${escapeHtml(row.rssi)}</td><td>${escapeHtml(row.eci)}</td><td>${escapeHtml(row.tac)}</td>
+      <td>${escapeHtml(row.pci)}</td><td>${escapeHtml(row.band)}</td><td>${escapeHtml(row.version)}</td><td>${escapeHtml(row.loggedAt)}</td>
+    </tr>
+  `).join('');
+  updatePagination('networkLogPagination', rows.length);
+}
+function copyNetworkLogValue(event,value){
+  if(event){event.stopPropagation()}
+  const text = String(value || '');
+  if(!text){return}
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text);
+    return;
+  }
+  const input = document.createElement('textarea');
+  input.value = text;
+  input.style.position = 'fixed';
+  input.style.opacity = '0';
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+}
+function getFilteredNetworkLogRows(){
+  const sn = normalizeText(document.getElementById('networkLogSnInput').value);
+  const iccid = normalizeText(document.getElementById('networkLogIccidInput').value);
+  const carrier = getSelectValue('networkLogCarrierFilter');
+  const model = normalizeText(document.getElementById('networkLogModelInput').value);
+  const start = document.getElementById('networkLogDateStartInput').value;
+  const end = document.getElementById('networkLogDateEndInput').value;
+  return networkLogData.filter(row => {
+    const snOk = !sn || normalizeText(row.sn).includes(sn);
+    const iccidOk = !iccid || normalizeText(row.iccid).includes(iccid);
+    const carrierOk = !carrier || row.carrier === carrier;
+    const modelOk = !model || normalizeText(row.model).includes(model);
+    return snOk && iccidOk && carrierOk && modelOk && dateInRange(row.loggedAt,start,end);
+  });
+}
+function searchNetworkLogRecords(){
+  if(!document.getElementById('networkLogRows')){return}
+  renderNetworkLogTable(getFilteredNetworkLogRows());
+}
+function resetNetworkLogRecords(){
+  document.getElementById('networkLogSnInput').value = '';
+  document.getElementById('networkLogIccidInput').value = '';
+  document.getElementById('networkLogModelInput').value = '';
+  resetCustomSelect('networkLogCarrierFilter','SIM卡运营商');
+  setUnifiedRangeValues('networkLogDate','','',false);
+  searchNetworkLogRecords();
 }
 function getFieldCurrentVersion(record){
   return record.versions.find(item => item.version === record.currentVersion) || record.versions[0];
@@ -4831,6 +5127,12 @@ function setCustomSelectValue(target,value,label,emitChange){
   if(['batchTaskTypeFilter','batchTaskStatusFilter'].includes(select.id)){
     searchBatchTaskRecords();
   }
+  if(select.id === 'batchTaskDetailStatusFilter'){
+    searchBatchTaskDetailRecords();
+  }
+  if(select.id === 'networkLogCarrierFilter'){
+    searchNetworkLogRecords();
+  }
   if(select.id === 'fieldVersionStatusFilter'){
     searchFieldVersionRecords();
   }
@@ -4919,7 +5221,9 @@ const extraRangePickerState = {
   factoryReturn:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'factoryReturnOperationRange',panelId:'factoryReturnOperationPanel',startId:'factoryReturnStartInput',endId:'factoryReturnEndInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'},
   factoryReturnDetail:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'factoryReturnDetailOperationRange',panelId:'factoryReturnDetailOperationPanel',startId:'factoryReturnDetailStartInput',endId:'factoryReturnDetailEndInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'},
   activityBuy:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'activityBuyRange',panelId:'activityBuyPanel',startId:'activityBuyStartInput',endId:'activityBuyEndInput',startPlaceholder:'购买开始日期',endPlaceholder:'购买结束日期'},
-  activitySubmit:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'activitySubmitRange',panelId:'activitySubmitPanel',startId:'activitySubmitStartInput',endId:'activitySubmitEndInput',startPlaceholder:'提交开始时间',endPlaceholder:'提交结束时间'}
+  activitySubmit:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'activitySubmitRange',panelId:'activitySubmitPanel',startId:'activitySubmitStartInput',endId:'activitySubmitEndInput',startPlaceholder:'提交开始时间',endPlaceholder:'提交结束时间'},
+  batchTaskActivation:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'batchTaskActivationRange',panelId:'batchTaskActivationPanel',startId:'batchTaskActivationStartInput',endId:'batchTaskActivationEndInput',startPlaceholder:'客户首次激活开始时间',endPlaceholder:'客户首次激活结束时间'},
+  networkLogDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'networkLogDateRange',panelId:'networkLogDatePanel',startId:'networkLogDateStartInput',endId:'networkLogDateEndInput',startPlaceholder:'日志开始日期',endPlaceholder:'日志结束日期'}
 };
 function getUnifiedRangeState(key){
   return deviceRangeState[key] || extraRangePickerState[key];
@@ -5098,6 +5402,8 @@ function triggerUnifiedRangeChange(key){
   if(key === 'factoryReturn'){searchFactoryReturnRecords()}
   if(key === 'factoryReturnDetail'){searchFactoryReturnDetailRecords()}
   if(key === 'activityBuy' || key === 'activitySubmit'){searchActivityDetailRecords()}
+  if(key === 'batchTaskActivation'){searchBatchTaskDetailRecords()}
+  if(key === 'networkLogDate'){searchNetworkLogRecords()}
 }
 function openUnifiedRangePicker(event,key){
   const state = getUnifiedRangeState(key);
@@ -5143,6 +5449,7 @@ function clearDeviceRange(event,rangeKey){clearUnifiedRange(event,rangeKey)}
 initDatePicker();
 initDropdowns();
 initInputCombos();
+initQueryInputClears();
 Object.keys(deviceRangeState).forEach(syncDeviceRange);
 syncDeviceFilterCollapse();
 showPage('device');
