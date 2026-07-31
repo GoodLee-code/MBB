@@ -215,8 +215,8 @@ th.sticky-action{background:#fbfcfe;z-index:3}
 .refund-failure-tip{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);width:340px;padding:9px 12px;border-radius:3px;background:#30343b;color:#fff;font-size:12px;font-weight:400;line-height:20px;white-space:normal;text-align:left;transform:translateX(-50%);box-shadow:0 8px 20px rgba(31,35,41,.18);z-index:30}
 .refund-failure-tip:after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#30343b}
 .refund-status.failed:hover .refund-failure-tip,.refund-status.failed:focus .refund-failure-tip{display:block}
-#refundRealNameInput{color:#1F2329!important}
-#refundRealNameInput::placeholder{color:#b8c0cc}
+#refundRealNameInput,#refundPaymentPasswordInput{color:#1F2329!important}
+#refundRealNameInput::placeholder,#refundPaymentPasswordInput::placeholder{color:#b8c0cc}
 .device-management-table{min-width:2700px}
 .device-management-table th,.device-management-table td{white-space:nowrap}
 .switch-toggle{width:34px;height:18px;border-radius:999px;background:#cfd6e2;display:inline-flex;align-items:center;padding:2px;cursor:pointer;vertical-align:middle;transition:background .16s ease}
@@ -1551,13 +1551,20 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 <div class="modal-mask" id="refundRealNameModalMask">
   <div class="modal">
     <div class="close" onclick="closeRefundRealNameModal()">×</div>
-    <div class="modal-title">填写用户真实姓名</div>
+    <div class="modal-title">处理退款</div>
     <div class="modal-body">
       <div class="form-row form-field" id="refundRealNameField">
         <label class="form-label"><span class="req"></span>用户真实姓名</label>
         <div>
           <input class="input" id="refundRealNameInput" maxlength="30" autocomplete="off" placeholder="请输入微信收款账户实名认证姓名" oninput="clearRefundRealNameError()">
           <div class="field-error" id="refundRealNameError">用户真实姓名不能为空</div>
+        </div>
+      </div>
+      <div class="form-row form-field" id="refundPaymentPasswordField">
+        <label class="form-label"><span class="req"></span>支付密码</label>
+        <div>
+          <input class="input" id="refundPaymentPasswordInput" type="password" autocomplete="new-password" placeholder="请输入支付密码" oninput="clearRefundPaymentPasswordError()">
+          <div class="field-error" id="refundPaymentPasswordError">支付密码不能为空</div>
         </div>
       </div>
     </div>
@@ -3160,6 +3167,10 @@ function clearRefundRealNameError(){
   const field = document.getElementById('refundRealNameField');
   if(field){field.classList.remove('invalid')}
 }
+function clearRefundPaymentPasswordError(){
+  const field = document.getElementById('refundPaymentPasswordField');
+  if(field){field.classList.remove('invalid')}
+}
 function getRefundRealNameRow(sourceType,recordId){
   if(sourceType === 'refundWork'){
     return refundWorkOrderData.find(item => item.workNo === recordId);
@@ -3171,8 +3182,11 @@ function openRefundRealNameModal(sourceType,recordId){
   if(!row || !row.requiresRealName){return}
   pendingRefundRealName = {sourceType,recordId};
   const input = document.getElementById('refundRealNameInput');
+  const passwordInput = document.getElementById('refundPaymentPasswordInput');
   if(input){input.value = ''}
+  if(passwordInput){passwordInput.value = ''}
   clearRefundRealNameError();
+  clearRefundPaymentPasswordError();
   const modal = document.getElementById('refundRealNameModalMask');
   if(modal){modal.style.display = 'flex'}
   window.setTimeout(() => {if(input){input.focus()}},0);
@@ -3188,11 +3202,22 @@ function formatRefundTimestamp(date){
 }
 function submitRefundRealName(){
   const input = document.getElementById('refundRealNameInput');
+  const passwordInput = document.getElementById('refundPaymentPasswordInput');
   const realName = String(input ? input.value : '').trim();
+  const paymentPassword = String(passwordInput ? passwordInput.value : '').trim();
   const field = document.getElementById('refundRealNameField');
+  const passwordField = document.getElementById('refundPaymentPasswordField');
+  let firstInvalidInput = null;
   if(!realName){
     if(field){field.classList.add('invalid')}
-    if(input){input.focus()}
+    firstInvalidInput = input;
+  }
+  if(!paymentPassword){
+    if(passwordField){passwordField.classList.add('invalid')}
+    if(!firstInvalidInput){firstInvalidInput = passwordInput}
+  }
+  if(firstInvalidInput){
+    firstInvalidInput.focus();
     return;
   }
   if(!pendingRefundRealName){closeRefundRealNameModal();return}
