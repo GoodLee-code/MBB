@@ -209,6 +209,14 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 th.sticky-action{background:#fbfcfe;z-index:3}
 .text-action{color:#1687e8;cursor:pointer;margin:0 6px}
 .text-action:hover{color:#0b4ea2;text-decoration:underline}
+.refund-status{display:inline-flex;align-items:center;position:relative;line-height:22px}
+.refund-status.success{color:#16a34a;font-weight:600}
+.refund-status.failed{color:#f04438;font-weight:600;cursor:help;outline:0}
+.refund-failure-tip{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);width:340px;padding:9px 12px;border-radius:3px;background:#30343b;color:#fff;font-size:12px;font-weight:400;line-height:20px;white-space:normal;text-align:left;transform:translateX(-50%);box-shadow:0 8px 20px rgba(31,35,41,.18);z-index:30}
+.refund-failure-tip:after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#30343b}
+.refund-status.failed:hover .refund-failure-tip,.refund-status.failed:focus .refund-failure-tip{display:block}
+#refundRealNameInput{color:#1F2329!important}
+#refundRealNameInput::placeholder{color:#b8c0cc}
 .device-management-table{min-width:2700px}
 .device-management-table th,.device-management-table td{white-space:nowrap}
 .switch-toggle{width:34px;height:18px;border-radius:999px;background:#cfd6e2;display:inline-flex;align-items:center;padding:2px;cursor:pointer;vertical-align:middle;transition:background .16s ease}
@@ -800,7 +808,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <input class="input" id="refundManageDeviceInput" placeholder="设备号" oninput="searchRefundManageRecords()">
         <input class="input" id="refundManageOrderInput" placeholder="订单号" oninput="searchRefundManageRecords()">
         <input class="input" id="refundManageMainMerchantInput" placeholder="主商户" oninput="searchRefundManageRecords()">
-        <div class="select custom-select" id="refundManageStatusFilter" data-value=""><span class="select-value">退费状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="已退费">已退费</div><div class="dropdown-option" data-value="未退费">未退费</div><div class="dropdown-option" data-value="待用户确认收款">待用户确认收款</div><div class="dropdown-option" data-value="退费失败">退费失败</div><div class="dropdown-option" data-value="已撤销转账">已撤销转账</div></div></div>
+        <div class="select custom-select" id="refundManageStatusFilter" data-value=""><span class="select-value">退费状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="已退费">已退费</div><div class="dropdown-option" data-value="退费成功">退费成功</div><div class="dropdown-option" data-value="未退费">未退费</div><div class="dropdown-option" data-value="待用户确认收款">待用户确认收款</div><div class="dropdown-option" data-value="退费失败">退费失败</div><div class="dropdown-option" data-value="已撤销转账">已撤销转账</div></div></div>
         <div class="select custom-select" id="refundManageMethodFilter" data-value=""><span class="select-value">退费方式</span><div class="dropdown-menu"><div class="dropdown-option" data-value="原路退费">原路退费</div><div class="dropdown-option" data-value="线下退费">线下退费</div><div class="dropdown-option" data-value="商户转账">商户转账</div></div></div>
         <div class="device-date-range" id="refundManageCreateRange" data-range="refundManageCreate" onclick="openUnifiedRangePicker(event,'refundManageCreate')">
           <span class="date-icon"></span><span class="device-date-text" data-part="start">创建开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">创建结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'refundManageCreate')"></span>
@@ -858,7 +866,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <input class="input" id="refundWorkNoInput" placeholder="退费工单号" oninput="searchRefundWorkOrderRecords()">
         <input class="input" id="refundWorkSnInput" placeholder="SN" oninput="searchRefundWorkOrderRecords()">
         <input class="input" id="refundWorkCustomerInput" placeholder="客户昵称" oninput="searchRefundWorkOrderRecords()">
-        <div class="select custom-select" id="refundWorkRefundStatusFilter" data-value=""><span class="select-value">退费状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="未退费">未退费</div><div class="dropdown-option" data-value="待用户确认收款">待用户确认收款</div><div class="dropdown-option" data-value="已退费">已退费</div><div class="dropdown-option" data-value="退费失败">退费失败</div><div class="dropdown-option" data-value="已撤销转账">已撤销转账</div></div></div>
+        <div class="select custom-select" id="refundWorkRefundStatusFilter" data-value=""><span class="select-value">退费状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="未退费">未退费</div><div class="dropdown-option" data-value="待用户确认收款">待用户确认收款</div><div class="dropdown-option" data-value="已退费">已退费</div><div class="dropdown-option" data-value="退费成功">退费成功</div><div class="dropdown-option" data-value="退费失败">退费失败</div><div class="dropdown-option" data-value="已撤销转账">已撤销转账</div></div></div>
         <div class="select custom-select" id="refundWorkMethodFilter" data-value=""><span class="select-value">退费方式</span><div class="dropdown-menu"><div class="dropdown-option" data-value="原路退费">原路退费</div><div class="dropdown-option" data-value="线下退费">线下退费</div><div class="dropdown-option" data-value="商户转账">商户转账</div></div></div>
         <div class="device-date-range" id="refundWorkAuditRange" data-range="refundWorkAudit" onclick="openUnifiedRangePicker(event,'refundWorkAudit')">
           <span class="date-icon"></span><span class="device-date-text" data-part="start">审核开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">审核结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'refundWorkAudit')"></span>
@@ -1540,6 +1548,23 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
   </div>
 </div>
 
+<div class="modal-mask" id="refundRealNameModalMask">
+  <div class="modal">
+    <div class="close" onclick="closeRefundRealNameModal()">×</div>
+    <div class="modal-title">填写用户真实姓名</div>
+    <div class="modal-body">
+      <div class="form-row form-field" id="refundRealNameField">
+        <label class="form-label"><span class="req"></span>用户真实姓名</label>
+        <div>
+          <input class="input" id="refundRealNameInput" maxlength="30" autocomplete="off" placeholder="请输入微信收款账户实名认证姓名" oninput="clearRefundRealNameError()">
+          <div class="field-error" id="refundRealNameError">用户真实姓名不能为空</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions"><button class="cancel" onclick="closeRefundRealNameModal()">取消</button><button class="confirm" onclick="submitRefundRealName()">确认退费</button></div>
+  </div>
+</div>
+
 <div class="modal-mask" id="transferCancelModalMask">
   <div class="modal">
     <div class="close" onclick="closeTransferCancelModal()">×</div>
@@ -1672,9 +1697,11 @@ const refundManageData = [
   {orderNo:'ORD202606170008', paidAt:'2026-06-17 15:18:02', deviceNo:'MBB202605290002', wechatPayNo:'WX20260617151802008', mainMerchant:'杭州云旅科技', agent:'旅游渠道代理', packageName:'旅游渠道200GB套餐', payAmount:'139.00', refundAmount:'139.00', wechatRefundAmount:'0.00', balanceRefundAmount:'139.00', status:'未退费', refundMethod:'', remark:'设备返厂后套餐未使用', creator:'李凡', createdAt:'2026-06-17 16:45:10', refundedAt:''},
   {orderNo:'ORD202606160012', paidAt:'2026-06-16 09:42:51', deviceNo:'MBB202605290003', wechatPayNo:'MIX20260616094251012', mainMerchant:'苏州星河酒店', agent:'酒店渠道代理', packageName:'酒店轻量50GB套餐', payAmount:'49.00', refundAmount:'49.00', wechatRefundAmount:'39.00', balanceRefundAmount:'10.00', status:'未退费', refundMethod:'', remark:'套餐配置错误，等待财务确认', creator:'陈启安', createdAt:'2026-06-16 10:20:35', refundedAt:''},
   {orderNo:'ORD202606150006', paidAt:'2026-06-15 18:04:12', deviceNo:'MBB202605280018', wechatPayNo:'WX20260615180412006', mainMerchant:'南京万联物流', agent:'物流行业代理', packageName:'物流300GB高稳套餐', payAmount:'199.00', refundAmount:'0.00', wechatRefundAmount:'0.00', balanceRefundAmount:'0.00', status:'已退费', refundMethod:'商户转账', remark:'订单未完成支付，无需退款', creator:'段玉', createdAt:'2026-06-15 18:06:27', refundedAt:''},
-  {orderNo:'ORD202606120019', paidAt:'2026-06-12 11:33:48', deviceNo:'MBB202604300086', wechatPayNo:'WX20260612113348019', mainMerchant:'广州启明商贸', agent:'华南代理商', packageName:'华南代理60GB体验包', payAmount:'29.00', refundAmount:'29.00', wechatRefundAmount:'29.00', balanceRefundAmount:'0.00', status:'未退费', refundMethod:'', remark:'微信退款接口返回失败，需人工处理', creator:'张可昕', createdAt:'2026-06-12 14:10:12', refundedAt:''}
+  {orderNo:'ORD202606120019', paidAt:'2026-06-12 11:33:48', deviceNo:'MBB202604300086', wechatPayNo:'WX20260612113348019', mainMerchant:'广州启明商贸', agent:'华南代理商', packageName:'华南代理60GB体验包', payAmount:'29.00', refundAmount:'29.00', wechatRefundAmount:'29.00', balanceRefundAmount:'0.00', status:'未退费', refundMethod:'', processRefundMethod:'商户转账', requiresRealName:true, userRealName:'李凡', failureReason:'', receiptNo:'', remark:'微信退款接口返回失败，需人工处理', creator:'张可昕', createdAt:'2026-06-12 14:10:12', refundedAt:''},
+  {orderNo:'ORD202606110026', paidAt:'2026-06-11 16:18:42', deviceNo:'MBB202604280026', wechatPayNo:'WX20260611161842026', mainMerchant:'深圳远帆科技', agent:'企业客户代理', packageName:'企业畅享100GB套餐', payAmount:'59.00', refundAmount:'59.00', wechatRefundAmount:'0.00', balanceRefundAmount:'0.00', status:'退费成功', refundMethod:'商户转账', receiptNo:'ETR2026073100010026', remark:'实名校验通过，商户转账退费成功', creator:'王敏', createdAt:'2026-06-11 16:26:08', refundedAt:'2026-07-31 10:42:18'}
 ];
 const refundWorkOrderData = [
+  {workNo:'RFW202607310001', applyAt:'2026-07-31 09:36:18', applicant:'王敏', workStatus:'待执行', refundStatus:'未退费', timeout:'否', sn:'MBB202607300026', shopOrderNo:'SHOP202607300026', customerNick:'远帆个人客户', refundType:'套餐退费', refundMethod:'', processRefundMethod:'商户转账', requiresRealName:true, userRealName:'李凡', failureReason:'', receiptNo:'', verifiedAmount:'59.00', shopName:'深圳远帆科技店', reason:'套餐重复购买申请退费', registerRemark:'商户转账需校验微信实名信息', payScreenshot:'已上传', actualAmount:'', customerType:'个人客户', reviewer:'陈启安', reviewRemark:'资料与金额核验通过', reviewAt:'2026-07-31 09:52:40', executor:'段玉', executeAt:''},
   {workNo:'RFW202607170031', applyAt:'2026-07-17 09:28:16', applicant:'王敏', workStatus:'待执行', refundStatus:'未退费', timeout:'否', sn:'MBB202607170031', shopOrderNo:'SHOP202607170031', customerNick:'星联企业客户', refundType:'套餐退费', refundMethod:'', refundPrompt:'当前转账商户已经达到每日可转账金额上限，请联系管理员处理。', verifiedAmount:'99.00', shopName:'上海智联旗舰店', reason:'套餐未生效申请退费', registerRemark:'等待财务执行退款', payScreenshot:'已上传', actualAmount:'', customerType:'商户客户', reviewer:'李凡', reviewRemark:'同意退费', reviewAt:'2026-07-17 09:42:11', executor:'段玉', executeAt:''},
   {workNo:'RFW202607170032', applyAt:'2026-07-17 10:18:54', applicant:'陈启安', workStatus:'待执行', refundStatus:'未退费', timeout:'否', sn:'MBB202607170032', shopOrderNo:'SHOP202607170032', customerNick:'云旅大客户', refundType:'押金退费', refundMethod:'', refundPrompt:'转账金额超出当前转账商户单笔可转账金额上限，请联系管理员处理。', verifiedAmount:'6888.00', shopName:'杭州云旅专营店', reason:'大额押金退费需人工处理', registerRemark:'转账金额超过单笔限额', payScreenshot:'已上传', actualAmount:'', customerType:'渠道客户', reviewer:'王敏', reviewRemark:'同意退费', reviewAt:'2026-07-17 10:40:22', executor:'张可昕', executeAt:''},
   {workNo:'RFW202607150001', applyAt:'2026-07-15 09:18:32', applicant:'王敏', workStatus:'审核中', refundStatus:'未退费', timeout:'否', sn:'MBB202605290001', shopOrderNo:'SHOP202607150001', customerNick:'星联客户A', refundType:'押金退费', refundMethod:'', verifiedAmount:'199.00', shopName:'上海智联旗舰店', reason:'设备归还后押金退回', registerRemark:'客户已上传归还凭证', payScreenshot:'已上传', actualAmount:'', customerType:'个人客户', reviewer:'李凡', reviewRemark:'资料完整', reviewAt:'', executor:'', executeAt:''},
@@ -3090,12 +3117,19 @@ function getRefundManageActionLabels(row){
   if(row.status === '未退费'){
     actions.push('删除','处理退款');
   }
-  if(row.refundMethod === '商户转账' && !['退费失败','已撤销转账'].includes(row.status)){
+  if(row.status === '退费失败'){
+    actions.push('处理退款');
+  }
+  if(row.status === '退费成功' && row.receiptNo){
+    actions.push('下载电子回单');
+  }
+  if(row.refundMethod === '商户转账' && !['退费失败','已撤销转账','退费成功','已退费'].includes(row.status)){
     actions.push('撤销转账');
   }
   return actions;
 }
 let pendingTransferCancel = null;
+let pendingRefundRealName = null;
 function renderRefundActionButton(label, merchantName, promptText, sourceType, recordId){
   const danger = ['删除','撤销转账','驳回'].includes(label) ? ' danger' : '';
   const merchant = escapeHtml(merchantName || '用于转账的商户名称');
@@ -3122,6 +3156,82 @@ function closeRefundBalanceModal(){
   const modal = document.getElementById('refundBalanceModalMask');
   if(modal){modal.style.display = 'none'}
 }
+function clearRefundRealNameError(){
+  const field = document.getElementById('refundRealNameField');
+  if(field){field.classList.remove('invalid')}
+}
+function getRefundRealNameRow(sourceType,recordId){
+  if(sourceType === 'refundWork'){
+    return refundWorkOrderData.find(item => item.workNo === recordId);
+  }
+  return refundManageData.find(item => item.orderNo === recordId);
+}
+function openRefundRealNameModal(sourceType,recordId){
+  const row = getRefundRealNameRow(sourceType,recordId);
+  if(!row || !row.requiresRealName){return}
+  pendingRefundRealName = {sourceType,recordId};
+  const input = document.getElementById('refundRealNameInput');
+  if(input){input.value = ''}
+  clearRefundRealNameError();
+  const modal = document.getElementById('refundRealNameModalMask');
+  if(modal){modal.style.display = 'flex'}
+  window.setTimeout(() => {if(input){input.focus()}},0);
+}
+function closeRefundRealNameModal(){
+  pendingRefundRealName = null;
+  const modal = document.getElementById('refundRealNameModalMask');
+  if(modal){modal.style.display = 'none'}
+}
+function formatRefundTimestamp(date){
+  const pad = value => String(value).padStart(2,'0');
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+}
+function submitRefundRealName(){
+  const input = document.getElementById('refundRealNameInput');
+  const realName = String(input ? input.value : '').trim();
+  const field = document.getElementById('refundRealNameField');
+  if(!realName){
+    if(field){field.classList.add('invalid')}
+    if(input){input.focus()}
+    return;
+  }
+  if(!pendingRefundRealName){closeRefundRealNameModal();return}
+  const sourceType = pendingRefundRealName.sourceType;
+  const row = getRefundRealNameRow(sourceType,pendingRefundRealName.recordId);
+  if(!row){closeRefundRealNameModal();return}
+  row.refundMethod = row.processRefundMethod || '商户转账';
+  if(realName !== row.userRealName){
+    if(sourceType === 'refundWork'){
+      row.refundStatus = '退费失败';
+      row.actualAmount = '';
+      row.executeAt = '';
+    }else{
+      row.status = '退费失败';
+      row.refundedAt = '';
+    }
+    row.failureReason = '您填写的姓名与当前微信收款账户实名认证姓名不一致，请核对后重新填写。';
+    row.receiptNo = '';
+  }else{
+    const handledAt = new Date();
+    if(sourceType === 'refundWork'){
+      row.refundStatus = '退费成功';
+      row.workStatus = '已完成';
+      row.actualAmount = row.verifiedAmount;
+      row.executeAt = formatRefundTimestamp(handledAt);
+    }else{
+      row.status = '退费成功';
+      row.refundedAt = formatRefundTimestamp(handledAt);
+    }
+    row.failureReason = '';
+    row.receiptNo = `ETR${handledAt.getFullYear()}${String(handledAt.getMonth() + 1).padStart(2,'0')}${String(handledAt.getDate()).padStart(2,'0')}${String(handledAt.getTime()).slice(-8)}`;
+  }
+  closeRefundRealNameModal();
+  if(sourceType === 'refundWork'){
+    searchRefundWorkOrderRecords();
+  }else{
+    searchRefundManageRecords();
+  }
+}
 function openTransferCancelModal(sourceType,recordId){
   pendingTransferCancel = {sourceType,recordId};
   const modal = document.getElementById('transferCancelModalMask');
@@ -3146,7 +3256,22 @@ function confirmTransferCancel(){
   closeTransferCancelModal();
 }
 function renderRefundManageActions(row){
-  return getRefundManageActionLabels(row).map(label => renderRefundActionButton(label,row.mainMerchant,row.refundPrompt,'refundManage',row.orderNo)).join('');
+  return getRefundManageActionLabels(row).map(label => {
+    if(label === '处理退款' && row.requiresRealName){
+      return `<span class="text-action" onclick="openRefundRealNameModal('refundManage',this.dataset.id)" data-id="${escapeHtml(row.orderNo)}">处理退款</span>`;
+    }
+    if(label === '下载电子回单'){
+      return `<span class="text-action" onclick="downloadRefundReceipt(this.dataset.id)" data-id="${escapeHtml(row.orderNo)}">下载电子回单</span>`;
+    }
+    return renderRefundActionButton(label,row.mainMerchant,row.refundPrompt,'refundManage',row.orderNo);
+  }).join('');
+}
+function renderRefundManageStatus(row){
+  if(row.status === '退费失败' && row.failureReason){
+    return `<span class="refund-status failed" tabindex="0">${escapeHtml(row.status)}<span class="refund-failure-tip" role="tooltip">${escapeHtml(row.failureReason)}</span></span>`;
+  }
+  const statusClass = row.status === '退费成功' ? ' success' : '';
+  return `<span class="refund-status${statusClass}">${escapeHtml(row.status)}</span>`;
 }
 function renderRefundManageTable(rows){
   document.getElementById('refundManageRows').innerHTML = rows.map((row,index) => `
@@ -3155,7 +3280,7 @@ function renderRefundManageTable(rows){
       <td>${escapeHtml(row.deviceNo)}</td><td>${escapeHtml(row.wechatPayNo)}</td><td>${escapeHtml(row.mainMerchant)}</td>
       <td>${escapeHtml(row.agent)}</td><td>${escapeHtml(row.packageName)}</td><td>${escapeHtml(row.payAmount)}</td>
       <td>${escapeHtml(row.refundAmount)}</td><td>${escapeHtml(row.wechatRefundAmount)}</td><td>${escapeHtml(row.balanceRefundAmount)}</td>
-      <td>${escapeHtml(row.status)}</td><td>${escapeHtml(row.refundMethod || '--')}</td><td>${escapeHtml(row.remark)}</td><td>${escapeHtml(row.creator)}</td>
+      <td>${renderRefundManageStatus(row)}</td><td>${escapeHtml(row.refundMethod || '--')}</td><td>${escapeHtml(row.remark)}</td><td>${escapeHtml(row.creator)}</td>
       <td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.refundedAt || '--')}</td>
       <td class="sticky-action">${renderRefundManageActions(row)}</td>
     </tr>
@@ -3207,6 +3332,12 @@ function downloadRefundManageFile(content,type,filename){
   link.click();
   URL.revokeObjectURL(link.href);
 }
+function downloadRefundReceipt(orderNo){
+  const row = refundManageData.find(item => item.orderNo === orderNo);
+  if(!row || row.status !== '退费成功' || !row.receiptNo){return}
+  const html = `<!doctype html><html><head><meta charset="UTF-8"><title>电子回单</title><style>body{font-family:Arial,"Microsoft YaHei",sans-serif;color:#1f2937;padding:40px}h1{font-size:22px;margin:0 0 26px}.receipt{width:680px;border:1px solid #d8dee9}.row{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid #edf0f5}.row:last-child{border-bottom:0}.label,.value{padding:12px 16px}.label{background:#f8fafc;color:#606a78}.value{border-left:1px solid #edf0f5}</style></head><body><h1>商户转账退费电子回单</h1><div class="receipt"><div class="row"><div class="label">电子回单号</div><div class="value">${escapeHtml(row.receiptNo)}</div></div><div class="row"><div class="label">订单号</div><div class="value">${escapeHtml(row.orderNo)}</div></div><div class="row"><div class="label">设备号</div><div class="value">${escapeHtml(row.deviceNo)}</div></div><div class="row"><div class="label">转账商户</div><div class="value">${escapeHtml(row.mainMerchant)}</div></div><div class="row"><div class="label">退费金额</div><div class="value">¥${escapeHtml(row.refundAmount)}</div></div><div class="row"><div class="label">退费方式</div><div class="value">${escapeHtml(row.refundMethod)}</div></div><div class="row"><div class="label">退费时间</div><div class="value">${escapeHtml(row.refundedAt)}</div></div><div class="row"><div class="label">退费状态</div><div class="value">${escapeHtml(row.status)}</div></div></div></body></html>`;
+  downloadRefundManageFile(html,'text/html;charset=utf-8;',`${row.orderNo}-电子回单.html`);
+}
 function exportRefundManageTxt(){
   const data = getRefundManageExportData();
   const text = '\ufeff' + [data.header].concat(data.body).map(items => items.map(item => String(item || '')).join('\t')).join('\n');
@@ -3245,12 +3376,19 @@ function copyRefundWorkNo(event,workNo){
   document.execCommand('copy');
   document.body.removeChild(input);
 }
+function renderRefundWorkRefundStatus(row){
+  if(row.refundStatus === '退费失败' && row.failureReason){
+    return `<span class="refund-status failed">${escapeHtml(row.refundStatus)}<span class="refund-failure-tip" role="tooltip">${escapeHtml(row.failureReason)}</span></span>`;
+  }
+  const statusClass = row.refundStatus === '退费成功' ? ' success' : '';
+  return `<span class="refund-status${statusClass}">${escapeHtml(row.refundStatus)}</span>`;
+}
 function renderRefundWorkStatus(row){
   const countdown = getRefundWorkCountdown(row);
   return `
     <div class="work-status-stack">
       <span><strong>工单状态：</strong>${escapeHtml(row.workStatus)}</span>
-      <span><strong>退费状态：</strong>${escapeHtml(row.refundStatus)}</span>
+      <span><strong>退费状态：</strong>${renderRefundWorkRefundStatus(row)}</span>
       <span><strong>48小时倒计时：</strong><span class="${countdown.expired ? 'countdown-expired' : ''}">${escapeHtml(countdown.label)}</span></span>
     </div>
   `;
@@ -3263,17 +3401,28 @@ function getRefundWorkActionLabels(row){
   if(row.workStatus === '审核中'){
     actions = ['编辑','审核','驳回'];
   }else if(row.refundStatus === '退费失败'){
-    actions = ['线下退费'];
+    actions = row.requiresRealName ? ['处理退款','线下退费'] : ['线下退费'];
   }else if(row.workStatus === '待执行' && row.refundStatus === '未退费'){
     actions = ['处理退款','驳回'];
   }
-  if(row.refundMethod === '商户转账' && !['退费失败','已撤销转账'].includes(row.refundStatus) && !actions.includes('撤销转账')){
+  if(row.refundStatus === '退费成功' && row.receiptNo){
+    actions.push('下载电子回单');
+  }
+  if(row.refundMethod === '商户转账' && !['退费失败','已撤销转账','退费成功','已退费'].includes(row.refundStatus) && !actions.includes('撤销转账')){
     actions.push('撤销转账');
   }
   return actions;
 }
 function renderRefundWorkActions(row){
-  return getRefundWorkActionLabels(row).map(label => renderRefundActionButton(label,row.shopName,row.refundPrompt,'refundWork',row.workNo)).join('');
+  return getRefundWorkActionLabels(row).map(label => {
+    if(label === '处理退款' && row.requiresRealName){
+      return `<span class="text-action" onclick="openRefundRealNameModal('refundWork',this.dataset.id)" data-id="${escapeHtml(row.workNo)}">处理退款</span>`;
+    }
+    if(label === '下载电子回单'){
+      return `<span class="text-action" onclick="downloadRefundWorkReceipt(this.dataset.id)" data-id="${escapeHtml(row.workNo)}">下载电子回单</span>`;
+    }
+    return renderRefundActionButton(label,row.shopName,row.refundPrompt,'refundWork',row.workNo);
+  }).join('');
 }
 function renderRefundWorkOrderTable(rows){
   document.getElementById('refundWorkOrderRows').innerHTML = rows.map((row,index) => `
@@ -3340,6 +3489,12 @@ function resetRefundWorkOrderRecords(){
   document.getElementById('refundWorkShopInput').value = '';
   resetCustomSelect('refundWorkStatusFilter','工单状态');
   searchRefundWorkOrderRecords();
+}
+function downloadRefundWorkReceipt(workNo){
+  const row = refundWorkOrderData.find(item => item.workNo === workNo);
+  if(!row || row.refundStatus !== '退费成功' || !row.receiptNo){return}
+  const html = `<!doctype html><html><head><meta charset="UTF-8"><title>电子回单</title><style>body{font-family:Arial,"Microsoft YaHei",sans-serif;color:#1f2937;padding:40px}h1{font-size:22px;margin:0 0 26px}.receipt{width:680px;border:1px solid #d8dee9}.row{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid #edf0f5}.row:last-child{border-bottom:0}.label,.value{padding:12px 16px}.label{background:#f8fafc;color:#606a78}.value{border-left:1px solid #edf0f5}</style></head><body><h1>退费工单商户转账电子回单</h1><div class="receipt"><div class="row"><div class="label">电子回单号</div><div class="value">${escapeHtml(row.receiptNo)}</div></div><div class="row"><div class="label">退费工单号</div><div class="value">${escapeHtml(row.workNo)}</div></div><div class="row"><div class="label">店铺订单号</div><div class="value">${escapeHtml(row.shopOrderNo)}</div></div><div class="row"><div class="label">SN</div><div class="value">${escapeHtml(row.sn)}</div></div><div class="row"><div class="label">转账商户</div><div class="value">${escapeHtml(row.shopName)}</div></div><div class="row"><div class="label">实际退费金额</div><div class="value">¥${escapeHtml(row.actualAmount)}</div></div><div class="row"><div class="label">退费方式</div><div class="value">${escapeHtml(row.refundMethod)}</div></div><div class="row"><div class="label">执行时间</div><div class="value">${escapeHtml(row.executeAt)}</div></div><div class="row"><div class="label">退费状态</div><div class="value">${escapeHtml(row.refundStatus)}</div></div></div></body></html>`;
+  downloadRefundManageFile(html,'text/html;charset=utf-8;',`${row.workNo}-电子回单.html`);
 }
 function exportRefundWorkOrderRecords(){
   const rows = getFilteredRefundWorkOrderRows();
