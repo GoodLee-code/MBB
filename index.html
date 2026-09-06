@@ -7,19 +7,21 @@
 <style>
 *{box-sizing:border-box}
 :root{--theme-color:#1687e8}
-body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;color:#333;font-size:12px}
-.topbar{height:66px;background:linear-gradient(90deg,#1687e8,#02a99c);display:grid;grid-template-columns:minmax(0,1fr) 390px minmax(0,1fr);align-items:center;color:#fff;padding:0 16px}
+body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;color:#333;font-size:12px}
+.topbar{height:66px;background:linear-gradient(90deg,#1687e8,#02a99c);display:grid;grid-template-columns:minmax(0,1fr) 420px minmax(0,1fr);align-items:center;color:#fff;padding:0 16px}
 .logo{font-size:16px;font-weight:600;width:auto;justify-self:start}.logo:before{content:"◈";margin-right:8px;opacity:.7}
-.search{margin-left:0;width:390px;height:28px;background:#fff;border-radius:4px;display:flex;overflow:visible;color:#8792a2;position:relative;justify-self:center}
-.search input{border:0;outline:0;flex:1;padding:0 10px}.search button{border:0;background:#2f86ed;color:#fff;width:64px}
+.search{margin-left:0;width:420px;height:34px;background:#fff;border:1px solid #e5e7eb;border-radius:17px;display:flex;align-items:center;overflow:visible;color:#8792a2;position:relative;justify-self:center;padding:2px}
+.search input{height:28px;min-width:0;border:0;outline:0;flex:1;padding:0 12px;font-size:12px;color:#4d5664;background:transparent}.search input::placeholder{color:#b8c0cc;opacity:1}.search button{width:72px;height:28px;border:0;border-radius:10px;background:#1687e8;color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:12px;line-height:28px;padding:0}
 .user{margin-left:0;justify-self:end}
 .layout{display:flex;height:calc(100vh - 66px)}
-.side{width:226px;background:#fff;border-right:1px solid #e5eaf1;padding-top:10px;flex-shrink:0;color:#4d5664;line-height:1.5}
+.side{width:226px;background:#fff;border-right:1px solid #e5eaf1;padding-top:10px;flex-shrink:0;color:#4d5664;line-height:1.5;overflow-y:auto;overflow-x:hidden}
 .menu{height:47px;padding:0 17px 0 19px;color:#4d5664;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;font-weight:400;line-height:inherit;border-right:3px solid transparent}
 .menu:hover{color:#1687e8;background:#eef6ff}
-.device-icon,.payment-icon,.finance-icon,.aftersale-icon,.exchange-icon,.ops-icon,.package-icon,.task-icon,.log-icon,.system-icon{width:15px;height:14px;color:#5e6d80;display:inline-block;flex:none}
-.device-icon *,.payment-icon *,.finance-icon *,.aftersale-icon *,.exchange-icon *,.ops-icon *,.package-icon *,.task-icon *,.log-icon *,.system-icon *{stroke-width:1.3px!important;vector-effect:non-scaling-stroke}
-.menu:hover .device-icon,.menu:hover .payment-icon,.menu:hover .finance-icon,.menu:hover .aftersale-icon,.menu:hover .exchange-icon,.menu:hover .ops-icon,.menu:hover .package-icon,.menu:hover .task-icon,.menu:hover .log-icon,.menu:hover .system-icon{color:#5e6d80}
+.menu:not([onclick]){cursor:default}
+.menu:not([onclick]):hover{color:#4d5664;background:#fff}
+	.device-icon,.payment-icon,.finance-icon,.aftersale-icon,.exchange-icon,.ops-icon,.package-icon,.task-icon,.log-icon,.system-icon,.menu-generic-icon{width:15px;height:14px;color:#5e6d80;display:inline-block;flex:none}
+	.device-icon *,.payment-icon *,.finance-icon *,.aftersale-icon *,.exchange-icon *,.ops-icon *,.package-icon *,.task-icon *,.log-icon *,.system-icon *,.menu-generic-icon *{stroke-width:1.3px!important;vector-effect:non-scaling-stroke}
+	.menu:hover .device-icon,.menu:hover .payment-icon,.menu:hover .finance-icon,.menu:hover .aftersale-icon,.menu:hover .exchange-icon,.menu:hover .ops-icon,.menu:hover .package-icon,.menu:hover .task-icon,.menu:hover .log-icon,.menu:hover .system-icon,.menu:hover .menu-generic-icon{color:#5e6d80}
 .menu-title{flex:1}
 .collapse-icon{width:7px;height:7px;border-right:1px solid #8b96a6;border-bottom:1px solid #8b96a6;transform:rotate(45deg);transition:transform .2s;margin-bottom:3px;flex:none}
 .menu.collapsed .collapse-icon{transform:rotate(-45deg);margin-bottom:0}
@@ -27,22 +29,48 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .sub{height:39px;line-height:inherit;padding-left:45px;cursor:pointer;color:#667182;font-size:12px;font-weight:400;border-right:3px solid transparent;display:flex;align-items:center}
 .sub:hover{color:#1687e8;background:#eef6ff}
 .sub.active{color:#1687e8;background:#eef6ff;border-right-color:#1687e8}
-.main{flex:1;overflow:auto}
+.menu.home-menu.active{color:#1687e8;background:#eef6ff;border-right-color:#1687e8}
+.menu.home-menu.active .menu-generic-icon{color:#5e6d80}
+.main{flex:1;overflow:auto;background:#fff}
 .tabbar{height:42px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:end;padding-left:12px}
 .tab{min-width:92px;height:34px;line-height:34px;text-align:center;border-right:1px solid #edf0f5;color:#5d6675;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;cursor:pointer}.tab.active{color:#1687e8;background:#f9fbff;border-bottom:2px solid #1687e8}.tab-close{color:#8b95a5;font-size:14px;line-height:1;cursor:pointer}.tab-close:hover{color:#1687e8}
-.content{min-height:calc(100vh - 108px);padding:18px;display:flex;flex-direction:column}
+.content{min-height:calc(100vh - 108px);padding:18px;display:flex;flex-direction:column;background:#fff}
 .inner-tabs{height:34px;border-bottom:1px solid #e6ebf2;margin-bottom:24px}.inner-tab{display:inline-block;height:34px;line-height:34px;margin-right:28px}.inner-tab.active{color:#1687e8;border-bottom:2px solid #1687e8}
-.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 12px;margin:0 0 12px;width:100%;background:#fff}
-.device-filter .input,.device-filter .select,.device-filter .condition-control,.device-filter .input-combo,.device-filter .device-date-range,.config-filter .input,.config-filter .select,.config-filter .date-picker,.sim-filter .input,.sim-filter .select,.flow-filter .flow-date-control,.flow-filter .input,.flow-filter .select,.flow-filter .range-control,.payment-filter .input,.payment-filter .select,.payment-filter .device-date-range,.wallet-filter .input,.wallet-filter .select,.wallet-filter .range-control,.strategy-filter .input,.strategy-filter .select,.activity-filter .input,.activity-filter .select,.activity-filter .device-date-range,.package-filter .input,.package-filter .select,.task-filter .input,.task-filter .select,.task-filter .device-date-range,.factory-filter .input,.factory-filter .select,.factory-filter .date-range-control,.factory-filter .device-date-range,.network-log-filter .input,.network-log-filter .select,.network-log-filter .device-date-range,.system-filter .input,.system-filter .select,.system-filter .input-combo{width:100%;min-width:0}
+.strategy-page-tabs{height:42px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:32px;padding:0 18px;margin-bottom:16px;flex:none}
+.strategy-page-tab{height:42px;border:0;border-bottom:2px solid transparent;background:transparent;color:#4d5664;font-size:12px;font-weight:500;padding:0 2px 11px;cursor:pointer;white-space:nowrap;transition:color .16s ease,border-color .16s ease}
+.strategy-page-tab:hover{color:var(--theme-color)}
+.strategy-page-tab.active{color:var(--theme-color);border-bottom-color:var(--theme-color)}
+.auth-manage-tabs{height:42px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:32px;margin-bottom:16px;flex:none}
+.auth-manage-tab{height:42px;border:0;border-bottom:2px solid transparent;background:transparent;color:#4d5664;font-size:12px;font-weight:500;padding:0 2px 11px;cursor:pointer;white-space:nowrap;transition:color .16s ease,border-color .16s ease}
+.auth-manage-tab:hover{color:var(--theme-color)}
+.auth-manage-tab.active{color:var(--theme-color);border-bottom-color:var(--theme-color)}
+.auth-manage-panel{display:none;flex:1;min-height:0;flex-direction:column}
+.auth-manage-panel.active{display:flex}
+.auth-manage-panel .empty{padding:32px 16px;text-align:center;color:#8b96a6}
+.strategy-subpage{display:none;flex:1;min-height:0;flex-direction:column}
+.strategy-subpage.active{display:flex}
+.strategy-subpage-empty{min-height:320px;background:#fff;border:1px solid #e7ebf1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#8b95a5}
+.strategy-subpage-empty strong{font-size:14px;font-weight:500;color:#606a78}
+.strategy-record-table{min-width:2520px}
+.strategy-report-table{min-width:1480px}
+.strategy-record-table th,.strategy-record-table td,.strategy-report-table th,.strategy-report-table td{white-space:nowrap}
+.speed-limit-status{font-weight:600}
+.speed-limit-status.success{color:#16a34a}
+.speed-limit-status.failed{color:#f04438}
+.speed-limit-status.waiting{color:#d97706}
+.speed-limit-status.released{color:#1687e8}
+.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 12px;margin:0 0 16px;width:100%;background:#fff}
+.device-filter .input,.device-filter .select,.device-filter .condition-control,.device-filter .input-combo,.device-filter .device-date-range,.config-filter .input,.config-filter .select,.config-filter .date-picker,.sim-filter .input,.sim-filter .select,.flow-filter .flow-date-control,.flow-filter .input,.flow-filter .select,.flow-filter .range-control,.payment-filter .input,.payment-filter .select,.payment-filter .device-date-range,.wallet-filter .input,.wallet-filter .select,.wallet-filter .range-control,.strategy-filter .input,.strategy-filter .select,.strategy-filter .device-date-range,.activity-filter .input,.activity-filter .select,.activity-filter .device-date-range,.package-filter .input,.package-filter .select,.task-filter .input,.task-filter .select,.task-filter .device-date-range,.factory-filter .input,.factory-filter .select,.factory-filter .date-range-control,.factory-filter .device-date-range,.network-log-filter .input,.network-log-filter .select,.network-log-filter .device-date-range,.system-filter .input,.system-filter .select,.system-filter .input-combo{width:100%;min-width:0}
 .device-filter .input,.device-filter .select,.config-filter .input,.config-filter .select,.config-filter .date,.sim-filter .input,.sim-filter .select,.flow-filter .input,.flow-filter .select,.payment-filter .input,.payment-filter .select,.wallet-filter .input,.wallet-filter .select,.strategy-filter .input,.strategy-filter .select,.activity-filter .input,.activity-filter .select,.package-filter .input,.package-filter .select,.task-filter .input,.task-filter .select,.factory-filter .input,.factory-filter .select,.network-log-filter .input,.network-log-filter .select,.system-filter .input,.system-filter .select{height:34px;border:1px solid #e5e7eb;border-radius:4px;font-size:12px}
 .device-filter .input,.config-filter .input,.sim-filter .input,.flow-filter .input,.payment-filter .input,.wallet-filter .input,.strategy-filter .input,.activity-filter .input,.package-filter .input,.task-filter .input,.factory-filter .input,.network-log-filter .input,.system-filter .input{padding:0 9px}
 .device-filter .select,.config-filter .select,.sim-filter .select,.flow-filter .select,.payment-filter .select,.wallet-filter .select,.strategy-filter .select,.activity-filter .select,.package-filter .select,.task-filter .select,.factory-filter .select,.network-log-filter .select,.system-filter .select{line-height:32px;padding-left:9px}
+.device-filter .query-input-wrap.has-value>input,.config-filter .query-input-wrap.has-value>input,.sim-filter .query-input-wrap.has-value>input,.flow-filter .query-input-wrap.has-value>input,.payment-filter .query-input-wrap.has-value>input,.wallet-filter .query-input-wrap.has-value>input,.strategy-filter .query-input-wrap.has-value>input,.activity-filter .query-input-wrap.has-value>input,.package-filter .query-input-wrap.has-value>input,.task-filter .query-input-wrap.has-value>input,.factory-filter .query-input-wrap.has-value>input,.network-log-filter .query-input-wrap.has-value>input,.system-filter .query-input-wrap.has-value>input,.device-filter .custom-select.has-value .select-value,.config-filter .custom-select.has-value .select-value,.sim-filter .custom-select.has-value .select-value,.flow-filter .custom-select.has-value .select-value,.payment-filter .custom-select.has-value .select-value,.wallet-filter .custom-select.has-value .select-value,.strategy-filter .custom-select.has-value .select-value,.activity-filter .custom-select.has-value .select-value,.package-filter .custom-select.has-value .select-value,.task-filter .custom-select.has-value .select-value,.factory-filter .custom-select.has-value .select-value,.network-log-filter .custom-select.has-value .select-value,.system-filter .custom-select.has-value .select-value,.device-filter .input-combo.has-value .input,.config-filter .input-combo.has-value .input,.sim-filter .input-combo.has-value .input,.flow-filter .input-combo.has-value .input,.payment-filter .input-combo.has-value .input,.wallet-filter .input-combo.has-value .input,.strategy-filter .input-combo.has-value .input,.activity-filter .input-combo.has-value .input,.package-filter .input-combo.has-value .input,.task-filter .input-combo.has-value .input,.factory-filter .input-combo.has-value .input,.network-log-filter .input-combo.has-value .input,.system-filter .input-combo.has-value .input,.device-filter .device-date-text.has-value,.config-filter .device-date-text.has-value,.sim-filter .device-date-text.has-value,.flow-filter .device-date-text.has-value,.payment-filter .device-date-text.has-value,.wallet-filter .device-date-text.has-value,.strategy-filter .device-date-text.has-value,.activity-filter .device-date-text.has-value,.package-filter .device-date-text.has-value,.task-filter .device-date-text.has-value,.factory-filter .device-date-text.has-value,.network-log-filter .device-date-text.has-value,.system-filter .device-date-text.has-value{color:#1F2329}
 .device-filter.collapsed > :nth-child(n+5):not(.filter-actions){display:none}
 .device-filter.collapsed > .filter-actions{display:flex}
 .config-filter .date{width:100%}
-.flow-mode-tip{min-height:32px;margin-bottom:12px;padding:8px 12px;border:1px solid #dbeafe;background:#f4f9ff;color:#4b5563;display:flex;align-items:center;gap:6px;line-height:18px}
+.flow-mode-tip{min-height:32px;margin-bottom:16px;padding:8px 12px;border:1px solid #dbeafe;background:#f4f9ff;color:#4b5563;display:flex;align-items:center;gap:6px;line-height:18px}
 .flow-mode-tip .mark{color:#f04438;font-weight:700}
-.flow-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:10px 0 12px}
+.flow-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 16px}
 .flow-summary-item{min-height:72px;border:1px solid #e6ebf2;background:#fff;padding:12px 14px;display:flex;flex-direction:column;justify-content:center;gap:6px}
 .flow-summary-label{color:#8b95a5;font-weight:600}
 .flow-summary-value{color:#1f2937;font-size:18px;font-weight:700}
@@ -103,9 +131,9 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .batch-task-detail-status{font-weight:600}
 .batch-task-detail-status.success{color:#16a34a}
 .batch-task-detail-status.fail{color:#f04438}
-.placeholder-panel{min-height:96px;border:1px dashed #cfd6e2;background:#fff;color:#8b95a5;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-.placeholder-panel.list{min-height:260px;margin-top:10px;margin-bottom:0}
-.field-version-card{background:#fff;border:1px solid #e7ebf1;margin-bottom:12px}
+.placeholder-panel{min-height:96px;border:1px dashed #cfd6e2;background:#fff;color:#8b95a5;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.placeholder-panel.list{min-height:260px;margin-top:0;margin-bottom:0}
+.field-version-card{background:#fff;border:1px solid #e7ebf1;margin-bottom:16px}
 #fieldVersionListView{display:flex;flex-direction:column;min-height:calc(100vh - 144px)}
 #fieldVersionPagination{margin-top:auto}
 .field-version-card-title{height:44px;border-bottom:1px solid #edf0f5;padding:0 16px;display:flex;align-items:center;justify-content:space-between;font-weight:700;color:#30343b}
@@ -181,6 +209,7 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .date-range-control{height:34px;border:1px solid #e5e7eb;border-radius:4px;background:#fff;display:flex;align-items:center;overflow:hidden;color:#b8c0cc;font-size:12px}
 .date-range-control:focus-within{border-color:var(--theme-color)}
 .date-range-control input{width:0;min-width:96px;height:32px;border:0;outline:0;background:transparent;padding:0 9px;color:#596273;flex:1;font-size:12px}
+.flow-date-control .input,.range-control input,.condition-control input,.date-range-control input{color:#1F2329}
 .device-date-range{height:34px;border:1px solid #e5e7eb;border-radius:4px;background:#fff;display:flex;align-items:center;color:#b8c0cc;padding:0 30px 0 9px;gap:6px;position:relative;cursor:pointer;overflow:visible;font-size:12px}
 .device-date-range.has-value{padding-right:54px}
 .device-date-range:focus-within{border-color:var(--theme-color)}
@@ -204,6 +233,9 @@ body{margin:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"S
 .device-sn-link:hover,.device-sn-link.active{color:#0b4ea2;text-decoration:underline}
 .device-detail-table th{width:160px;text-align:right;padding-right:18px}
 .device-detail-table td{text-align:left;padding-left:18px}
+.sim-detail-table{min-width:760px}
+.sim-detail-table th{width:150px}
+.sim-detail-empty{padding:32px!important;text-align:center!important;color:#8b95a5!important}
 .sticky-action{position:sticky;right:0;background:#fff;z-index:2;box-shadow:-1px 0 0 #e7ebf1}
 .sticky-action.action-open{z-index:40}
 th.sticky-action{background:#fbfcfe;z-index:3}
@@ -328,16 +360,19 @@ input[type="checkbox"],input[type="radio"]{accent-color:var(--theme-color)}
 .range-day:hover{background:#eef6ff;color:var(--theme-color)}
 .range-day.in-range{background:#edf6ff;color:#1687e8;border-radius:0}
 .range-day.active{background:#e7f2ff;color:#1687e8;border-radius:4px}
-.search .custom-select{width:112px;height:28px;border:0;border-right:1px solid #e9edf3;border-radius:4px 0 0 4px;line-height:28px;color:#667085;padding:0 24px 0 10px;flex:none}
-.search .custom-select.has-value{padding-right:46px}
-.search .custom-select:after{right:8px}
-.search .select-clear{right:24px}
+.search .custom-select{width:78px;height:28px;border:0;border-right:1px solid #e9edf3;border-radius:14px 0 0 14px;line-height:28px;color:#1687e8;padding:0 9px 0 11px;flex:none;font-size:11px}
+.search .custom-select.has-value{padding-right:9px}
+.search .select-value{overflow:visible;text-overflow:clip}
+.search .custom-select:after,.search .select-clear{display:none!important}
+.search .dropdown-menu{min-width:96px;top:calc(100% + 4px);font-size:12px}
+.search button .search-icon{width:10px;height:10px;border-width:1.4px;color:#fff}
+.search button .search-icon:after{right:-4px;bottom:-2px;width:5px;height:1.4px}
 .btn{height:32px;border:1px solid var(--theme-color);background:var(--theme-color);color:#fff;border-radius:3px;padding:0 18px;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,border-color .16s ease,color .16s ease}.btn.line{background:#fff;color:var(--theme-color)}.btn.gray{background:#fff;border-color:#d9dee8;color:#606a78}
 .content .btn{align-self:flex-start;flex:none;width:auto;white-space:nowrap}
 .btn:hover,.record-btn:hover,.search button:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(47,145,241,.18)}
 .btn:active,.record-btn:active,.search button:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.16)}
 .btn.line:hover{background:#f4f9ff;border-color:#1687e8;color:#1687e8}.btn.gray:hover{background:#f8fafc;border-color:#c6ceda;color:#4b5563}.search button{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease}.search button:hover{background:#1d78df}
-.action-row{display:flex;align-items:center;gap:8px;margin:0 0 10px;flex:none}
+.action-row{display:flex;align-items:center;gap:8px;margin:0 0 16px;flex:none}
 .action-row .btn{flex:none;width:auto;white-space:nowrap}
 .filter-actions{height:34px;display:flex;align-items:center;gap:8px;min-width:0}
 .filter-actions.new-row{grid-column:1 / -1}
@@ -347,6 +382,8 @@ input[type="checkbox"],input[type="radio"]{accent-color:var(--theme-color)}
 .filter-toggle-arrow{width:7px;height:7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(-135deg);transition:transform .16s ease;margin-top:4px}
 .filter-toggle-btn.collapsed .filter-toggle-arrow{transform:rotate(45deg);margin-top:-3px}
 .table-card{background:#fff;border:1px solid #e6ebf2;flex:1;overflow:auto}
+.content > .table-card,.strategy-subpage > .table-card,.auth-manage-panel > .table-card,#fieldVersionListView > .table-card{margin-top:0!important}
+.content > .inner-tabs,.content > .device-detail-tabs,.auth-manage-panel > .inner-tabs{margin-bottom:16px}
 table{width:100%;border-collapse:collapse;background:#fff}
 th{height:38px;background:#fbfcfe;border:1px solid #e7ebf1;font-weight:600;color:#4b5563;text-align:center;padding:8px 12px}
 td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:8px 12px}
@@ -362,7 +399,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .detail-dot{width:13px;height:13px;border-radius:50%;background:#008b12;display:inline-block;flex:none}
 .device-detail-panel{display:none;flex:1;min-height:0}
 .device-detail-panel.active{display:block}
-.device-speed-summary{min-height:76px;background:#fff;display:grid;grid-template-columns:1fr 1fr minmax(300px,1.35fr) auto;align-items:center;gap:24px;padding:16px 20px;margin-bottom:18px}
+.device-speed-summary{min-height:76px;background:#fff;display:grid;grid-template-columns:1fr 1fr minmax(300px,1.35fr) auto;align-items:center;gap:24px;padding:16px 20px;margin-bottom:16px}
 .speed-summary-item{font-size:12px;color:#6b7280}
 .speed-summary-item strong{font-weight:500;color:#6b7280;margin-left:20px}
 .speed-summary-item.policy-item{display:flex;align-items:center;min-width:0}
@@ -373,7 +410,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .summary-info-dot{width:18px;height:18px;border-radius:50%;background:#3f63df;color:#fff;font-size:12px;font-style:italic;display:inline-flex;align-items:center;justify-content:center;font-weight:700;position:relative;flex:none;margin-right:8px}
 .summary-info-dot:after{content:"当前限速策略优先级：手动设置设备套餐限速>设备组限速策略>设备套餐限速策略";display:none;position:absolute;left:26px;top:50%;transform:translateY(-50%);width:430px;background:#333;color:#fff;border-radius:2px;padding:10px 12px;line-height:1.8;text-align:left;font-style:normal;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,.18);z-index:30;white-space:normal}
 .summary-info-dot:hover:after{display:block}
-.device-speed-section{background:#fff;padding:14px 14px 18px;margin-bottom:18px}
+.device-speed-section{background:#fff;padding:14px 14px 18px;margin-bottom:16px}
 .device-speed-title{font-size:12px;font-weight:700;color:#30343b;margin:0 0 20px}
 .device-speed-table{width:100%;table-layout:fixed;border-collapse:collapse}
 .device-speed-table th{width:12%;background:#f3f6fc;color:#8b95a5;text-align:left;padding-left:12px;font-size:12px;font-weight:500}
@@ -382,8 +419,8 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .limit-dimension{font-weight:700;color:#4b5563}
 .time-limit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:18px;row-gap:6px;line-height:20px}
 .time-limit-grid div{white-space:nowrap}
-.speed-record-section{background:#fff;padding:0 14px 16px;margin-bottom:18px}
-.speed-record-tabs{height:38px;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:26px;margin-bottom:12px}
+.speed-record-section{background:#fff;padding:0 14px 16px;margin-bottom:0}
+.speed-record-tabs{height:38px;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:26px;margin-bottom:16px}
 .speed-record-tab{height:38px;border:0;background:transparent;color:#4b5563;font-size:12px;font-weight:600;padding:0 0 10px;cursor:pointer;border-bottom:2px solid transparent}
 .speed-record-tab.active{color:var(--theme-color);border-bottom-color:var(--theme-color)}
 .speed-record-panel{display:none}
@@ -392,6 +429,16 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .speed-record-table{min-width:2200px}
 .speed-record-table.device-table{min-width:1320px}
 .speed-record-table th,.speed-record-table td{white-space:nowrap;font-size:12px}
+.device-realname-table{min-width:1320px}
+.device-realname-table th,.device-realname-table td{white-space:nowrap;font-size:12px}
+.realname-status{font-weight:600;position:relative;display:inline-flex;align-items:center;gap:5px;line-height:22px}
+.realname-status.passed{color:#16a34a}
+.realname-status.failed{color:#f04438;cursor:help;outline:0}
+.realname-help-icon{width:14px;height:14px;border-radius:50%;border:1px solid #8b95a5;color:#8b95a5;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;line-height:14px;position:relative;top:-1px;transition:transform .16s ease,box-shadow .16s ease,color .16s ease,border-color .16s ease}
+.realname-status.failed:hover .realname-help-icon,.realname-status.failed:focus .realname-help-icon{transform:translateY(-1px);color:#667085;border-color:#667085;box-shadow:0 4px 10px rgba(102,112,133,.18)}
+.realname-failure-tip{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);width:300px;padding:9px 12px;border-radius:3px;background:#30343b;color:#fff;font-size:12px;font-weight:400;line-height:20px;white-space:normal;text-align:left;transform:translateX(-50%);box-shadow:0 8px 20px rgba(31,35,41,.18);z-index:30}
+.realname-failure-tip:after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#30343b}
+.realname-status.failed:hover .realname-failure-tip,.realname-status.failed:focus .realname-failure-tip{display:block}
 .modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.08);display:none;align-items:center;justify-content:center;z-index:4}
 .modal{width:720px;background:#fff;border-radius:2px;box-shadow:0 10px 30px rgba(0,0,0,.14);padding:26px 24px 22px;position:relative}
 .factory-return-modal{width:560px;padding:0;overflow:visible}
@@ -555,60 +602,85 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .strategy-time-row,.strategy-detail-time-row{grid-template-columns:minmax(540px,1fr);row-gap:12px;column-gap:0}
 .time-range{grid-template-columns:128px 120px 24px 120px}
 .time-icons{justify-content:flex-start}
+#strategyModalMask .strategy-modal{width:min(1040px,calc(100vw - 48px))!important;max-width:calc(100vw - 48px)}
+#strategyModalMask .strategy-modal-body{overflow-x:auto}
+#strategyModalMask .strategy-time-row{grid-template-columns:minmax(420px,1.35fr) minmax(290px,.85fr) 56px;row-gap:0;column-gap:20px}
+#strategyModalMask .time-range{grid-template-columns:128px minmax(108px,1fr) 24px minmax(108px,1fr)}
+#strategyModalMask .time-speed{grid-template-columns:128px minmax(150px,1fr);gap:12px}
+#strategyModalMask .time-icons{justify-content:flex-end;gap:12px}
+@media(max-width:960px){
+  #strategyModalMask .strategy-time-row{grid-template-columns:minmax(540px,1fr);row-gap:12px;column-gap:0}
+  #strategyModalMask .time-speed{grid-template-columns:128px minmax(260px,1fr)}
+  #strategyModalMask .time-icons{justify-content:flex-start}
+}
 .hidden{display:none!important}
 </style>
+<link rel="stylesheet" href="assets/page-documentation.css">
+<link rel="stylesheet" href="assets/clipboard-smart-search.css">
 </head>
 <body>
-<div class="topbar"><div class="logo">无线宽带运营平台</div><div class="search"><div class="custom-select" data-value="device"><span class="select-value">设备查询</span><div class="dropdown-menu"><div class="dropdown-option" data-value="device">设备查询</div></div></div><input placeholder="请输入设备SN"><button>搜索</button></div><div class="user">ifan⌄</div></div>
+<div class="topbar"><div class="logo">无线宽带运营平台</div><div id="clipboardSmartSearch" class="clipboard-smart-search"></div><div class="user">ifan⌄</div></div>
 <div class="layout">
   <aside class="side" id="sideMenu">
-    <div class="menu" id="menuDevice" onclick="toggleMenuGroup('deviceSubMenu','menuDevice')"><svg class="device-icon" viewBox="0 0 160 160" aria-hidden="true" focusable="false"><path d="M12 76c0-37.6 30.4-68 68-68s68 30.4 68 68" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M38 76c0-23.2 18.8-42 42-42s42 18.8 42 42" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M63 76c0-9.4 7.6-17 17-17s17 7.6 17 17" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M80 59v47" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"/><path d="M22 103h116c6.6 0 12 5.4 12 12v31H10v-31c0-6.6 5.4-12 12-12Z" fill="none" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><circle cx="40" cy="129" r="7" fill="currentColor"/><circle cx="64" cy="129" r="7" fill="currentColor"/></svg><span class="menu-title">设备管理</span><span class="collapse-icon"></span></div>
+    <div class="menu home-menu" id="menuHome" onclick="showPage('home')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11.5 12 4l8 7.5M6.5 10v9.5h11V10M10 19.5V15h4v4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">首页</span></div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">用户中心</span></div>
+    <div class="menu" id="menuDevice" onclick="toggleMenuGroup('deviceSubMenu','menuDevice')"><svg class="device-icon" viewBox="0 0 160 160" aria-hidden="true" focusable="false"><path d="M12 76c0-37.6 30.4-68 68-68s68 30.4 68 68" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M38 76c0-23.2 18.8-42 42-42s42 18.8 42 42" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M63 76c0-9.4 7.6-17 17-17s17 7.6 17 17" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M80 59v47" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"/><path d="M22 103h116c6.6 0 12 5.4 12 12v31H10v-31c0-6.6 5.4-12 12-12Z" fill="none" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><circle cx="40" cy="129" r="7" fill="currentColor"/><circle cx="64" cy="129" r="7" fill="currentColor"/></svg><span class="menu-title">设备中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="deviceSubMenu">
-      <div class="sub active" id="menuDeviceManage" onclick="showPage('device')">设备管理</div>
-      <div class="sub" id="menuConfig" onclick="showPage('config')">二次认证配置</div>
-      <div class="sub" id="menuSim" onclick="showPage('sim')">二次认证SIM卡管理</div>
+      <div class="sub" id="menuDeviceManage" onclick="showPage('device')">设备管理</div>
+      <div class="sub" id="menuConfig" onclick="showPage('config')">二次认证管理</div>
       <div class="sub" id="menuFlow" onclick="showPage('flow')">设备流量</div>
     </div>
-    <div class="menu" id="menuPayment" onclick="toggleMenuGroup('paymentSubMenu','menuPayment')"><svg class="payment-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 7.5h17A2.5 2.5 0 0 1 23 10v7a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 17v-7a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M1.5 11h21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 15.5h4.5M15 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">支付管理</span><span class="collapse-icon"></span></div>
+    <div class="menu" id="menuPayment" onclick="toggleMenuGroup('paymentSubMenu','menuPayment')"><svg class="payment-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 7.5h17A2.5 2.5 0 0 1 23 10v7a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 17v-7a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M1.5 11h21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 15.5h4.5M15 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">支付中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="paymentSubMenu">
       <div class="sub" id="menuOrder" onclick="showPage('order')">订单管理</div>
       <div class="sub" id="menuRefund" onclick="showPage('refund')">退费单管理</div>
       <div class="sub" id="menuRefundManage" onclick="showPage('refundManage')">退费管理</div>
     </div>
-    <div class="menu" id="menuFinance" onclick="toggleMenuGroup('financeSubMenu','menuFinance')"><svg class="finance-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5h14.5A2.5 2.5 0 0 1 21 10v7a2.5 2.5 0 0 1-2.5 2.5h-14A2.5 2.5 0 0 1 2 17V7.5A3 3 0 0 1 5 4.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 13.5H21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16.5" cy="13.5" r="1" fill="currentColor"/></svg><span class="menu-title">财务管理</span><span class="collapse-icon"></span></div>
-    <div class="sub-group" id="financeSubMenu">
-      <div class="sub" id="menuWallet" onclick="showPage('wallet')">钱包余额管理</div>
-    </div>
-    <div class="menu" id="menuAfterSale" onclick="toggleMenuGroup('afterSaleSubMenu','menuAfterSale')"><svg class="aftersale-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12a7 7 0 0 1 2-5M19 12a7 7 0 0 1-2 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 10.5h5.5a1.5 1.5 0 0 1 1.5 1.5v4.5H4.5V12A1.5 1.5 0 0 1 6 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 8h4a1.5 1.5 0 0 1 1.5 1.5V14H17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">售后管理</span><span class="collapse-icon"></span></div>
+    <div class="menu" id="menuAfterSale" onclick="toggleMenuGroup('afterSaleSubMenu','menuAfterSale')"><svg class="aftersale-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12a7 7 0 0 1 2-5M19 12a7 7 0 0 1-2 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 10.5h5.5a1.5 1.5 0 0 1 1.5 1.5v4.5H4.5V12A1.5 1.5 0 0 1 6 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 8h4a1.5 1.5 0 0 1 1.5 1.5V14H17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">售后中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="afterSaleSubMenu">
       <div class="sub" id="menuExchangeOrder" onclick="showPage('workOrder')">换货/补发工单</div>
       <div class="sub" id="menuRefundWorkOrder" onclick="showPage('refundWorkOrder')">退费工单</div>
       <div class="sub" id="menuFactoryReturn" onclick="openFactoryReturnPage()">设备返厂</div>
     </div>
-    <div class="menu" id="menuOps" onclick="toggleMenuGroup('opsSubMenu','menuOps')"><svg class="ops-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="6" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="15" cy="12" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="18" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg><span class="menu-title">运营管理</span><span class="collapse-icon"></span></div>
+    <div class="menu" id="menuOps" onclick="toggleMenuGroup('opsSubMenu','menuOps')"><svg class="ops-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="6" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="15" cy="12" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="18" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg><span class="menu-title">运营中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="opsSubMenu">
       <div class="sub" id="menuStrategy" onclick="showPage('strategy')">限速策略</div>
-      <div class="sub" id="menuActivityCenter" onclick="showPage('activityCenter')">活动中心</div>
+      <div class="sub" id="menuActivityCenter" onclick="showPage('activityCenter')">活动管理</div>
     </div>
-    <div class="menu" id="menuPackage" onclick="toggleMenuGroup('packageSubMenu','menuPackage')"><svg class="package-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5v9L12 21l8-4.5v-9M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8 5.2 8 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">套餐管理</span><span class="collapse-icon"></span></div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M6 7v12h12V7M9 11h6M9 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">方案商中心</span></div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v10M8 7l4-4 4 4M5 17h14v3H5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">fota升级</span></div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 9 5 12l3 3M16 9l3 3-3 3M13 6l-2 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">API集成</span></div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10h16l-2-5H6l-2 5ZM6 10v10h12V10M9 14h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">商户中心</span></div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2.5 2.5M14.5 14.5 17 17M17 7l-2.5 2.5M9.5 14.5 7 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">调度中心</span></div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4h10v16H7zM10 4v4h4V4M10 17h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">SIM卡中心</span></div>
+    <div class="menu" id="menuPackage" onclick="toggleMenuGroup('packageSubMenu','menuPackage')"><svg class="package-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5v9L12 21l8-4.5v-9M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8 5.2 8 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">套餐中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="packageSubMenu">
       <div class="sub" id="menuUserPackage" onclick="showPage('package')">用户套餐管理</div>
     </div>
-    <div class="menu" id="menuTask" onclick="toggleMenuGroup('taskSubMenu','menuTask')"><svg class="task-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5h8M8 10.5h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h11A2.5 2.5 0 0 1 20 6v12a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 2.5h6v3H9z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">任务管理</span><span class="collapse-icon"></span></div>
+    <div class="menu" id="menuFinance" onclick="toggleMenuGroup('financeSubMenu','menuFinance')"><svg class="finance-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5h14.5A2.5 2.5 0 0 1 21 10v7a2.5 2.5 0 0 1-2.5 2.5h-14A2.5 2.5 0 0 1 2 17V7.5A3 3 0 0 1 5 4.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 13.5H21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16.5" cy="13.5" r="1" fill="currentColor"/></svg><span class="menu-title">财务中心</span><span class="collapse-icon"></span></div>
+    <div class="sub-group" id="financeSubMenu">
+      <div class="sub" id="menuWallet" onclick="showPage('wallet')">钱包余额管理</div>
+    </div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 20V6.5A2.5 2.5 0 0 1 7.5 4H17v16H5ZM8 8h6M8 12h6M8 16h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">生产支持</span></div>
+    <div class="menu" id="menuTask" onclick="toggleMenuGroup('taskSubMenu','menuTask')"><svg class="task-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5h8M8 10.5h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h11A2.5 2.5 0 0 1 20 6v12a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 2.5h6v3H9z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">任务中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="taskSubMenu">
       <div class="sub" id="menuBatchTask" onclick="showPage('task')">批量任务</div>
     </div>
-    <div class="menu" id="menuLog" onclick="toggleMenuGroup('logSubMenu','menuLog')"><svg class="log-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5h8M8 10.5h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h11A2.5 2.5 0 0 1 20 6v12a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 2.5h6v3H9z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">日志管理</span><span class="collapse-icon"></span></div>
+    <div class="menu" id="menuLog" onclick="toggleMenuGroup('logSubMenu','menuLog')"><svg class="log-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5h8M8 10.5h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h11A2.5 2.5 0 0 1 20 6v12a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 2.5h6v3H9z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">日志中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="logSubMenu">
       <div class="sub" id="menuNetworkLog" onclick="showPage('networkLog')">网络状态日志中心</div>
     </div>
-    <div class="menu" id="menuSystem" onclick="toggleMenuGroup('systemSubMenu','menuSystem')"><svg class="system-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5v3M12 17.5v3M4.65 7.75l2.6 1.5M16.75 14.75l2.6 1.5M4.65 16.25l2.6-1.5M16.75 9.25l2.6-1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span class="menu-title">系统设置</span><span class="collapse-icon"></span></div>
+    <div class="menu" id="menuSystem" onclick="toggleMenuGroup('systemSubMenu','menuSystem')"><svg class="system-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5v3M12 17.5v3M4.65 7.75l2.6 1.5M16.75 14.75l2.6 1.5M4.65 16.25l2.6-1.5M16.75 9.25l2.6-1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span class="menu-title">系统中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="systemSubMenu">
       <div class="sub" id="menuFieldVersion" onclick="openFieldVersionPage()">字段说明版本管理</div>
     </div>
   </aside>
   <main class="main">
     <div class="tabbar" id="tabbar"></div>
+
+    <section id="homePage" class="content hidden">
+      <div class="strategy-subpage-empty"><strong>首页</strong><span>未设计</span></div>
+    </section>
 
     <section id="devicePage" class="content hidden">
       <div class="device-filter" id="deviceFilterPanel">
@@ -651,7 +723,12 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     </section>
 
     <section id="configPage" class="content">
-      <div class="inner-tabs"><span class="inner-tab active">卡配置记录</span><span class="inner-tab">设备配置记录</span></div>
+      <div class="auth-manage-tabs" role="tablist" aria-label="二次认证管理页面切换">
+        <button type="button" class="auth-manage-tab active" data-auth-manage-tab="config" role="tab" aria-selected="true" onclick="switchAuthManageTab('config')">卡配置记录</button>
+        <button type="button" class="auth-manage-tab" data-auth-manage-tab="device" role="tab" aria-selected="false" onclick="switchAuthManageTab('device')">设备配置记录</button>
+        <button type="button" class="auth-manage-tab" data-auth-manage-tab="sim" role="tab" aria-selected="false" onclick="switchAuthManageTab('sim')">二次认证SIM卡管理</button>
+      </div>
+      <div class="auth-manage-panel active" id="authConfigPanel">
       <div class="config-filter">
         <input class="input" id="configBatchInput" placeholder="批次号">
         <div class="select custom-select" id="configOperationFilter" data-value=""><span class="select-value">操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="add">新增</div><div class="dropdown-option" data-value="cancel">取消</div></div></div>
@@ -677,10 +754,10 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
           </tbody>
         </table>
       </div>
+      <div class="empty hidden" id="configRecordsEmpty">暂无配置记录</div>
       <div class="pagination" id="configPagination">共8条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
-    </section>
-
-    <section id="simPage" class="content hidden">
+      </div>
+      <div class="auth-manage-panel" id="authSimPanel">
       <div class="sim-filter"><input class="input" id="simIccidInput" placeholder="ICCID"><div class="select custom-select" id="simCertifiedFilter" data-value=""><span class="select-value">是否认证</span><div class="dropdown-menu"><div class="dropdown-option" data-value="yes">是</div><div class="dropdown-option" data-value="no">否</div></div></div><div class="select custom-select" id="simPriorityFilter" data-value=""><span class="select-value">请选择优先级</span><div class="dropdown-menu"><div class="dropdown-option" data-value="0">0</div><div class="dropdown-option" data-value="1">1</div></div></div><div class="select custom-select" id="simAssignedFilter" data-value=""><span class="select-value">是否分配</span><div class="dropdown-menu"><div class="dropdown-option" data-value="yes">是</div><div class="dropdown-option" data-value="no">否</div></div></div><div class="filter-actions new-row"><button class="btn line" onclick="searchSimRecords()">搜索</button><button class="btn gray" onclick="resetSimRecords()">重置</button></div></div>
       <div class="action-row"><button class="btn">导出</button></div>
       <div class="table-card" style="margin-top:10px">
@@ -696,6 +773,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         </table>
       </div>
       <div class="pagination" id="simPagination">共5条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
     </section>
 
     <section id="detailPage" class="content hidden">
@@ -959,21 +1037,69 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     </section>
 
     <section id="strategyPage" class="content hidden">
-      <div class="strategy-filter">
-        <input class="input" id="strategyNameInput" placeholder="策略名称" oninput="searchStrategyRecords()">
-        <input class="input" id="strategyMerchantInput" placeholder="商户名称" oninput="searchStrategyRecords()">
-        <div class="select custom-select" id="strategyUsageStatusFilter" data-value=""><span class="select-value">用量限速状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="on">开启</div><div class="dropdown-option" data-value="off">关闭</div></div></div>
-        <div class="select custom-select" id="strategyTimeStatusFilter" data-value=""><span class="select-value">时间段限速状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="on">开启</div><div class="dropdown-option" data-value="off">关闭</div></div></div>
-        <div class="filter-actions new-row"><button class="btn line" onclick="searchStrategyRecords()">搜索</button><button class="btn gray" onclick="resetStrategyRecords()">重置</button></div>
+      <div class="strategy-page-tabs" role="tablist" aria-label="限速管理页面切换">
+        <button type="button" class="strategy-page-tab active" data-strategy-page-tab="policy" role="tab" aria-selected="true" onclick="switchStrategySubpage('policy')">限速策略</button>
+        <button type="button" class="strategy-page-tab" data-strategy-page-tab="simRecord" role="tab" aria-selected="false" onclick="switchStrategySubpage('simRecord')">限速记录（SIM卡）</button>
+        <button type="button" class="strategy-page-tab" data-strategy-page-tab="report" role="tab" aria-selected="false" onclick="switchStrategySubpage('report')">限速统计报告</button>
       </div>
-      <div class="action-row"><button class="btn" onclick="openStrategyModal()">限速策略新增</button></div>
-      <div class="table-card" style="margin-top:10px">
-        <table>
-          <thead><tr><th>策略名称</th><th>商户名称</th><th>用量限速状态</th><th>时间段限速状态</th><th>创建人</th><th>创建时间</th><th>更新时间</th><th class="sticky-action">操作</th></tr></thead>
-          <tbody id="strategyRows"></tbody>
-        </table>
+      <div class="strategy-subpage active" id="strategyPolicySubpage" data-strategy-subpage="policy" role="tabpanel">
+        <div class="strategy-filter">
+          <input class="input" id="strategyNameInput" placeholder="策略名称" oninput="searchStrategyRecords()">
+          <input class="input" id="strategyMerchantInput" placeholder="商户名称" oninput="searchStrategyRecords()">
+          <div class="select custom-select" id="strategyUsageStatusFilter" data-value=""><span class="select-value">用量限速状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="on">开启</div><div class="dropdown-option" data-value="off">关闭</div></div></div>
+          <div class="select custom-select" id="strategyTimeStatusFilter" data-value=""><span class="select-value">时间段限速状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="on">开启</div><div class="dropdown-option" data-value="off">关闭</div></div></div>
+          <div class="filter-actions new-row"><button class="btn line" onclick="searchStrategyRecords()">搜索</button><button class="btn gray" onclick="resetStrategyRecords()">重置</button></div>
+        </div>
+        <div class="action-row"><button class="btn" onclick="openStrategyModal()">限速策略新增</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table>
+            <thead><tr><th>策略名称</th><th>商户名称</th><th>用量限速状态</th><th>时间段限速状态</th><th>创建人</th><th>创建时间</th><th>更新时间</th><th class="sticky-action">操作</th></tr></thead>
+            <tbody id="strategyRows"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="strategyPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
       </div>
-      <div class="pagination" id="strategyPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      <div class="strategy-subpage" id="strategySimRecordSubpage" data-strategy-subpage="simRecord" role="tabpanel">
+        <div class="strategy-filter">
+          <input class="input" id="strategyRecordSnInput" placeholder="设备SN" oninput="searchStrategySimRecords()">
+          <input class="input" id="strategyRecordIccidInput" placeholder="ICCID" oninput="searchStrategySimRecords()">
+          <div class="select custom-select" id="strategyRecordCategoryFilter" data-value=""><span class="select-value">限速类别</span><div class="dropdown-menu"><div class="dropdown-option" data-value="手动限速">手动限速</div><div class="dropdown-option" data-value="策略限速">策略限速</div></div></div>
+          <div class="select custom-select" id="strategyRecordTypeFilter" data-value=""><span class="select-value">限速类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="人工限速">人工限速</div><div class="dropdown-option" data-value="日一级限速">日一级限速</div><div class="dropdown-option" data-value="日二级限速">日二级限速</div><div class="dropdown-option" data-value="日三级限速">日三级限速</div><div class="dropdown-option" data-value="月一级限速">月一级限速</div><div class="dropdown-option" data-value="月二级限速">月二级限速</div><div class="dropdown-option" data-value="月三级限速">月三级限速</div></div></div>
+          <div class="select custom-select" id="strategyRecordLimitStatusFilter" data-value=""><span class="select-value">限速状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="等待限速">等待限速</div><div class="dropdown-option" data-value="限速成功">限速成功</div><div class="dropdown-option" data-value="限速失败">限速失败</div><div class="dropdown-option" data-value="解除限速">解除限速</div></div></div>
+          <div class="select custom-select" id="strategyRecordReleaseStatusFilter" data-value=""><span class="select-value">解除状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="解除成功">解除成功</div><div class="dropdown-option" data-value="解除失败">解除失败</div></div></div>
+          <div class="device-date-range" id="strategyRecordCreatedRange" data-range="strategyRecordCreated" onclick="openUnifiedRangePicker(event,'strategyRecordCreated')">
+            <span class="date-icon"></span><span class="device-date-text" data-part="start">创建开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">创建结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'strategyRecordCreated')"></span>
+            <input id="strategyRecordCreatedStartInput" type="hidden"><input id="strategyRecordCreatedEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="strategyRecordCreatedPanel"></div>
+          </div>
+          <div></div>
+          <div class="filter-actions new-row"><button class="btn line" onclick="searchStrategySimRecords()">搜索</button><button class="btn gray" onclick="resetStrategySimRecords()">重置</button></div>
+        </div>
+        <div class="action-row"><button class="btn" onclick="exportStrategySimRecords()">导出</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="strategy-record-table">
+            <thead><tr><th>序号</th><th>设备SN</th><th>ICCID</th><th>运营商</th><th>限速策略名称</th><th>限速类别</th><th>限制网速</th><th>限速类型</th><th>开始时间</th><th>结束时间</th><th>限速状态</th><th>限速处理结果</th><th>创建人</th><th>限速解除状态</th><th>解除处理结果</th><th>解除操作人</th><th>备注</th><th>创建时间</th><th>更新时间</th></tr></thead>
+            <tbody id="strategySimRecordRows"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="strategySimRecordPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
+      <div class="strategy-subpage" id="strategyReportSubpage" data-strategy-subpage="report" role="tabpanel">
+        <div class="strategy-filter">
+          <div class="device-date-range" id="strategyReportDateRange" data-range="strategyReportDate" onclick="openUnifiedRangePicker(event,'strategyReportDate')">
+            <span class="date-icon"></span><span class="device-date-text" data-part="start">开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'strategyReportDate')"></span>
+            <input id="strategyReportStartInput" type="hidden"><input id="strategyReportEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="strategyReportDatePanel"></div>
+          </div>
+          <div class="filter-actions"><button class="btn line" onclick="searchStrategyReportRecords()">搜索</button><button class="btn gray" onclick="resetStrategyReportRecords()">重置</button></div>
+        </div>
+        <div class="action-row"><button class="btn" onclick="exportStrategyReportRecords()">导出</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="strategy-report-table">
+            <thead><tr><th>日期</th><th>限速设备总数</th><th>限速SIM卡总数</th><th>SIM卡限速成功总数</th><th>SIM卡限速失败总数</th><th>限速成功率</th><th>解除限速SIM卡总数</th><th>SIM卡解除限速成功总数</th><th>SIM卡解除限速失败总数</th><th>解除限速成功率</th></tr></thead>
+            <tbody id="strategyReportRows"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="strategyReportPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
     </section>
 
     <section id="activityCenterPage" class="content hidden">
@@ -1177,6 +1303,14 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
           </table>
         </div>
       </div>
+      <div class="device-detail-panel" id="deviceDetailRealnamePanel">
+        <div class="table-card" style="margin-top:0">
+          <table class="device-realname-table">
+            <thead><tr><th>用户</th><th>ICCID</th><th>运营商</th><th>卡用途</th><th>状态</th><th>小程序端实名状态</th><th>创建时间</th><th>最近实名时间</th><th>更新时间</th><th class="sticky-action">操作</th></tr></thead>
+            <tbody id="deviceRealnameRows"></tbody>
+          </table>
+        </div>
+      </div>
       <div class="device-detail-panel" id="deviceDetailSpeedPanel">
         <div class="device-speed-summary">
           <div class="speed-summary-item">限速开关：<strong id="deviceSpeedSwitchText">打开</strong></div>
@@ -1221,6 +1355,14 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       </div>
       <div class="device-detail-panel" id="deviceDetailEmptyPanel">
         <div class="table-card" style="flex:none;padding:32px;color:#8b95a5">暂无数据</div>
+      </div>
+    </section>
+
+    <section id="simDetailPage" class="content hidden">
+      <div class="table-card" style="flex:none">
+        <table class="device-detail-table sim-detail-table">
+          <tbody id="simDetailRows"></tbody>
+        </table>
       </div>
     </section>
   </main>
@@ -1609,6 +1751,9 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
   </div>
 </div>
 
+<script src="assets/clipboard-smart-search.js"></script>
+<script src="assets/page-documentation-data.js"></script>
+<script src="assets/page-documentation.js"></script>
 <script>
 const detailData = {
   SE2026051219238589: [
@@ -1662,6 +1807,15 @@ const deviceManagementData = [
   {sn:'MBB202606010016', externalSn:'EXT-NJ-0016', group:'物流行业组', marketName:'车载DTU 4G', category:'本地卡', package:'月包 300GB', vendor:'万联方案', region:'南京', merchant:'南京万联物流', mainMerchant:'南京万联物流', secondAuth:'关闭', serviceExpire:'2026-06-15', iccid:'898604C01925D0207806', smartNetwork:'开启', network:'中国联通', smartLock:true, hideWifi:false, disabled:true, speedLimit:'打开', localCardDevice:'是', connectedAt:'2026-05-12 07:36:29', offlineDays:17, appVersion:'V1.1.0', mac:'54:D9:C2:06:4E:5B', activatedAt:'2026-05-12 07:30:00', createdAt:'2026-05-06 19:27:31', activeStatus:'已激活', packageExpired:'否', type:'DTU', version:'V1.1.0'},
   {sn:'MBB202606010017', externalSn:'EXT-GZ-0017', group:'华南代理组', marketName:'代理随身WiFi', category:'移动eSIM', package:'月包 60GB', vendor:'启明方案', region:'广州', merchant:'广州启明商贸', mainMerchant:'广州启明商贸', secondAuth:'开启', serviceExpire:'2026-05-20', iccid:'898604C01925D0207807', smartNetwork:'关闭', network:'中国电信', smartLock:false, hideWifi:false, disabled:false, speedLimit:'关闭', localCardDevice:'否', connectedAt:'', offlineDays:21, appVersion:'V2.0.1', mac:'D0:8A:77:32:19:0A', activatedAt:'2026-05-14 16:16:16', createdAt:'2026-05-07 13:11:09', activeStatus:'已激活', packageExpired:'是', type:'随身WiFi', version:'V2.0.1'},
   {sn:'MBB202606010018', externalSn:'EXT-CD-0018', group:'西南项目组', marketName:'项目MIFI 试用版', category:'裸卡', package:'体验包 20GB', vendor:'天府方案', region:'成都', merchant:'成都天府互联', mainMerchant:'成都天府互联', secondAuth:'关闭', serviceExpire:'2026-07-01', iccid:'898604C01925D0207808', smartNetwork:'开启', network:'中国移动', smartLock:true, hideWifi:true, disabled:false, speedLimit:'打开', localCardDevice:'是', connectedAt:'', offlineDays:9, appVersion:'V1.0.5', mac:'30:89:4F:C7:5D:91', activatedAt:'', createdAt:'2026-05-08 17:38:25', activeStatus:'未激活', packageExpired:'否', type:'MIFI', version:'V1.0.5'}
+];
+const deviceRealnameData = [
+  {sn:'MBB202605290001', user:'周亦辰', iccid:'898604C01925D0207595', carrier:'中国移动', cardUse:'启动卡', status:'已通过实名认证', miniProgramStatus:'已实名', createdAt:'2026-01-10 14:36:20', lastRealnameAt:'2026-01-15 09:28:16', updatedAt:'2026-05-29 10:58:24'},
+  {sn:'MBB202605290001', user:'陆承安', iccid:'898604C01925D0207598', carrier:'中国移动', cardUse:'启动卡', status:'未通过实名认证', miniProgramStatus:'未实名', failureReason:'个人名下实名卡已达10张上限', createdAt:'2026-05-29 11:06:42', lastRealnameAt:'--', updatedAt:'2026-05-29 11:08:16'},
+  {sn:'MBB202605290002', user:'赵明轩', iccid:'898604C01925D0207596', carrier:'中国联通', cardUse:'启动卡', status:'已通过实名认证', miniProgramStatus:'已实名', createdAt:'2026-01-28 16:31:45', lastRealnameAt:'2026-02-03 11:16:08', updatedAt:'2026-05-29 09:41:12'},
+  {sn:'MBB202605290003', user:'沈清妍', iccid:'898604C01925D0207615', carrier:'中国移动', cardUse:'启动卡', status:'未通过实名认证', miniProgramStatus:'未实名', failureReason:'个人名下实名卡已达10张上限', createdAt:'2026-03-01 10:21:32', lastRealnameAt:'--', updatedAt:'2026-05-28 22:15:01'},
+  {sn:'MBB202605280018', user:'魏景行', iccid:'898604C01925D0207621', carrier:'中国电信', cardUse:'启动卡', status:'已通过实名认证', miniProgramStatus:'已实名', createdAt:'2026-04-01 09:12:40', lastRealnameAt:'2026-04-08 08:42:55', updatedAt:'2026-05-26 17:02:31'},
+  {sn:'MBB202604300086', user:'林嘉禾', iccid:'898604C01925D0207668', carrier:'中国移动', cardUse:'启动卡', status:'未通过实名认证', miniProgramStatus:'未实名', failureReason:'个人名下实名卡已达10张上限', createdAt:'2026-04-10 15:55:18', lastRealnameAt:'--', updatedAt:'2026-04-29 18:16:45'},
+  {sn:'MBB202604150021', user:'陈雨桐', iccid:'898604C01925D0207701', carrier:'中国联通', cardUse:'启动卡', status:'已通过实名认证', miniProgramStatus:'已实名', createdAt:'2026-04-15 14:40:06', lastRealnameAt:'2026-04-15 15:02:31', updatedAt:'2026-04-15 15:04:10'}
 ];
 const deviceFlowData = [
   {sn:'MBB202605290001', merchant:'上海智联商贸', group:'华东直营组', package:'月包 100GB', type:'MIFI', day:'2026-05-29', month:'2026-05', deviceFlow:42.6, scienceFlow:40.8, carrierFlows:{cmcc:28.4,ctcc:14.2}},
@@ -1725,6 +1879,24 @@ const speedStrategyData = [
   {name:'酒店客户临时策略', merchant:'苏州星河酒店', status:'失效', usageEnabled:false, timeEnabled:true, creator:'陈启安', createdAt:'2026-05-10 10:12:44', updatedAt:'2026-05-22 18:05:31'},
   {name:'物流行业保底策略', merchant:'南京万联物流', status:'生效', usageEnabled:true, timeEnabled:true, creator:'段玉', createdAt:'2026-04-28 16:25:39', updatedAt:'2026-05-25 09:41:17'},
   {name:'华南代理促销策略', merchant:'广州启明商贸', status:'失效', usageEnabled:false, timeEnabled:false, creator:'王敏', createdAt:'2026-04-12 11:54:02', updatedAt:'2026-05-01 12:00:00'}
+];
+const simSpeedLimitRecordData = [
+  {sn:'MBB202608290018',iccid:'89860488192540182918',carrier:'中国移动',strategyName:'高流量设备夜间限速',category:'策略限速',speed:'64Kb/s',type:'日一级限速',startAt:'2026-09-03 08:00:00',endAt:'2026-09-04 00:00:00',limitStatus:'限速成功',limitResult:'运营商限速指令执行成功',creator:'系统任务',releaseStatus:'解除成功',releaseResult:'限速解除指令执行成功',releaseOperator:'系统任务',remark:'日用量达到一级阈值',createdAt:'2026-09-03 08:00:03',updatedAt:'2026-09-04 00:00:12'},
+  {sn:'MBB202608260036',iccid:'89860124892537014632',carrier:'中国联通',strategyName:'旅游渠道基础限速',category:'策略限速',speed:'512Kb/s',type:'月二级限速',startAt:'2026-09-02 14:26:18',endAt:'--',limitStatus:'限速成功',limitResult:'运营商限速指令执行成功',creator:'系统任务',releaseStatus:'--',releaseResult:'--',releaseOperator:'--',remark:'月累计用量达到二级阈值',createdAt:'2026-09-02 14:26:20',updatedAt:'2026-09-02 14:26:35'},
+  {sn:'MBB202608250027',iccid:'89860321892548103675',carrier:'中国电信',strategyName:'物流行业保底策略',category:'策略限速',speed:'256Kb/s',type:'日二级限速',startAt:'2026-09-02 10:18:42',endAt:'--',limitStatus:'限速失败',limitResult:'运营商接口返回SIM卡状态异常',creator:'系统任务',releaseStatus:'--',releaseResult:'--',releaseOperator:'--',remark:'已进入自动重试队列',createdAt:'2026-09-02 10:18:45',updatedAt:'2026-09-02 10:21:08'},
+  {sn:'MBB202608210056',iccid:'89860488192540182762',carrier:'中国移动',strategyName:'--',category:'手动限速',speed:'1Mb/s',type:'人工限速',startAt:'2026-09-01 16:35:00',endAt:'2026-09-05 16:35:00',limitStatus:'等待限速',limitResult:'限速指令等待运营商响应',creator:'王敏',releaseStatus:'--',releaseResult:'--',releaseOperator:'--',remark:'客户主动申请临时限速',createdAt:'2026-09-01 16:34:52',updatedAt:'2026-09-01 16:35:06'},
+  {sn:'MBB202608180041',iccid:'89860124892537014581',carrier:'中国联通',strategyName:'酒店客户临时策略',category:'策略限速',speed:'3Mb/s',type:'月一级限速',startAt:'2026-08-31 09:12:36',endAt:'2026-09-01 09:00:00',limitStatus:'解除限速',limitResult:'运营商限速指令执行成功',creator:'系统任务',releaseStatus:'解除失败',releaseResult:'运营商解除接口请求超时',releaseOperator:'李凡',remark:'解除失败，等待再次处理',createdAt:'2026-08-31 09:12:38',updatedAt:'2026-09-01 09:03:27'},
+  {sn:'MBB202608160073',iccid:'89860321892548103590',carrier:'中国电信',strategyName:'--',category:'手动限速',speed:'512Kb/s',type:'人工限速',startAt:'2026-08-30 11:08:20',endAt:'2026-08-31 11:08:20',limitStatus:'解除限速',limitResult:'运营商限速指令执行成功',creator:'陈启安',releaseStatus:'解除成功',releaseResult:'运营商解除指令执行成功',releaseOperator:'陈启安',remark:'故障排查结束后解除限速',createdAt:'2026-08-30 11:08:18',updatedAt:'2026-08-31 11:09:02'},
+  {sn:'MBB202608120029',iccid:'89860488192540182639',carrier:'中国移动',strategyName:'华南代理促销策略',category:'策略限速',speed:'5Mb/s',type:'日三级限速',startAt:'2026-08-29 18:42:10',endAt:'--',limitStatus:'限速成功',limitResult:'运营商限速指令执行成功',creator:'系统任务',releaseStatus:'--',releaseResult:'--',releaseOperator:'--',remark:'日用量达到三级阈值',createdAt:'2026-08-29 18:42:12',updatedAt:'2026-08-29 18:42:28'}
+];
+const speedLimitReportData = [
+  {date:'2026-09-03',deviceTotal:286,simTotal:304,limitSuccess:296,limitFail:8,releaseTotal:141,releaseSuccess:139,releaseFail:2},
+  {date:'2026-09-02',deviceTotal:271,simTotal:289,limitSuccess:282,limitFail:7,releaseTotal:133,releaseSuccess:131,releaseFail:2},
+  {date:'2026-09-01',deviceTotal:263,simTotal:278,limitSuccess:269,limitFail:9,releaseTotal:128,releaseSuccess:125,releaseFail:3},
+  {date:'2026-08-31',deviceTotal:248,simTotal:261,limitSuccess:255,limitFail:6,releaseTotal:119,releaseSuccess:117,releaseFail:2},
+  {date:'2026-08-30',deviceTotal:232,simTotal:247,limitSuccess:239,limitFail:8,releaseTotal:112,releaseSuccess:109,releaseFail:3},
+  {date:'2026-08-29',deviceTotal:219,simTotal:236,limitSuccess:229,limitFail:7,releaseTotal:106,releaseSuccess:104,releaseFail:2},
+  {date:'2026-08-28',deviceTotal:205,simTotal:221,limitSuccess:214,limitFail:7,releaseTotal:98,releaseSuccess:96,releaseFail:2}
 ];
 const userPackageData = [
   {name:'月包100GB畅享版', type:'流量月包', totalFlow:102400, price:'99.00', discountPrice:'79.00', tag:'热销', frontPrice:'￥79/月', desc:'适合中高频移动办公设备', discountStrength:'8折', discountDesc:'限时活动价', validDays:30, status:'上架', nextMonthRestore:'是', merchant:'上海智联商贸', rechargeStrategy:'自动充值', scienceStrategy:'标准科学计算策略', couponDeduct:'支持', creator:'王敏', payMethods:'微信、支付宝', createdAt:'2026-05-20 09:18:32', updatedAt:'2026-05-29 11:06:48'},
@@ -1896,15 +2068,18 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {device:'设备管理', config:'二次认证配置', sim:'二次认证SIM卡管理', detail:'二次认证配置详情', flow:'设备流量', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', workOrder:'换货/补发工单', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动中心', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情'};
+const pageTitles = {home:'首页', device:'设备管理', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', workOrder:'换货/补发工单', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情'};
 let openTabs = [];
 let activePage = '';
 let currentDetailBatch = '';
 let currentDeviceSn = '';
+let currentSimIccid = '';
 let deviceDetailReturnPage = 'flow';
 let currentDeviceDetailTab = 'overview';
 let deviceFiltersCollapsed = false;
 let currentSpeedRecordTab = 'card';
+let currentStrategySubpage = 'policy';
+let currentAuthManageTab = 'config';
 let flowDateMode = 'day';
 let currentFactoryReturnBatch = factoryReturnData[0].batchNo;
 let currentActivityId = activityCenterData[0].id;
@@ -1990,6 +2165,12 @@ function renderTabs(){
   `).join('');
 }
 function showPage(type){
+  if(type === 'sim'){
+    currentAuthManageTab = 'sim';
+    type = 'config';
+  }else if(type === 'config'){
+    currentAuthManageTab = 'config';
+  }
   ensureTab(type);
   activateTab(type);
 }
@@ -2007,6 +2188,10 @@ function openFactoryReturnDetailPage(){
   renderTabs();
 }
 function activateTab(type){
+  if(type === 'sim'){
+    currentAuthManageTab = 'sim';
+    type = 'config';
+  }
   ensureTab(type);
   activePage = type;
   applyPageState(type);
@@ -2041,9 +2226,9 @@ function closeTab(event,type){
   renderTabs();
 }
 function applyPageState(type){
+  document.getElementById('homePage').classList.toggle('hidden', type !== 'home');
   document.getElementById('devicePage').classList.toggle('hidden', type !== 'device');
   document.getElementById('configPage').classList.toggle('hidden', type !== 'config');
-  document.getElementById('simPage').classList.toggle('hidden', type !== 'sim');
   document.getElementById('detailPage').classList.toggle('hidden', type !== 'detail');
   document.getElementById('flowPage').classList.toggle('hidden', type !== 'flow');
   document.getElementById('orderPage').classList.toggle('hidden', type !== 'order');
@@ -2064,9 +2249,10 @@ function applyPageState(type){
   document.getElementById('networkLogPage').classList.toggle('hidden', type !== 'networkLog');
   document.getElementById('fieldVersionPage').classList.toggle('hidden', !['fieldVersion','fieldVersionEdit'].includes(type));
   document.getElementById('deviceDetailPage').classList.toggle('hidden', type !== 'deviceDetail');
+  document.getElementById('simDetailPage').classList.toggle('hidden', type !== 'simDetail');
+  document.getElementById('menuHome').classList.toggle('active', type === 'home');
   document.getElementById('menuDeviceManage').classList.toggle('active', type === 'device');
   document.getElementById('menuConfig').classList.toggle('active', type === 'config');
-  document.getElementById('menuSim').classList.toggle('active', type === 'sim');
   document.getElementById('menuFlow').classList.toggle('active', type === 'flow');
   document.getElementById('menuOrder').classList.toggle('active', type === 'order');
   document.getElementById('menuRefund').classList.toggle('active', type === 'refund');
@@ -2081,10 +2267,22 @@ function applyPageState(type){
   document.getElementById('menuBatchTask').classList.toggle('active', ['task','batchTaskDetail'].includes(type));
   document.getElementById('menuNetworkLog').classList.toggle('active', type === 'networkLog');
   document.getElementById('menuFieldVersion').classList.toggle('active', ['fieldVersion','fieldVersionEdit'].includes(type));
-  if(type === 'device'){
+  if(type === 'home'){
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'device'){
     searchDeviceManageRecords();
     setActiveBatch('');
     setActiveDeviceSn(currentDeviceSn);
+  }else if(type === 'config'){
+    syncAuthManageTabs();
+    if(currentAuthManageTab === 'sim'){
+      searchSimRecords();
+    }else{
+      searchConfigRecords();
+    }
+    setActiveBatch('');
+    setActiveDeviceSn('');
   }else if(type === 'detail'){
     renderDetailRows(currentDetailBatch);
     setActiveBatch(currentDetailBatch);
@@ -2128,6 +2326,8 @@ function applyPageState(type){
     setActiveDeviceSn('');
   }else if(type === 'strategy'){
     searchStrategyRecords();
+    searchStrategySimRecords();
+    searchStrategyReportRecords();
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'activityCenter'){
@@ -2167,9 +2367,36 @@ function applyPageState(type){
   }else if(type === 'deviceDetail'){
     renderDeviceDetail(currentDeviceSn);
     setActiveDeviceSn(currentDeviceSn);
+  }else if(type === 'simDetail'){
+    renderSimDetail(currentSimIccid);
+    setActiveBatch('');
+    setActiveDeviceSn('');
   }else{
     setActiveBatch('');
     setActiveDeviceSn('');
+  }
+  if(window.PageDocumentation){window.PageDocumentation.setPage(type)}
+}
+function syncAuthManageTabs(){
+  document.querySelectorAll('[data-auth-manage-tab]').forEach(tab => {
+    const active = tab.dataset.authManageTab === currentAuthManageTab;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  const configPanel = document.getElementById('authConfigPanel');
+  const simPanel = document.getElementById('authSimPanel');
+  if(configPanel){configPanel.classList.toggle('active', currentAuthManageTab !== 'sim')}
+  if(simPanel){simPanel.classList.toggle('active', currentAuthManageTab === 'sim')}
+}
+function switchAuthManageTab(tab){
+  currentAuthManageTab = tab;
+  syncAuthManageTabs();
+  closeDropdowns();
+  closeInputCombos();
+  if(tab === 'sim'){
+    searchSimRecords();
+  }else{
+    searchConfigRecords();
   }
 }
 function openConfigDetail(batchNo){
@@ -2744,18 +2971,36 @@ function openDeviceDetail(sn){
   ensureTab('deviceDetail');
   activateTab('deviceDetail');
 }
+function openSimDetail(iccid){
+  currentSimIccid = iccid;
+  ensureTab('simDetail');
+  activateTab('simDetail');
+}
 function switchDeviceDetailTab(tab){
   currentDeviceDetailTab = tab;
   document.querySelectorAll('.device-detail-tab').forEach(item => item.classList.toggle('active', item.dataset.tab === tab));
   document.getElementById('deviceDetailOverviewPanel').classList.toggle('active', tab === 'overview');
+  document.getElementById('deviceDetailRealnamePanel').classList.toggle('active', tab === 'realname');
   document.getElementById('deviceDetailSpeedPanel').classList.toggle('active', tab === 'speed');
-  document.getElementById('deviceDetailEmptyPanel').classList.toggle('active', !['overview','speed'].includes(tab));
+  document.getElementById('deviceDetailEmptyPanel').classList.toggle('active', !['overview','realname','speed'].includes(tab));
 }
 function switchDeviceSpeedRecordTab(tab){
   currentSpeedRecordTab = tab;
   document.querySelectorAll('.speed-record-tab').forEach(item => item.classList.toggle('active', item.dataset.speedRecordTab === tab));
   document.getElementById('cardSpeedRecordPanel').classList.toggle('active', tab === 'card');
   document.getElementById('deviceSpeedRecordPanel').classList.toggle('active', tab === 'device');
+}
+function switchStrategySubpage(tab){
+  const allowedTabs = ['policy','simRecord','report'];
+  currentStrategySubpage = allowedTabs.includes(tab) ? tab : 'policy';
+  document.querySelectorAll('.strategy-page-tab').forEach(item => {
+    const active = item.dataset.strategyPageTab === currentStrategySubpage;
+    item.classList.toggle('active', active);
+    item.setAttribute('aria-selected', String(active));
+  });
+  document.querySelectorAll('.strategy-subpage').forEach(item => item.classList.toggle('active', item.dataset.strategySubpage === currentStrategySubpage));
+  if(currentStrategySubpage === 'simRecord'){searchStrategySimRecords()}
+  if(currentStrategySubpage === 'report'){searchStrategyReportRecords()}
 }
 function getDevicePackagePolicy(row){
   if(!row){return devicePackageSpeedPolicies.default}
@@ -2905,6 +3150,104 @@ function renderDeviceSpeedRecords(row){
   }
   switchDeviceSpeedRecordTab(currentSpeedRecordTab);
 }
+function renderRealnameStatus(status,reason){
+  const isPassed = status === '已通过实名认证';
+  const icon = isPassed ? '' : '<span class="realname-help-icon" aria-hidden="true">?</span>';
+  const tip = !isPassed && reason ? `<span class="realname-failure-tip" role="tooltip">${escapeHtml(reason)}</span>` : '';
+  return `<span class="realname-status ${isPassed ? 'passed' : 'failed'}" tabindex="${isPassed ? '-1' : '0'}">${escapeHtml(status)}${icon}${tip}</span>`;
+}
+function getDeviceRealnameRows(row){
+  const sn = row && row.sn ? row.sn : currentDeviceSn;
+  const rows = deviceRealnameData.filter(item => item.sn === sn);
+  if(rows.length){return rows}
+  if(!row){return []}
+  return [{
+    sn:row.sn,
+    user:'待补充',
+    iccid:row.iccid,
+    carrier:row.network || '--',
+    cardUse:'启动卡',
+    status:row.activeStatus === '已激活' ? '已通过实名认证' : '未通过实名认证',
+    miniProgramStatus:row.activeStatus === '已激活' ? '已实名' : '未实名',
+    createdAt:row.createdAt,
+    lastRealnameAt:row.activatedAt || '--',
+    updatedAt:row.connectedAt || row.createdAt || '--'
+  }];
+}
+function renderDeviceRealnameTable(row){
+  const rowsNode = document.getElementById('deviceRealnameRows');
+  if(!rowsNode){return}
+  const rows = getDeviceRealnameRows(row);
+  if(!rows.length){
+    rowsNode.innerHTML = '<tr><td colspan="10" style="text-align:center;color:#8b95a5">暂无实名认证记录</td></tr>';
+    return;
+  }
+  rowsNode.innerHTML = rows.map(item => `
+    <tr>
+      <td>${escapeHtml(item.user)}</td>
+      <td>${escapeHtml(item.iccid)}</td>
+      <td>${escapeHtml(item.carrier)}</td>
+      <td>${escapeHtml(item.cardUse)}</td>
+      <td>${renderRealnameStatus(item.status,item.failureReason)}</td>
+      <td>${escapeHtml(item.miniProgramStatus)}</td>
+      <td>${escapeHtml(item.createdAt)}</td>
+      <td>${escapeHtml(item.lastRealnameAt)}</td>
+      <td>${escapeHtml(item.updatedAt)}</td>
+      <td class="sticky-action"><span class="text-action" onclick="syncDeviceRealnameStatus('${escapeHtml(item.sn)}','${escapeHtml(item.iccid)}')">同步状态</span></td>
+    </tr>
+  `).join('');
+}
+function syncDeviceRealnameStatus(sn,iccid){
+  alert(`已同步设备 ${sn} 的实名认证状态`);
+}
+function getAllDetailRows(){
+  return Object.values(detailData || {}).flat();
+}
+function findSimDetail(iccid){
+  const target = normalizeText(iccid);
+  const realnameRow = deviceRealnameData.find(item => normalizeText(item.iccid) === target);
+  const configRow = getAllDetailRows().find(item => normalizeText(item.iccid) === target);
+  const deviceRow = deviceManagementData.find(item => normalizeText(item.iccid) === target || normalizeText(item.sn) === target);
+  return {realnameRow,configRow,deviceRow};
+}
+function renderSimDetail(iccid){
+  const rowsNode = document.getElementById('simDetailRows');
+  if(!rowsNode){return}
+  const {realnameRow,configRow,deviceRow} = findSimDetail(iccid);
+  if(!realnameRow && !configRow && !deviceRow){
+    rowsNode.innerHTML = '<tr><td colspan="4" class="sim-detail-empty">暂无SIM卡详情</td></tr>';
+    return;
+  }
+  const sourceIccid = iccid || (realnameRow && realnameRow.iccid) || (configRow && configRow.iccid) || (deviceRow && deviceRow.iccid);
+  const fields = [
+    ['ICCID', sourceIccid],
+    ['关联设备SN', (realnameRow && realnameRow.sn) || (deviceRow && deviceRow.sn) || '--'],
+    ['运营商', (realnameRow && realnameRow.carrier) || (deviceRow && deviceRow.network) || '--'],
+    ['卡用途', (realnameRow && realnameRow.cardUse) || '--'],
+    ['实名认证状态', realnameRow ? renderRealnameStatus(realnameRow.status, realnameRow.failureReason) : ((configRow && configRow.certified) ? escapeHtml(configRow.certified === '是' ? '已通过实名认证' : '未通过实名认证') : '--')],
+    ['小程序端实名状态', (realnameRow && realnameRow.miniProgramStatus) || '--'],
+    ['二次认证方式', (configRow && configRow.auth) || '--'],
+    ['认证时间', (realnameRow && realnameRow.lastRealnameAt) || (configRow && configRow.time) || '--'],
+    ['分配状态', (configRow && configRow.assigned) || '--'],
+    ['MIFI MAC', (configRow && configRow.mifi) || (deviceRow && deviceRow.mac) || '--'],
+    ['创建时间', (realnameRow && realnameRow.createdAt) || (deviceRow && deviceRow.createdAt) || '--'],
+    ['更新时间', (realnameRow && realnameRow.updatedAt) || (deviceRow && deviceRow.connectedAt) || '--']
+  ];
+  let html = '';
+  for(let index = 0; index < fields.length; index += 2){
+    const left = fields[index];
+    const right = fields[index + 1];
+    html += '<tr>';
+    html += `<th>${escapeHtml(left[0])}</th><td>${typeof left[1] === 'string' && left[1].includes('realname-status') ? left[1] : escapeHtml(left[1] || '--')}</td>`;
+    if(right){
+      html += `<th>${escapeHtml(right[0])}</th><td>${typeof right[1] === 'string' && right[1].includes('realname-status') ? right[1] : escapeHtml(right[1] || '--')}</td>`;
+    }else{
+      html += '<th></th><td></td>';
+    }
+    html += '</tr>';
+  }
+  rowsNode.innerHTML = html;
+}
 function renderDeviceSpeedPolicy(row){
   const speedSwitch = document.getElementById('deviceSpeedSwitchText');
   if(speedSwitch){speedSwitch.textContent = row && row.speedLimit === '打开' ? '打开' : '关闭'}
@@ -2929,10 +3272,11 @@ function renderDeviceDetail(sn){
       <tr><th>启动卡ICCID</th><td>${manageRow.iccid}</td></tr>
       <tr><th>离线天数</th><td>${manageRow.offlineDays}</td></tr>
       <tr><th>激活状态</th><td>${manageRow.activeStatus}</td></tr>
-    `;
-    renderDeviceSpeedPolicy(manageRow);
-    switchDeviceDetailTab(currentDeviceDetailTab);
-    return;
+	    `;
+	    renderDeviceRealnameTable(manageRow);
+	    renderDeviceSpeedPolicy(manageRow);
+	    switchDeviceDetailTab(currentDeviceDetailTab);
+	    return;
   }
   const row = deviceFlowData.find(item => item.sn === sn) || deviceFlowData[0];
   if(!row){return}
@@ -2946,11 +3290,12 @@ function renderDeviceDetail(sn){
     <tr><th>设备流量（GB）</th><td>${formatFlowValue(getFlowCarrierTotal(row))}</td></tr>
     <tr><th>设备科学用量（GB）</th><td>${row.scienceFlow.toFixed(1)}</td></tr>
     <tr><th>运营商流量（GB）</th><td>${renderFlowBreakdown(row)}</td></tr>
-  `;
-  const policyRow = deviceManagementData.find(item => item.sn === row.sn) || deviceManagementData.find(item => getDeviceGroupPolicy(item)) || {speedLimit:'打开'};
-  renderDeviceSpeedPolicy(policyRow);
-  switchDeviceDetailTab(currentDeviceDetailTab);
-}
+	  `;
+	  const policyRow = deviceManagementData.find(item => item.sn === row.sn) || deviceManagementData.find(item => getDeviceGroupPolicy(item)) || {speedLimit:'打开'};
+	  renderDeviceRealnameTable(policyRow);
+	  renderDeviceSpeedPolicy(policyRow);
+	  switchDeviceDetailTab(currentDeviceDetailTab);
+	}
 function renderWalletTable(rows){
   document.getElementById('walletRows').innerHTML = rows.map(row => `
     <tr>
@@ -3722,6 +4067,112 @@ function resetStrategyRecords(){
   resetCustomSelect('strategyUsageStatusFilter','用量限速状态');
   resetCustomSelect('strategyTimeStatusFilter','时间段限速状态');
   searchStrategyRecords();
+}
+function getSpeedLimitStatusClass(status){
+  if(['限速成功','解除成功'].includes(status)){return 'success'}
+  if(['限速失败','解除失败'].includes(status)){return 'failed'}
+  if(status === '等待限速'){return 'waiting'}
+  if(status === '解除限速'){return 'released'}
+  return '';
+}
+function renderSpeedLimitStatus(status){
+  const statusClass = getSpeedLimitStatusClass(status);
+  return status === '--' ? '--' : `<span class="speed-limit-status ${statusClass}">${escapeHtml(status)}</span>`;
+}
+function renderStrategySimRecordTable(rows){
+  const rowsNode = document.getElementById('strategySimRecordRows');
+  if(!rowsNode){return}
+  rowsNode.innerHTML = rows.length ? rows.map((row,index) => `
+    <tr>
+      <td>${index + 1}</td><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.iccid)}</td><td>${escapeHtml(row.carrier)}</td><td>${escapeHtml(row.strategyName)}</td>
+      <td>${escapeHtml(row.category)}</td><td>${escapeHtml(row.speed)}</td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.startAt)}</td><td>${escapeHtml(row.endAt)}</td>
+      <td>${renderSpeedLimitStatus(row.limitStatus)}</td><td>${escapeHtml(row.limitResult)}</td><td>${escapeHtml(row.creator)}</td><td>${renderSpeedLimitStatus(row.releaseStatus)}</td>
+      <td>${escapeHtml(row.releaseResult)}</td><td>${escapeHtml(row.releaseOperator)}</td><td>${escapeHtml(row.remark)}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.updatedAt)}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="19" style="text-align:center;color:#8b95a5">暂无匹配数据</td></tr>';
+  updatePagination('strategySimRecordPagination', rows.length);
+}
+function getFilteredStrategySimRecords(){
+  const sn = normalizeText(document.getElementById('strategyRecordSnInput').value);
+  const iccid = normalizeText(document.getElementById('strategyRecordIccidInput').value);
+  const category = getSelectValue('strategyRecordCategoryFilter');
+  const type = getSelectValue('strategyRecordTypeFilter');
+  const limitStatus = getSelectValue('strategyRecordLimitStatusFilter');
+  const releaseStatus = getSelectValue('strategyRecordReleaseStatusFilter');
+  const start = document.getElementById('strategyRecordCreatedStartInput').value;
+  const end = document.getElementById('strategyRecordCreatedEndInput').value;
+  return simSpeedLimitRecordData.filter(row => {
+    const snOk = !sn || normalizeText(row.sn).includes(sn);
+    const iccidOk = !iccid || normalizeText(row.iccid).includes(iccid);
+    const categoryOk = !category || row.category === category;
+    const typeOk = !type || row.type === type;
+    const limitStatusOk = !limitStatus || row.limitStatus === limitStatus;
+    const releaseStatusOk = !releaseStatus || row.releaseStatus === releaseStatus;
+    return snOk && iccidOk && categoryOk && typeOk && limitStatusOk && releaseStatusOk && dateInRange(row.createdAt,start,end);
+  });
+}
+function searchStrategySimRecords(){
+  renderStrategySimRecordTable(getFilteredStrategySimRecords());
+}
+function resetStrategySimRecords(){
+  document.getElementById('strategyRecordSnInput').value = '';
+  document.getElementById('strategyRecordIccidInput').value = '';
+  resetCustomSelect('strategyRecordCategoryFilter','限速类别');
+  resetCustomSelect('strategyRecordTypeFilter','限速类型');
+  resetCustomSelect('strategyRecordLimitStatusFilter','限速状态');
+  resetCustomSelect('strategyRecordReleaseStatusFilter','解除状态');
+  setUnifiedRangeValues('strategyRecordCreated','','',false);
+  searchStrategySimRecords();
+}
+function exportStrategySimRecords(){
+  const rows = getFilteredStrategySimRecords();
+  const header = ['序号','设备SN','ICCID','运营商','限速策略名称','限速类别','限制网速','限速类型','开始时间','结束时间','限速状态','限速处理结果','创建人','限速解除状态','解除处理结果','解除操作人','备注','创建时间','更新时间'];
+  const body = rows.map((row,index) => [index + 1,row.sn,row.iccid,row.carrier,row.strategyName,row.category,row.speed,row.type,row.startAt,row.endAt,row.limitStatus,row.limitResult,row.creator,row.releaseStatus,row.releaseResult,row.releaseOperator,row.remark,row.createdAt,row.updatedAt]);
+  const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '限速记录（SIM卡）.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+function formatSpeedLimitRate(success,total){
+  return total ? `${(success / total * 100).toFixed(2).replace(/\.00$/,'')}%` : '0%';
+}
+function renderStrategyReportTable(rows){
+  const rowsNode = document.getElementById('strategyReportRows');
+  if(!rowsNode){return}
+  rowsNode.innerHTML = rows.length ? rows.map(row => `
+    <tr>
+      <td>${row.date}</td><td>${row.deviceTotal}</td><td>${row.simTotal}</td><td>${row.limitSuccess}</td><td>${row.limitFail}</td>
+      <td>${formatSpeedLimitRate(row.limitSuccess,row.simTotal)}</td><td>${row.releaseTotal}</td><td>${row.releaseSuccess}</td><td>${row.releaseFail}</td><td>${formatSpeedLimitRate(row.releaseSuccess,row.releaseTotal)}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="10" style="text-align:center;color:#8b95a5">暂无匹配数据</td></tr>';
+  updatePagination('strategyReportPagination', rows.length);
+}
+function getFilteredStrategyReportRecords(){
+  const start = document.getElementById('strategyReportStartInput').value;
+  const end = document.getElementById('strategyReportEndInput').value;
+  return speedLimitReportData.filter(row => dateInRange(row.date,start,end));
+}
+function searchStrategyReportRecords(){
+  renderStrategyReportTable(getFilteredStrategyReportRecords());
+}
+function resetStrategyReportRecords(){
+  setUnifiedRangeValues('strategyReportDate','','',false);
+  searchStrategyReportRecords();
+}
+function exportStrategyReportRecords(){
+  const rows = getFilteredStrategyReportRecords();
+  const header = ['日期','限速设备总数','限速SIM卡总数','SIM卡限速成功总数','SIM卡限速失败总数','限速成功率','解除限速SIM卡总数','SIM卡解除限速成功总数','SIM卡解除限速失败总数','解除限速成功率'];
+  const body = rows.map(row => [row.date,row.deviceTotal,row.simTotal,row.limitSuccess,row.limitFail,formatSpeedLimitRate(row.limitSuccess,row.simTotal),row.releaseTotal,row.releaseSuccess,row.releaseFail,formatSpeedLimitRate(row.releaseSuccess,row.releaseTotal)]);
+  const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '限速统计报告.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
 }
 function renderUserPackageTable(rows){
   document.getElementById('packageRows').innerHTML = rows.map((row,index) => `
@@ -4613,12 +5064,14 @@ function searchConfigRecords(){
   const operationText = operation === 'add' ? '新增' : operation === 'cancel' ? '取消' : '';
   const dateQuery = document.getElementById('configDateInput').value;
   filterTableRows('configRows','configPagination',row => {
+    if(currentAuthManageTab === 'device'){return false}
     const cells = row.children;
     const batchOk = !batch || normalizeText(cells[0].textContent).includes(batch);
     const operationOk = !operationText || cells[1].textContent.trim() === operationText;
     const dateOk = matchesDateQuery(dateQuery,cells[8].textContent.trim());
     return batchOk && operationOk && dateOk;
   });
+  document.getElementById('configRecordsEmpty').classList.toggle('hidden', !!document.querySelector('#configRows tr:not(.hidden)'));
 }
 function resetConfigRecords(){
   document.getElementById('configBatchInput').value = '';
@@ -5298,6 +5751,9 @@ function setCustomSelectValue(target,value,label,emitChange){
   if(['strategyUsageStatusFilter','strategyTimeStatusFilter'].includes(select.id)){
     searchStrategyRecords();
   }
+  if(['strategyRecordCategoryFilter','strategyRecordTypeFilter','strategyRecordLimitStatusFilter','strategyRecordReleaseStatusFilter'].includes(select.id)){
+    searchStrategySimRecords();
+  }
   if(select.id === 'activityShippingStatusFilter'){
     searchActivityDetailRecords();
   }
@@ -5403,7 +5859,9 @@ const extraRangePickerState = {
   activityBuy:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'activityBuyRange',panelId:'activityBuyPanel',startId:'activityBuyStartInput',endId:'activityBuyEndInput',startPlaceholder:'购买开始日期',endPlaceholder:'购买结束日期'},
   activitySubmit:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'activitySubmitRange',panelId:'activitySubmitPanel',startId:'activitySubmitStartInput',endId:'activitySubmitEndInput',startPlaceholder:'提交开始时间',endPlaceholder:'提交结束时间'},
   batchTaskActivation:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'batchTaskActivationRange',panelId:'batchTaskActivationPanel',startId:'batchTaskActivationStartInput',endId:'batchTaskActivationEndInput',startPlaceholder:'客户首次激活开始时间',endPlaceholder:'客户首次激活结束时间'},
-  networkLogDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'networkLogDateRange',panelId:'networkLogDatePanel',startId:'networkLogDateStartInput',endId:'networkLogDateEndInput',startPlaceholder:'日志开始日期',endPlaceholder:'日志结束日期'}
+  networkLogDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'networkLogDateRange',panelId:'networkLogDatePanel',startId:'networkLogDateStartInput',endId:'networkLogDateEndInput',startPlaceholder:'日志开始日期',endPlaceholder:'日志结束日期'},
+  strategyRecordCreated:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'strategyRecordCreatedRange',panelId:'strategyRecordCreatedPanel',startId:'strategyRecordCreatedStartInput',endId:'strategyRecordCreatedEndInput',startPlaceholder:'创建开始时间',endPlaceholder:'创建结束时间'},
+  strategyReportDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'strategyReportDateRange',panelId:'strategyReportDatePanel',startId:'strategyReportStartInput',endId:'strategyReportEndInput',startPlaceholder:'开始日期',endPlaceholder:'结束日期'}
 };
 function getUnifiedRangeState(key){
   return deviceRangeState[key] || extraRangePickerState[key];
@@ -5584,6 +6042,8 @@ function triggerUnifiedRangeChange(key){
   if(key === 'activityBuy' || key === 'activitySubmit'){searchActivityDetailRecords()}
   if(key === 'batchTaskActivation'){searchBatchTaskDetailRecords()}
   if(key === 'networkLogDate'){searchNetworkLogRecords()}
+  if(key === 'strategyRecordCreated'){searchStrategySimRecords()}
+  if(key === 'strategyReportDate'){searchStrategyReportRecords()}
 }
 function openUnifiedRangePicker(event,key){
   const state = getUnifiedRangeState(key);
@@ -5630,9 +6090,10 @@ initDatePicker();
 initDropdowns();
 initInputCombos();
 initQueryInputClears();
+initClipboardSmartSearch('#clipboardSmartSearch');
 Object.keys(deviceRangeState).forEach(syncDeviceRange);
 syncDeviceFilterCollapse();
-showPage('device');
+showPage('home');
 </script>
 </body>
 </html>

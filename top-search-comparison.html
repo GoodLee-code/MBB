@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>顶部搜索栏视觉对照</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f5f7fa; font: 13px/1.5 Arial, "Microsoft YaHei", sans-serif; color: #1f2937; }
+    .comparison { display: grid; grid-template-columns: 489px 489px; gap: 20px; }
+    .panel { margin: 0; }
+    .panel figcaption { margin-bottom: 8px; color: #667085; }
+    .frame { width: 489px; height: 57px; overflow: hidden; background: #fff; border: 1px solid #e5e7eb; }
+    .reference { display: block; width: 489px; height: 57px; }
+    .implementation { position: relative; }
+    .implementation img { position: absolute; width: 1264px; height: 714px; max-width: none; left: -387px; top: -4px; }
+  </style>
+</head>
+<body>
+  <div class="comparison">
+    <figure class="panel">
+      <figcaption>参考图</figcaption>
+      <div class="frame"><img class="reference" src="top-search-reference.png" alt="顶部搜索栏参考图"></div>
+    </figure>
+    <figure class="panel">
+      <figcaption>当前实现</figcaption>
+      <div class="frame implementation"><img src="top-search-qa.png" alt="顶部搜索栏当前实现"></div>
+    </figure>
+  </div>
+</body>
+</html>
