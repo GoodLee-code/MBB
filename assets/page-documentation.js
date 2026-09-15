@@ -121,6 +121,10 @@
       body.innerHTML = '';
       return;
     }
+    if(config.empty){
+      body.innerHTML = '';
+      return;
+    }
     if(Array.isArray(config.chapters) && config.chapters.length){
       body.innerHTML = renderChapters(config.chapters) + renderSupportingSections(config);
       return;

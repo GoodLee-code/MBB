@@ -6,15 +6,43 @@
 <title>二次认证配置 - 高保真原型</title>
 <style>
 *{box-sizing:border-box}
+html{height:100%;overflow:hidden}
 :root{--theme-color:#1687e8}
-body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;color:#333;font-size:12px}
+body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;color:#333;font-size:12px;overflow:hidden}
 .topbar{height:66px;background:linear-gradient(90deg,#1687e8,#02a99c);display:grid;grid-template-columns:minmax(0,1fr) 420px minmax(0,1fr);align-items:center;color:#fff;padding:0 16px}
 .logo{font-size:16px;font-weight:600;width:auto;justify-self:start}.logo:before{content:"◈";margin-right:8px;opacity:.7}
 .search{margin-left:0;width:420px;height:34px;background:#fff;border:1px solid #e5e7eb;border-radius:17px;display:flex;align-items:center;overflow:visible;color:#8792a2;position:relative;justify-self:center;padding:2px}
 .search input{height:28px;min-width:0;border:0;outline:0;flex:1;padding:0 12px;font-size:12px;color:#4d5664;background:transparent}.search input::placeholder{color:#b8c0cc;opacity:1}.search button{width:72px;height:28px;border:0;border-radius:10px;background:#1687e8;color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:12px;line-height:28px;padding:0}
 .user{margin-left:0;justify-self:end}
-.layout{display:flex;height:calc(100vh - 66px)}
-.side{width:226px;background:#fff;border-right:1px solid #e5eaf1;padding-top:10px;flex-shrink:0;color:#4d5664;line-height:1.5;overflow-y:auto;overflow-x:hidden}
+.topbar-actions{min-width:0;display:flex;align-items:center;justify-self:end;gap:16px;position:relative}
+.message-notification{position:relative}
+.message-notification-trigger{position:relative;width:32px;height:32px;border:0;border-radius:4px;background:transparent;color:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color .16s ease,color .16s ease,transform .16s ease}
+.message-notification-trigger:hover,.message-notification.open .message-notification-trigger{background:rgba(255,255,255,.16);color:#fff}
+.message-notification-trigger:active{transform:translateY(1px)}
+.message-bell-icon{position:relative;width:15px;height:16px;border:1.6px solid currentColor;border-radius:9px 9px 4px 4px;border-bottom:0}
+.message-bell-icon:before{content:"";position:absolute;left:-3px;right:-3px;bottom:0;height:1.6px;background:currentColor;border-radius:2px}
+.message-bell-icon:after{content:"";position:absolute;left:5px;bottom:-5px;width:4px;height:4px;border:1.4px solid currentColor;border-radius:50%;background:#1687e8}
+.message-badge{position:absolute;right:-2px;top:-3px;min-width:15px;height:15px;padding:0 4px;border-radius:8px;background:#f04438;color:#fff;font-size:10px;line-height:15px;text-align:center}
+.message-badge.hidden{display:none}
+.message-dropdown{display:none;position:absolute;right:0;top:calc(100% + 8px);width:360px;background:#fff;border:1px solid #e1e7ef;border-radius:4px;box-shadow:0 8px 22px rgba(17,24,39,.12);z-index:1200;overflow:hidden;color:#30343b}
+.message-notification.open .message-dropdown{display:block}
+.message-dropdown-head{height:44px;padding:0 14px;border-bottom:1px solid #edf0f5;display:flex;align-items:center;justify-content:space-between}
+.message-dropdown-head strong{font-size:14px;color:#30343b}
+.message-dropdown-head span{font-size:12px;color:#8b95a5}
+.message-list{max-height:360px;overflow-y:auto}
+.message-item{display:block;padding:12px 14px;border-bottom:1px solid #edf0f5;cursor:pointer;transition:background-color .16s ease}
+.message-item:hover{background:#f8fbff}
+.message-item:last-child{border-bottom:0}
+.message-item-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.message-item-title{font-size:13px;font-weight:600;color:#30343b}
+.message-item-time{flex:none;font-size:11px;color:#a0a8b5}
+.message-item-content{margin-top:5px;color:#606a78;font-size:12px;line-height:18px}
+.message-item.unread .message-item-title{color:#1687e8}
+.message-dropdown-footer{height:40px;border-top:1px solid #edf0f5;display:flex;align-items:center;justify-content:center}
+.message-dropdown-footer .text-action{font-size:12px}
+@media(max-width:760px){.message-dropdown{right:-8px;width:min(360px,calc(100vw - 32px))}}
+.layout{display:flex;height:calc(100vh - 66px);min-height:0;overflow:hidden}
+.side{width:226px;height:100%;background:#fff;border-right:1px solid #e5eaf1;padding-top:10px;flex-shrink:0;color:#4d5664;line-height:1.5;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
 .menu{height:47px;padding:0 17px 0 19px;color:#4d5664;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;font-weight:400;line-height:inherit;border-right:3px solid transparent}
 .menu:hover{color:#1687e8;background:#eef6ff}
 .menu:not([onclick]){cursor:default}
@@ -31,10 +59,10 @@ body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Sego
 .sub.active{color:#1687e8;background:#eef6ff;border-right-color:#1687e8}
 .menu.home-menu.active{color:#1687e8;background:#eef6ff;border-right-color:#1687e8}
 .menu.home-menu.active .menu-generic-icon{color:#5e6d80}
-.main{flex:1;overflow:auto;background:#fff}
+.main{flex:1;min-width:0;height:100%;overflow:auto;background:#fff;overscroll-behavior:contain}
 .tabbar{height:42px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:end;padding-left:12px}
 .tab{min-width:92px;height:34px;line-height:34px;text-align:center;border-right:1px solid #edf0f5;color:#5d6675;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;cursor:pointer}.tab.active{color:#1687e8;background:#f9fbff;border-bottom:2px solid #1687e8}.tab-close{color:#8b95a5;font-size:14px;line-height:1;cursor:pointer}.tab-close:hover{color:#1687e8}
-.content{min-height:calc(100vh - 108px);padding:18px;display:flex;flex-direction:column;background:#fff}
+.content{min-height:calc(100vh - 108px);padding:16px;display:flex;flex-direction:column;background:#fff}
 .inner-tabs{height:34px;border-bottom:1px solid #e6ebf2;margin-bottom:24px}.inner-tab{display:inline-block;height:34px;line-height:34px;margin-right:28px}.inner-tab.active{color:#1687e8;border-bottom:2px solid #1687e8}
 .strategy-page-tabs{height:42px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:32px;padding:0 18px;margin-bottom:16px;flex:none}
 .strategy-page-tab{height:42px;border:0;border-bottom:2px solid transparent;background:transparent;color:#4d5664;font-size:12px;font-weight:500;padding:0 2px 11px;cursor:pointer;white-space:nowrap;transition:color .16s ease,border-color .16s ease}
@@ -44,6 +72,19 @@ body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Sego
 .auth-manage-tab{height:42px;border:0;border-bottom:2px solid transparent;background:transparent;color:#4d5664;font-size:12px;font-weight:500;padding:0 2px 11px;cursor:pointer;white-space:nowrap;transition:color .16s ease,border-color .16s ease}
 .auth-manage-tab:hover{color:var(--theme-color)}
 .auth-manage-tab.active{color:var(--theme-color);border-bottom-color:var(--theme-color)}
+.device-group-tabs{height:42px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:32px;padding:0 18px;margin-bottom:16px;flex:none}
+.device-group-tab{height:42px;border:0;border-bottom:2px solid transparent;background:transparent;color:#4d5664;font-size:12px;font-weight:500;padding:0 2px 11px;cursor:pointer;white-space:nowrap;transition:color .16s ease,border-color .16s ease}
+.device-group-tab:hover{color:var(--theme-color)}
+.device-group-tab.active{color:var(--theme-color);border-bottom-color:var(--theme-color)}
+.device-group-panel{display:block}
+.device-group-panel.hidden{display:none}
+.device-group-panel > .action-row{width:100%;padding:0;background:#fff}
+.device-group-panel > .table-card{width:100%;margin-left:0!important;margin-right:0!important}
+.device-group-panel > .pagination{width:100%;margin-left:0;margin-right:0}
+.device-group-record-table{min-width:1180px}
+.device-group-record-table th,.device-group-record-table td{white-space:nowrap}
+.device-group-detail-table{min-width:980px}
+.device-group-detail-table th,.device-group-detail-table td{white-space:nowrap}
 .auth-manage-panel{display:none;flex:1;min-height:0;flex-direction:column}
 .auth-manage-panel.active{display:flex}
 .auth-manage-panel .empty{padding:32px 16px;text-align:center;color:#8b96a6}
@@ -59,8 +100,8 @@ body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Sego
 .speed-limit-status.failed{color:#f04438}
 .speed-limit-status.waiting{color:#d97706}
 .speed-limit-status.released{color:#1687e8}
-.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 18px 12px;margin:0 0 16px;width:100%;background:#fff}
-.device-filter .input,.device-filter .select,.device-filter .condition-control,.device-filter .input-combo,.device-filter .device-date-range,.config-filter .input,.config-filter .select,.config-filter .date-picker,.sim-filter .input,.sim-filter .select,.flow-filter .flow-date-control,.flow-filter .input,.flow-filter .select,.flow-filter .range-control,.payment-filter .input,.payment-filter .select,.payment-filter .device-date-range,.wallet-filter .input,.wallet-filter .select,.wallet-filter .range-control,.strategy-filter .input,.strategy-filter .select,.strategy-filter .device-date-range,.activity-filter .input,.activity-filter .select,.activity-filter .device-date-range,.package-filter .input,.package-filter .select,.task-filter .input,.task-filter .select,.task-filter .device-date-range,.factory-filter .input,.factory-filter .select,.factory-filter .date-range-control,.factory-filter .device-date-range,.network-log-filter .input,.network-log-filter .select,.network-log-filter .device-date-range,.system-filter .input,.system-filter .select,.system-filter .input-combo{width:100%;min-width:0}
+.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 0 12px;margin:0 0 16px;width:100%;background:#fff}
+.device-filter .input,.device-filter .select,.device-filter .condition-control,.device-filter .input-combo,.device-filter .device-date-range,.config-filter .input,.config-filter .select,.config-filter .date-picker,.sim-filter .input,.sim-filter .select,.flow-filter .flow-date-control,.flow-filter .input,.flow-filter .select,.flow-filter .range-control,.payment-filter .input,.payment-filter .select,.payment-filter .device-date-range,.wallet-filter .input,.wallet-filter .select,.wallet-filter .range-control,.strategy-filter .input,.strategy-filter .select,.strategy-filter .device-date-range,.activity-filter .input,.activity-filter .select,.activity-filter .device-date-range,.package-filter .input,.package-filter .select,.task-filter .input,.task-filter .select,.task-filter .device-date-range,.factory-filter .input,.factory-filter .select,.factory-filter .date-range-control,.factory-filter .device-date-range,.network-log-filter .input,.network-log-filter .select,.network-log-filter .device-date-range,.system-filter .input,.system-filter .select,.system-filter .input-combo,.system-filter .device-date-range{width:100%;min-width:0}
 .device-filter .input,.device-filter .select,.config-filter .input,.config-filter .select,.config-filter .date,.sim-filter .input,.sim-filter .select,.flow-filter .input,.flow-filter .select,.payment-filter .input,.payment-filter .select,.wallet-filter .input,.wallet-filter .select,.strategy-filter .input,.strategy-filter .select,.activity-filter .input,.activity-filter .select,.package-filter .input,.package-filter .select,.task-filter .input,.task-filter .select,.factory-filter .input,.factory-filter .select,.network-log-filter .input,.network-log-filter .select,.system-filter .input,.system-filter .select{height:34px;border:1px solid #e5e7eb;border-radius:4px;font-size:12px}
 .device-filter .input,.config-filter .input,.sim-filter .input,.flow-filter .input,.payment-filter .input,.wallet-filter .input,.strategy-filter .input,.activity-filter .input,.package-filter .input,.task-filter .input,.factory-filter .input,.network-log-filter .input,.system-filter .input{padding:0 9px}
 .device-filter .select,.config-filter .select,.sim-filter .select,.flow-filter .select,.payment-filter .select,.wallet-filter .select,.strategy-filter .select,.activity-filter .select,.package-filter .select,.task-filter .select,.factory-filter .select,.network-log-filter .select,.system-filter .select{line-height:32px;padding-left:9px}
@@ -122,6 +163,12 @@ body{margin:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Sego
 .work-status-stack strong{font-weight:700;color:#4b5563}
 .package-table{min-width:3000px}
 .package-table th,.package-table td{white-space:nowrap}
+.device-group-table{min-width:2800px}
+.device-group-table th,.device-group-table td{white-space:nowrap}
+.device-group-status{font-weight:600}
+.device-group-status.active{color:#16a34a}
+.device-group-status.invalid{color:#f04438}
+.device-binding-failure-reason{color:#f04438}
 .network-log-table{min-width:2200px}
 .network-log-table th,.network-log-table td{white-space:nowrap}
 .batch-task-detail-table{min-width:980px}
@@ -367,12 +414,19 @@ input[type="checkbox"],input[type="radio"]{accent-color:var(--theme-color)}
 .search .dropdown-menu{min-width:96px;top:calc(100% + 4px);font-size:12px}
 .search button .search-icon{width:10px;height:10px;border-width:1.4px;color:#fff}
 .search button .search-icon:after{right:-4px;bottom:-2px;width:5px;height:1.4px}
-.btn{height:32px;border:1px solid var(--theme-color);background:var(--theme-color);color:#fff;border-radius:3px;padding:0 18px;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,border-color .16s ease,color .16s ease}.btn.line{background:#fff;color:var(--theme-color)}.btn.gray{background:#fff;border-color:#d9dee8;color:#606a78}
+.btn{height:32px;border:1px solid var(--theme-color);background:var(--theme-color);color:#fff;border-radius:3px;padding:0 18px;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,border-color .16s ease,color .16s ease}.btn.line,.btn.gray{background:#fff;border-color:#d9dee8;color:#4b5563;border-radius:4px;font-size:14px}
 .content .btn{align-self:flex-start;flex:none;width:auto;white-space:nowrap}
+.content .action-row .btn:not(.line):not(.gray),.content .filter-actions .btn:not(.line):not(.gray){background:#1687e8;border-color:#1687e8;color:#fff;box-shadow:none}
+.content .action-row .btn:not(.line):not(.gray):hover,.content .filter-actions .btn:not(.line):not(.gray):hover{background:#0b76d1;border-color:#0b76d1;color:#fff;box-shadow:none}
 .btn:hover,.record-btn:hover,.search button:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(47,145,241,.18)}
 .btn:active,.record-btn:active,.search button:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.16)}
+.btn.line:hover,.btn.gray:hover{background:#f8fafc;border-color:#c6ceda;color:#374151;box-shadow:none}
 .btn.line:hover{background:#f4f9ff;border-color:#1687e8;color:#1687e8}.btn.gray:hover{background:#f8fafc;border-color:#c6ceda;color:#4b5563}.search button{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease}.search button:hover{background:#1d78df}
+.btn.line:hover,.btn.gray:hover{background:#f8fafc;border-color:#c6ceda;color:#374151;box-shadow:none}
+.filter-actions .btn.line{background:#fff;border-color:var(--theme-color);color:var(--theme-color);border-radius:3px;font-size:12px}
+.filter-actions .btn.line:hover{background:#f4f9ff;border-color:#1687e8;color:#1687e8;box-shadow:0 6px 14px rgba(47,145,241,.18)}
 .action-row{display:flex;align-items:center;gap:8px;margin:0 0 16px;flex:none}
+.content > .action-row,.strategy-subpage > .action-row,.auth-manage-panel > .action-row,#fieldVersionListView > .action-row{width:100%;padding:0;background:#fff}
 .action-row .btn{flex:none;width:auto;white-space:nowrap}
 .filter-actions{height:34px;display:flex;align-items:center;gap:8px;min-width:0}
 .filter-actions.new-row{grid-column:1 / -1}
@@ -382,7 +436,8 @@ input[type="checkbox"],input[type="radio"]{accent-color:var(--theme-color)}
 .filter-toggle-arrow{width:7px;height:7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(-135deg);transition:transform .16s ease;margin-top:4px}
 .filter-toggle-btn.collapsed .filter-toggle-arrow{transform:rotate(45deg);margin-top:-3px}
 .table-card{background:#fff;border:1px solid #e6ebf2;flex:1;overflow:auto}
-.content > .table-card,.strategy-subpage > .table-card,.auth-manage-panel > .table-card,#fieldVersionListView > .table-card{margin-top:0!important}
+.content > .table-card,.strategy-subpage > .table-card,.auth-manage-panel > .table-card,#fieldVersionListView > .table-card{width:100%;margin:0!important}
+.content > .pagination,.strategy-subpage > .pagination,.auth-manage-panel > .pagination,#fieldVersionListView > .pagination{width:100%;margin-left:0;margin-right:0}
 .content > .inner-tabs,.content > .device-detail-tabs,.auth-manage-panel > .inner-tabs{margin-bottom:16px}
 table{width:100%;border-collapse:collapse;background:#fff}
 th{height:38px;background:#fbfcfe;border:1px solid #e7ebf1;font-weight:600;color:#4b5563;text-align:center;padding:8px 12px}
@@ -391,7 +446,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .link{color:#1687e8;cursor:pointer}
 .batch-link{color:#1687e8;cursor:pointer}
 .batch-link:hover,.batch-link.active{color:#0b4ea2;text-decoration:underline}
-.pagination{min-height:58px;background:#fff;border:1px solid #e7ebf1;border-top:0;display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:0 16px;color:#667085}
+.pagination{min-height:58px;background:#fff;border:0;display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:0 16px;color:#667085}
 .pagebtn{min-width:24px;height:24px;border:1px solid #e0e5ee;background:#fff;border-radius:2px;text-align:center;line-height:22px;padding:0 7px}.pagebtn.active{background:var(--theme-color);color:#fff;border-color:var(--theme-color)}
 .device-detail-tabs{height:48px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:42px;padding:0 0 0 0;margin-bottom:18px;overflow:auto;flex:none}
 .device-detail-tab{height:48px;border:0;background:transparent;color:#2f3540;font-size:12px;font-weight:600;padding:0 0 12px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent}
@@ -554,6 +609,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .record-status{font-weight:600}
 .record-status.success{color:#16a34a}
 .record-status.fail{color:#f04438}
+.record-status.processing{color:#d97706}
 .record-pagination{height:58px;margin-top:22px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:0 16px;font-size:14px;color:#606a78}
 .record-page-size{width:96px;height:32px;border:1px solid #d8dee9;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;color:#606a78}
 .record-pagebtn{min-width:32px;height:32px;border:1px solid #edf0f5;background:#f5f7fb;border-radius:4px;text-align:center;line-height:30px;color:#c0c7d2}
@@ -613,13 +669,185 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
   #strategyModalMask .time-speed{grid-template-columns:128px minmax(260px,1fr)}
   #strategyModalMask .time-icons{justify-content:flex-start}
 }
+.notification-table{min-width:1120px}
+.notification-table th{text-align:center}.notification-table th,.notification-table td{white-space:nowrap}
+.notification-status{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:12px;font-weight:600;font-size:12px}
+.notification-status.enabled,.notification-result.success{color:#14804a;background:#eaf7ef;border:1px solid #9fd8b6}
+.notification-status.disabled,.notification-result.unsent{color:#8b5e00;background:#fff7e6;border:1px solid #f2cf83}
+.notification-result.partial{color:#a15c00;background:#fff7e6;border:1px solid #f2cf83}
+.notification-result.failed{color:#c9362b;background:#fff0ee;border:1px solid #f4aaa3}
+.notification-result{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:12px;font-size:12px;font-weight:600}
+.notification-result-cell{position:relative;display:inline-flex;align-items:center;gap:6px}
+.notification-failure-icon{position:relative;display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border:1px solid #c9362b;border-radius:50%;color:#c9362b;font-size:10px;font-weight:700;line-height:13px;cursor:help}
+.notification-failure-icon:before{content:'!'}
+.notification-failure-tip{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);width:280px;padding:9px 12px;border-radius:3px;background:#30343b;color:#fff;font-size:12px;font-weight:400;line-height:20px;white-space:normal;text-align:left;transform:translateX(-50%);box-shadow:0 8px 20px rgba(31,35,41,.18);z-index:1000;pointer-events:none}
+.notification-result-cell:hover .notification-failure-tip{display:block}
+.notification-methods{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.notification-content-cell{display:block;max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;color:#4d5664}
+.notification-method-tag{padding:2px 7px;border:1px solid #e1e7ef;background:#f8fafc;border-radius:3px;color:#606a78;font-size:12px}
+.notification-action-list{display:inline-flex;gap:12px;align-items:center;white-space:nowrap}
+.notification-action-list .text-action{cursor:pointer}
+.notification-action-list .text-action.danger{color:#f04438}
+.notification-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 0 12px;margin:0 0 16px;width:100%;background:#fff}
+.notification-filter .filter-actions{grid-column:1/-1}
+.notification-filter .notification-input,.notification-filter .notification-select{width:100%;min-width:0;height:34px;border:1px solid #e5e7eb;border-radius:4px;background:#fff;color:#1f2329;font-size:12px;outline:0}
+.notification-filter .notification-input{padding:0 9px}
+.notification-filter .notification-input::placeholder{color:#b8c0cc}
+.notification-filter .notification-select{padding:0 30px 0 9px;line-height:32px}
+.notification-filter .notification-select:not(.has-value) .select-value{color:#b8c0cc}
+.notification-filter .notification-select.has-value{padding-right:56px}
+.notification-filter .notification-select .select-value{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.notification-filter #notificationRecordEventFilter .dropdown-menu{width:max-content;min-width:100%;max-width:calc(100vw - 32px)}
+.notification-filter #notificationRecordEventFilter .dropdown-option{white-space:nowrap}
+.notification-filter .notification-input:focus,.notification-filter .notification-select:focus{border-color:var(--theme-color)}
+.notification-filter .device-date-range{width:100%;min-width:0}
+.notification-filter .device-date-text.has-value{color:#1f2329}
+.notification-date-range{height:34px;display:flex;align-items:center;gap:6px;color:#8b95a5;border:1px solid #e5e7eb;border-radius:4px;background:#fff;padding:0 9px;min-width:0;overflow:hidden}
+.notification-date-range:focus-within{border-color:var(--theme-color)}
+.notification-date-range .notification-input{width:0;min-width:0;height:32px;border:0;padding:0;flex:1;color:#1f2329}
+.notification-date-range .notification-input:focus{border:0}
+.notification-event-variables{margin:0 0 0 140px;padding:10px 12px;background:#f8fafc;border:1px solid #edf0f5;color:#606a78;font-size:12px;line-height:20px}
+.notification-event-variables:empty{display:none}
+.notification-editor-page{min-height:calc(100vh - 144px)}
+.notification-react-root{width:100%;min-height:100%}
+#notificationConfigPage.notification-react-ready> :not(#notificationConfigReactRoot),#notificationConfigEditPage.notification-react-ready> :not(#notificationConfigEditReactRoot){display:none!important}
+.notification-editor-section{background:#fff;border:1px solid #e7ebf1;margin-bottom:16px}
+.notification-editor-section-title{height:44px;padding:0 16px;border-bottom:1px solid #edf0f5;display:flex;align-items:center;justify-content:space-between;font-weight:600;color:#30343b}
+.notification-editor-section-title:before{content:'';display:inline-block;width:3px;height:14px;margin-right:8px;border-radius:2px;background:#1687e8;flex:none}
+.notification-react-page .ant-card-head-title{display:flex;align-items:center;gap:8px}
+.notification-react-page .ant-card-head-title:before{content:'';display:inline-block;width:3px;height:14px;border-radius:2px;background:#1687e8;flex:none}
+.notification-react-page .notification-recipient-card .ant-card-head{min-height:88px;padding:16px 24px;border-bottom:1px solid #edf0f5}
+.notification-react-page .notification-recipient-card .ant-card-head-title{padding:0;white-space:normal}
+.notification-react-page .notification-recipient-card .ant-card-head-title:before{display:none}
+.notification-react-page .notification-basic-info-card .ant-card-head{min-height:44px;padding:0 16px}
+.notification-react-page .notification-basic-info-card .ant-card-head-title{padding:14px 0;white-space:nowrap}
+.notification-react-page .notification-basic-info-card .ant-card-head-title:before{display:inline-block}
+.notification-recipient-heading{display:flex;align-items:center;gap:14px}
+.notification-recipient-icon{position:relative;display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:#eef6ff;color:#1687e8;flex:none}
+.notification-recipient-icon-person{position:relative;display:block;width:25px;height:25px}
+.notification-recipient-icon-person:before{content:'';position:absolute;left:2px;top:2px;width:9px;height:9px;border-radius:50%;background:#1687e8;box-shadow:11px 2px 0 -1px #1687e8}
+.notification-recipient-icon-person:after{content:'';position:absolute;left:0;bottom:1px;width:14px;height:9px;border-radius:9px 9px 3px 3px;background:#1687e8;box-shadow:11px 2px 0 -1px #1687e8}
+.notification-recipient-heading-title{font-size:16px;line-height:24px;font-weight:600;color:#1f2329}
+.notification-recipient-heading-subtitle{margin-top:2px;font-size:13px;line-height:20px;font-weight:400;color:#8b95a5}
+.notification-recipient-card .ant-card-body{padding:20px 24px 24px!important}
+.notification-recipient-card .ant-form-item{margin-bottom:24px}
+.notification-recipient-card .ant-form-item:last-child{margin-bottom:0}
+.notification-recipient-card .ant-checkbox-group{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.notification-recipient-card .ant-checkbox-wrapper{font-size:14px;color:#30343b}
+.notification-recipient-card .ant-form-item-label>label{font-size:13px;color:#4e5969}
+.notification-recipient-card .ant-radio-group{display:flex;flex-direction:column;gap:8px;width:100%}
+.notification-recipient-card .notification-radio-row{display:flex!important;flex-direction:row!important;align-items:center;flex-wrap:wrap;gap:8px 24px;width:100%}
+.notification-option-inline{display:inline-flex;align-items:center;gap:8px;min-height:32px;white-space:nowrap}
+.notification-option-inline>.ant-typography{margin:0;color:#8b95a5;font-size:13px}
+.notification-option-inline .notification-uniform-time{margin-left:2px}
+.notification-uniform-methods{margin-top:10px}
+.notification-uniform-methods .ant-checkbox-group{gap:18px}
+.notification-target-channel-group{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 10px!important;min-width:250px}
+.notification-target-channel-group .ant-checkbox-wrapper{font-size:12px;white-space:nowrap}
+.notification-help-icon{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;margin-left:6px;border:1px solid #8b95a5;border-radius:50%;color:#8b95a5;font-size:10px;line-height:12px;cursor:help}
+.notification-target-add{height:36px!important;border-color:#b8d4ff!important;color:#1687e8!important;background:#fff!important;font-size:13px}
+.notification-target-add:hover{border-color:#1687e8!important;color:#0b4ea2!important;background:#f4f9ff!important}
+.notification-plus-icon{position:relative;display:inline-block;width:14px;height:14px}
+.notification-plus-icon:before,.notification-plus-icon:after{content:'';position:absolute;left:2px;right:2px;top:6px;height:1.5px;background:currentColor;border-radius:2px}
+.notification-plus-icon:after{left:6px;right:auto;top:2px;bottom:2px;width:1.5px;height:auto}
+.notification-recipient-card .ant-table-wrapper{max-width:100%;overflow:hidden}
+.notification-recipient-card .ant-table-tbody>tr>td{color:#4d5664}
+.notification-target-name{color:#30343b;font-weight:500}
+.notification-time-option{display:flex;align-items:center;flex-wrap:wrap;gap:0 10px;min-height:42px}
+.notification-time-option .ant-radio-wrapper{min-width:86px;font-size:14px;color:#30343b}
+.notification-time-option>.ant-typography{display:block;flex-basis:100%;margin:0 0 0 30px;color:#8b95a5;font-size:13px;line-height:20px}
+.notification-time-option .notification-uniform-time{flex-basis:auto;margin:6px 0 0 30px}
+.notification-time-option .notification-individual-time-list{flex-basis:100%;margin:6px 0 0 30px}
+.notification-editor-section-body{padding:16px}
+.notification-form-row{display:grid;grid-template-columns:128px minmax(0,1fr);gap:12px;align-items:start;margin-bottom:16px}
+.notification-form-row:last-child{margin-bottom:0}
+.notification-form-label{font-size:13px;color:#4e5969;line-height:32px}
+.notification-form-label .req{display:inline-block;margin-right:4px;color:#f04438}
+.notification-input,.notification-select{width:360px;height:32px;border:1px solid #e5e7eb;border-radius:4px;background:#fff;color:#1f2329;padding:0 10px;font-size:13px;outline:0;transition:border-color .16s ease,background-color .16s ease,color .16s ease}
+.notification-input:hover,.notification-select:hover,.notification-textarea:hover{border-color:#c6ceda}
+.notification-input:focus,.notification-select:focus,.notification-textarea:focus{border-color:var(--theme-color)}
+.notification-input:disabled,.notification-select:disabled,.notification-textarea:disabled{background:#f8fafc;color:#8b95a5;cursor:not-allowed}
+.notification-form-error{display:none;margin-top:6px;color:#f04438;font-size:12px;line-height:18px}
+.notification-form-row.invalid .notification-input,.notification-form-row.invalid .notification-select,.notification-form-row.invalid .notification-textarea{border-color:#f04438}
+.notification-form-row.invalid .notification-form-error{display:block}
+.notification-check-group{display:flex;align-items:center;gap:18px;min-height:32px;flex-wrap:wrap}
+.notification-check{display:inline-flex;align-items:center;gap:7px;color:#4b5563;cursor:pointer;line-height:20px}
+.notification-check input{accent-color:var(--theme-color)}
+.notification-recipient-summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:28px;margin-top:8px;color:#606a78;font-size:12px}
+.notification-recipient-summary .summary-label{color:#8b95a5}
+.notification-recipient-chip{display:inline-flex;align-items:center;min-height:26px;padding:3px 9px;border:1px solid #d8e6f6;border-radius:3px;background:#f4f9ff;color:#1687e8}
+.notification-contact-warning{display:none;margin-top:9px;padding:8px 10px;border:1px solid #f2cf83;background:#fffaf0;color:#9a6700;font-size:12px;line-height:18px}
+.notification-variable-tools{display:flex;gap:6px;flex-wrap:wrap;margin:7px 0 8px}
+.notification-variable-btn{height:26px;border:1px solid #d8e6f6;border-radius:3px;background:#f4f9ff;color:#1687e8;padding:0 9px;cursor:pointer;font-size:12px;transition:transform .16s ease,border-color .16s ease,background-color .16s ease,box-shadow .16s ease}
+.notification-variable-btn:hover{border-color:#1687e8;background:#eaf4ff;transform:translateY(-1px);box-shadow:0 4px 10px rgba(22,135,232,.12)}
+.notification-variable-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.notification-channel-list{display:flex;gap:10px;flex-wrap:wrap}
+.notification-channel-toggle{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid #e5e7eb;border-radius:4px;color:#4b5563;cursor:pointer;background:#fff;transition:border-color .16s ease,background-color .16s ease,color .16s ease}
+.notification-channel-toggle:hover{border-color:#b8d4ff;background:#f4f8ff;color:var(--theme-color)}
+.notification-channel-toggle:has(input:checked){border-color:#9bc8fb;background:#f1f7ff;color:#1687e8}
+.notification-channel-toggle input{accent-color:var(--theme-color)}
+.notification-target-picker{margin-top:10px}
+.notification-target-select-btn{height:auto!important;border:0;background:transparent;color:var(--theme-color);padding:0;cursor:pointer;font-size:12px}
+.notification-target-select-btn:hover{color:#0b4ea2;text-decoration:underline}
+.notification-selected-people{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.notification-selected-person{display:inline-flex;align-items:center;gap:7px;min-height:28px;padding:4px 9px;border:1px solid #dfe5ee;border-radius:3px;background:#f8fafc;color:#4b5563;font-size:12px}
+.notification-selected-person .remove{border:0;background:transparent;color:#8b95a5;cursor:pointer;font-size:15px;line-height:16px;padding:0}
+.notification-selected-person .remove:hover{color:#f04438}
+.notification-time-mode{display:flex;align-items:center;gap:18px;min-height:32px}
+.notification-time-panel{margin-top:8px}
+.notification-time-input{width:180px!important}
+.notification-individual-time-list{display:flex;flex-direction:column;gap:8px;max-width:520px}
+.notification-individual-time-row{display:grid;grid-template-columns:130px 180px;gap:12px;align-items:center;min-height:32px}
+.notification-individual-time-label{color:#606a78;font-size:12px}
+.notification-channel-card{display:none;margin-top:14px;padding:14px;border:1px solid #edf0f5;background:#fbfcfe}
+.notification-channel-card.active{display:block}
+.notification-channel-card-title{margin-bottom:12px;font-weight:600;color:#30343b}
+.notification-channel-card .notification-form-row{grid-template-columns:100px minmax(0,1fr);margin-bottom:12px}
+.notification-channel-card .notification-input,.notification-channel-card .notification-select{width:100%}
+.notification-textarea{width:100%;min-height:78px;resize:vertical;border:1px solid #e5e7eb;border-radius:4px;background:#fff;color:#1f2329;padding:8px 10px;font-size:13px;line-height:20px;outline:0;transition:border-color .16s ease,background-color .16s ease,color .16s ease}
+.notification-template-preview{padding:10px 12px;background:#fff;border:1px solid #edf0f5;color:#606a78;line-height:20px;font-size:12px;white-space:pre-line}
+.notification-sms-map{display:grid;grid-template-columns:90px minmax(0,1fr) 160px;gap:8px;align-items:center;margin-top:8px}
+.notification-sms-map-label{color:#606a78;font-size:12px}
+.notification-editor-actions{display:flex;justify-content:flex-end;gap:8px;padding:0 0 16px}
+.notification-account-modal{width:min(900px,calc(100vw - 48px))!important;max-width:calc(100vw - 48px)!important}
+.notification-account-modal-body{padding:20px 24px!important}
+.notification-account-filter{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.notification-account-filter .input{width:100%;min-width:0}
+.notification-account-filter .filter-actions{grid-column:1/-1}
+.notification-account-table-wrap{border:1px solid #e6ebf2;overflow:auto;max-height:360px}
+.notification-account-table{min-width:780px}
+.notification-account-table th,.notification-account-table td{white-space:nowrap}
+.notification-account-check-col{width:56px}
+.notification-account-table input[type="checkbox"]{width:14px;height:14px}
+.notification-record-detail-modal{width:min(960px,calc(100vw - 48px))!important;max-width:calc(100vw - 48px)!important}
+.notification-detail-section{padding:0 0 16px;margin-bottom:16px;border-bottom:1px solid #edf0f5}
+.notification-detail-section:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.notification-detail-title{margin:0 0 12px;font-size:14px;font-weight:600;color:#30343b}
+.notification-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 16px}
+.notification-detail-item{min-height:24px;line-height:20px}
+.notification-detail-label{color:#8b95a5;margin-right:8px}
+.notification-detail-value{color:#4b5563}
+.notification-content-list{display:flex;flex-direction:column;gap:10px}
+.notification-content-item{padding:10px 12px;border:1px solid #edf0f5;background:#fbfcfe}
+.notification-content-item strong{display:block;margin-bottom:5px;color:#4b5563}
+.notification-content-item p{margin:0;line-height:20px;color:#606a78;white-space:pre-line}
+.notification-send-table{min-width:900px}
+.notification-send-table .send-success{color:#14804a;font-weight:600}
+.notification-send-table .send-failed{color:#f04438;font-weight:600}
+.notification-send-table .send-unsent{color:#a15c00;font-weight:600}
+.notification-empty{padding:32px;text-align:center;color:#9aa4b2}
+@media(max-width:980px){
+  .notification-filter{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .notification-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .notification-editor-head{flex-wrap:wrap}
+}
 .hidden{display:none!important}
 </style>
 <link rel="stylesheet" href="assets/page-documentation.css">
 <link rel="stylesheet" href="assets/clipboard-smart-search.css">
 </head>
 <body>
-<div class="topbar"><div class="logo">无线宽带运营平台</div><div id="clipboardSmartSearch" class="clipboard-smart-search"></div><div class="user">ifan⌄</div></div>
+<div class="topbar"><div class="logo">无线宽带运营平台</div><div id="clipboardSmartSearch" class="clipboard-smart-search"></div><div class="topbar-actions"><div class="message-notification" id="messageNotification"><button class="message-notification-trigger" type="button" aria-label="消息通知" aria-expanded="false" onclick="toggleMessageNotification(event)"><span class="message-bell-icon" aria-hidden="true"></span><span class="message-badge" id="messageNotificationBadge"></span></button><div class="message-dropdown" id="messageNotificationDropdown" role="dialog" aria-label="消息通知列表"><div class="message-dropdown-head"><strong>消息通知</strong><span id="messageNotificationCount"></span></div><div class="message-list" id="messageNotificationList"></div><div class="message-dropdown-footer"><button type="button" class="text-action" onclick="markAllMessagesRead()">全部标记为已读</button></div></div></div><div class="user">ifan⌄</div></div></div>
 <div class="layout">
   <aside class="side" id="sideMenu">
     <div class="menu home-menu" id="menuHome" onclick="showPage('home')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11.5 12 4l8 7.5M6.5 10v9.5h11V10M10 19.5V15h4v4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">首页</span></div>
@@ -630,6 +858,17 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="sub" id="menuConfig" onclick="showPage('config')">二次认证管理</div>
       <div class="sub" id="menuFlow" onclick="showPage('flow')">设备流量</div>
     </div>
+    <div class="menu" id="menuSupplyChain" onclick="toggleMenuGroup('supplyChainSubMenu','menuSupplyChain')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5v9L12 21l8-4.5v-9M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 5.2 16 9.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">供应链中心</span><span class="collapse-icon"></span></div>
+    <div class="sub-group" id="supplyChainSubMenu">
+      <div class="sub" id="menuDevicePreStock" onclick="showPage('devicePreStock')">设备预入库</div>
+      <div class="sub" id="menuDeviceStockIn" onclick="showPage('deviceStockIn')">设备入库</div>
+      <div class="sub" id="menuDeviceDistribution" onclick="showPage('deviceDistribution')">设备分发</div>
+      <div class="sub" id="menuPeerTransfer" onclick="showPage('peerTransfer')">同级划拨</div>
+      <div class="sub" id="menuDeviceShipping" onclick="showPage('deviceShipping')">设备发货</div>
+      <div class="sub" id="menuExchangeOrder" onclick="showPage('workOrder')">换货补发工单</div>
+      <div class="sub" id="menuDeviceAfterSale" onclick="showPage('deviceAfterSale')">设备售后</div>
+      <div class="sub" id="menuFactoryReturn" onclick="openFactoryReturnPage()">设备返厂</div>
+    </div>
     <div class="menu" id="menuPayment" onclick="toggleMenuGroup('paymentSubMenu','menuPayment')"><svg class="payment-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 7.5h17A2.5 2.5 0 0 1 23 10v7a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 17v-7a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M1.5 11h21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 15.5h4.5M15 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">支付中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="paymentSubMenu">
       <div class="sub" id="menuOrder" onclick="showPage('order')">订单管理</div>
@@ -638,9 +877,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     </div>
     <div class="menu" id="menuAfterSale" onclick="toggleMenuGroup('afterSaleSubMenu','menuAfterSale')"><svg class="aftersale-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12a7 7 0 0 1 2-5M19 12a7 7 0 0 1-2 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 10.5h5.5a1.5 1.5 0 0 1 1.5 1.5v4.5H4.5V12A1.5 1.5 0 0 1 6 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 8h4a1.5 1.5 0 0 1 1.5 1.5V14H17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">售后中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="afterSaleSubMenu">
-      <div class="sub" id="menuExchangeOrder" onclick="showPage('workOrder')">换货/补发工单</div>
       <div class="sub" id="menuRefundWorkOrder" onclick="showPage('refundWorkOrder')">退费工单</div>
-      <div class="sub" id="menuFactoryReturn" onclick="openFactoryReturnPage()">设备返厂</div>
     </div>
     <div class="menu" id="menuOps" onclick="toggleMenuGroup('opsSubMenu','menuOps')"><svg class="ops-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="6" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="15" cy="12" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="18" r="2" fill="#fff" stroke="currentColor" stroke-width="1.8"/></svg><span class="menu-title">运营中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="opsSubMenu">
@@ -651,7 +888,10 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v10M8 7l4-4 4 4M5 17h14v3H5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">fota升级</span></div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 9 5 12l3 3M16 9l3 3-3 3M13 6l-2 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">API集成</span></div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10h16l-2-5H6l-2 5ZM6 10v10h12V10M9 14h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">商户中心</span></div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2.5 2.5M14.5 14.5 17 17M17 7l-2.5 2.5M9.5 14.5 7 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">调度中心</span></div>
+    <div class="menu" id="menuSchedule" onclick="toggleMenuGroup('scheduleSubMenu','menuSchedule')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2.5 2.5M14.5 14.5 17 17M17 7l-2.5 2.5M9.5 14.5 7 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">调度中心</span><span class="collapse-icon"></span></div>
+    <div class="sub-group" id="scheduleSubMenu">
+      <div class="sub" id="menuDeviceGroup" onclick="showPage('deviceGroup')">设备组管理</div>
+    </div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4h10v16H7zM10 4v4h4V4M10 17h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">SIM卡中心</span></div>
     <div class="menu" id="menuPackage" onclick="toggleMenuGroup('packageSubMenu','menuPackage')"><svg class="package-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5v9L12 21l8-4.5v-9M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8 5.2 8 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">套餐中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="packageSubMenu">
@@ -674,12 +914,145 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="sub-group" id="systemSubMenu">
       <div class="sub" id="menuFieldVersion" onclick="openFieldVersionPage()">字段说明版本管理</div>
     </div>
+    <div class="menu" id="menuNotification" onclick="toggleMenuGroup('notificationSubMenu','menuNotification')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 10a6 6 0 0 1 12 0v4l2 3H4l2-3v-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 20h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">通知中心</span><span class="collapse-icon"></span></div>
+    <div class="sub-group" id="notificationSubMenu">
+      <div class="sub" id="menuNotificationConfig" onclick="showPage('notificationConfig')">通知配置</div>
+      <div class="sub" id="menuNotificationRecord" onclick="showPage('notificationRecord')">通知记录</div>
+    </div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h5v5h-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="menu-title">其它功能</span></div>
   </aside>
   <main class="main">
     <div class="tabbar" id="tabbar"></div>
 
     <section id="homePage" class="content hidden">
       <div class="strategy-subpage-empty"><strong>首页</strong><span>未设计</span></div>
+    </section>
+
+    <section id="devicePreStockPage" class="content hidden">
+      <div class="inner-tabs">
+        <span class="inner-tab active">设备预入库</span>
+        <span class="inner-tab" onclick="openDevicePreStockDetailPage()">设备预入库详情</span>
+      </div>
+      <div class="strategy-subpage-empty"><strong>设备预入库</strong><span>未设计</span></div>
+    </section>
+
+    <section id="devicePreStockDetailPage" class="content hidden">
+      <div class="inner-tabs">
+        <span class="inner-tab" onclick="openDevicePreStockPage()">设备预入库</span>
+        <span class="inner-tab active">设备预入库详情</span>
+      </div>
+      <div class="strategy-subpage-empty"><strong>设备预入库详情</strong><span>未设计</span></div>
+    </section>
+
+    <section id="deviceStockInPage" class="content hidden">
+      <div class="inner-tabs">
+        <span class="inner-tab active">设备入库</span>
+        <span class="inner-tab" onclick="openDeviceStockInDetailPage()">设备入库详情</span>
+      </div>
+      <div class="strategy-subpage-empty"><strong>设备入库</strong><span>未设计</span></div>
+    </section>
+
+    <section id="deviceStockInDetailPage" class="content hidden">
+      <div class="inner-tabs">
+        <span class="inner-tab" onclick="openDeviceStockInPage()">设备入库</span>
+        <span class="inner-tab active">设备入库详情</span>
+      </div>
+      <div class="strategy-subpage-empty"><strong>设备入库详情</strong><span>未设计</span></div>
+    </section>
+
+    <section id="deviceDistributionPage" class="content hidden">
+      <div class="strategy-subpage-empty"><strong>设备分发</strong><span>未设计</span></div>
+    </section>
+
+    <section id="peerTransferPage" class="content hidden">
+      <div class="strategy-subpage-empty"><strong>同级划拨</strong><span>未设计</span></div>
+    </section>
+
+    <section id="deviceShippingPage" class="content hidden">
+      <div class="strategy-subpage-empty"><strong>设备发货</strong><span>未设计</span></div>
+    </section>
+
+    <section id="deviceAfterSalePage" class="content hidden">
+      <div class="strategy-subpage-empty"><strong>设备售后</strong><span>未设计</span></div>
+    </section>
+
+    <section id="deviceGroupPage" class="content hidden">
+      <div class="device-group-tabs" role="tablist" aria-label="设备组管理页面切换">
+        <button type="button" class="device-group-tab active" data-device-group-tab="list" role="tab" aria-selected="true" onclick="switchDeviceGroupTab('list')">设备组列表</button>
+        <button type="button" class="device-group-tab" data-device-group-tab="binding-record" role="tab" aria-selected="false" onclick="switchDeviceGroupTab('binding-record')">设备绑定记录</button>
+        <button type="button" class="device-group-tab" data-device-group-tab="binding-detail" role="tab" aria-selected="false" onclick="switchDeviceGroupTab('binding-detail')">设备绑定详情</button>
+      </div>
+      <div id="deviceGroupListPanel" class="device-group-panel">
+        <div class="system-filter">
+          <input class="input" id="deviceGroupMerchantInput" placeholder="所属商户" oninput="searchDeviceGroupRecords()">
+          <div class="select custom-select" id="deviceGroupStatusFilter" data-value=""><span class="select-value">状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="生效">生效</div><div class="dropdown-option" data-value="失效">失效</div></div></div>
+          <input class="input" id="deviceGroupNameInput" placeholder="设备组名称" oninput="searchDeviceGroupRecords()">
+          <div class="filter-actions"><button class="btn line" onclick="searchDeviceGroupRecords()">搜索</button><button class="btn gray" onclick="resetDeviceGroupRecords()">重置</button></div>
+        </div>
+        <div class="action-row"><button class="btn">创建分组</button><button class="btn line">下载模版</button><button class="btn line">刷新组数量</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="device-group-table">
+            <thead><tr><th>设备组编号</th><th>设备组名称</th><th>所属商户</th><th>是否需要实名</th><th>是否绑定</th><th>优先级</th><th>设备数量</th><th>本月设备总流量</th><th>上个月设备流量</th><th>卡组名称</th><th>设备在线数量</th><th>设备离线数</th><th>是否预充值</th><th>实名后立马生效</th><th>是否虚量</th><th>状态</th><th>限速策略</th><th>切卡策略</th><th>实名策略</th><th class="sticky-action">操作</th></tr></thead>
+            <tbody id="deviceGroupRows">
+            <tr><td>DG202606180001</td><td>华东直营高流量组</td><td>上海智联商贸</td><td>是</td><td>是</td><td>1</td><td>286</td><td>3,482.56GB</td><td>3,126.42GB</td><td>华东移动优先卡组</td><td>251</td><td>35</td><td>是</td><td>是</td><td>否</td><td><span class="device-group-status active">生效</span></td><td>直营高流量限速策略</td><td>移动优先切卡策略</td><td>实名通过策略</td><td class="sticky-action"><span class="text-action">编辑</span><span class="text-action">设备绑定</span><span class="text-action">卡组绑定</span><span class="text-action">设备组详情</span></td></tr>
+            <tr><td>DG202606150008</td><td>旅游渠道设备组</td><td>杭州云旅科技</td><td>是</td><td>是</td><td>2</td><td>164</td><td>1,968.10GB</td><td>1,754.88GB</td><td>旅游渠道三网卡组</td><td>139</td><td>25</td><td>否</td><td>是</td><td>是</td><td><span class="device-group-status active">生效</span></td><td>旅游渠道限速策略</td><td>三网均衡切卡策略</td><td>小程序实名策略</td><td class="sticky-action"><span class="text-action">编辑</span><span class="text-action">设备绑定</span><span class="text-action">卡组绑定</span><span class="text-action">设备组详情</span></td></tr>
+            <tr><td>DG202605300019</td><td>酒店客房备用组</td><td>苏州星河酒店</td><td>否</td><td>是</td><td>4</td><td>92</td><td>624.32GB</td><td>712.04GB</td><td>酒店轻量卡组</td><td>70</td><td>22</td><td>否</td><td>否</td><td>否</td><td><span class="device-group-status active">生效</span></td><td>酒店轻量限速策略</td><td>低流量切卡策略</td><td>免实名策略</td><td class="sticky-action"><span class="text-action">编辑</span><span class="text-action">设备绑定</span><span class="text-action">卡组绑定</span><span class="text-action">设备组详情</span></td></tr>
+            <tr><td>DG202605120006</td><td>物流车载在线组</td><td>南京万联物流</td><td>是</td><td>是</td><td>1</td><td>318</td><td>5,814.73GB</td><td>5,392.21GB</td><td>物流高稳卡组</td><td>302</td><td>16</td><td>是</td><td>是</td><td>否</td><td><span class="device-group-status active">生效</span></td><td>物流高稳限速策略</td><td>电信优先切卡策略</td><td>企业实名策略</td><td class="sticky-action"><span class="text-action">编辑</span><span class="text-action">设备绑定</span><span class="text-action">卡组绑定</span><span class="text-action">设备组详情</span></td></tr>
+            <tr><td>DG202604260011</td><td>华南代理体验组</td><td>广州启明商贸</td><td>是</td><td>否</td><td>5</td><td>48</td><td>188.60GB</td><td>264.18GB</td><td>代理体验卡组</td><td>21</td><td>27</td><td>否</td><td>否</td><td>是</td><td><span class="device-group-status invalid">失效</span></td><td>代理体验限速策略</td><td>默认切卡策略</td><td>小程序实名策略</td><td class="sticky-action"><span class="text-action">编辑</span><span class="text-action">设备绑定</span><span class="text-action">卡组绑定</span><span class="text-action">设备组详情</span></td></tr>
+          </tbody>
+          </table>
+        </div>
+        <div class="pagination" id="deviceGroupPagination">共5条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
+      <div id="deviceGroupBindingRecordPanel" class="device-group-panel hidden">
+        <div class="system-filter">
+          <input class="input" id="deviceGroupBindingBatchInput" placeholder="批次号" oninput="searchDeviceGroupBindingRecords()">
+          <div class="select custom-select" id="deviceGroupBindingTypeFilter" data-value=""><span class="select-value">操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="新增">新增</div><div class="dropdown-option" data-value="删除">删除</div></div></div>
+          <div class="select custom-select" id="deviceGroupBindingResultFilter" data-value=""><span class="select-value">操作状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="处理中">处理中</div><div class="dropdown-option" data-value="失败">失败</div></div></div>
+          <div class="filter-actions"><button class="btn line" onclick="searchDeviceGroupBindingRecords()">搜索</button><button class="btn gray" onclick="resetDeviceGroupBindingRecords()">重置</button></div>
+        </div>
+        <div class="action-row"><button class="btn" onclick="alert('导出任务已生成')">导出</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="device-group-record-table">
+            <thead><tr><th>批次号</th><th>操作类型</th><th>操作结果</th><th>总数</th><th>成功数</th><th>失败数</th><th>操作时间</th><th>操作人</th></tr></thead>
+            <tbody id="deviceGroupBindingRecordRows">
+              <tr><td><span class="batch-task-count-link" onclick="openDeviceGroupBindingDetail(event,'BIND202609130001')">BIND202609130001</span></td><td>新增</td><td><span class="record-status success">成功</span></td><td>128</td><td>128</td><td>0</td><td>2026-09-13 10:24:18</td><td>陈思远</td></tr>
+              <tr><td><span class="batch-task-count-link" onclick="openDeviceGroupBindingDetail(event,'BIND202609130002')">BIND202609130002</span></td><td>删除</td><td><span class="record-status processing">处理中</span></td><td>86</td><td>64</td><td>0</td><td>2026-09-13 09:48:06</td><td>周文博</td></tr>
+              <tr><td><span class="batch-task-count-link" onclick="openDeviceGroupBindingDetail(event,'BIND202609120007')">BIND202609120007</span></td><td>新增</td><td><span class="record-status fail">失败</span></td><td>42</td><td>37</td><td>5</td><td>2026-09-12 17:36:42</td><td>林若安</td></tr>
+              <tr><td><span class="batch-task-count-link" onclick="openDeviceGroupBindingDetail(event,'BIND202609120006')">BIND202609120006</span></td><td>删除</td><td><span class="record-status success">成功</span></td><td>56</td><td>56</td><td>0</td><td>2026-09-12 15:12:27</td><td>陈思远</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination" id="deviceGroupBindingRecordPagination">共4条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
+      <div id="deviceGroupBindingDetailPanel" class="device-group-panel hidden">
+        <div class="system-filter">
+          <input class="input" id="deviceGroupBindingDetailBatchInput" placeholder="批次号" oninput="searchDeviceGroupBindingDetails()">
+          <input class="input" id="deviceGroupBindingDetailSnInput" placeholder="SN" oninput="searchDeviceGroupBindingDetails()">
+          <div class="select custom-select" id="deviceGroupBindingDetailTypeFilter" data-value=""><span class="select-value">操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="新增">新增</div><div class="dropdown-option" data-value="删除">删除</div></div></div>
+          <div class="select custom-select" id="deviceGroupBindingDetailStatusFilter" data-value=""><span class="select-value">操作状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="处理中">处理中</div><div class="dropdown-option" data-value="失败">失败</div></div></div>
+          <div class="device-date-range" id="deviceGroupBindingDetailOperationRange" data-range="deviceGroupBindingDetail" onclick="openUnifiedRangePicker(event,'deviceGroupBindingDetail')">
+            <span class="date-icon"></span><span class="device-date-text" data-part="start">操作开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">操作结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'deviceGroupBindingDetail')"></span>
+            <input id="deviceGroupBindingDetailStartInput" type="hidden"><input id="deviceGroupBindingDetailEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="deviceGroupBindingDetailOperationPanel"></div>
+          </div>
+          <input class="input" id="deviceGroupBindingDetailOperatorInput" placeholder="操作人" oninput="searchDeviceGroupBindingDetails()">
+          <div class="filter-actions new-row"><button class="btn line" onclick="searchDeviceGroupBindingDetails()">搜索</button><button class="btn gray" onclick="resetDeviceGroupBindingDetails()">重置</button></div>
+        </div>
+        <div class="action-row"><button class="btn" onclick="alert('导出任务已生成')">导出</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="device-group-detail-table">
+            <thead><tr><th>批次号</th><th>SN</th><th>操作类型</th><th>操作状态</th><th>失败原因</th><th>操作时间</th><th>操作人</th></tr></thead>
+            <tbody id="deviceGroupBindingDetailRows">
+              <tr><td><span class="work-no-cell"><span>BIND202609130001</span><span class="copy-icon" title="复制批次号" onclick="copyDeviceGroupBindingValue(event,'BIND202609130001')"></span></span></td><td><span class="work-no-cell"><span>MB202600018642</span><span class="copy-icon" title="复制SN" onclick="copyDeviceGroupBindingValue(event,'MB202600018642')"></span></span></td><td>新增</td><td><span class="record-status success">成功</span></td><td></td><td>2026-09-13 10:24:18</td><td>陈思远</td></tr>
+              <tr><td><span class="work-no-cell"><span>BIND202609130001</span><span class="copy-icon" title="复制批次号" onclick="copyDeviceGroupBindingValue(event,'BIND202609130001')"></span></span></td><td><span class="work-no-cell"><span>MB202600018655</span><span class="copy-icon" title="复制SN" onclick="copyDeviceGroupBindingValue(event,'MB202600018655')"></span></span></td><td>新增</td><td><span class="record-status success">成功</span></td><td></td><td>2026-09-13 10:24:18</td><td>陈思远</td></tr>
+              <tr><td><span class="work-no-cell"><span>BIND202609130002</span><span class="copy-icon" title="复制批次号" onclick="copyDeviceGroupBindingValue(event,'BIND202609130002')"></span></span></td><td><span class="work-no-cell"><span>MB202600017903</span><span class="copy-icon" title="复制SN" onclick="copyDeviceGroupBindingValue(event,'MB202600017903')"></span></span></td><td>删除</td><td><span class="record-status processing">处理中</span></td><td></td><td>2026-09-13 09:48:06</td><td>周文博</td></tr>
+              <tr><td><span class="work-no-cell"><span>BIND202609120007</span><span class="copy-icon" title="复制批次号" onclick="copyDeviceGroupBindingValue(event,'BIND202609120007')"></span></span></td><td><span class="work-no-cell"><span>MB202600016721</span><span class="copy-icon" title="复制SN" onclick="copyDeviceGroupBindingValue(event,'MB202600016721')"></span></span></td><td>新增</td><td><span class="record-status fail">失败</span></td><td><span class="device-binding-failure-reason">设备组不存在或 SN 未找到</span></td><td>2026-09-12 17:36:42</td><td>林若安</td></tr>
+              <tr><td><span class="work-no-cell"><span>BIND202609120006</span><span class="copy-icon" title="复制批次号" onclick="copyDeviceGroupBindingValue(event,'BIND202609120006')"></span></span></td><td><span class="work-no-cell"><span>MB202600015488</span><span class="copy-icon" title="复制SN" onclick="copyDeviceGroupBindingValue(event,'MB202600015488')"></span></span></td><td>删除</td><td><span class="record-status success">成功</span></td><td></td><td>2026-09-12 15:12:27</td><td>陈思远</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination" id="deviceGroupBindingDetailPagination">共5条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
     </section>
 
     <section id="devicePage" class="content hidden">
@@ -1365,7 +1738,145 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         </table>
       </div>
     </section>
+
+    <section id="notificationConfigPage" class="content hidden">
+      <div id="notificationConfigReactRoot" class="notification-react-root"></div>
+      <div class="action-row"><button class="btn" onclick="openNotificationConfigEditor('add')">通知配置新增</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="notification-table">
+          <thead><tr><th>通知事件</th><th>通知对象</th><th>通知方式</th><th>是否启用</th><th>更新时间</th><th>更新人</th><th class="sticky-action">操作</th></tr></thead>
+          <tbody id="notificationConfigRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="notificationConfigPagination">共4条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="notificationRecordPage" class="content hidden">
+      <div class="inner-tabs notification-record-tabs">
+        <span class="inner-tab active">通知记录</span>
+        <span class="inner-tab" onclick="switchNotificationRecordTab('detail')">通知明细</span>
+      </div>
+      <div class="notification-filter">
+        <input class="notification-input" id="notificationRecordTaskIdInput" placeholder="任务ID" oninput="searchNotificationRecords()">
+        <div class="select custom-select notification-select" id="notificationRecordEventFilter" data-value=""><span class="select-value">通知事件</span><div class="dropdown-menu"></div></div>
+        <input class="notification-input" id="notificationRecordInitiatorInput" placeholder="任务发起人" oninput="searchNotificationRecords()">
+        <div class="device-date-range" id="notificationRecordDateRange" data-range="notificationRecordDate" onclick="openUnifiedRangePicker(event,'notificationRecordDate')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">触发开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">触发结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'notificationRecordDate')"></span>
+          <input id="notificationRecordDateStartInput" type="hidden"><input id="notificationRecordDateEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="notificationRecordDatePanel"></div>
+        </div>
+        <input class="notification-input" id="notificationRecordNoticeObjectInput" placeholder="通知对象" oninput="searchNotificationRecords()">
+        <input class="notification-input" id="notificationRecordNotificationTimeInput" placeholder="通知时间" oninput="searchNotificationRecords()">
+        <div class="select custom-select notification-select" id="notificationRecordChannelFilter" data-value=""><span class="select-value">通知方式</span><div class="dropdown-menu"></div></div>
+        <div class="select custom-select notification-select" id="notificationRecordResultFilter" data-value=""><span class="select-value">通知结果</span><div class="dropdown-menu"><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="失败">失败</div><div class="dropdown-option" data-value="部分成功">部分成功</div></div></div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchNotificationRecords()">搜索</button><button class="btn gray" onclick="resetNotificationRecords()">重置</button></div>
+      </div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="notification-table">
+          <thead><tr><th>任务ID</th><th>通知事件</th><th>任务发起人</th><th>触发时间</th><th>通知对象</th><th>通知时间</th><th>通知方式</th><th>通知结果</th></tr></thead>
+          <tbody id="notificationRecordRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="notificationRecordPagination">共5条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="notificationRecordDetailPage" class="content hidden">
+      <div class="inner-tabs notification-record-tabs">
+        <span class="inner-tab" onclick="switchNotificationRecordTab('record')">通知记录</span>
+        <span class="inner-tab active">通知明细</span>
+      </div>
+      <div class="notification-filter">
+        <input class="notification-input" id="notificationDetailTaskIdInput" placeholder="任务ID" oninput="searchNotificationDetails()">
+        <div class="select custom-select notification-select" id="notificationDetailEventFilter" data-value=""><span class="select-value">通知事件</span><div class="dropdown-menu"></div></div>
+        <input class="notification-input" id="notificationDetailInitiatorInput" placeholder="任务发起人" oninput="searchNotificationDetails()">
+        <div class="device-date-range" id="notificationDetailDateRange" data-range="notificationDetailDate" onclick="openUnifiedRangePicker(event,'notificationDetailDate')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">触发开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">触发结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'notificationDetailDate')"></span>
+          <input id="notificationDetailDateStartInput" type="hidden"><input id="notificationDetailDateEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="notificationDetailDatePanel"></div>
+        </div>
+        <input class="notification-input" id="notificationDetailNoticeObjectInput" placeholder="通知对象" oninput="searchNotificationDetails()">
+        <input class="notification-input" id="notificationDetailNotificationTimeInput" placeholder="通知时间" oninput="searchNotificationDetails()">
+        <div class="select custom-select notification-select" id="notificationDetailChannelFilter" data-value=""><span class="select-value">通知方式</span><div class="dropdown-menu"></div></div>
+        <div class="select custom-select notification-select" id="notificationDetailStatusFilter" data-value=""><span class="select-value">通知状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="失败">失败</div></div></div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchNotificationDetails()">搜索</button><button class="btn gray" onclick="resetNotificationDetails()">重置</button></div>
+      </div>
+      <div class="action-row"><button class="btn" onclick="alert('通知明细已导出')">导出</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="notification-table">
+          <thead><tr><th>任务ID</th><th>通知事件</th><th>任务发起人</th><th>触发时间</th><th>通知对象</th><th>通知时间</th><th>通知方式</th><th>通知内容</th><th>通知状态</th></tr></thead>
+          <tbody id="notificationDetailRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="notificationDetailPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="notificationConfigEditPage" class="content hidden notification-editor-page">
+      <div id="notificationConfigEditReactRoot" class="notification-react-root"></div>
+      <div class="notification-editor-section">
+        <div class="notification-editor-section-title">基本信息</div>
+        <div class="notification-editor-section-body">
+          <div class="notification-form-row" id="notificationEventRow"><label class="notification-form-label"><span class="req"></span>通知事件</label><div><select class="notification-select" id="notificationEventSelect" onchange="handleNotificationEventChange()"><option value="" disabled hidden>请选择通知事件</option></select><div class="notification-form-error" id="notificationEventError">请选择通知事件</div></div></div>
+        </div>
+      </div>
+      <div class="notification-editor-section">
+        <div class="notification-editor-section-title">通知对象</div>
+        <div class="notification-editor-section-body">
+          <div class="notification-form-row" id="notificationRecipientRow"><label class="notification-form-label"><span class="req"></span>通知对象</label><div>
+            <div class="notification-check-group"><label class="notification-check"><input type="checkbox" id="notificationInitiatorCheck" onchange="updateNotificationContactWarning();renderNotificationTimeControls();renderNotificationSelectedPeople()">任务发起人</label><label class="notification-check"><input type="checkbox" id="notificationTargetCheck" onchange="toggleNotificationTargetObject()">目标对象</label><span class="notification-form-error" id="notificationRecipientError">至少选择一种通知对象</span></div>
+            <div class="notification-target-picker hidden" id="notificationTargetPicker">
+              <button type="button" class="notification-target-select-btn" onclick="openNotificationAccountModal()">目标对象新增</button>
+              <div class="notification-selected-people" id="notificationSelectedPeopleList"><span class="notification-empty">暂未选择目标对象</span></div>
+            </div>
+            <div class="notification-contact-warning" id="notificationContactWarning"></div>
+          </div></div>
+          <div class="notification-form-row" id="notificationTimeRow"><label class="notification-form-label">通知时间</label><div>
+            <div class="notification-time-mode"><label class="notification-check"><input type="radio" name="notificationTimeMode" value="uniform" checked onchange="setNotificationTimeMode('uniform')">统一设置</label><label class="notification-check"><input type="radio" name="notificationTimeMode" value="individual" onchange="setNotificationTimeMode('individual')">单独设置</label></div>
+            <div id="notificationUniformTimePanel" class="notification-time-panel"><input class="notification-input notification-time-input" id="notificationUniformTime" type="time" onchange="notificationUniformTime=this.value"></div>
+            <div id="notificationIndividualTimePanel" class="notification-time-panel hidden"><div id="notificationIndividualTimes"><span class="notification-empty">选择通知对象后配置单独通知时间</span></div></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="notification-editor-section">
+        <div class="notification-editor-section-title">通知方式与内容</div>
+        <div class="notification-editor-section-body">
+          <div class="notification-form-row" id="notificationChannelRow"><label class="notification-form-label"><span class="req"></span>通知方式</label><div><div class="notification-channel-list"><label class="notification-channel-toggle"><input type="checkbox" value="站内通知" onchange="toggleNotificationChannel('station')">站内通知</label><label class="notification-channel-toggle"><input type="checkbox" value="短信" onchange="toggleNotificationChannel('sms')">短信</label><label class="notification-channel-toggle"><input type="checkbox" value="邮件" onchange="toggleNotificationChannel('email')">邮件</label><label class="notification-channel-toggle"><input type="checkbox" value="企业微信" onchange="toggleNotificationChannel('wechat')">企业微信</label></div><div class="notification-form-error">至少选择一种通知方式</div></div></div>
+          <div class="notification-channel-card" id="notificationStationCard"><div class="notification-channel-card-title">站内通知</div><div class="notification-form-row"><label class="notification-form-label">通知标题</label><div><input class="notification-input" id="notificationStationTitle" placeholder="请输入通知标题"><div class="notification-variable-tools" id="notificationStationTitleVariables"></div></div></div><div class="notification-form-row"><label class="notification-form-label">通知正文</label><div><textarea class="notification-textarea" id="notificationStationBody" placeholder="请输入通知正文"></textarea><div class="notification-variable-tools" id="notificationStationBodyVariables"></div></div></div></div>
+          <div class="notification-channel-card" id="notificationSmsCard"><div class="notification-channel-card-title">短信</div><div class="notification-form-row"><label class="notification-form-label">短信模板</label><div><select class="notification-select" id="notificationSmsTemplate" onchange="renderNotificationSmsTemplate()"><option value="">请选择已审核通过的腾讯云短信模板</option><option value="SMS_100021">任务执行结果通知（SMS_100021）</option><option value="SMS_100033">退款处理结果通知（SMS_100033）</option></select><div class="notification-form-error" id="notificationSmsError">请选择短信模板</div></div></div></div>
+          <div class="notification-channel-card" id="notificationEmailCard"><div class="notification-channel-card-title">邮件</div><div class="notification-form-row"><label class="notification-form-label">邮件标题</label><div><input class="notification-input" id="notificationEmailTitle" placeholder="请输入邮件标题"><div class="notification-variable-tools" id="notificationEmailTitleVariables"></div></div></div><div class="notification-form-row"><label class="notification-form-label">邮件正文</label><div><textarea class="notification-textarea" id="notificationEmailBody" placeholder="请输入邮件正文"></textarea><div class="notification-variable-tools" id="notificationEmailBodyVariables"></div></div></div></div>
+          <div class="notification-channel-card" id="notificationWechatCard"><div class="notification-channel-card-title">企业微信</div><div class="notification-form-row"><label class="notification-form-label">消息标题</label><div><input class="notification-input" id="notificationWechatTitle" placeholder="请输入消息标题"><div class="notification-variable-tools" id="notificationWechatTitleVariables"></div></div></div><div class="notification-form-row"><label class="notification-form-label">消息正文</label><div><textarea class="notification-textarea" id="notificationWechatBody" placeholder="请输入消息正文"></textarea><div class="notification-variable-tools" id="notificationWechatBodyVariables"></div></div></div></div>
+        </div>
+      </div>
+      <div class="notification-editor-actions" id="notificationEditorActions"><button class="btn gray" onclick="backNotificationConfigList()">取消</button><button class="btn" onclick="saveNotificationConfig()">保存配置</button></div>
+    </section>
   </main>
+</div>
+
+<div class="modal-mask" id="notificationRecordDetailModalMask">
+  <div class="modal notification-record-detail-modal">
+    <div class="close" onclick="closeNotificationRecordDetail()">×</div>
+    <div class="modal-title">通知记录详情</div>
+    <div class="modal-body" id="notificationRecordDetailBody"></div>
+    <div class="modal-actions"><button class="confirm" onclick="closeNotificationRecordDetail()">关闭</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="notificationAccountModalMask">
+  <div class="modal notification-account-modal">
+    <div class="close" onclick="closeNotificationAccountModal()">×</div>
+    <div class="modal-title">选择目标对象</div>
+    <div class="modal-body notification-account-modal-body">
+      <div class="notification-account-filter">
+        <input class="input" id="notificationAccountMerchantInput" placeholder="商户名称" oninput="searchNotificationAccounts()">
+        <input class="input" id="notificationAccountKeywordInput" placeholder="账号/手机号/姓名" oninput="searchNotificationAccounts()">
+        <div class="filter-actions"><button class="btn line" onclick="searchNotificationAccounts()">搜索</button><button class="btn gray" onclick="resetNotificationAccounts()">重置</button></div>
+      </div>
+      <div class="notification-account-table-wrap">
+        <table class="notification-account-table">
+          <thead><tr><th class="notification-account-check-col">选择</th><th>账号</th><th>手机号</th><th>邮箱</th><th>姓名</th><th>角色</th><th>所属商户</th></tr></thead>
+          <tbody id="notificationAccountRows"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-actions"><button class="cancel" onclick="closeNotificationAccountModal()">取消</button><button class="confirm" onclick="confirmNotificationAccounts()">确认选择</button></div>
+  </div>
 </div>
 
 <div class="modal-mask" id="modalMask">
@@ -1999,6 +2510,104 @@ const systemFieldCenter = [
   {pageName:'限速策略', moduleName:'策略列表', fieldName:'用量限速状态', pageCode:'speed_strategy', fieldCode:'usage_limit_status'},
   {pageName:'限速策略', moduleName:'策略列表', fieldName:'时间段限速状态', pageCode:'speed_strategy', fieldCode:'time_limit_status'}
 ];
+const notificationEvents = [
+  {business:'设备中心', name:'卡流量查询完成', code:'CARD_FLOW_QUERY_DONE', variables:['任务名称','任务编号','任务发起人','查询总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']},
+  {business:'SIM卡中心', name:'批量卡状态查询完成', code:'CARD_STATUS_QUERY_DONE', variables:['任务名称','任务编号','任务发起人','查询总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']},
+  {business:'支付中心', name:'退款处理完成', code:'REFUND_PROCESS_DONE', variables:['任务名称','任务编号','任务发起人','退款总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']},
+  {business:'设备中心', name:'实名信息批量查询完成', code:'REALNAME_BATCH_QUERY_DONE', variables:['任务名称','任务编号','任务发起人','查询总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']}
+];
+const notificationPeople = [
+  {id:'u1',account:'zhangsan',name:'张三',phone:'138****1234',email:'zhangsan@example.com',wechat:'zhangsan',role:'运营专员',merchant:'上海智联商贸'},
+  {id:'u2',account:'lisi',name:'李四',phone:'',email:'lisi@example.com',wechat:'lisi',role:'客服专员',merchant:'杭州云旅科技'},
+  {id:'u3',account:'wangwu',name:'王五',phone:'139****5678',email:'',wechat:'wangwu',role:'财务专员',merchant:'苏州星河酒店'},
+  {id:'u4',account:'zhaoliu',name:'赵六',phone:'137****2468',email:'zhaoliu@example.com',wechat:'',role:'运营主管',merchant:'广州启明商贸'}
+];
+const notificationConfigs = [
+  {id:'NC202609130001',name:'卡流量查询结果通知',business:'设备中心',event:'卡流量查询完成',recipients:{initiator:true,people:['u1','u2']},channels:['站内通知','短信','邮件'],status:'启用',updatedAt:'2026-09-13 16:28:40',updatedBy:'张三',templates:{station:{title:'卡流量查询已完成',body:'{任务名称}已执行完成，本次共处理{查询总数}条数据，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'},sms:{templateId:'SMS_100021',templateName:'任务执行结果通知',mappings:{'{1}':'任务名称','{2}':'成功数量','{3}':'失败数量'}},email:{title:'卡流量查询结果通知',body:'任务{任务名称}已执行完成，执行结果：{执行结果}。',url:''},wechat:{title:'卡流量查询完成',body:'任务{任务名称}已完成，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'}}},
+  {id:'NC202609120008',name:'批量卡状态查询通知',business:'SIM卡中心',event:'批量卡状态查询完成',recipients:{initiator:true,people:['u3']},channels:['站内通知','企业微信'],status:'启用',updatedAt:'2026-09-12 11:36:12',updatedBy:'李四',templates:{station:{title:'批量卡状态查询完成',body:'{任务名称}已完成，{执行结果}。',url:''},sms:{templateId:'',templateName:'',mappings:{}},email:{title:'',body:'',url:''},wechat:{title:'批量卡状态查询完成',body:'{任务名称}已执行完成，请查看任务详情。',url:'{任务详情地址}'}}},
+  {id:'NC202609100003',name:'退款处理通知',business:'支付中心',event:'退款处理完成',recipients:{initiator:true,people:['u4']},channels:['短信','邮件'],status:'停用',updatedAt:'2026-09-10 09:18:26',updatedBy:'王五',templates:{station:{title:'',body:'',url:''},sms:{templateId:'SMS_100033',templateName:'退款处理结果通知',mappings:{'{1}':'成功数量','{2}':'失败数量'}},email:{title:'退款处理完成',body:'{任务名称}已完成，成功{成功数量}笔，失败{失败数量}笔。',url:''},wechat:{title:'',body:'',url:''}}},
+  {id:'NC202609080014',name:'实名查询结果通知',business:'设备中心',event:'实名信息批量查询完成',recipients:{initiator:true,people:['u1','u4']},channels:['站内通知','邮件'],status:'启用',updatedAt:'2026-09-08 14:06:51',updatedBy:'赵六',templates:{station:{title:'实名信息查询完成',body:'{任务名称}已完成，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'},sms:{templateId:'',templateName:'',mappings:{}},email:{title:'实名信息查询结果',body:'查询总数：{查询总数}\n执行结果：{执行结果}',url:''},wechat:{title:'',body:'',url:''}}}
+];
+const notificationRecords = [
+  {id:'NR202609130001',business:'设备中心',event:'卡流量查询完成',taskId:'BT202609130012',taskName:'华东设备流量查询',initiator:'张三',config:'卡流量查询结果通知',noticeCount:3,noticeObject:'任务发起人、张三、李四',notificationTime:'即时通知',channels:['站内通知','短信','邮件'],result:'全部成功',triggeredAt:'2026-09-13 16:30:08',detail:{initiatorAccount:'zhangsan',configStatus:'启用',overall:'全部成功',contents:[{channel:'站内通知',content:'华东设备流量查询已执行完成，本次共处理1000条数据，成功998条，失败2条。'},{channel:'短信',content:'您的华东设备流量查询任务已完成，成功998条，失败2条。'},{channel:'邮件',content:'任务华东设备流量查询已执行完成，执行结果：部分成功。'}],sends:[{person:'张三',channel:'站内通知',account:'张三',content:'华东设备流量查询已执行完成，本次共处理1000条数据，成功998条，失败2条。',status:'成功',sentAt:'2026-09-13 16:30:08',reason:''},{person:'张三',channel:'短信',account:'138****1234',content:'您的华东设备流量查询任务已完成，成功998条，失败2条。',status:'成功',sentAt:'2026-09-13 16:30:09',reason:''},{person:'李四',channel:'邮件',account:'lisi@example.com',content:'任务华东设备流量查询已执行完成，执行结果：部分成功。',status:'成功',sentAt:'2026-09-13 16:30:10',reason:''}]}},
+  {id:'NR202609120002',business:'SIM卡中心',event:'批量卡状态查询完成',taskId:'BT202609120018',taskName:'批量卡状态查询',initiator:'李四',config:'批量卡状态查询通知',noticeCount:3,noticeObject:'任务发起人、李四、王五',notificationTime:'统一设置 09:00',channels:['站内通知','企业微信'],result:'部分成功',triggeredAt:'2026-09-12 11:42:17',detail:{initiatorAccount:'lisi',configStatus:'启用',overall:'部分成功',contents:[{channel:'站内通知',content:'批量卡状态查询已完成，成功86条，失败4条。'},{channel:'企业微信',content:'批量卡状态查询已执行完成，请查看任务详情。'}],sends:[{person:'李四',channel:'站内通知',account:'李四',content:'批量卡状态查询已完成，成功86条，失败4条。',status:'成功',sentAt:'2026-09-12 11:42:17',reason:''},{person:'李四',channel:'企业微信',account:'lisi',content:'批量卡状态查询已执行完成，请查看任务详情。',status:'失败',sentAt:'2026-09-12 11:42:18',reason:'企业微信接口调用失败'},{person:'王五',channel:'企业微信',account:'wangwu',content:'批量卡状态查询已执行完成，请查看任务详情。',status:'成功',sentAt:'2026-09-12 11:42:18',reason:''}]}},
+  {id:'NR202609100003',business:'支付中心',event:'退款处理完成',taskId:'RF202609100006',taskName:'退款批量处理',initiator:'王五',config:'退款处理通知',noticeCount:2,noticeObject:'任务发起人、王五',notificationTime:'单独设置',channels:['短信','邮件'],result:'全部失败',triggeredAt:'2026-09-10 09:22:41',detail:{initiatorAccount:'wangwu',configStatus:'启用',overall:'全部失败',contents:[{channel:'短信',content:'',reason:'缺少必要业务变量：成功数量'},{channel:'邮件',content:'',reason:'缺少必要业务变量：成功数量'}],sends:[{person:'王五',channel:'短信',account:'139****5678',content:'',status:'失败',sentAt:'2026-09-10 09:22:41',reason:'缺少必要业务变量：成功数量'},{person:'王五',channel:'邮件',account:'',content:'',status:'未发送',sentAt:'',reason:'未配置邮箱'}]}},
+  {id:'NR202609080004',business:'支付中心',event:'退款处理完成',taskId:'RF202609080022',taskName:'退款处理',initiator:'王五',config:'退款处理通知',noticeCount:0,noticeObject:'无',notificationTime:'即时通知',channels:['短信','邮件'],result:'未发送',triggeredAt:'2026-09-08 14:10:06',detail:{initiatorAccount:'wangwu',configStatus:'停用',overall:'未发送',notSentReason:'通知配置已停用',contents:[],sends:[]}},
+  {id:'NR202609070005',business:'设备中心',event:'实名信息批量查询完成',taskId:'BT202609070009',taskName:'客户实名信息查询',initiator:'赵六',config:'实名查询结果通知',noticeCount:2,noticeObject:'任务发起人、赵六',notificationTime:'统一设置 10:00',channels:['站内通知','邮件'],result:'部分成功',triggeredAt:'2026-09-07 10:06:32',detail:{initiatorAccount:'zhaoliu',configStatus:'启用',overall:'部分成功',contents:[{channel:'站内通知',content:'客户实名信息查询已完成，成功58条，失败2条。'},{channel:'邮件',content:'客户实名信息查询已完成，成功58条，失败2条。'}],sends:[{person:'赵六',channel:'站内通知',account:'赵六',content:'客户实名信息查询已完成，成功58条，失败2条。',status:'成功',sentAt:'2026-09-07 10:06:33',reason:''},{person:'赵六',channel:'邮件',account:'',content:'',status:'未发送',sentAt:'',reason:'未配置邮箱'}]}}
+];
+const notificationResultOverrides = {
+  NR202609130001:{result:'成功'},
+  NR202609120002:{result:'部分成功',reason:'企业微信接口调用失败'},
+  NR202609100003:{result:'失败',reason:'缺少必要业务变量：成功数量'},
+  NR202609080004:{result:'失败',reason:'通知配置已停用'},
+  NR202609070005:{result:'部分成功',reason:'接收人未配置邮箱'}
+};
+notificationRecords.forEach(item => {
+  if(!item.noticeObject || item.noticeObject === '无'){item.noticeObject = '任务发起人';item.noticeCount = item.noticeCount || 1}
+  const override = notificationResultOverrides[item.id];
+  if(!override){return}
+  item.result = override.result;
+  item.failureReason = override.reason || '';
+  if(item.detail){item.detail.overall = override.result}
+});
+const topbarMessages = [
+  {id:'MSG202609150001',title:'批量任务已完成',content:'设备批量查询任务 BT202609150012 已完成，成功 128 条，失败 2 条。',time:'2026-09-15 10:24',unread:true},
+  {id:'MSG202609150002',title:'退款处理提醒',content:'退款批次 RF202609150006 有 3 笔记录待处理，请及时查看。',time:'2026-09-15 09:48',unread:true},
+  {id:'MSG202609140003',title:'设备返厂检测结果',content:'设备返厂批次 RF202609140021 检测完成，存在 1 条失败记录。',time:'2026-09-14 18:12',unread:true},
+  {id:'MSG202609140004',title:'实名信息同步完成',content:'设备 MBB202605290001 的实名认证状态已完成同步。',time:'2026-09-14 15:36',unread:false},
+  {id:'MSG202609130005',title:'活动发货提醒',content:'感恩回馈活动有 2 条记录待编辑发货信息。',time:'2026-09-13 11:08',unread:false}
+];
+function renderMessageNotifications(){
+  const list = document.getElementById('messageNotificationList');
+  const badge = document.getElementById('messageNotificationBadge');
+  const count = document.getElementById('messageNotificationCount');
+  if(!list){return}
+  const unreadCount = topbarMessages.filter(message => message.unread).length;
+  if(badge){
+    badge.textContent = unreadCount > 99 ? '99+' : String(unreadCount);
+    badge.classList.toggle('hidden', unreadCount === 0);
+  }
+  if(count){count.textContent = `共${topbarMessages.length}条消息`}
+  list.innerHTML = topbarMessages.map(message => `
+    <div class="message-item${message.unread ? ' unread' : ''}" onclick="openMessageTaskPage('${message.id}')" role="button" tabindex="0">
+      <div class="message-item-head"><span class="message-item-title">${escapeHtml(message.title)}</span><span class="message-item-time">${escapeHtml(message.time)}</span></div>
+      <div class="message-item-content">${escapeHtml(message.content)}</div>
+    </div>
+  `).join('');
+}
+function toggleMessageNotification(event){
+  if(event){event.stopPropagation()}
+  const root = document.getElementById('messageNotification');
+  const trigger = root ? root.querySelector('.message-notification-trigger') : null;
+  if(!root){return}
+  const open = !root.classList.contains('open');
+  root.classList.toggle('open',open);
+  if(trigger){trigger.setAttribute('aria-expanded',open ? 'true' : 'false')}
+}
+function closeMessageNotification(){
+  const root = document.getElementById('messageNotification');
+  const trigger = root ? root.querySelector('.message-notification-trigger') : null;
+  if(root){root.classList.remove('open')}
+  if(trigger){trigger.setAttribute('aria-expanded','false')}
+}
+function markMessageRead(id){
+  const message = topbarMessages.find(item => item.id === id);
+  if(message){message.unread = false}
+  renderMessageNotifications();
+}
+function openMessageTaskPage(id){
+  markMessageRead(id);
+  closeMessageNotification();
+  showPage('task');
+}
+function markAllMessagesRead(){
+  topbarMessages.forEach(message => {message.unread = false});
+  renderMessageNotifications();
+}
+document.addEventListener('click', event => {
+  const root = document.getElementById('messageNotification');
+  if(root && !root.contains(event.target)){closeMessageNotification()}
+});
 const fieldVersionData = [
   {
     pageName:'数据看板',
@@ -2068,23 +2677,33 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {home:'首页', device:'设备管理', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', workOrder:'换货/补发工单', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情'};
+const pageTitles = {home:'首页', device:'设备管理', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationConfig:'通知配置', notificationRecord:'通知记录', notificationRecordDetail:'通知明细', notificationConfigEdit:'通知配置编辑'};
 let openTabs = [];
 let activePage = '';
 let currentDetailBatch = '';
 let currentDeviceSn = '';
 let currentSimIccid = '';
+let currentNotificationDetailTaskId = '';
 let deviceDetailReturnPage = 'flow';
 let currentDeviceDetailTab = 'overview';
 let deviceFiltersCollapsed = false;
 let currentSpeedRecordTab = 'card';
 let currentStrategySubpage = 'policy';
 let currentAuthManageTab = 'config';
+let currentDeviceGroupTab = 'list';
 let flowDateMode = 'day';
 let currentFactoryReturnBatch = factoryReturnData[0].batchNo;
 let currentActivityId = activityCenterData[0].id;
 let currentShippingEditIndex = null;
 let currentBatchTaskId = batchTaskData[0].id;
+let notificationEditorMode = 'add';
+let notificationEditingIndex = -1;
+let notificationSmsMappingState = {};
+let notificationSelectedPeopleIds = [];
+let notificationAccountTempSelection = [];
+let notificationScheduleMode = 'uniform';
+let notificationUniformTime = '';
+let notificationIndividualTimes = {};
 const datePickerState = {viewDate:new Date(2026,4,1), start:'', end:''};
 const deviceRangeState = {
   service:{viewDate:new Date(2026,4,1), start:'', end:'', startId:'deviceServiceStartInput', endId:'deviceServiceEndInput', rangeId:'deviceServiceRange', panelId:'deviceServicePanel', startPlaceholder:'服务开始日期', endPlaceholder:'服务结束日期'},
@@ -2170,12 +2789,86 @@ function showPage(type){
     type = 'config';
   }else if(type === 'config'){
     currentAuthManageTab = 'config';
+  }else if(type === 'deviceGroup'){
+    currentDeviceGroupTab = 'list';
   }
   ensureTab(type);
   activateTab(type);
 }
+function switchNotificationRecordTab(tab){
+  if(tab === 'detail'){
+    openNotificationDetailPage(currentNotificationDetailTaskId);
+  }else{
+    showPage('notificationRecord');
+  }
+}
+function openNotificationDetailPage(taskId){
+  currentNotificationDetailTaskId = taskId || '';
+  ensureTab('notificationRecord');
+  activePage = 'notificationRecord';
+  applyPageState('notificationRecordDetail');
+  renderTabs();
+}
 function openFactoryReturnPage(){
   showPage('factoryReturn');
+}
+function openDevicePreStockPage(){
+  showPage('devicePreStock');
+}
+function openDevicePreStockDetailPage(){
+  ensureTab('devicePreStock');
+  activePage = 'devicePreStock';
+  applyPageState('devicePreStockDetail');
+  renderTabs();
+}
+function openDeviceStockInPage(){
+  showPage('deviceStockIn');
+}
+function openDeviceStockInDetailPage(){
+  ensureTab('deviceStockIn');
+  activePage = 'deviceStockIn';
+  applyPageState('deviceStockInDetail');
+  renderTabs();
+}
+function switchDeviceGroupTab(tab){
+  currentDeviceGroupTab = tab;
+  document.querySelectorAll('[data-device-group-tab]').forEach(button => {
+    const active = button.dataset.deviceGroupTab === tab;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  document.getElementById('deviceGroupListPanel').classList.toggle('hidden', tab !== 'list');
+  document.getElementById('deviceGroupBindingRecordPanel').classList.toggle('hidden', tab !== 'binding-record');
+  document.getElementById('deviceGroupBindingDetailPanel').classList.toggle('hidden', tab !== 'binding-detail');
+  if(tab === 'binding-record'){
+    searchDeviceGroupBindingRecords();
+  }else if(tab === 'binding-detail'){
+    searchDeviceGroupBindingDetails();
+  }
+}
+function openDeviceGroupBindingDetail(event,batchNo){
+  if(event){event.stopPropagation()}
+  const input = document.getElementById('deviceGroupBindingDetailBatchInput');
+  if(input){input.value = batchNo || ''}
+  switchDeviceGroupTab('binding-detail');
+  searchDeviceGroupBindingDetails();
+}
+function copyDeviceGroupBindingValue(event,value){
+  if(event){event.stopPropagation()}
+  const text = String(value || '');
+  if(!text){return}
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text);
+    return;
+  }
+  const input = document.createElement('textarea');
+  input.value = text;
+  input.style.position = 'fixed';
+  input.style.opacity = '0';
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
 }
 function openFieldVersionPage(){
   fieldVersionViewMode = 'list';
@@ -2206,6 +2899,8 @@ function activateTab(type){
   closeFieldVersionContentModal();
   closeFieldVersionCompareModal();
   closeShippingInfoModal();
+  closeNotificationRecordDetail();
+  closeNotificationAccountModal();
 }
 function closeTab(event,type){
   event.stopPropagation();
@@ -2231,6 +2926,15 @@ function applyPageState(type){
   document.getElementById('configPage').classList.toggle('hidden', type !== 'config');
   document.getElementById('detailPage').classList.toggle('hidden', type !== 'detail');
   document.getElementById('flowPage').classList.toggle('hidden', type !== 'flow');
+  document.getElementById('devicePreStockPage').classList.toggle('hidden', type !== 'devicePreStock');
+  document.getElementById('devicePreStockDetailPage').classList.toggle('hidden', type !== 'devicePreStockDetail');
+  document.getElementById('deviceStockInPage').classList.toggle('hidden', type !== 'deviceStockIn');
+  document.getElementById('deviceStockInDetailPage').classList.toggle('hidden', type !== 'deviceStockInDetail');
+  document.getElementById('deviceDistributionPage').classList.toggle('hidden', type !== 'deviceDistribution');
+  document.getElementById('peerTransferPage').classList.toggle('hidden', type !== 'peerTransfer');
+  document.getElementById('deviceShippingPage').classList.toggle('hidden', type !== 'deviceShipping');
+  document.getElementById('deviceAfterSalePage').classList.toggle('hidden', type !== 'deviceAfterSale');
+  document.getElementById('deviceGroupPage').classList.toggle('hidden', type !== 'deviceGroup');
   document.getElementById('orderPage').classList.toggle('hidden', type !== 'order');
   document.getElementById('refundPage').classList.toggle('hidden', type !== 'refund');
   document.getElementById('refundManagePage').classList.toggle('hidden', type !== 'refundManage');
@@ -2250,10 +2954,21 @@ function applyPageState(type){
   document.getElementById('fieldVersionPage').classList.toggle('hidden', !['fieldVersion','fieldVersionEdit'].includes(type));
   document.getElementById('deviceDetailPage').classList.toggle('hidden', type !== 'deviceDetail');
   document.getElementById('simDetailPage').classList.toggle('hidden', type !== 'simDetail');
+  document.getElementById('notificationConfigPage').classList.toggle('hidden', type !== 'notificationConfig');
+  document.getElementById('notificationRecordPage').classList.toggle('hidden', type !== 'notificationRecord');
+  document.getElementById('notificationRecordDetailPage').classList.toggle('hidden', type !== 'notificationRecordDetail');
+  document.getElementById('notificationConfigEditPage').classList.toggle('hidden', type !== 'notificationConfigEdit');
   document.getElementById('menuHome').classList.toggle('active', type === 'home');
   document.getElementById('menuDeviceManage').classList.toggle('active', type === 'device');
   document.getElementById('menuConfig').classList.toggle('active', type === 'config');
   document.getElementById('menuFlow').classList.toggle('active', type === 'flow');
+  document.getElementById('menuDevicePreStock').classList.toggle('active', ['devicePreStock','devicePreStockDetail'].includes(type));
+  document.getElementById('menuDeviceStockIn').classList.toggle('active', ['deviceStockIn','deviceStockInDetail'].includes(type));
+  document.getElementById('menuDeviceDistribution').classList.toggle('active', type === 'deviceDistribution');
+  document.getElementById('menuPeerTransfer').classList.toggle('active', type === 'peerTransfer');
+  document.getElementById('menuDeviceShipping').classList.toggle('active', type === 'deviceShipping');
+  document.getElementById('menuDeviceAfterSale').classList.toggle('active', type === 'deviceAfterSale');
+  document.getElementById('menuDeviceGroup').classList.toggle('active', type === 'deviceGroup');
   document.getElementById('menuOrder').classList.toggle('active', type === 'order');
   document.getElementById('menuRefund').classList.toggle('active', type === 'refund');
   document.getElementById('menuRefundManage').classList.toggle('active', type === 'refundManage');
@@ -2267,6 +2982,8 @@ function applyPageState(type){
   document.getElementById('menuBatchTask').classList.toggle('active', ['task','batchTaskDetail'].includes(type));
   document.getElementById('menuNetworkLog').classList.toggle('active', type === 'networkLog');
   document.getElementById('menuFieldVersion').classList.toggle('active', ['fieldVersion','fieldVersionEdit'].includes(type));
+  document.getElementById('menuNotificationConfig').classList.toggle('active', ['notificationConfig','notificationConfigEdit'].includes(type));
+  document.getElementById('menuNotificationRecord').classList.toggle('active', ['notificationRecord','notificationRecordDetail'].includes(type));
   if(type === 'home'){
     setActiveBatch('');
     setActiveDeviceSn('');
@@ -2289,6 +3006,20 @@ function applyPageState(type){
   }else if(type === 'flow'){
     searchDeviceFlowRecords();
     setActiveDeviceSn(currentDeviceSn);
+  }else if(['devicePreStock','devicePreStockDetail','deviceStockIn','deviceStockInDetail','deviceDistribution','peerTransfer','deviceShipping','deviceAfterSale'].includes(type)){
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'deviceGroup'){
+    switchDeviceGroupTab(currentDeviceGroupTab);
+    if(currentDeviceGroupTab === 'binding-record'){
+      searchDeviceGroupBindingRecords();
+    }else if(currentDeviceGroupTab === 'binding-detail'){
+      searchDeviceGroupBindingDetails();
+    }else{
+      searchDeviceGroupRecords();
+    }
+    setActiveBatch('');
+    setActiveDeviceSn('');
   }else if(type === 'order'){
     searchOrderRecords();
     setActiveBatch('');
@@ -2371,11 +3102,512 @@ function applyPageState(type){
     renderSimDetail(currentSimIccid);
     setActiveBatch('');
     setActiveDeviceSn('');
+  }else if(type === 'notificationConfig'){
+    if(window.NotificationCenterReact){window.NotificationCenterReact.render('config')}else{renderNotificationConfigList()}
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'notificationRecord'){
+    initNotificationRecordFilters();
+    searchNotificationRecords();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'notificationRecordDetail'){
+    initNotificationRecordFilters();
+    searchNotificationDetails();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'notificationConfigEdit'){
+    if(window.NotificationCenterReact){window.NotificationCenterReact.render('edit')}else{renderNotificationEditor()}
+    setActiveBatch('');
+    setActiveDeviceSn('');
   }else{
     setActiveBatch('');
     setActiveDeviceSn('');
   }
   if(window.PageDocumentation){window.PageDocumentation.setPage(type)}
+}
+function notificationEventByName(name){
+  return notificationEvents.find(item => item.name === name) || null;
+}
+function notificationMethodTags(methods){
+  return (methods || []).map(method => `<span class="notification-method-tag">${escapeHtml(method)}</span>`).join('');
+}
+function notificationStatusTag(status){
+  const className = status === '启用' ? 'enabled' : 'disabled';
+  return `<span class="notification-status ${className}">${escapeHtml(status)}</span>`;
+}
+function notificationResultTag(result){
+  const normalized = result === '成功' ? '成功' : result === '部分成功' ? '部分成功' : '失败';
+  const className = normalized === '成功' ? 'success' : normalized === '部分成功' ? 'partial' : 'failed';
+  return `<span class="notification-result ${className}">${normalized}</span>`;
+}
+function notificationFailureReason(item){
+  if(!item){return '通知发送失败'}
+  if(item.failureReason){return item.failureReason}
+  if(item.detail && item.detail.notSentReason){return item.detail.notSentReason}
+  const reason = (item.detail && item.detail.sends || []).map(send => send.reason).find(Boolean);
+  return reason || '通知发送失败';
+}
+function notificationResultCell(item){
+  const result = item && item.result === '成功' ? '成功' : item && item.result === '部分成功' ? '部分成功' : '失败';
+  return notificationResultTag(result);
+}
+function notificationDetailStatusCell(row){
+  const status = row && row.status === '成功' ? '成功' : '失败';
+  if(status === '成功'){return notificationResultTag(status)}
+  const reason = row && row.reason || '通知发送失败';
+  return `<span class="notification-result-cell"><span class="notification-result failed">失败</span><span class="notification-failure-icon" aria-label="失败原因"><span class="notification-failure-tip">${escapeHtml(reason)}</span></span></span>`;
+}
+function notificationContentText(item){
+  const contents = item && item.detail && item.detail.contents || [];
+  const text = contents.map(entry => `${entry.channel}：${entry.content || entry.reason || '未生成实际发送内容'}`).join('；');
+  return text || (item && item.detail && item.detail.notSentReason) || (item && item.result === '失败' ? notificationFailureReason(item) : '');
+}
+function notificationRecipientLabel(recipients){
+  const names = [];
+  if(recipients && recipients.initiator){names.push('任务发起人')}
+  (recipients && recipients.people || []).forEach(id => {
+    const person = notificationPeople.find(item => item.id === id);
+    if(person){names.push(person.name)}
+  });
+  return names.join('、') || '未配置';
+}
+function renderNotificationConfigList(){
+  const rows = document.getElementById('notificationConfigRows');
+  if(!rows){return}
+  rows.innerHTML = notificationConfigs.map((item,index) => `<tr>
+    <td>${escapeHtml(item.event)}</td><td>${escapeHtml(notificationRecipientLabel(item.recipients))}</td>
+    <td><div class="notification-methods">${notificationMethodTags(item.channels)}</div></td><td><span class="switch-toggle${item.status === '启用' ? ' on' : ''}" role="switch" aria-checked="${item.status === '启用' ? 'true' : 'false'}" onclick="toggleNotificationConfig(${index})"></span></td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.updatedBy)}</td>
+    <td class="sticky-action"><span class="notification-action-list"><span class="text-action" onclick="openNotificationConfigEditor('view',${index})">查看</span><span class="text-action" onclick="openNotificationConfigEditor('edit',${index})">编辑</span></span></td>
+  </tr>`).join('');
+  updatePagination('notificationConfigPagination',notificationConfigs.length);
+}
+function toggleNotificationConfig(index){
+  const item = notificationConfigs[index];
+  if(!item){return}
+  item.status = item.status === '启用' ? '停用' : '启用';
+  item.updatedAt = '2026-09-14 10:24:18';
+  item.updatedBy = '当前用户';
+  renderNotificationConfigList();
+  alert(`通知配置已${item.status}`);
+}
+function populateNotificationEventOptions(business,selected){
+  const select = document.getElementById('notificationEventSelect');
+  if(!select){return}
+  select.innerHTML = '<option value="" disabled hidden>请选择通知事件</option>' + notificationEvents.map(item => `<option value="${escapeHtml(item.name)}">${escapeHtml(item.name)}</option>`).join('');
+  select.value = selected || '';
+}
+function clearNotificationFieldError(rowId){
+  const row = document.getElementById(rowId);
+  if(row){row.classList.remove('invalid')}
+}
+function handleNotificationEventChange(){
+  renderNotificationEventVariables();
+  if(selectedNotificationChannels().includes('短信')){renderNotificationSmsTemplate()}
+  clearNotificationFieldError('notificationEventRow');
+}
+function renderNotificationEventVariables(){
+  const node = document.getElementById('notificationEventVariables');
+  const event = notificationEventByName(document.getElementById('notificationEventSelect').value);
+  if(node){node.innerHTML = event ? `<strong>当前通知事件可用变量：</strong> ${event.variables.map(variable => `<span>{${escapeHtml(variable)}}</span>`).join('、')}` : ''}
+  const targetMap = {
+    notificationStationTitleVariables:'notificationStationTitle',notificationStationBodyVariables:'notificationStationBody',
+    notificationEmailTitleVariables:'notificationEmailTitle',notificationEmailBodyVariables:'notificationEmailBody',
+    notificationWechatTitleVariables:'notificationWechatTitle',notificationWechatBodyVariables:'notificationWechatBody'
+  };
+  Object.entries(targetMap).forEach(([toolsId,targetId]) => {
+    const tools = document.getElementById(toolsId);
+    if(!tools){return}
+    tools.innerHTML = event ? event.variables.map(variable => `<button type="button" class="notification-variable-btn" onclick="insertNotificationVariable('${targetId}','${escapeHtml(variable)}')">+ ${escapeHtml(variable)}</button>`).join('') : '';
+  });
+}
+function insertNotificationVariable(targetId,variable){
+  const target = document.getElementById(targetId);
+  if(!target || target.disabled){return}
+  const token = `{${variable}}`;
+  const start = typeof target.selectionStart === 'number' ? target.selectionStart : target.value.length;
+  const end = typeof target.selectionEnd === 'number' ? target.selectionEnd : target.value.length;
+  target.value = target.value.slice(0,start) + token + target.value.slice(end);
+  target.focus();
+  target.setSelectionRange(start + token.length,start + token.length);
+}
+function selectedNotificationChannels(){
+  return Array.from(document.querySelectorAll('.notification-channel-list input:checked')).map(input => input.value);
+}
+function toggleNotificationChannel(channel){
+  const checkbox = document.querySelector(`.notification-channel-list input[value="${channel === 'station' ? '站内通知' : channel === 'sms' ? '短信' : channel === 'email' ? '邮件' : '企业微信'}"]`);
+  const card = document.getElementById(`notification${channel.charAt(0).toUpperCase() + channel.slice(1)}Card`);
+  if(card){card.classList.toggle('active',Boolean(checkbox && checkbox.checked))}
+  clearNotificationFieldError('notificationChannelRow');
+  updateNotificationContactWarning();
+}
+function selectedNotificationPeople(){
+  return notificationSelectedPeopleIds.slice();
+}
+function notificationPersonById(id){
+  return notificationPeople.find(person => person.id === id) || null;
+}
+function renderNotificationSelectedPeople(){
+  const list = document.getElementById('notificationSelectedPeopleList');
+  const people = notificationSelectedPeople().map(notificationPersonById).filter(Boolean);
+  if(list){list.innerHTML = people.length ? people.map(person => '<span class="notification-selected-person">' + escapeHtml(person.name) + '（' + escapeHtml(person.account) + '）<button type="button" class="remove" title="移除目标对象" onclick="removeNotificationTarget(&quot;' + person.id + '&quot;)">×</button></span>').join('') : '<span class="notification-empty">暂未选择目标对象</span>'}
+}
+function removeNotificationTarget(id){
+  notificationSelectedPeopleIds = notificationSelectedPeopleIds.filter(item => item !== id);
+  notificationAccountTempSelection = notificationSelectedPeopleIds.slice();
+  renderNotificationSelectedPeople();
+  renderNotificationTimeControls();
+  updateNotificationContactWarning();
+}
+function toggleNotificationTargetObject(){
+  const checked = document.getElementById('notificationTargetCheck').checked;
+  document.getElementById('notificationTargetPicker').classList.toggle('hidden',!checked);
+  if(!checked){
+    notificationSelectedPeopleIds = [];
+    notificationAccountTempSelection = [];
+  }
+  renderNotificationSelectedPeople();
+  renderNotificationTimeControls();
+  updateNotificationContactWarning();
+  clearNotificationFieldError('notificationRecipientRow');
+}
+function notificationRecipientTimeItems(){
+  const items = [];
+  if(document.getElementById('notificationInitiatorCheck') && document.getElementById('notificationInitiatorCheck').checked){items.push({id:'initiator',label:'任务发起人'})}
+  notificationSelectedPeople().map(notificationPersonById).filter(Boolean).forEach(person => items.push({id:person.id,label:person.name + '（' + person.account + '）'}));
+  return items;
+}
+function renderNotificationTimeControls(){
+  const uniformPanel = document.getElementById('notificationUniformTimePanel');
+  const individualPanel = document.getElementById('notificationIndividualTimePanel');
+  const uniformInput = document.getElementById('notificationUniformTime');
+  if(!uniformPanel || !individualPanel || !uniformInput){return}
+  uniformInput.value = notificationUniformTime || '';
+  uniformPanel.classList.toggle('hidden',notificationScheduleMode !== 'uniform');
+  individualPanel.classList.toggle('hidden',notificationScheduleMode !== 'individual');
+  if(notificationScheduleMode !== 'individual'){return}
+  const target = document.getElementById('notificationIndividualTimes');
+  const items = notificationRecipientTimeItems();
+  if(!items.length){target.innerHTML = '<span class="notification-empty">选择通知对象后配置单独通知时间</span>';return}
+  target.innerHTML = '<div class="notification-individual-time-list">' + items.map(item => '<div class="notification-individual-time-row"><span class="notification-individual-time-label">' + escapeHtml(item.label) + '</span><input class="notification-input notification-time-input" type="time" value="' + escapeHtml(notificationIndividualTimes[item.id] || '') + '" data-recipient-id="' + escapeHtml(item.id) + '" onchange="setNotificationIndividualTime(this.dataset.recipientId,this.value)"></div>').join('') + '</div>';
+}
+function setNotificationTimeMode(mode){
+  notificationScheduleMode = mode === 'individual' ? 'individual' : 'uniform';
+  renderNotificationTimeControls();
+}
+function setNotificationIndividualTime(id,value){
+  notificationIndividualTimes[id] = value;
+}
+function openNotificationAccountModal(){
+  const targetCheck = document.getElementById('notificationTargetCheck');
+  if(!targetCheck || !targetCheck.checked){return}
+  notificationAccountTempSelection = notificationSelectedPeopleIds.slice();
+  document.getElementById('notificationAccountMerchantInput').value = '';
+  document.getElementById('notificationAccountKeywordInput').value = '';
+  searchNotificationAccounts();
+  document.getElementById('notificationAccountModalMask').style.display = 'flex';
+}
+function renderNotificationAccountRows(){
+  const merchant = document.getElementById('notificationAccountMerchantInput').value.trim().toLowerCase();
+  const keyword = document.getElementById('notificationAccountKeywordInput').value.trim().toLowerCase();
+  const rows = notificationPeople.filter(person => (!merchant || person.merchant.toLowerCase().includes(merchant)) && (!keyword || [person.account,person.phone,person.name].some(value => value.toLowerCase().includes(keyword))));
+  const body = document.getElementById('notificationAccountRows');
+  body.innerHTML = rows.length ? rows.map(person => '<tr><td><input type="checkbox" ' + (notificationAccountTempSelection.includes(person.id) ? 'checked' : '') + ' aria-label="选择' + escapeHtml(person.name) + '" onchange="toggleNotificationAccountSelection(&quot;' + person.id + '&quot;,this.checked)"></td><td>' + escapeHtml(person.account) + '</td><td>' + escapeHtml(person.phone || '--') + '</td><td>' + escapeHtml(person.email || '--') + '</td><td>' + escapeHtml(person.name) + '</td><td>' + escapeHtml(person.role) + '</td><td>' + escapeHtml(person.merchant) + '</td></tr>').join('') : '<tr><td colspan="7" class="notification-empty">暂无账号数据</td></tr>';
+}
+function toggleNotificationAccountSelection(id,checked){
+  if(checked && !notificationAccountTempSelection.includes(id)){notificationAccountTempSelection.push(id)}
+  if(!checked){notificationAccountTempSelection = notificationAccountTempSelection.filter(item => item !== id)}
+}
+function searchNotificationAccounts(){
+  renderNotificationAccountRows();
+}
+function resetNotificationAccounts(){
+  document.getElementById('notificationAccountMerchantInput').value = '';
+  document.getElementById('notificationAccountKeywordInput').value = '';
+  searchNotificationAccounts();
+}
+function confirmNotificationAccounts(){
+  notificationSelectedPeopleIds = notificationAccountTempSelection.slice();
+  renderNotificationSelectedPeople();
+  renderNotificationTimeControls();
+  updateNotificationContactWarning();
+  closeNotificationAccountModal();
+}
+function closeNotificationAccountModal(){
+  document.getElementById('notificationAccountModalMask').style.display = 'none';
+}
+function updateNotificationContactWarning(){
+  const warning = document.getElementById('notificationContactWarning');
+  if(!warning){return}
+  const channels = selectedNotificationChannels();
+  const people = selectedNotificationPeople().map(id => notificationPeople.find(person => person.id === id)).filter(Boolean);
+  const missing = [];
+  people.forEach(person => {
+    if(channels.includes('短信') && !person.phone){missing.push(`${person.name}未配置手机号，无法通过短信接收通知`)}
+    if(channels.includes('邮件') && !person.email){missing.push(`${person.name}未配置邮箱，无法通过邮件接收通知`)}
+    if(channels.includes('企业微信') && !person.wechat){missing.push(`${person.name}未配置企业微信账号，无法通过企业微信接收通知`)}
+  });
+  warning.innerHTML = missing.length ? missing.join('；') : '';
+  warning.style.display = missing.length ? 'block' : 'none';
+}
+function renderNotificationSmsTemplate(){
+  const select = document.getElementById('notificationSmsTemplate');
+  const preview = document.getElementById('notificationSmsPreview');
+  const mappings = document.getElementById('notificationSmsMappings');
+  if(!select){return}
+  if(!preview || !mappings){return}
+  const template = select.value;
+  const templateData = template === 'SMS_100033' ? {body:'您的退款处理结果：成功{1}笔，失败{2}笔。',variables:['{1}','{2}']} : template === 'SMS_100021' ? {body:'您的{1}任务已执行完成，成功{2}条，失败{3}条。',variables:['{1}','{2}','{3}']} : null;
+  if(!templateData){preview.textContent = '请选择短信模板';mappings.innerHTML = '<span class="notification-empty">选择短信模板后配置变量映射</span>';return}
+  preview.innerHTML = `<strong>${escapeHtml(template)}</strong><br>${escapeHtml(templateData.body)}<br>模板变量：${templateData.variables.join('、')}`;
+  const event = notificationEventByName(document.getElementById('notificationEventSelect').value);
+  const options = event ? event.variables : [];
+  mappings.innerHTML = templateData.variables.map(variable => `<div class="notification-sms-map"><span class="notification-sms-map-label">${escapeHtml(variable)}</span><span class="notification-template-preview">选择业务变量</span><select class="notification-select notification-sms-variable" data-placeholder="${escapeHtml(variable)}" onchange="notificationSmsMappingState[this.dataset.placeholder]=this.value"><option value="">请选择业务变量</option>${options.map(option => `<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join('')}</select></div>`).join('');
+  mappings.querySelectorAll('.notification-sms-variable').forEach(selectNode => {
+    const saved = notificationSmsMappingState[selectNode.dataset.placeholder];
+    if(saved){selectNode.value = saved}
+  });
+}
+function extractNotificationVariables(text){
+  return Array.from(String(text || '').matchAll(/\{([^}]+)\}/g)).map(match => match[1]);
+}
+function validateNotificationConfig(){
+  let valid = true;
+  ['notificationEventRow','notificationRecipientRow','notificationChannelRow'].forEach(id => clearNotificationFieldError(id));
+  const eventName = document.getElementById('notificationEventSelect').value;
+  const initiator = document.getElementById('notificationInitiatorCheck').checked;
+  const people = selectedNotificationPeople();
+  const channels = selectedNotificationChannels();
+  if(!eventName){document.getElementById('notificationEventRow').classList.add('invalid');valid = false}
+  if(!initiator && !people.length){document.getElementById('notificationRecipientRow').classList.add('invalid');valid = false}
+  if(!channels.length){document.getElementById('notificationChannelRow').classList.add('invalid');valid = false}
+  const duplicate = notificationConfigs.some((item,index) => item.status === '启用' && item.event === eventName && !(notificationEditorMode === 'edit' && index === notificationEditingIndex));
+  if(duplicate){document.getElementById('notificationEventRow').classList.add('invalid');document.getElementById('notificationEventError').textContent = '该通知事件已有启用的通知配置，不可重复创建';valid = false}
+  const event = notificationEventByName(eventName);
+  const fields = [];
+  const requiredContent = [];
+  if(channels.includes('站内通知')){fields.push(document.getElementById('notificationStationTitle').value,document.getElementById('notificationStationBody').value);requiredContent.push(['站内通知标题',document.getElementById('notificationStationTitle').value],['站内通知正文',document.getElementById('notificationStationBody').value])}
+  if(channels.includes('邮件')){fields.push(document.getElementById('notificationEmailTitle').value,document.getElementById('notificationEmailBody').value);requiredContent.push(['邮件标题',document.getElementById('notificationEmailTitle').value],['邮件正文',document.getElementById('notificationEmailBody').value])}
+  if(channels.includes('企业微信')){fields.push(document.getElementById('notificationWechatTitle').value,document.getElementById('notificationWechatBody').value);requiredContent.push(['企业微信消息标题',document.getElementById('notificationWechatTitle').value],['企业微信消息正文',document.getElementById('notificationWechatBody').value])}
+  const emptyContent = requiredContent.find(item => !item[1].trim());
+  if(emptyContent){alert(`${emptyContent[0]}不能为空`);valid = false}
+  const unsupported = fields.flatMap(extractNotificationVariables).filter(variable => !event || !event.variables.includes(variable));
+  if(unsupported.length){alert(`通知内容包含当前通知事件不支持的变量：${unsupported[0]}`);valid = false}
+  if(channels.includes('短信')){
+    const smsTemplate = document.getElementById('notificationSmsTemplate').value;
+    if(!smsTemplate){document.getElementById('notificationSmsError').style.display = 'block';valid = false}else{document.getElementById('notificationSmsError').style.display = 'none'}
+  }
+  return valid;
+}
+function clearNotificationEditor(){
+  populateNotificationEventOptions('','');
+  document.getElementById('notificationInitiatorCheck').checked = false;
+  document.getElementById('notificationTargetCheck').checked = false;
+  document.getElementById('notificationTargetPicker').classList.add('hidden');
+  notificationSelectedPeopleIds = [];
+  notificationAccountTempSelection = [];
+  notificationScheduleMode = 'uniform';
+  notificationUniformTime = '';
+  notificationIndividualTimes = {};
+  document.querySelector('input[name="notificationTimeMode"][value="uniform"]').checked = true;
+  document.querySelectorAll('.notification-channel-list input').forEach(input => input.checked = false);
+  ['station','sms','email','wechat'].forEach(channel => document.getElementById(`notification${channel.charAt(0).toUpperCase() + channel.slice(1)}Card`).classList.remove('active'));
+  ['notificationStationTitle','notificationStationBody','notificationEmailTitle','notificationEmailBody','notificationWechatTitle','notificationWechatBody'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('notificationSmsTemplate').value = '';
+  notificationSmsMappingState = {};
+  renderNotificationSmsTemplate();
+  document.getElementById('notificationSmsError').style.display = 'none';
+  document.getElementById('notificationEventError').textContent = '请选择通知事件';
+  renderNotificationEventVariables();
+  renderNotificationSelectedPeople();
+  renderNotificationTimeControls();
+  updateNotificationContactWarning();
+  ['notificationEventRow','notificationRecipientRow','notificationChannelRow'].forEach(id => clearNotificationFieldError(id));
+}
+function renderNotificationEditor(){
+  clearNotificationEditor();
+  const item = notificationEditorMode === 'add' ? null : notificationConfigs[notificationEditingIndex];
+  if(item){
+    populateNotificationEventOptions('',item.event);
+    document.getElementById('notificationInitiatorCheck').checked = Boolean(item.recipients && item.recipients.initiator);
+    notificationSelectedPeopleIds = (item.recipients && item.recipients.people || []).slice();
+    notificationAccountTempSelection = notificationSelectedPeopleIds.slice();
+    document.getElementById('notificationTargetCheck').checked = notificationSelectedPeopleIds.length > 0;
+    document.getElementById('notificationTargetPicker').classList.toggle('hidden',!notificationSelectedPeopleIds.length);
+    notificationScheduleMode = item.notificationTime && item.notificationTime.mode === 'individual' ? 'individual' : 'uniform';
+    notificationUniformTime = item.notificationTime && item.notificationTime.uniformTime || '';
+    notificationIndividualTimes = item.notificationTime && item.notificationTime.individualTimes || {};
+    const channelMap = {'站内通知':'station','短信':'sms','邮件':'email','企业微信':'wechat'};
+    (item.channels || []).forEach(channel => {const key = channelMap[channel];const node = document.querySelector(`.notification-channel-list input[value="${channel}"]`);if(node){node.checked = true}if(key){document.getElementById(`notification${key.charAt(0).toUpperCase() + key.slice(1)}Card`).classList.add('active')}});
+    const templates = item.templates || {};
+    document.getElementById('notificationStationTitle').value = templates.station && templates.station.title || '';
+    document.getElementById('notificationStationBody').value = templates.station && templates.station.body || '';
+    document.getElementById('notificationEmailTitle').value = templates.email && templates.email.title || '';
+    document.getElementById('notificationEmailBody').value = templates.email && templates.email.body || '';
+    document.getElementById('notificationWechatTitle').value = templates.wechat && templates.wechat.title || '';
+    document.getElementById('notificationWechatBody').value = templates.wechat && templates.wechat.body || '';
+    document.getElementById('notificationSmsTemplate').value = templates.sms && templates.sms.templateId || '';
+    notificationSmsMappingState = templates.sms && templates.sms.mappings || {};
+  }
+  renderNotificationEventVariables();
+  renderNotificationSmsTemplate();
+  renderNotificationSelectedPeople();
+  document.querySelector('input[name="notificationTimeMode"][value="' + notificationScheduleMode + '"]').checked = true;
+  renderNotificationTimeControls();
+  updateNotificationContactWarning();
+  const readonly = notificationEditorMode === 'view';
+  document.querySelectorAll('#notificationConfigEditPage input,#notificationConfigEditPage select,#notificationConfigEditPage textarea').forEach(node => {node.disabled = readonly});
+  document.getElementById('notificationEditorActions').classList.toggle('hidden',readonly);
+}
+function openNotificationConfigEditor(mode,index){
+  notificationEditorMode = mode || 'add';
+  notificationEditingIndex = typeof index === 'number' ? index : -1;
+  showPage('notificationConfigEdit');
+}
+function backNotificationConfigList(){
+  notificationEditorMode = 'add';
+  notificationEditingIndex = -1;
+  showPage('notificationConfig');
+}
+function saveNotificationConfig(){
+  if(notificationEditorMode === 'view' || !validateNotificationConfig()){return}
+  const eventName = document.getElementById('notificationEventSelect').value;
+  const event = notificationEventByName(eventName);
+  const business = event ? event.business : '';
+  const channels = selectedNotificationChannels();
+  const mapping = {};
+  document.querySelectorAll('.notification-sms-variable').forEach(node => {mapping[node.dataset.placeholder] = node.value;notificationSmsMappingState[node.dataset.placeholder] = node.value});
+  notificationUniformTime = document.getElementById('notificationUniformTime').value;
+  const templates = {station:{title:document.getElementById('notificationStationTitle').value,body:document.getElementById('notificationStationBody').value},sms:{templateId:document.getElementById('notificationSmsTemplate').value,templateName:document.getElementById('notificationSmsTemplate').selectedOptions[0] ? document.getElementById('notificationSmsTemplate').selectedOptions[0].textContent : '',mappings:mapping},email:{title:document.getElementById('notificationEmailTitle').value,body:document.getElementById('notificationEmailBody').value},wechat:{title:document.getElementById('notificationWechatTitle').value,body:document.getElementById('notificationWechatBody').value}};
+  const old = notificationConfigs[notificationEditingIndex];
+  const item = {id:old ? old.id : `NC${Date.now()}`,name:old ? old.name : `${eventName}通知配置`,business,event:eventName,recipients:{initiator:document.getElementById('notificationInitiatorCheck').checked,people:selectedNotificationPeople()},notificationTime:{mode:notificationScheduleMode,uniformTime:notificationUniformTime,individualTimes:{...notificationIndividualTimes}},channels,status:old ? old.status : '启用',updatedAt:'2026-09-14 10:30:00',updatedBy:'当前用户',templates};
+  if(old){notificationConfigs[notificationEditingIndex] = item}else{notificationConfigs.unshift(item)}
+  alert('通知配置已保存');
+  backNotificationConfigList();
+}
+function initNotificationRecordFilters(){
+  const event = document.getElementById('notificationRecordEventFilter');
+  if(!event){return}
+  const fillOptions = (select,placeholder,options) => {
+    if(!select){return}
+    const current = getSelectValue(select.id);
+    const menu = select.querySelector('.dropdown-menu');
+    if(!menu){return}
+    select.dataset.placeholder = placeholder;
+    menu.innerHTML = options.map(option => `<div class="dropdown-option" data-value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</div>`).join('');
+    const selected = options.find(option => option.value === current);
+    setCustomSelectValue(select,selected ? current : '',selected ? selected.label : placeholder,false);
+  };
+  fillOptions(event,'通知事件',notificationEvents.map(item => ({value:item.name,label:item.name})));
+  fillOptions(document.getElementById('notificationRecordChannelFilter'),'通知方式',['站内通知','短信','邮件','企业微信'].map(value => ({value,label:value})));
+  fillOptions(document.getElementById('notificationDetailEventFilter'),'通知事件',notificationEvents.map(item => ({value:item.name,label:item.name})));
+  fillOptions(document.getElementById('notificationDetailChannelFilter'),'通知方式',['站内通知','短信','邮件','企业微信'].map(value => ({value,label:value})));
+}
+function searchNotificationRecords(){
+  initNotificationRecordFilters();
+  const channel = getSelectValue('notificationRecordChannelFilter');
+  const event = getSelectValue('notificationRecordEventFilter');
+  const taskId = document.getElementById('notificationRecordTaskIdInput').value.trim();
+  const initiator = document.getElementById('notificationRecordInitiatorInput').value.trim();
+  const noticeObject = document.getElementById('notificationRecordNoticeObjectInput').value.trim();
+  const notificationTime = document.getElementById('notificationRecordNotificationTimeInput').value.trim();
+  const result = getSelectValue('notificationRecordResultFilter');
+  const start = document.getElementById('notificationRecordDateStartInput').value;
+  const end = document.getElementById('notificationRecordDateEndInput').value;
+  const rows = notificationRecords.filter(item => (!event || item.event === event) && (!taskId || item.taskId.includes(taskId)) && (!initiator || item.initiator.includes(initiator)) && (!noticeObject || (item.noticeObject || '').includes(noticeObject)) && (!notificationTime || (item.notificationTime || '即时通知').includes(notificationTime)) && (!channel || (item.channels || []).includes(channel)) && (!result || item.result === result) && (!start || item.triggeredAt.slice(0,10) >= start) && (!end || item.triggeredAt.slice(0,10) <= end));
+  const body = document.getElementById('notificationRecordRows');
+  body.innerHTML = rows.length ? rows.map(item => `<tr><td><span class="link notification-task-link" onclick="openNotificationDetailPage('${escapeHtml(item.taskId)}')">${escapeHtml(item.taskId)}</span></td><td>${escapeHtml(item.event)}</td><td>${escapeHtml(item.initiator)}</td><td>${escapeHtml(item.triggeredAt)}</td><td>${escapeHtml(item.noticeObject || '无')}</td><td>${escapeHtml(item.notificationTime || '即时通知')}</td><td><div class="notification-methods">${notificationMethodTags(item.channels)}</div></td><td>${notificationResultCell(item)}</td></tr>`).join('') : '<tr><td colspan="8" class="notification-empty">暂无通知记录</td></tr>';
+  updatePagination('notificationRecordPagination',rows.length);
+}
+function resetNotificationRecords(){
+  resetCustomSelect('notificationRecordEventFilter','通知事件');
+  document.getElementById('notificationRecordTaskIdInput').value = '';
+  document.getElementById('notificationRecordInitiatorInput').value = '';
+  document.getElementById('notificationRecordNoticeObjectInput').value = '';
+  document.getElementById('notificationRecordNotificationTimeInput').value = '';
+  resetCustomSelect('notificationRecordChannelFilter','通知方式');
+  resetCustomSelect('notificationRecordResultFilter','通知结果');
+  setUnifiedRangeValues('notificationRecordDate','','',false);
+  searchNotificationRecords();
+}
+function notificationDetailRowsForRecord(item){
+  const sends = item && item.detail && item.detail.sends || [];
+  if(sends.length){
+    return sends.map(send => ({
+      taskId:item.taskId,
+      event:item.event,
+      initiator:item.initiator,
+      triggeredAt:item.triggeredAt,
+      noticeObject:item.noticeObject || '任务发起人',
+      displayNoticeObject:send.person || item.noticeObject || '任务发起人',
+      notificationTime:send.sentAt || item.notificationTime || '即时通知',
+      channel:send.channel || item.channels.join('、'),
+      content:send.content || send.reason || '未生成实际发送内容',
+      result:item.result,
+      status:send.status === '成功' ? '成功' : '失败',
+      reason:send.reason || ''
+    }));
+  }
+  return [{
+    taskId:item.taskId,
+    event:item.event,
+    initiator:item.initiator,
+    triggeredAt:item.triggeredAt,
+    noticeObject:item.noticeObject || '任务发起人',
+    displayNoticeObject:item.noticeObject || '任务发起人',
+    notificationTime:item.notificationTime || '即时通知',
+    channel:(item.channels || []).join('、'),
+    content:item.detail && item.detail.notSentReason || notificationFailureReason(item),
+    result:item.result,
+    status:item.result === '成功' ? '成功' : '失败',
+    reason:item.detail && item.detail.notSentReason || notificationFailureReason(item)
+  }];
+}
+function searchNotificationDetails(){
+  initNotificationRecordFilters();
+  const taskInput = document.getElementById('notificationDetailTaskIdInput');
+  if(taskInput && !taskInput.value && currentNotificationDetailTaskId){taskInput.value = currentNotificationDetailTaskId}
+  const taskId = taskInput ? taskInput.value.trim() : '';
+  const event = getSelectValue('notificationDetailEventFilter');
+  const initiator = document.getElementById('notificationDetailInitiatorInput').value.trim();
+  const noticeObject = document.getElementById('notificationDetailNoticeObjectInput').value.trim();
+  const notificationTime = document.getElementById('notificationDetailNotificationTimeInput').value.trim();
+  const channel = getSelectValue('notificationDetailChannelFilter');
+  const status = getSelectValue('notificationDetailStatusFilter');
+  const start = document.getElementById('notificationDetailDateStartInput').value;
+  const end = document.getElementById('notificationDetailDateEndInput').value;
+  const rows = notificationRecords.reduce((all,item) => all.concat(notificationDetailRowsForRecord(item)), []).filter(row => (!taskId || row.taskId.includes(taskId)) && (!event || row.event === event) && (!initiator || row.initiator.includes(initiator)) && (!noticeObject || `${row.noticeObject}${row.displayNoticeObject}`.includes(noticeObject)) && (!notificationTime || row.notificationTime.includes(notificationTime)) && (!channel || row.channel.includes(channel)) && (!status || row.status === status) && (!start || row.triggeredAt.slice(0,10) >= start) && (!end || row.triggeredAt.slice(0,10) <= end));
+  const body = document.getElementById('notificationDetailRows');
+  body.innerHTML = rows.length ? rows.map(row => `<tr><td>${escapeHtml(row.taskId)}</td><td>${escapeHtml(row.event)}</td><td>${escapeHtml(row.initiator)}</td><td>${escapeHtml(row.triggeredAt)}</td><td>${escapeHtml(row.displayNoticeObject)}</td><td>${escapeHtml(row.notificationTime)}</td><td>${escapeHtml(row.channel)}</td><td><span class="notification-content-cell" title="${escapeHtml(row.content)}">${escapeHtml(row.content || '--')}</span></td><td>${notificationDetailStatusCell(row)}</td></tr>`).join('') : '<tr><td colspan="9" class="notification-empty">暂无通知明细</td></tr>';
+  updatePagination('notificationDetailPagination',rows.length);
+}
+function resetNotificationDetails(){
+  currentNotificationDetailTaskId = '';
+  document.getElementById('notificationDetailTaskIdInput').value = '';
+  document.getElementById('notificationDetailInitiatorInput').value = '';
+  document.getElementById('notificationDetailNoticeObjectInput').value = '';
+  document.getElementById('notificationDetailNotificationTimeInput').value = '';
+  resetCustomSelect('notificationDetailEventFilter','通知事件');
+  resetCustomSelect('notificationDetailChannelFilter','通知方式');
+  resetCustomSelect('notificationDetailStatusFilter','通知状态');
+  setUnifiedRangeValues('notificationDetailDate','','',false);
+  searchNotificationDetails();
+}
+function notificationSendStatusClass(status){
+  return status === '成功' ? 'send-success' : status === '失败' ? 'send-failed' : 'send-unsent';
+}
+function openNotificationRecordDetail(id){
+  const item = notificationRecords.find(record => record.id === id);
+  if(!item){return}
+  const detail = item.detail || {};
+  const content = (detail.contents || []).length ? `<div class="notification-content-list">${detail.contents.map(entry => `<div class="notification-content-item"><strong>${escapeHtml(entry.channel)}</strong><p>${escapeHtml(entry.content || entry.reason || '未生成实际发送内容')}</p></div>`).join('')}</div>` : `<div class="notification-empty">${escapeHtml(detail.notSentReason || '暂无实际发送内容')}</div>`;
+  const sends = (detail.sends || []).length ? `<div class="table-card" style="border:0"><table class="notification-send-table"><thead><tr><th>接收人</th><th>通知渠道</th><th>接收账号</th><th>实际发送内容</th><th>发送状态</th><th>发送时间</th><th>失败原因</th></tr></thead><tbody>${detail.sends.map(send => `<tr><td>${escapeHtml(send.person)}</td><td>${escapeHtml(send.channel)}</td><td>${escapeHtml(send.account || '空')}</td><td style="white-space:normal;min-width:260px;text-align:left">${escapeHtml(send.content || '空')}</td><td class="${notificationSendStatusClass(send.status)}">${escapeHtml(send.status)}</td><td>${escapeHtml(send.sentAt || '空')}</td><td style="white-space:normal;text-align:left">${escapeHtml(send.reason || '')}</td></tr>`).join('')}</tbody></table></div>` : '<div class="notification-empty">暂无发送明细</div>';
+  document.getElementById('notificationRecordDetailBody').innerHTML = `<div class="notification-detail-section"><h3 class="notification-detail-title">业务信息</h3><div class="notification-detail-grid"><div class="notification-detail-item"><span class="notification-detail-label">所属业务</span><span class="notification-detail-value">${escapeHtml(item.business)}</span></div><div class="notification-detail-item"><span class="notification-detail-label">通知事件</span><span class="notification-detail-value">${escapeHtml(item.event)}</span></div><div class="notification-detail-item"><span class="notification-detail-label">任务编号</span><span class="notification-detail-value">${escapeHtml(item.taskId)}</span></div><div class="notification-detail-item"><span class="notification-detail-label">任务名称</span><span class="notification-detail-value">${escapeHtml(item.taskName)}</span></div><div class="notification-detail-item"><span class="notification-detail-label">任务发起人</span><span class="notification-detail-value">${escapeHtml(item.initiator)}</span></div><div class="notification-detail-item"><span class="notification-detail-label">事件触发时间</span><span class="notification-detail-value">${escapeHtml(item.triggeredAt)}</span></div></div></div><div class="notification-detail-section"><h3 class="notification-detail-title">通知信息</h3><div class="notification-detail-grid"><div class="notification-detail-item"><span class="notification-detail-label">通知配置名称</span><span class="notification-detail-value">${escapeHtml(item.config)}</span></div><div class="notification-detail-item"><span class="notification-detail-label">通知对象</span><span class="notification-detail-value">${escapeHtml(item.noticeCount ? `${item.noticeCount}人` : '无')}</span></div><div class="notification-detail-item"><span class="notification-detail-label">实际通知人数</span><span class="notification-detail-value">${item.noticeCount}人</span></div><div class="notification-detail-item"><span class="notification-detail-label">通知方式</span><span class="notification-detail-value">${escapeHtml(item.channels.join('、'))}</span></div><div class="notification-detail-item"><span class="notification-detail-label">整体发送状态</span><span class="notification-detail-value">${notificationResultTag(detail.overall || item.result)}</span></div>${detail.notSentReason ? `<div class="notification-detail-item"><span class="notification-detail-label">未发送原因</span><span class="notification-detail-value">${escapeHtml(detail.notSentReason)}</span></div>` : ''}</div></div><div class="notification-detail-section"><h3 class="notification-detail-title">实际发送内容</h3>${content}</div><div class="notification-detail-section"><h3 class="notification-detail-title">发送明细</h3>${sends}</div>`;
+  document.getElementById('notificationRecordDetailModalMask').style.display = 'flex';
+}
+function closeNotificationRecordDetail(){
+  const modal = document.getElementById('notificationRecordDetailModalMask');
+  if(modal){modal.style.display = 'none'}
 }
 function syncAuthManageTabs(){
   document.querySelectorAll('[data-auth-manage-tab]').forEach(tab => {
@@ -2537,7 +3769,7 @@ function initInputCombos(){
     });
   });
 }
-const queryFilterSelector = '.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter';
+const queryFilterSelector = '.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter,.notification-filter';
 const queryInputSelector = queryFilterSelector.split(',').map(selector => `${selector} input`).join(',');
 const queryWrappedInputSelector = queryFilterSelector.split(',').map(selector => `${selector} .query-input-wrap>input`).join(',');
 function syncQueryInputClear(input){
@@ -5058,6 +6290,68 @@ function matchesDateQuery(query,timeText){
   }
   return normalizeText(timeText).includes(text);
 }
+function searchDeviceGroupRecords(){
+  const merchant = normalizeText(document.getElementById('deviceGroupMerchantInput').value);
+  const status = getSelectValue('deviceGroupStatusFilter');
+  const groupName = normalizeText(document.getElementById('deviceGroupNameInput').value);
+  filterTableRows('deviceGroupRows','deviceGroupPagination',row => {
+    const cells = row.children;
+    const groupNameOk = !groupName || normalizeText(cells[1].textContent).includes(groupName);
+    const merchantOk = !merchant || normalizeText(cells[2].textContent).includes(merchant);
+    const statusOk = !status || cells[15].textContent.trim() === status;
+    return groupNameOk && merchantOk && statusOk;
+  });
+}
+function resetDeviceGroupRecords(){
+  document.getElementById('deviceGroupMerchantInput').value = '';
+  document.getElementById('deviceGroupNameInput').value = '';
+  resetCustomSelect('deviceGroupStatusFilter','状态');
+  searchDeviceGroupRecords();
+}
+function searchDeviceGroupBindingRecords(){
+  const batch = normalizeText(document.getElementById('deviceGroupBindingBatchInput').value);
+  const operationType = getSelectValue('deviceGroupBindingTypeFilter');
+  const result = getSelectValue('deviceGroupBindingResultFilter');
+  filterTableRows('deviceGroupBindingRecordRows','deviceGroupBindingRecordPagination',row => {
+    const cells = row.children;
+    const batchOk = !batch || normalizeText(cells[0].textContent).includes(batch);
+    const operationTypeOk = !operationType || normalizeText(cells[1].textContent).includes(operationType);
+    const resultOk = !result || normalizeText(cells[2].textContent) === result;
+    return batchOk && operationTypeOk && resultOk;
+  });
+}
+function resetDeviceGroupBindingRecords(){
+  document.getElementById('deviceGroupBindingBatchInput').value = '';
+  resetCustomSelect('deviceGroupBindingTypeFilter','操作类型');
+  resetCustomSelect('deviceGroupBindingResultFilter','操作状态');
+  searchDeviceGroupBindingRecords();
+}
+function searchDeviceGroupBindingDetails(){
+  const batch = normalizeText(document.getElementById('deviceGroupBindingDetailBatchInput').value);
+  const sn = normalizeText(document.getElementById('deviceGroupBindingDetailSnInput').value);
+  const operationType = getSelectValue('deviceGroupBindingDetailTypeFilter');
+  const operationStatus = getSelectValue('deviceGroupBindingDetailStatusFilter');
+  const operationTime = getUnifiedRangeState('deviceGroupBindingDetail');
+  const operator = normalizeText(document.getElementById('deviceGroupBindingDetailOperatorInput').value);
+  filterTableRows('deviceGroupBindingDetailRows','deviceGroupBindingDetailPagination',row => {
+    const cells = row.children;
+    return (!batch || normalizeText(cells[0].textContent).includes(batch))
+      && (!sn || normalizeText(cells[1].textContent).includes(sn))
+      && (!operationType || normalizeText(cells[2].textContent).includes(operationType))
+      && (!operationStatus || normalizeText(cells[3].textContent).includes(operationStatus))
+      && dateInRange(cells[5].textContent.trim(), operationTime && operationTime.start, operationTime && operationTime.end)
+      && (!operator || normalizeText(cells[6].textContent).includes(operator));
+  });
+}
+function resetDeviceGroupBindingDetails(){
+  ['deviceGroupBindingDetailBatchInput','deviceGroupBindingDetailSnInput','deviceGroupBindingDetailOperatorInput'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  resetCustomSelect('deviceGroupBindingDetailTypeFilter','操作类型');
+  resetCustomSelect('deviceGroupBindingDetailStatusFilter','操作状态');
+  setUnifiedRangeValues('deviceGroupBindingDetail','','',false);
+  searchDeviceGroupBindingDetails();
+}
 function searchConfigRecords(){
   const batch = normalizeText(document.getElementById('configBatchInput').value);
   const operation = getSelectValue('configOperationFilter');
@@ -5790,6 +7084,12 @@ function setCustomSelectValue(target,value,label,emitChange){
   if(['refundManageStatusFilter','refundManageMethodFilter'].includes(select.id)){
     searchRefundManageRecords();
   }
+  if(emitChange && ['notificationRecordEventFilter','notificationRecordChannelFilter','notificationRecordResultFilter'].includes(select.id)){
+    searchNotificationRecords();
+  }
+  if(emitChange && ['notificationDetailEventFilter','notificationDetailChannelFilter','notificationDetailStatusFilter'].includes(select.id)){
+    searchNotificationDetails();
+  }
 }
 function initCustomSelectState(select){
   const valueNode = select.querySelector('.select-value');
@@ -5861,7 +7161,10 @@ const extraRangePickerState = {
   batchTaskActivation:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'batchTaskActivationRange',panelId:'batchTaskActivationPanel',startId:'batchTaskActivationStartInput',endId:'batchTaskActivationEndInput',startPlaceholder:'客户首次激活开始时间',endPlaceholder:'客户首次激活结束时间'},
   networkLogDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'networkLogDateRange',panelId:'networkLogDatePanel',startId:'networkLogDateStartInput',endId:'networkLogDateEndInput',startPlaceholder:'日志开始日期',endPlaceholder:'日志结束日期'},
   strategyRecordCreated:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'strategyRecordCreatedRange',panelId:'strategyRecordCreatedPanel',startId:'strategyRecordCreatedStartInput',endId:'strategyRecordCreatedEndInput',startPlaceholder:'创建开始时间',endPlaceholder:'创建结束时间'},
-  strategyReportDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'strategyReportDateRange',panelId:'strategyReportDatePanel',startId:'strategyReportStartInput',endId:'strategyReportEndInput',startPlaceholder:'开始日期',endPlaceholder:'结束日期'}
+  strategyReportDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'strategyReportDateRange',panelId:'strategyReportDatePanel',startId:'strategyReportStartInput',endId:'strategyReportEndInput',startPlaceholder:'开始日期',endPlaceholder:'结束日期'},
+  deviceGroupBindingDetail:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'deviceGroupBindingDetailOperationRange',panelId:'deviceGroupBindingDetailOperationPanel',startId:'deviceGroupBindingDetailStartInput',endId:'deviceGroupBindingDetailEndInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'},
+  notificationRecordDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'notificationRecordDateRange',panelId:'notificationRecordDatePanel',startId:'notificationRecordDateStartInput',endId:'notificationRecordDateEndInput',startPlaceholder:'触发开始时间',endPlaceholder:'触发结束时间'},
+  notificationDetailDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'notificationDetailDateRange',panelId:'notificationDetailDatePanel',startId:'notificationDetailDateStartInput',endId:'notificationDetailDateEndInput',startPlaceholder:'触发开始时间',endPlaceholder:'触发结束时间'}
 };
 function getUnifiedRangeState(key){
   return deviceRangeState[key] || extraRangePickerState[key];
@@ -5923,7 +7226,6 @@ function renderUnifiedRangePanel(key){
         <div class="range-shortcut" onclick="applyUnifiedRangeShortcut(event,'${key}','year')">最近一年</div>
         <div class="range-shortcut" onclick="applyUnifiedRangeShortcut(event,'${key}','prevMonth')">上月</div>
         <div class="range-shortcut" onclick="applyUnifiedRangeShortcut(event,'${key}','thisMonth')">本月</div>
-        <div class="range-shortcut" onclick="applyUnifiedRangeShortcut(event,'${key}','nextMonth')">次月</div>
       </div>
       <div class="range-months">
         ${renderUnifiedRangeMonth(key,state.viewDate,'prev')}
@@ -6044,6 +7346,9 @@ function triggerUnifiedRangeChange(key){
   if(key === 'networkLogDate'){searchNetworkLogRecords()}
   if(key === 'strategyRecordCreated'){searchStrategySimRecords()}
   if(key === 'strategyReportDate'){searchStrategyReportRecords()}
+  if(key === 'deviceGroupBindingDetail'){searchDeviceGroupBindingDetails()}
+  if(key === 'notificationRecordDate'){searchNotificationRecords()}
+  if(key === 'notificationDetailDate'){searchNotificationDetails()}
 }
 function openUnifiedRangePicker(event,key){
   const state = getUnifiedRangeState(key);
@@ -6091,9 +7396,15 @@ initDropdowns();
 initInputCombos();
 initQueryInputClears();
 initClipboardSmartSearch('#clipboardSmartSearch');
+renderMessageNotifications();
 Object.keys(deviceRangeState).forEach(syncDeviceRange);
 syncDeviceFilterCollapse();
 showPage('home');
 </script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.13/dayjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/antd@5.27.4/dist/antd.min.js"></script>
+<script src="assets/notification-center-react.js"></script>
 </body>
 </html>
