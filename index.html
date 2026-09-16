@@ -165,6 +165,64 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .package-table th,.package-table td{white-space:nowrap}
 .device-group-table{min-width:2800px}
 .device-group-table th,.device-group-table td{white-space:nowrap}
+.device-type-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 0 12px;margin:0 0 16px;width:100%;background:#fff}
+.device-type-filter .input,.device-type-filter .input-combo{width:100%;min-width:0}
+.device-type-filter .input{height:34px;border:1px solid #e5e7eb;border-radius:4px;font-size:12px;padding:0 9px}
+.device-type-filter .input-combo.has-value .input{color:#1f2329}
+.device-type-table{min-width:2500px}
+.device-type-table th,.device-type-table td{white-space:nowrap}
+.device-type-image{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:4px;background:#eef6ff;color:#1687e8;font-size:11px}
+.device-type-status{font-weight:600}
+.device-type-status.active{color:#16a34a}
+.device-type-status.inactive{color:#f04438}
+.device-type-action-list{display:inline-flex;align-items:center;gap:12px;white-space:nowrap}
+#deviceTypeModalMask .modal.device-type-modal{width:960px!important;height:min(760px,calc(100vh - 48px));max-width:calc(100vw - 48px);max-height:calc(100vh - 48px)}
+.device-type-modal .modal-body{padding:20px 24px!important}
+.device-type-modal .form-row{grid-template-columns:170px minmax(0,1fr)!important;margin-bottom:16px;align-items:start}
+.device-type-modal .form-label{color:#8b95a5!important;font-size:13px!important;font-weight:400!important;line-height:32px;padding-right:12px;white-space:nowrap}
+.device-type-modal .form-label.req:before{margin-right:4px}
+.device-type-modal .input,.device-type-modal .input-combo,.device-type-modal .input-combo .input{width:100%;min-width:0}
+.device-type-modal .form-row .select{width:100%!important;min-width:0}
+.device-type-modal .input,.device-type-modal .select{color:#1f2329!important}
+.device-type-modal .input::placeholder{color:#b8c0cc}
+.device-type-modal .select:not(.has-value) .select-value{color:#b8c0cc!important}
+.device-type-modal .select.has-value .select-value{color:#1f2329!important}
+.device-type-modal .input-combo .input{padding-right:32px}
+.device-type-modal .input-combo.has-value .input{color:#1f2329}
+.device-type-modal .device-type-multi-combo .input{cursor:pointer;background:#fff}
+.device-type-modal .device-type-multi-combo .combo-option.selected{background:#f1f7ff;color:#1687e8}
+.device-type-mini-table-wrap{margin-top:8px;border:1px solid #e5e7eb;border-radius:3px;overflow:hidden}
+.device-type-mini-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.device-type-mini-table th,.device-type-mini-table td{height:36px;padding:6px 10px;border:1px solid #edf0f5;text-align:left;font-size:12px;color:#4b5563;background:#fff}
+.device-type-mini-table th{height:32px;background:#f8fafc;color:#606a78;font-weight:600}
+.device-type-mini-table th:nth-child(1),.device-type-mini-table td:nth-child(1){width:42%}
+.device-type-mini-table th:nth-child(2),.device-type-mini-table td:nth-child(2){width:33%}
+.device-type-mini-table th:nth-child(3),.device-type-mini-table td:nth-child(3){width:25%;text-align:center}
+.device-type-mini-ratio{display:flex;align-items:center;width:100%;max-width:120px;height:30px}
+.device-type-mini-ratio .input{flex:1;min-width:0;width:auto!important;height:30px!important;border-radius:3px 0 0 3px;border-right:0;padding:0 9px}
+.device-type-mini-ratio .unit{height:30px;line-height:28px;padding:0 9px;border:1px solid #e5e7eb;background:#f8fafc;color:#8b95a5}
+.device-type-mini-total{padding:8px 10px;background:#f8fafc;color:#4b5563;font-size:12px;text-align:right}
+.device-type-mini-total strong{font-size:14px;color:#f04438}
+.device-type-mini-total.valid strong{color:#16a34a}
+.device-type-mini-help{display:flex;align-items:flex-start;gap:6px;margin-top:8px;color:#8b95a5;font-size:12px;line-height:18px;white-space:nowrap}
+.device-type-help-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:14px;height:14px;margin-top:2px;border:1px solid #8b95a5;border-radius:50%;color:#8b95a5;font-size:10px;font-style:normal;font-weight:600;line-height:12px;cursor:help}
+.device-type-mini-delete{border:0;background:transparent;color:#1687e8;font-size:12px;cursor:pointer;padding:0}
+.device-type-mini-delete:hover{color:#0b4ea2;text-decoration:underline}
+.device-type-modal .device-type-radio-group{display:flex;align-items:center;gap:24px;min-height:32px;flex-wrap:wrap}
+.device-type-modal .radio{margin-right:0;color:#4b5563;font-size:13px}
+.device-type-modal .radio.active{color:#1687e8}
+.device-type-modal .strategy-options{display:flex;align-items:center;gap:18px;min-height:32px;flex-wrap:wrap}
+.device-type-modal .strategy-options label{display:inline-flex;align-items:center;gap:6px;color:#4b5563;font-size:13px;cursor:pointer}
+.device-type-modal .strategy-options input{accent-color:var(--theme-color)}
+.device-type-strategy-list{display:flex;flex-direction:column;gap:6px;margin-top:8px;max-width:360px}
+.device-type-strategy-item{display:flex;align-items:center;justify-content:space-between;min-height:30px;padding:0 8px;border:1px solid #e5e7eb;background:#f8fafc;color:#4b5563;font-size:12px}
+.device-type-strategy-order{display:inline-flex;align-items:center;gap:6px;color:#8b95a5}
+.device-type-strategy-order button{width:20px;height:20px;border:1px solid #d8dee9;border-radius:2px;background:#fff;color:#606a78;cursor:pointer;line-height:16px;padding:0}
+.device-type-strategy-order button:hover{border-color:#1687e8;color:#1687e8}
+.device-type-modal .help{color:#8b95a5;white-space:nowrap}
+.device-type-modal .upload-help{margin-top:7px;color:#8b95a5;font-size:12px;line-height:18px;white-space:nowrap}
+.device-type-modal .dropdown-option,.device-type-modal .combo-option{white-space:nowrap}
+.device-type-modal .modal-actions{flex:0 0 64px}
 .device-group-status{font-weight:600}
 .device-group-status.active{color:#16a34a}
 .device-group-status.invalid{color:#f04438}
@@ -864,6 +922,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="menu" id="menuDevice" onclick="toggleMenuGroup('deviceSubMenu','menuDevice')"><svg class="device-icon" viewBox="0 0 160 160" aria-hidden="true" focusable="false"><path d="M12 76c0-37.6 30.4-68 68-68s68 30.4 68 68" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M38 76c0-23.2 18.8-42 42-42s42 18.8 42 42" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M63 76c0-9.4 7.6-17 17-17s17 7.6 17 17" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M80 59v47" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"/><path d="M22 103h116c6.6 0 12 5.4 12 12v31H10v-31c0-6.6 5.4-12 12-12Z" fill="none" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><circle cx="40" cy="129" r="7" fill="currentColor"/><circle cx="64" cy="129" r="7" fill="currentColor"/></svg><span class="menu-title">设备中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="deviceSubMenu">
       <div class="sub" id="menuDeviceManage" onclick="showPage('device')">设备管理</div>
+      <div class="sub" id="menuDeviceType" onclick="showPage('deviceType')">设备类型</div>
       <div class="sub" id="menuConfig" onclick="showPage('config')">二次认证管理</div>
       <div class="sub" id="menuFlow" onclick="showPage('flow')">设备流量</div>
     </div>
@@ -1102,6 +1161,26 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         </table>
       </div>
       <div class="pagination" id="deviceManagePagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="deviceTypePage" class="content hidden">
+      <div class="device-type-filter" id="deviceTypeFilterPanel">
+        <input class="input" id="deviceTypeNameInput" placeholder="设备名称" oninput="searchDeviceTypeRecords()">
+        <div class="input-combo"><input class="input" id="deviceTypeCategoryInput" placeholder="设备类型" oninput="searchDeviceTypeRecords()"><div class="combo-menu"><div class="combo-option">MIFI</div><div class="combo-option">CPE</div><div class="combo-option">DTU</div><div class="combo-option">随身WiFi</div></div></div>
+        <div class="input-combo"><input class="input" id="deviceTypeStatusInput" placeholder="状态" oninput="searchDeviceTypeRecords()"><div class="combo-menu"><div class="combo-option">生效</div><div class="combo-option">失效</div></div></div>
+        <div class="input-combo"><input class="input" id="deviceTypeModelInput" placeholder="设备型号" oninput="searchDeviceTypeRecords()"><div class="combo-menu"><div class="combo-option">MBB-MIFI-PRO</div><div class="combo-option">MBB-MIFI-LITE</div><div class="combo-option">MBB-CPE-200</div><div class="combo-option">MBB-DTU-100</div></div></div>
+        <div class="input-combo"><input class="input" id="deviceTypeMerchantInput" placeholder="商户选择" oninput="searchDeviceTypeRecords()"><div class="combo-menu"><div class="combo-option">上海智联商贸</div><div class="combo-option">杭州云旅科技</div><div class="combo-option">苏州星河酒店</div><div class="combo-option">深圳远帆科技</div><div class="combo-option">北京数联科技</div></div></div>
+        <div class="input-combo"><input class="input" id="deviceTypeProductCategoryInput" placeholder="产品类别" oninput="searchDeviceTypeRecords()"><div class="combo-menu"><div class="combo-option">智能终端</div><div class="combo-option">随身WiFi</div><div class="combo-option">物联网设备</div></div></div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchDeviceTypeRecords()">搜索</button><button class="btn gray" onclick="resetDeviceTypeRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button class="btn" onclick="openDeviceTypeCreate()">新增</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="device-type-table">
+          <thead><tr><th>序号</th><th>产品类别</th><th>设备类型名称</th><th>设备类型</th><th>市场名称</th><th>商户名称</th><th>类型编码</th><th>IMEI TAC码</th><th>设备图片</th><th>设备型号</th><th>本地卡设备</th><th>状态</th><th>启动卡数量</th><th>appkey</th><th>类型</th><th>名称</th><th>支付方式</th><th>服务渠道</th><th>客服账号</th><th>备注</th><th>更新时间</th><th class="sticky-action">操作</th></tr></thead>
+          <tbody id="deviceTypeRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="deviceTypePagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
     <section id="configPage" class="content">
@@ -1930,6 +2009,126 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
   </div>
 </div>
 
+<div class="modal-mask" id="deviceTypeModalMask">
+  <div class="modal device-type-modal">
+    <div class="close" onclick="closeDeviceTypeModal()">×</div>
+    <div class="modal-title">设备类型新增</div>
+    <div class="modal-body">
+      <div class="form-row form-field" data-field="deviceTypeModalCode">
+        <div class="form-label req">设备类型编码</div>
+        <div><input class="input" id="deviceTypeModalCode" placeholder="请输入设备类型编码" oninput="clearDeviceTypeFieldError('deviceTypeModalCode')"><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalInternalName">
+        <div class="form-label req">设备类型内部名称</div>
+        <div><input class="input" id="deviceTypeModalInternalName" placeholder="请输入设备类型内部名称" oninput="clearDeviceTypeFieldError('deviceTypeModalInternalName')"><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalMarketName">
+        <div class="form-label req">设备类型市场名称</div>
+        <div><input class="input" id="deviceTypeModalMarketName" placeholder="请输入设备类型市场名称" oninput="clearDeviceTypeFieldError('deviceTypeModalMarketName')"><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalModel">
+        <div class="form-label req">设备型号</div>
+        <div><div class="select custom-select no-clear" id="deviceTypeModalModel" data-value=""><span class="select-value">请选择设备型号</span><div class="dropdown-menu"><div class="dropdown-option" data-value="MIFI">MIFI</div><div class="dropdown-option" data-value="UFI">UFI</div><div class="dropdown-option" data-value="CPE">CPE</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalLocalCard">
+        <div class="form-label req">是否本地卡设备</div>
+        <div><div class="select custom-select no-clear" id="deviceTypeModalLocalCard" data-value=""><span class="select-value">请选择</span><div class="dropdown-menu"><div class="dropdown-option" data-value="是">是</div><div class="dropdown-option" data-value="否">否</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalTac">
+        <div class="form-label req">TAC码</div>
+        <div><input class="input" id="deviceTypeModalTac" placeholder="请输入TAC码" oninput="clearDeviceTypeFieldError('deviceTypeModalTac')"><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalMerchant">
+        <div class="form-label req">商户ID</div>
+        <div><div class="select custom-select no-clear" id="deviceTypeModalMerchant" data-value=""><span class="select-value">请选择商户</span><div class="dropdown-menu"><div class="dropdown-option" data-value="上海智联商贸">上海智联商贸</div><div class="dropdown-option" data-value="杭州云旅科技">杭州云旅科技</div><div class="dropdown-option" data-value="苏州星河酒店">苏州星河酒店</div><div class="dropdown-option" data-value="深圳远帆科技">深圳远帆科技</div><div class="dropdown-option" data-value="北京数联科技">北京数联科技</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalSecondAuth">
+        <div class="form-label req">是否需要卡二次认证</div>
+        <div><div class="device-type-radio-group" id="deviceTypeModalSecondAuth" data-value=""><span class="radio" onclick="setDeviceTypeRadio('deviceTypeModalSecondAuth','是')"><i></i>是</span><span class="radio" onclick="setDeviceTypeRadio('deviceTypeModalSecondAuth','否')"><i></i>否</span></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalNeedRealname">
+        <div class="form-label req">是否需要实名</div>
+        <div><div class="device-type-radio-group" id="deviceTypeModalNeedRealname" data-value=""><span class="radio" onclick="setDeviceTypeRadio('deviceTypeModalNeedRealname','需要')"><i></i>需要</span><span class="radio" onclick="setDeviceTypeRadio('deviceTypeModalNeedRealname','不需要')"><i></i>不需要</span></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field hidden" id="deviceTypeModalRequireAllRow" data-field="deviceTypeModalRequireAll">
+        <div class="form-label req">是否要求全部实名</div>
+        <div><div class="device-type-radio-group" id="deviceTypeModalRequireAll" data-value=""><span class="radio" onclick="setDeviceTypeRadio('deviceTypeModalRequireAll','否')"><i></i>否</span><span class="radio" onclick="setDeviceTypeRadio('deviceTypeModalRequireAll','是')"><i></i>是</span></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field hidden" id="deviceTypeModalShowAllRow" data-field="deviceTypeModalShowAll">
+        <div class="form-label req">是否展示所有需实名卡</div>
+        <div><div class="device-type-radio-group" id="deviceTypeModalShowAll" data-value=""><span class="radio" onclick="setDeviceTypeRadio('deviceTypeModalShowAll','否')"><i></i>否</span><span class="radio" onclick="setDeviceTypeRadio('deviceTypeModalShowAll','是')"><i></i>是</span></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field hidden" id="deviceTypeModalStrategyRow" data-field="deviceTypeModalStrategy">
+        <div class="form-label req">实名策略</div>
+        <div>
+          <div class="strategy-options" id="deviceTypeModalStrategyOptions"><label><input type="checkbox" value="中国移动" onchange="toggleDeviceTypeCarrier(this)"> 中国移动</label><label><input type="checkbox" value="中国电信" onchange="toggleDeviceTypeCarrier(this)"> 中国电信</label><label><input type="checkbox" value="中国联通" onchange="toggleDeviceTypeCarrier(this)"> 中国联通</label></div>
+          <div class="device-type-strategy-list" id="deviceTypeModalStrategyList"></div>
+          <div class="help">按列表顺序进行实名认证，仅选择一个运营商时表示只实名该运营商的卡。</div>
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalImage">
+        <div class="form-label">设备类型图片</div>
+        <div><input class="input" id="deviceTypeModalImage" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" onchange="clearDeviceTypeFieldError('deviceTypeModalImage')"><div class="upload-help">支持 JPG、JPEG、PNG 图片，单张建议不超过5MB。</div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalPlatformType">
+        <div class="form-label req">类型</div>
+        <div><div class="input-combo"><input class="input" id="deviceTypeModalPlatformType" placeholder="请选择或输入类型" oninput="handleDeviceTypeModalComboChange(this)"><div class="combo-menu"><div class="combo-option">公众号</div><div class="combo-option">小程序</div><div class="combo-option">京东小程序</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field hidden" id="deviceTypeModalPublicRow" data-field="deviceTypeModalPublic">
+        <div class="form-label req">公众号</div>
+        <div><div class="input-combo"><input class="input" id="deviceTypeModalPublic" placeholder="请选择或输入公众号" oninput="clearDeviceTypeFieldError('deviceTypeModalPublic')"><div class="combo-menu"><div class="combo-option">无线宽带服务号</div><div class="combo-option">畅连服务号</div><div class="combo-option">设备运营助手</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field hidden" id="deviceTypeModalMiniProgramRow" data-field="deviceTypeModalMiniProgram">
+        <div class="form-label req">小程序</div>
+        <div>
+          <div class="input-combo device-type-multi-combo"><input class="input" id="deviceTypeModalMiniProgram" placeholder="请选择小程序，可多选" readonly><div class="combo-menu"><div class="combo-option" data-value="诺达通信">诺达通信</div><div class="combo-option" data-value="物联网实名">物联网实名</div><div class="combo-option" data-value="极速物联Wi-Fi">极速物联Wi-Fi</div><div class="combo-option" data-value="达智物联">达智物联</div><div class="combo-option" data-value="思德速连">思德速连</div></div></div>
+          <div class="device-type-mini-table-wrap hidden" id="deviceTypeMiniProgramTableWrap"><table class="device-type-mini-table"><thead><tr><th>小程序</th><th>流量权重</th><th>操作</th></tr></thead><tbody id="deviceTypeMiniProgramRows"></tbody></table><div class="device-type-mini-total" id="deviceTypeMiniProgramTotal">权重合计：<strong>0%</strong></div></div>
+          <div class="device-type-mini-help hidden" id="deviceTypeMiniProgramHelp"><span class="device-type-help-icon" title="流量权重用于分配用户进入不同小程序的比例。" aria-label="流量权重说明">i</span><span>用户扫描设备二维码后，系统将根据上述流量权重随机进入对应的小程序。</span></div>
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="form-row form-field hidden" id="deviceTypeModalJdMiniProgramRow" data-field="deviceTypeModalJdMiniProgram">
+        <div class="form-label req">京东小程序</div>
+        <div><div class="input-combo"><input class="input" id="deviceTypeModalJdMiniProgram" placeholder="请选择或输入京东小程序" oninput="clearDeviceTypeFieldError('deviceTypeModalJdMiniProgram')"><div class="combo-menu"><div class="combo-option">京东无线宽带</div><div class="combo-option">京东畅连设备</div><div class="combo-option">京东商户服务</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalPayment">
+        <div class="form-label req">支付方式</div>
+        <div><div class="select custom-select no-clear" id="deviceTypeModalPayment" data-value=""><span class="select-value">请选择支付方式</span><div class="dropdown-menu"><div class="dropdown-option" data-value="微信支付">微信支付</div><div class="dropdown-option" data-value="支付宝支付">支付宝支付</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalService">
+        <div class="form-label req">服务渠道</div>
+        <div><div class="select custom-select no-clear" id="deviceTypeModalService" data-value=""><span class="select-value">请选择服务渠道</span><div class="dropdown-menu"><div class="dropdown-option" data-value="企业微信">企业微信</div><div class="dropdown-option" data-value="七鱼">七鱼</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field hidden" id="deviceTypeModalCustomerServiceRow" data-field="deviceTypeModalCustomerService">
+        <div class="form-label req">客服账号</div>
+        <div><div class="input-combo"><input class="input" id="deviceTypeModalCustomerService" placeholder="请选择或输入客服账号" oninput="clearDeviceTypeFieldError('deviceTypeModalCustomerService')"><div class="combo-menu"><div class="combo-option">service_sh</div><div class="combo-option">service_hz</div><div class="combo-option">service_sz</div><div class="combo-option">service_bj</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalFlowThreshold">
+        <div class="form-label">触发停卡流量阈值</div>
+        <div><input class="input" id="deviceTypeModalFlowThreshold" placeholder="请输入流量阈值" inputmode="decimal" oninput="clearDeviceTypeFieldError('deviceTypeModalFlowThreshold')"><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalRemark">
+        <div class="form-label">备注</div>
+        <div><input class="input" id="deviceTypeModalRemark" placeholder="请输入备注" oninput="clearDeviceTypeFieldError('deviceTypeModalRemark')"><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalStartupCount">
+        <div class="form-label req">启动卡数量</div>
+        <div><input class="input" id="deviceTypeModalStartupCount" placeholder="请输入启动卡数量" inputmode="numeric" oninput="clearDeviceTypeFieldError('deviceTypeModalStartupCount')"><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalProductCategory">
+        <div class="form-label req">产品类别</div>
+        <div><div class="select custom-select no-clear" id="deviceTypeModalProductCategory" data-value=""><span class="select-value">请选择产品类别</span><div class="dropdown-menu"><div class="dropdown-option" data-value="裸卡">裸卡</div><div class="dropdown-option" data-value="MBB">MBB</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" data-field="deviceTypeModalEquipmentType">
+        <div class="form-label req">设备类型</div>
+        <div><div class="select custom-select no-clear" id="deviceTypeModalEquipmentType" data-value=""><span class="select-value">请选择设备类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="本地卡">本地卡</div><div class="dropdown-option" data-value="ESIM">ESIM</div><div class="dropdown-option" data-value="单卡">单卡</div><div class="dropdown-option" data-value="分身卡">分身卡</div></div></div><div class="field-error"></div></div>
+      </div>
+    </div>
+    <div class="modal-actions"><button class="cancel" onclick="closeDeviceTypeModal()">取消</button><button class="confirm" onclick="submitDeviceTypeModal()">保存</button></div>
+  </div>
+</div>
+
 <div class="modal-mask" id="batchTaskModalMask">
   <div class="modal">
     <div class="close" onclick="closeBatchTaskModal()">×</div>
@@ -2328,6 +2527,15 @@ const deviceManagementData = [
   {sn:'MBB202606010017', externalSn:'EXT-GZ-0017', group:'华南代理组', marketName:'代理随身WiFi', category:'移动eSIM', package:'月包 60GB', vendor:'启明方案', region:'广州', merchant:'广州启明商贸', mainMerchant:'广州启明商贸', secondAuth:'开启', serviceExpire:'2026-05-20', iccid:'898604C01925D0207807', smartNetwork:'关闭', network:'中国电信', smartLock:false, hideWifi:false, disabled:false, speedLimit:'关闭', localCardDevice:'否', connectedAt:'', offlineDays:21, appVersion:'V2.0.1', mac:'D0:8A:77:32:19:0A', activatedAt:'2026-05-14 16:16:16', createdAt:'2026-05-07 13:11:09', activeStatus:'已激活', packageExpired:'是', type:'随身WiFi', version:'V2.0.1'},
   {sn:'MBB202606010018', externalSn:'EXT-CD-0018', group:'西南项目组', marketName:'项目MIFI 试用版', category:'裸卡', package:'体验包 20GB', vendor:'天府方案', region:'成都', merchant:'成都天府互联', mainMerchant:'成都天府互联', secondAuth:'关闭', serviceExpire:'2026-07-01', iccid:'898604C01925D0207808', smartNetwork:'开启', network:'中国移动', smartLock:true, hideWifi:true, disabled:false, speedLimit:'打开', localCardDevice:'是', connectedAt:'', offlineDays:9, appVersion:'V1.0.5', mac:'30:89:4F:C7:5D:91', activatedAt:'', createdAt:'2026-05-08 17:38:25', activeStatus:'未激活', packageExpired:'否', type:'MIFI', version:'V1.0.5'}
 ];
+const deviceTypeData = [
+  {productCategory:'智能终端', deviceTypeName:'畅连MIFI Pro', deviceType:'MIFI', marketName:'畅连MIFI Pro', merchantName:'上海智联商贸', typeCode:'MIFI-PRO-001', imeiTac:'86012345', deviceImage:'MIFI', model:'MBB-MIFI-PRO', localCardDevice:'是', status:'生效', startupCardCount:1280, appkey:'mbb_mifi_prod', type:'硬件设备', name:'畅连MIFI Pro', paymentMethod:'微信、钱包', serviceChannel:'直营渠道', customerServiceAccount:'service_sh', remark:'标准随身WiFi设备', updatedAt:'2026-09-15 10:24:06'},
+  {productCategory:'随身WiFi', deviceTypeName:'云旅MIFI Lite', deviceType:'MIFI', marketName:'云旅轻享版', merchantName:'杭州云旅科技', typeCode:'MIFI-LITE-002', imeiTac:'86012346', deviceImage:'MIFI', model:'MBB-MIFI-LITE', localCardDevice:'否', status:'生效', startupCardCount:860, appkey:'mbb_mifi_lite', type:'硬件设备', name:'云旅MIFI Lite', paymentMethod:'微信支付', serviceChannel:'旅游渠道', customerServiceAccount:'service_hz', remark:'旅游渠道专用', updatedAt:'2026-09-14 16:38:12'},
+  {productCategory:'智能终端', deviceTypeName:'星河CPE 5G', deviceType:'CPE', marketName:'星河CPE 5G', merchantName:'苏州星河酒店', typeCode:'CPE-5G-003', imeiTac:'86022341', deviceImage:'CPE', model:'MBB-CPE-200', localCardDevice:'否', status:'生效', startupCardCount:432, appkey:'mbb_cpe_5g', type:'桌面终端', name:'星河CPE 5G', paymentMethod:'钱包支付', serviceChannel:'酒店渠道', customerServiceAccount:'service_sz', remark:'支持5G网络', updatedAt:'2026-09-13 09:20:45'},
+  {productCategory:'物联网设备', deviceTypeName:'万联工业DTU', deviceType:'DTU', marketName:'万联工业DTU Plus', merchantName:'南京万联物流', typeCode:'DTU-PLUS-004', imeiTac:'86032388', deviceImage:'DTU', model:'MBB-DTU-100', localCardDevice:'是', status:'生效', startupCardCount:96, appkey:'mbb_dtu_plus', type:'物联网终端', name:'万联工业DTU', paymentMethod:'企业月结', serviceChannel:'物流渠道', customerServiceAccount:'service_nj', remark:'适用于车载场景', updatedAt:'2026-09-12 14:06:28'},
+  {productCategory:'随身WiFi', deviceTypeName:'远帆CPE 标准版', deviceType:'CPE', marketName:'远帆CPE 标准版', merchantName:'深圳远帆科技', typeCode:'CPE-STD-005', imeiTac:'86042315', deviceImage:'CPE', model:'MBB-CPE-200', localCardDevice:'否', status:'失效', startupCardCount:0, appkey:'mbb_cpe_std', type:'桌面终端', name:'远帆CPE 标准版', paymentMethod:'微信、钱包', serviceChannel:'企业渠道', customerServiceAccount:'service_szf', remark:'设备类型已停用', updatedAt:'2026-09-10 18:12:32'},
+  {productCategory:'智能终端', deviceTypeName:'智联MIFI X', deviceType:'MIFI', marketName:'智联MIFI X', merchantName:'上海智联商贸', typeCode:'MIFI-X-006', imeiTac:'86052317', deviceImage:'MIFI', model:'MBB-MIFI-PRO', localCardDevice:'是', status:'生效', startupCardCount:2140, appkey:'mbb_mifi_x', type:'硬件设备', name:'智联MIFI X', paymentMethod:'微信、钱包', serviceChannel:'直营渠道', customerServiceAccount:'service_sh', remark:'支持本地卡启动', updatedAt:'2026-09-09 11:42:20'},
+  {productCategory:'物联网设备', deviceTypeName:'项目DTU Mini', deviceType:'DTU', marketName:'项目DTU Mini', merchantName:'北京数联科技', typeCode:'DTU-MINI-007', imeiTac:'86062309', deviceImage:'DTU', model:'MBB-DTU-100', localCardDevice:'是', status:'失效', startupCardCount:18, appkey:'mbb_dtu_mini', type:'物联网终端', name:'项目DTU Mini', paymentMethod:'企业月结', serviceChannel:'项目渠道', customerServiceAccount:'service_bj', remark:'待重新配置服务渠道', updatedAt:'2026-09-08 15:28:44'}
+];
 const deviceRealnameData = [
   {sn:'MBB202605290001', user:'周亦辰', iccid:'898604C01925D0207595', carrier:'中国移动', cardUse:'启动卡', status:'已通过实名认证', miniProgramStatus:'已实名', createdAt:'2026-01-10 14:36:20', lastRealnameAt:'2026-01-15 09:28:16', updatedAt:'2026-05-29 10:58:24'},
   {sn:'MBB202605290001', user:'陆承安', iccid:'898604C01925D0207598', carrier:'中国移动', cardUse:'启动卡', status:'未通过实名认证', miniProgramStatus:'未实名', failureReason:'个人名下实名卡已达10张上限', createdAt:'2026-05-29 11:06:42', lastRealnameAt:'--', updatedAt:'2026-05-29 11:08:16'},
@@ -2691,9 +2899,11 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {home:'首页', device:'设备管理', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationConfig:'通知配置', notificationRecord:'通知任务记录', notificationRecordDetail:'通知明细', notificationConfigEdit:'通知配置编辑'};
+const pageTitles = {home:'首页', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationConfig:'通知配置', notificationRecord:'通知任务记录', notificationRecordDetail:'通知明细', notificationConfigEdit:'通知配置编辑'};
 let openTabs = [];
 let activePage = '';
+let deviceTypeCarrierOrder = [];
+let deviceTypeMiniProgramSelections = [];
 let currentDetailBatch = '';
 let currentDeviceSn = '';
 let currentSimIccid = '';
@@ -2921,6 +3131,7 @@ function activateTab(type){
   closeShippingInfoModal();
   closeNotificationRecordDetail();
   closeNotificationAccountModal();
+  closeDeviceTypeModal();
 }
 function closeTab(event,type){
   event.stopPropagation();
@@ -2943,6 +3154,7 @@ function closeTab(event,type){
 function applyPageState(type){
   document.getElementById('homePage').classList.toggle('hidden', type !== 'home');
   document.getElementById('devicePage').classList.toggle('hidden', type !== 'device');
+  document.getElementById('deviceTypePage').classList.toggle('hidden', type !== 'deviceType');
   document.getElementById('configPage').classList.toggle('hidden', type !== 'config');
   document.getElementById('detailPage').classList.toggle('hidden', type !== 'detail');
   document.getElementById('flowPage').classList.toggle('hidden', type !== 'flow');
@@ -2980,6 +3192,7 @@ function applyPageState(type){
   document.getElementById('notificationConfigEditPage').classList.toggle('hidden', type !== 'notificationConfigEdit');
   document.getElementById('menuHome').classList.toggle('active', type === 'home');
   document.getElementById('menuDeviceManage').classList.toggle('active', type === 'device');
+  document.getElementById('menuDeviceType').classList.toggle('active', type === 'deviceType');
   document.getElementById('menuConfig').classList.toggle('active', type === 'config');
   document.getElementById('menuFlow').classList.toggle('active', type === 'flow');
   document.getElementById('menuDevicePreStock').classList.toggle('active', ['devicePreStock','devicePreStockDetail'].includes(type));
@@ -3011,6 +3224,10 @@ function applyPageState(type){
     searchDeviceManageRecords();
     setActiveBatch('');
     setActiveDeviceSn(currentDeviceSn);
+  }else if(type === 'deviceType'){
+    searchDeviceTypeRecords();
+    setActiveBatch('');
+    setActiveDeviceSn('');
   }else if(type === 'config'){
     syncAuthManageTabs();
     if(currentAuthManageTab === 'sim'){
@@ -3722,6 +3939,10 @@ function filterInputCombo(combo){
   });
 }
 function refreshInputComboOwner(input){
+  if(input && input.id && input.id.indexOf('deviceTypeModal') === 0){
+    handleDeviceTypeModalComboChange(input);
+    return;
+  }
   if(input && input.id === 'factoryReturnDetailMerchantInput'){
     searchFactoryReturnDetailRecords();
     return;
@@ -3748,7 +3969,7 @@ function initInputCombos(){
       closeDropdowns();
       closeDeviceRangePickers();
       closeInputCombos(combo);
-      filterInputCombo(combo);
+      if(!combo.classList.contains('device-type-multi-combo')){filterInputCombo(combo)}
       combo.classList.add('open');
       event.stopPropagation();
     });
@@ -3756,17 +3977,24 @@ function initInputCombos(){
       closeDropdowns();
       closeDeviceRangePickers();
       closeInputCombos(combo);
-      filterInputCombo(combo);
+      if(!combo.classList.contains('device-type-multi-combo')){filterInputCombo(combo)}
       combo.classList.add('open');
       event.stopPropagation();
     });
     input.addEventListener('input', () => {
-      filterInputCombo(combo);
+      if(!combo.classList.contains('device-type-multi-combo')){filterInputCombo(combo)}
       syncInputComboState(combo);
       combo.classList.add('open');
     });
     combo.addEventListener('click', event => {
       if(event.target.closest('.combo-clear')){
+        if(combo.classList.contains('device-type-multi-combo')){
+          deviceTypeMiniProgramSelections = [];
+          syncDeviceTypeMiniProgramSelector();
+          combo.classList.remove('open');
+          event.stopPropagation();
+          return;
+        }
         input.value = '';
         combo.classList.remove('open');
         syncInputComboState(combo);
@@ -3776,6 +4004,12 @@ function initInputCombos(){
       }
       const option = event.target.closest('.combo-option');
       if(option){
+        if(combo.classList.contains('device-type-multi-combo')){
+          toggleDeviceTypeMiniProgram(option.dataset.value || option.textContent.trim());
+          combo.classList.add('open');
+          event.stopPropagation();
+          return;
+        }
         if(option.dataset.disabled === 'true'){
           event.stopPropagation();
           return;
@@ -3789,7 +4023,7 @@ function initInputCombos(){
     });
   });
 }
-const queryFilterSelector = '.device-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter,.notification-filter';
+const queryFilterSelector = '.device-filter,.device-type-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter,.notification-filter';
 const queryInputSelector = queryFilterSelector.split(',').map(selector => `${selector} input`).join(',');
 const queryWrappedInputSelector = queryFilterSelector.split(',').map(selector => `${selector} .query-input-wrap>input`).join(',');
 function syncQueryInputClear(input){
@@ -3948,6 +4182,315 @@ function clearDeviceRange(event,rangeKey){
     searchDeviceManageRecords();
   }
   event.stopPropagation();
+}
+function renderDeviceTypeTable(rows){
+  const rowsNode = document.getElementById('deviceTypeRows');
+  if(!rowsNode){return}
+  rowsNode.innerHTML = rows.map((row,index) => `
+    <tr>
+      <td>${index + 1}</td><td>${escapeHtml(row.productCategory)}</td><td>${escapeHtml(row.deviceTypeName)}</td><td>${escapeHtml(row.deviceType)}</td>
+      <td>${escapeHtml(row.marketName)}</td><td>${escapeHtml(row.merchantName)}</td><td>${escapeHtml(row.typeCode)}</td><td>${escapeHtml(row.imeiTac)}</td>
+      <td><span class="device-type-image">${escapeHtml(row.deviceImage)}</span></td><td>${escapeHtml(row.model)}</td><td>${escapeHtml(row.localCardDevice)}</td>
+      <td><span class="device-type-status ${row.status === '生效' ? 'active' : 'inactive'}">${escapeHtml(row.status)}</span></td><td>${escapeHtml(row.startupCardCount)}</td>
+      <td>${escapeHtml(row.appkey)}</td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.paymentMethod)}</td>
+      <td>${escapeHtml(row.serviceChannel)}</td><td>${escapeHtml(row.customerServiceAccount)}</td><td>${escapeHtml(row.remark)}</td><td>${escapeHtml(row.updatedAt)}</td>
+      <td class="sticky-action"><span class="device-type-action-list"><span class="text-action" onclick="handleDeviceTypeAction('套餐配置','${escapeHtml(row.typeCode)}')">套餐配置</span><span class="text-action" onclick="handleDeviceTypeAction('极速上网配置','${escapeHtml(row.typeCode)}')">极速上网配置</span><span class="text-action" onclick="handleDeviceTypeAction('编辑','${escapeHtml(row.typeCode)}')">编辑</span></span></td>
+    </tr>
+  `).join('');
+  updatePagination('deviceTypePagination', rows.length);
+}
+function getFilteredDeviceTypeRows(){
+  const name = normalizeText(document.getElementById('deviceTypeNameInput').value);
+  const deviceType = normalizeText(document.getElementById('deviceTypeCategoryInput').value);
+  const status = normalizeText(document.getElementById('deviceTypeStatusInput').value);
+  const model = normalizeText(document.getElementById('deviceTypeModelInput').value);
+  const merchant = normalizeText(document.getElementById('deviceTypeMerchantInput').value);
+  const productCategory = normalizeText(document.getElementById('deviceTypeProductCategoryInput').value);
+  return deviceTypeData.filter(row => {
+    const nameOk = !name || normalizeText(row.deviceTypeName).includes(name) || normalizeText(row.name).includes(name);
+    const deviceTypeOk = !deviceType || normalizeText(row.deviceType).includes(deviceType);
+    const statusOk = !status || normalizeText(row.status).includes(status);
+    const modelOk = !model || normalizeText(row.model).includes(model);
+    const merchantOk = !merchant || normalizeText(row.merchantName).includes(merchant);
+    const productCategoryOk = !productCategory || normalizeText(row.productCategory).includes(productCategory);
+    return nameOk && deviceTypeOk && statusOk && modelOk && merchantOk && productCategoryOk;
+  });
+}
+function searchDeviceTypeRecords(){
+  const rowsNode = document.getElementById('deviceTypeRows');
+  if(!rowsNode){return}
+  renderDeviceTypeTable(getFilteredDeviceTypeRows());
+}
+function resetDeviceTypeRecords(){
+  ['deviceTypeNameInput','deviceTypeCategoryInput','deviceTypeStatusInput','deviceTypeModelInput','deviceTypeMerchantInput','deviceTypeProductCategoryInput'].forEach(id => {
+    const input = document.getElementById(id);
+    if(input){input.value = ''}
+  });
+  document.querySelectorAll('#deviceTypePage .input-combo').forEach(syncInputComboState);
+  searchDeviceTypeRecords();
+}
+function handleDeviceTypeAction(action,typeCode){
+  const row = deviceTypeData.find(item => item.typeCode === typeCode);
+  if(!row){return}
+  alert(`${action}：${row.deviceTypeName}`);
+}
+function getDeviceTypeModalField(field){
+  return document.querySelector(`#deviceTypeModalMask .form-field[data-field="${field}"]`);
+}
+function setDeviceTypeFieldError(field,message){
+  const wrapper = getDeviceTypeModalField(field);
+  if(!wrapper){return}
+  wrapper.classList.toggle('invalid',Boolean(message));
+  const errorNode = wrapper.querySelector('.field-error');
+  if(errorNode){errorNode.textContent = message || ''}
+}
+function clearDeviceTypeFieldError(field){
+  setDeviceTypeFieldError(field,'');
+}
+function getDeviceTypeModalValue(id){
+  const node = document.getElementById(id);
+  if(!node){return ''}
+  if(node.classList.contains('custom-select')){return node.dataset.value || ''}
+  if(node.classList.contains('device-type-radio-group')){return node.dataset.value || ''}
+  if(node.classList.contains('input-combo')){return node.querySelector('input')?.value.trim() || ''}
+  return node.value || '';
+}
+function validateDeviceTypeModalField(id,label){
+  const value = getDeviceTypeModalValue(id);
+  if(!value){
+    setDeviceTypeFieldError(id,`${label}不能为空`);
+    return false;
+  }
+  clearDeviceTypeFieldError(id);
+  return true;
+}
+function setDeviceTypeRadio(groupId,value){
+  const group = document.getElementById(groupId);
+  if(!group){return}
+  group.dataset.value = value;
+  group.querySelectorAll('.radio').forEach(radio => radio.classList.toggle('active',radio.textContent.trim() === value));
+  clearDeviceTypeFieldError(groupId);
+  if(groupId === 'deviceTypeModalNeedRealname'){
+    syncDeviceTypeRealnameFields(value);
+  }
+}
+function syncDeviceTypeRealnameFields(value){
+  const enabled = value === '需要';
+  ['deviceTypeModalRequireAllRow','deviceTypeModalShowAllRow','deviceTypeModalStrategyRow'].forEach(id => document.getElementById(id)?.classList.toggle('hidden',!enabled));
+  if(!enabled){
+    ['deviceTypeModalRequireAll','deviceTypeModalShowAll'].forEach(id => {
+      const group = document.getElementById(id);
+      if(group){group.dataset.value = '';group.querySelectorAll('.radio').forEach(radio => radio.classList.remove('active'))}
+    });
+    deviceTypeCarrierOrder = [];
+    document.querySelectorAll('#deviceTypeModalStrategyOptions input').forEach(input => {input.checked = false});
+    renderDeviceTypeCarrierStrategy();
+  }
+}
+function syncDeviceTypeCustomerService(value){
+  const row = document.getElementById('deviceTypeModalCustomerServiceRow');
+  if(!row){return}
+  const enabled = value === '企业微信';
+  row.classList.toggle('hidden',!enabled);
+  if(!enabled){
+    const input = document.getElementById('deviceTypeModalCustomerService');
+    if(input){input.value = '';syncInputComboState(input.closest('.input-combo'))}
+    clearDeviceTypeFieldError('deviceTypeModalCustomerService');
+  }
+}
+function handleDeviceTypeModalComboChange(input){
+  if(!input){return}
+  if(input.id === 'deviceTypeModalPlatformType'){
+    const value = input.value.trim();
+    const fieldMap = {
+      '公众号':['deviceTypeModalPublicRow','deviceTypeModalPublic'],
+      '小程序':['deviceTypeModalMiniProgramRow','deviceTypeModalMiniProgram'],
+      '京东小程序':['deviceTypeModalJdMiniProgramRow','deviceTypeModalJdMiniProgram']
+    };
+    Object.entries(fieldMap).forEach(([type,[rowId,inputId]]) => {
+      const row = document.getElementById(rowId);
+      const visible = type === value;
+      row?.classList.toggle('hidden',!visible);
+      if(!visible){
+        const field = document.getElementById(inputId);
+        if(field){field.value = '';syncInputComboState(field.closest('.input-combo'))}
+        if(inputId === 'deviceTypeModalMiniProgram'){
+          deviceTypeMiniProgramSelections = [];
+          syncDeviceTypeMiniProgramSelector();
+        }
+        clearDeviceTypeFieldError(inputId);
+      }
+    });
+  }
+  clearDeviceTypeFieldError(input.id);
+}
+function getDeviceTypeMiniProgramTotal(){
+  return deviceTypeMiniProgramSelections.reduce((total,item) => {
+    const value = Number(item.ratio);
+    return total + (Number.isFinite(value) ? value : 0);
+  },0);
+}
+function formatDeviceTypePercentage(value){
+  const number = Number(value);
+  if(!Number.isFinite(number)){return '0'}
+  return number.toFixed(2).replace(/\.00$/,'').replace(/(\.\d)0$/,'$1');
+}
+function syncDeviceTypeMiniProgramSelector(){
+  const combo = document.querySelector('#deviceTypeModalMiniProgram')?.closest('.input-combo');
+  const input = document.getElementById('deviceTypeModalMiniProgram');
+  if(input){input.value = deviceTypeMiniProgramSelections.map(item => item.name).join('、')}
+  if(combo){
+    syncInputComboState(combo);
+    combo.querySelectorAll('.combo-option').forEach(option => option.classList.toggle('selected',deviceTypeMiniProgramSelections.some(item => item.name === (option.dataset.value || option.textContent.trim()))));
+  }
+  const wrap = document.getElementById('deviceTypeMiniProgramTableWrap');
+  const help = document.getElementById('deviceTypeMiniProgramHelp');
+  const rows = document.getElementById('deviceTypeMiniProgramRows');
+  if(wrap){wrap.classList.toggle('hidden',deviceTypeMiniProgramSelections.length === 0)}
+  if(help){help.classList.toggle('hidden',deviceTypeMiniProgramSelections.length === 0)}
+  if(rows){
+    rows.innerHTML = deviceTypeMiniProgramSelections.map((item,index) => `
+      <tr><td>${escapeHtml(item.name)}</td><td><span class="device-type-mini-ratio"><input class="input" type="number" min="0" max="100" step="0.01" value="${escapeHtml(item.ratio)}" placeholder="请输入"><span class="unit">%</span></span></td><td><button type="button" class="device-type-mini-delete" onclick="deleteDeviceTypeMiniProgram(${index})">删除</button></td></tr>
+    `).join('');
+    rows.querySelectorAll('input').forEach((node,index) => node.addEventListener('input',event => updateDeviceTypeMiniProgramRatio(index,event.target.value)));
+  }
+  const total = getDeviceTypeMiniProgramTotal();
+  const totalNode = document.getElementById('deviceTypeMiniProgramTotal');
+  if(totalNode){
+    totalNode.innerHTML = `权重合计：<strong>${formatDeviceTypePercentage(total)}%</strong>`;
+    totalNode.classList.toggle('valid',Math.abs(total - 100) < 0.001 && deviceTypeMiniProgramSelections.length > 0);
+  }
+}
+function toggleDeviceTypeMiniProgram(name){
+  const index = deviceTypeMiniProgramSelections.findIndex(item => item.name === name);
+  if(index === -1){
+    deviceTypeMiniProgramSelections.push({name,ratio:''});
+  }else{
+    deviceTypeMiniProgramSelections.splice(index,1);
+  }
+  syncDeviceTypeMiniProgramSelector();
+  clearDeviceTypeFieldError('deviceTypeModalMiniProgram');
+}
+function updateDeviceTypeMiniProgramRatio(index,value){
+  if(!deviceTypeMiniProgramSelections[index]){return}
+  deviceTypeMiniProgramSelections[index].ratio = value;
+  const total = getDeviceTypeMiniProgramTotal();
+  const totalNode = document.getElementById('deviceTypeMiniProgramTotal');
+  if(totalNode){
+    totalNode.innerHTML = `权重合计：<strong>${formatDeviceTypePercentage(total)}%</strong>`;
+    totalNode.classList.toggle('valid',Math.abs(total - 100) < 0.001 && deviceTypeMiniProgramSelections.length > 0);
+  }
+  clearDeviceTypeFieldError('deviceTypeModalMiniProgram');
+}
+function deleteDeviceTypeMiniProgram(index){
+  deviceTypeMiniProgramSelections.splice(index,1);
+  syncDeviceTypeMiniProgramSelector();
+  clearDeviceTypeFieldError('deviceTypeModalMiniProgram');
+}
+function renderDeviceTypeCarrierStrategy(){
+  const list = document.getElementById('deviceTypeModalStrategyList');
+  if(!list){return}
+  list.innerHTML = deviceTypeCarrierOrder.map((carrier,index) => `
+    <div class="device-type-strategy-item"><span>${index + 1}. ${escapeHtml(carrier)}</span><span class="device-type-strategy-order"><button type="button" title="上移" ${index === 0 ? 'disabled' : ''} onclick="moveDeviceTypeCarrier(${index},-1)">↑</button><button type="button" title="下移" ${index === deviceTypeCarrierOrder.length - 1 ? 'disabled' : ''} onclick="moveDeviceTypeCarrier(${index},1)">↓</button></span></div>
+  `).join('');
+}
+function toggleDeviceTypeCarrier(input){
+  const carrier = input.value;
+  if(input.checked){
+    if(!deviceTypeCarrierOrder.includes(carrier)){deviceTypeCarrierOrder.push(carrier)}
+  }else{
+    deviceTypeCarrierOrder = deviceTypeCarrierOrder.filter(item => item !== carrier);
+  }
+  renderDeviceTypeCarrierStrategy();
+  clearDeviceTypeFieldError('deviceTypeModalStrategy');
+}
+function moveDeviceTypeCarrier(index,direction){
+  const target = index + direction;
+  if(target < 0 || target >= deviceTypeCarrierOrder.length){return}
+  const next = [...deviceTypeCarrierOrder];
+  [next[index],next[target]] = [next[target],next[index]];
+  deviceTypeCarrierOrder = next;
+  renderDeviceTypeCarrierStrategy();
+}
+function resetDeviceTypeModal(){
+  const inputIds = ['deviceTypeModalCode','deviceTypeModalInternalName','deviceTypeModalMarketName','deviceTypeModalTac','deviceTypeModalFlowThreshold','deviceTypeModalRemark','deviceTypeModalStartupCount','deviceTypeModalImage'];
+  inputIds.forEach(id => {const node = document.getElementById(id);if(node){node.value = ''}});
+  ['deviceTypeModalModel','deviceTypeModalLocalCard','deviceTypeModalMerchant','deviceTypeModalPayment','deviceTypeModalService','deviceTypeModalProductCategory','deviceTypeModalEquipmentType'].forEach(id => {
+    const node = document.getElementById(id);
+    if(node){resetCustomSelect(id,node.dataset.placeholder || node.querySelector('.select-value')?.textContent || '')}
+  });
+  ['deviceTypeModalPlatformType','deviceTypeModalPublic','deviceTypeModalMiniProgram','deviceTypeModalJdMiniProgram','deviceTypeModalCustomerService'].forEach(id => {
+    const node = document.getElementById(id);
+      if(node){node.value = '';syncInputComboState(node.closest('.input-combo'));node.closest('.input-combo')?.querySelectorAll('.combo-option').forEach(option => option.classList.remove('hidden'))}
+  });
+  deviceTypeMiniProgramSelections = [];
+  syncDeviceTypeMiniProgramSelector();
+  ['deviceTypeModalSecondAuth','deviceTypeModalNeedRealname','deviceTypeModalRequireAll','deviceTypeModalShowAll'].forEach(id => {
+    const group = document.getElementById(id);
+    if(group){group.dataset.value = '';group.querySelectorAll('.radio').forEach(radio => radio.classList.remove('active'))}
+  });
+  deviceTypeCarrierOrder = [];
+  document.querySelectorAll('#deviceTypeModalStrategyOptions input').forEach(input => {input.checked = false});
+  renderDeviceTypeCarrierStrategy();
+  ['deviceTypeModalRequireAllRow','deviceTypeModalShowAllRow','deviceTypeModalStrategyRow','deviceTypeModalPublicRow','deviceTypeModalMiniProgramRow','deviceTypeModalJdMiniProgramRow','deviceTypeModalCustomerServiceRow'].forEach(id => document.getElementById(id)?.classList.add('hidden'));
+  document.querySelectorAll('#deviceTypeModalMask .form-field.invalid').forEach(item => item.classList.remove('invalid'));
+  document.querySelectorAll('#deviceTypeModalMask .field-error').forEach(item => item.textContent = '');
+}
+function openDeviceTypeCreate(){
+  resetDeviceTypeModal();
+  const modal = document.getElementById('deviceTypeModalMask');
+  if(modal){modal.style.display = 'flex'}
+}
+function closeDeviceTypeModal(){
+  const modal = document.getElementById('deviceTypeModalMask');
+  if(modal){modal.style.display = 'none'}
+}
+function submitDeviceTypeModal(){
+  let valid = true;
+  const required = [
+    ['deviceTypeModalCode','设备类型编码'],['deviceTypeModalInternalName','设备类型内部名称'],['deviceTypeModalMarketName','设备类型市场名称'],
+    ['deviceTypeModalModel','设备型号'],['deviceTypeModalLocalCard','是否本地卡设备'],['deviceTypeModalTac','TAC码'],['deviceTypeModalMerchant','商户ID'],
+    ['deviceTypeModalSecondAuth','是否需要卡二次认证'],['deviceTypeModalNeedRealname','是否需要实名'],['deviceTypeModalPlatformType','类型'],
+    ['deviceTypeModalPayment','支付方式'],['deviceTypeModalService','服务渠道'],['deviceTypeModalStartupCount','启动卡数量'],
+    ['deviceTypeModalProductCategory','产品类别'],['deviceTypeModalEquipmentType','设备类型']
+  ];
+  required.forEach(([id,label]) => {valid = validateDeviceTypeModalField(id,label) && valid});
+  if(getDeviceTypeModalValue('deviceTypeModalNeedRealname') === '需要'){
+    [['deviceTypeModalRequireAll','是否要求全部实名'],['deviceTypeModalShowAll','是否展示所有需实名卡']].forEach(([id,label]) => {valid = validateDeviceTypeModalField(id,label) && valid});
+    if(!deviceTypeCarrierOrder.length){setDeviceTypeFieldError('deviceTypeModalStrategy','请选择实名策略');valid = false}else{clearDeviceTypeFieldError('deviceTypeModalStrategy')}
+  }
+  const platformField = {'公众号':['deviceTypeModalPublic','公众号'],'小程序':['deviceTypeModalMiniProgram','小程序'],'京东小程序':['deviceTypeModalJdMiniProgram','京东小程序']}[getDeviceTypeModalValue('deviceTypeModalPlatformType')];
+  if(platformField){valid = validateDeviceTypeModalField(platformField[0],platformField[1]) && valid}
+  if(getDeviceTypeModalValue('deviceTypeModalPlatformType') === '小程序'){
+    const hasInvalidRatio = deviceTypeMiniProgramSelections.some(item => item.ratio === '' || !Number.isFinite(Number(item.ratio)) || Number(item.ratio) < 0 || Number(item.ratio) > 100);
+    const total = getDeviceTypeMiniProgramTotal();
+    if(hasInvalidRatio){
+      setDeviceTypeFieldError('deviceTypeModalMiniProgram','请输入0-100之间的流量权重');
+      valid = false;
+    }else if(Math.abs(total - 100) >= 0.001){
+      setDeviceTypeFieldError('deviceTypeModalMiniProgram',`流量权重总和需为100%，当前为${formatDeviceTypePercentage(total)}%`);
+      valid = false;
+    }
+  }
+  if(getDeviceTypeModalValue('deviceTypeModalService') === '企业微信'){
+    valid = validateDeviceTypeModalField('deviceTypeModalCustomerService','客服账号') && valid;
+  }
+  if(!valid){return}
+  const platformType = getDeviceTypeModalValue('deviceTypeModalPlatformType');
+  const platformAccount = platformField ? getDeviceTypeModalValue(platformField[0]) : '';
+  const image = document.getElementById('deviceTypeModalImage');
+  const miniProgramSummary = deviceTypeMiniProgramSelections.map(item => `${item.name} ${formatDeviceTypePercentage(item.ratio)}%`).join('、');
+  const now = new Date();
+  const updatedAt = `${now.getFullYear()}-${padDate(now.getMonth()+1)}-${padDate(now.getDate())} ${padDate(now.getHours())}:${padDate(now.getMinutes())}:${padDate(now.getSeconds())}`;
+  deviceTypeData.unshift({
+    productCategory:getDeviceTypeModalValue('deviceTypeModalProductCategory'), deviceTypeName:getDeviceTypeModalValue('deviceTypeModalInternalName'), deviceType:getDeviceTypeModalValue('deviceTypeModalEquipmentType'),
+    marketName:getDeviceTypeModalValue('deviceTypeModalMarketName'), merchantName:getDeviceTypeModalValue('deviceTypeModalMerchant'), typeCode:getDeviceTypeModalValue('deviceTypeModalCode'), imeiTac:getDeviceTypeModalValue('deviceTypeModalTac'),
+    deviceImage:image?.files?.[0]?.name || '待上传', model:getDeviceTypeModalValue('deviceTypeModalModel'), localCardDevice:getDeviceTypeModalValue('deviceTypeModalLocalCard'), status:'生效', startupCardCount:getDeviceTypeModalValue('deviceTypeModalStartupCount'),
+    appkey:'待配置', type:'硬件设备', name:platformType === '小程序' ? miniProgramSummary : platformAccount || platformType, paymentMethod:getDeviceTypeModalValue('deviceTypeModalPayment'), serviceChannel:getDeviceTypeModalValue('deviceTypeModalService'),
+    customerServiceAccount:getDeviceTypeModalValue('deviceTypeModalCustomerService'), remark:getDeviceTypeModalValue('deviceTypeModalRemark'), updatedAt, miniPrograms:deviceTypeMiniProgramSelections.map(item => ({name:item.name,ratio:Number(item.ratio)}))
+  });
+  searchDeviceTypeRecords();
+  closeDeviceTypeModal();
 }
 function renderDeviceActionMenu(){
   return `
@@ -7044,6 +7587,12 @@ function setCustomSelectValue(target,value,label,emitChange){
   if(emitChange && select.dataset.change === 'switchBatchOperationType'){
     switchBatchOperationType(value);
   }
+  if(emitChange && select.dataset.change === 'deviceTypeNeedRealname'){
+    syncDeviceTypeRealnameFields(value);
+  }
+  if(emitChange && select.dataset.change === 'deviceTypeServiceChannel'){
+    syncDeviceTypeCustomerService(value);
+  }
   if(select.id === 'afterSaleOperationType'){
     switchAfterSaleOperationType(value);
   }
@@ -7109,6 +7658,13 @@ function setCustomSelectValue(target,value,label,emitChange){
   }
   if(emitChange && ['notificationDetailEventFilter','notificationDetailChannelFilter','notificationDetailStatusFilter'].includes(select.id)){
     searchNotificationDetails();
+  }
+  if(['deviceTypeModalModel','deviceTypeModalLocalCard','deviceTypeModalMerchant','deviceTypeModalPayment','deviceTypeModalProductCategory','deviceTypeModalEquipmentType'].includes(select.id)){
+    clearDeviceTypeFieldError(select.id);
+  }
+  if(select.id === 'deviceTypeModalService'){
+    syncDeviceTypeCustomerService(value);
+    clearDeviceTypeFieldError(select.id);
   }
 }
 function initCustomSelectState(select){
