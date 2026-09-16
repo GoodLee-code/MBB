@@ -175,6 +175,8 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .batch-task-detail-table th,.batch-task-detail-table td{white-space:nowrap}
 .batch-task-count-link{color:var(--theme-color);cursor:pointer}
 .batch-task-count-link:hover{color:#0b4ea2;text-decoration:underline}
+.batch-task-row-highlight td{background:#eef6ff!important;box-shadow:inset 0 2px 0 #b8d4ff,inset 0 -2px 0 #b8d4ff}
+.batch-task-row-highlight td:first-child{box-shadow:inset 3px 0 0 #1687e8,inset 0 2px 0 #b8d4ff,inset 0 -2px 0 #b8d4ff}
 .batch-task-detail-status{font-weight:600}
 .batch-task-detail-status.success{color:#16a34a}
 .batch-task-detail-status.fail{color:#f04438}
@@ -2424,6 +2426,7 @@ const userPackageData = [
   {name:'华南代理60GB体验包', type:'体验包', totalFlow:61440, price:'39.00', discountPrice:'29.00', tag:'体验', frontPrice:'￥29/30天', desc:'代理渠道体验设备使用', discountStrength:'立减10元', discountDesc:'体验期优惠', validDays:30, status:'下架', nextMonthRestore:'是', merchant:'广州启明商贸', rechargeStrategy:'手动充值', scienceStrategy:'代理体验计算策略', couponDeduct:'不支持', creator:'王敏', payMethods:'微信、支付宝', createdAt:'2026-04-12 11:54:02', updatedAt:'2026-05-01 12:00:00'}
 ];
 const batchTaskData = [
+  {id:'BT202609150012', type:'设备批量查询', operationCount:130, status:'成功', remark:'设备批量查询完成', operator:'系统任务', operatedAt:'2026-09-15 10:24:06'},
   {id:'BT202607220036', type:'返修再售检测', operationCount:8, status:'成功', remark:'返修设备再售前批量检测', operator:'王敏', operatedAt:'2026-07-22 15:26:18'},
   {id:'BT202606020018', type:'批量操作设备解禁、禁用', operationCount:42, status:'成功', remark:'渠道设备解禁', operator:'李凡', operatedAt:'2026-06-02 16:38:09'},
   {id:'BT202606020011', type:'以旧换新单号数据同步', operationCount:18, status:'失败', remark:'部分单号不存在', operator:'陈启安', operatedAt:'2026-06-02 11:05:33'},
@@ -2557,13 +2560,15 @@ notificationRecords.forEach(item => {
   item.failureReason = override.reason || '';
   if(item.detail){item.detail.overall = override.result}
 });
-const topbarMessages = [
-  {id:'MSG202609150001',title:'批量任务已完成',content:'设备批量查询任务 BT202609150012 已完成，成功 128 条，失败 2 条。',time:'2026-09-15 10:24',unread:true},
-  {id:'MSG202609150002',title:'退款处理提醒',content:'退款批次 RF202609150006 有 3 笔记录待处理，请及时查看。',time:'2026-09-15 09:48',unread:true},
-  {id:'MSG202609140003',title:'设备返厂检测结果',content:'设备返厂批次 RF202609140021 检测完成，存在 1 条失败记录。',time:'2026-09-14 18:12',unread:true},
-  {id:'MSG202609140004',title:'实名信息同步完成',content:'设备 MBB202605290001 的实名认证状态已完成同步。',time:'2026-09-14 15:36',unread:false},
-  {id:'MSG202609130005',title:'活动发货提醒',content:'感恩回馈活动有 2 条记录待编辑发货信息。',time:'2026-09-13 11:08',unread:false}
-];
+const topbarMessages = batchTaskData.map((task,index) => {
+  const title = task.status === '成功' ? '批量任务已完成' : task.status === '失败' ? '批量任务执行失败' : '批量任务处理中';
+  const content = task.status === '成功'
+    ? `批量任务 ${task.id}（${task.type}）已完成，共处理 ${task.operationCount} 条。`
+    : task.status === '失败'
+      ? `批量任务 ${task.id}（${task.type}）执行失败，共处理 ${task.operationCount} 条，请及时查看。`
+      : `批量任务 ${task.id}（${task.type}）正在处理中，共 ${task.operationCount} 条，请及时查看。`;
+  return {id:`MSG_${task.id}`,title,content,taskId:task.id,time:task.operatedAt.slice(0,16),unread:index < 3};
+});
 function renderMessageNotifications(){
   const list = document.getElementById('messageNotificationList');
   const badge = document.getElementById('messageNotificationBadge');
@@ -2603,6 +2608,8 @@ function markMessageRead(id){
   renderMessageNotifications();
 }
 function openMessageTaskPage(id){
+  const message = topbarMessages.find(item => item.id === id);
+  highlightedBatchTaskId = message && message.taskId ? message.taskId : '';
   markMessageRead(id);
   closeMessageNotification();
   showPage('task');
@@ -2703,6 +2710,7 @@ let currentFactoryReturnBatch = factoryReturnData[0].batchNo;
 let currentActivityId = activityCenterData[0].id;
 let currentShippingEditIndex = null;
 let currentBatchTaskId = batchTaskData[0].id;
+let highlightedBatchTaskId = '';
 let notificationEditorMode = 'add';
 let notificationEditingIndex = -1;
 let notificationSmsMappingState = {};
@@ -5456,7 +5464,7 @@ function resetUserPackageRecords(){
 }
 function renderBatchTaskTable(rows){
   document.getElementById('batchTaskRows').innerHTML = rows.map(row => `
-    <tr>
+    <tr class="${row.id === highlightedBatchTaskId ? 'batch-task-row-highlight' : ''}">
       <td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.type)}</td><td><span class="batch-task-count-link" onclick="openBatchTaskDetail('${row.id}')">${row.operationCount}</span></td><td>${escapeHtml(row.status)}</td>
       <td>${escapeHtml(row.remark)}</td><td>${escapeHtml(row.operator)}</td><td>${escapeHtml(row.operatedAt)}</td>
       <td class="sticky-action"><span class="text-action" onclick="downloadBatchTaskResult('${row.id}')">下载</span></td>
