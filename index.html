@@ -72,13 +72,7 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .auth-manage-tab{height:42px;border:0;border-bottom:2px solid transparent;background:transparent;color:#4d5664;font-size:12px;font-weight:500;padding:0 2px 11px;cursor:pointer;white-space:nowrap;transition:color .16s ease,border-color .16s ease}
 .auth-manage-tab:hover{color:var(--theme-color)}
 .auth-manage-tab.active{color:var(--theme-color);border-bottom-color:var(--theme-color)}
-.auth-whitelist-filter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px 0 12px;margin:0 0 16px;width:100%;background:#fff}
-.auth-whitelist-filter .input{width:100%;min-width:0;height:34px;border:1px solid #e5e7eb;border-radius:4px;font-size:12px}
-.auth-whitelist-subtabs{height:42px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:32px;margin:0 0 16px;flex:none}
-.auth-whitelist-subtab{height:42px;border:0;border-bottom:2px solid transparent;background:transparent;color:#4d5664;font-size:12px;font-weight:500;padding:0 2px 11px;cursor:pointer;white-space:nowrap;transition:color .16s ease,border-color .16s ease}
-.auth-whitelist-subtab:hover{color:var(--theme-color)}
-.auth-whitelist-subtab.active{color:var(--theme-color);border-bottom-color:var(--theme-color)}
-.auth-whitelist-table{min-width:680px}
+.auth-whitelist-table{min-width:760px}
 .auth-whitelist-table th,.auth-whitelist-table td{white-space:nowrap}
 .auth-whitelist-action-group{display:flex;align-items:center;justify-content:center;gap:16px}
 .auth-whitelist-action{border:0;padding:0;background:transparent;color:var(--theme-color);font-size:12px;cursor:pointer}
@@ -669,7 +663,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .req:before{content:"*";color:#f04438;margin-right:6px}
 .form-label{text-align:left;padding-right:14px;font-size:15px;font-weight:600;color:#4b5563;line-height:32px}
 .form-row .select{width:260px;color:#4b5563}
-.batch-template-link{display:inline-flex;align-items:center;height:32px;color:var(--theme-color);cursor:pointer}
+.batch-template-link,.download{display:inline-flex;align-items:center;height:32px;padding:0;border:0;background:transparent;color:var(--theme-color);cursor:pointer;font:inherit;font-size:13px;line-height:32px}
 .batch-template-link:hover{color:#0b4ea2;text-decoration:underline}
 .number-unit{position:relative;width:260px}
 .number-unit .input{width:260px;padding-right:42px;color:#4b5563}
@@ -677,7 +671,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .radio{display:inline-flex;align-items:center;margin-right:28px;font-size:15px;color:#4b5563;cursor:pointer}
 .radio i{width:15px;height:15px;border-radius:50%;border:1px solid #cfd6e2;margin-right:8px;background:#fff}
 .radio.active{color:#1687e8}.radio.active i{border:5px solid var(--theme-color)}
-.filebtn{height:32px;border:0;background:#3b9cff;color:#fff;border-radius:3px;padding:0 18px;margin-right:18px}.download{color:#1687e8}
+.filebtn{height:32px;border:0;background:#3b9cff;color:#fff;border-radius:3px;padding:0 18px;margin-right:18px}.download{color:#1687e8}.download:hover{color:#0b4ea2;text-decoration:underline}
 .help{margin-top:12px;color:#606a78;font-size:15px}
 .textarea{width:100%;height:120px;border:1px solid #bfc8d8;border-radius:4px;padding:12px;color:#b8c0cc;font-size:14px;resize:none}
 .modal-actions{text-align:right;margin-top:34px}.modal-actions button{height:34px;padding:0 20px;border-radius:3px;margin-left:12px}.cancel{background:#fff;border:1px solid #d8dee9;color:#606a78}.confirm{background:var(--theme-color);border:1px solid var(--theme-color);color:#fff}
@@ -1089,7 +1083,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
           <input class="input" id="deviceGroupNameInput" placeholder="设备组名称" oninput="searchDeviceGroupRecords()">
           <div class="filter-actions"><button class="btn line" onclick="searchDeviceGroupRecords()">搜索</button><button class="btn gray" onclick="resetDeviceGroupRecords()">重置</button></div>
         </div>
-        <div class="action-row"><button class="btn">创建分组</button><button class="btn line">下载模版</button><button class="btn line">刷新组数量</button></div>
+        <div class="action-row"><button class="btn">创建分组</button><button class="download" type="button">下载模版</button><button class="btn line">刷新组数量</button></div>
         <div class="table-card" style="margin-top:10px">
           <table class="device-group-table">
             <thead><tr><th>设备组编号</th><th>设备组名称</th><th>所属商户</th><th>是否需要实名</th><th>是否绑定</th><th>优先级</th><th>设备数量</th><th>本月设备总流量</th><th>上个月设备流量</th><th>卡组名称</th><th>设备在线数量</th><th>设备离线数</th><th>是否预充值</th><th>实名后立马生效</th><th>是否虚量</th><th>状态</th><th>限速策略</th><th>切卡策略</th><th>实名策略</th><th class="sticky-action">操作</th></tr></thead>
@@ -1217,10 +1211,11 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 
     <section id="configPage" class="content">
       <div class="auth-manage-tabs" role="tablist" aria-label="二次认证管理页面切换">
+        <button type="button" class="auth-manage-tab" data-auth-manage-tab="sim" role="tab" aria-selected="false" onclick="switchAuthManageTab('sim')">二次认证SIM卡管理</button>
         <button type="button" class="auth-manage-tab active" data-auth-manage-tab="config" role="tab" aria-selected="true" onclick="switchAuthManageTab('config')">卡配置记录</button>
         <button type="button" class="auth-manage-tab" data-auth-manage-tab="device" role="tab" aria-selected="false" onclick="switchAuthManageTab('device')">设备配置记录</button>
-        <button type="button" class="auth-manage-tab" data-auth-manage-tab="sim" role="tab" aria-selected="false" onclick="switchAuthManageTab('sim')">二次认证SIM卡管理</button>
-        <button type="button" class="auth-manage-tab" data-auth-manage-tab="whitelist" role="tab" aria-selected="false" onclick="switchAuthManageTab('whitelist')">白名单管理</button>
+        <button type="button" class="auth-manage-tab" data-auth-manage-tab="sim-whitelist" role="tab" aria-selected="false" onclick="switchAuthManageTab('sim-whitelist')">SIM卡白名单</button>
+        <button type="button" class="auth-manage-tab" data-auth-manage-tab="device-whitelist" role="tab" aria-selected="false" onclick="switchAuthManageTab('device-whitelist')">设备白名单</button>
       </div>
       <div class="auth-manage-panel active" id="authConfigPanel">
       <div class="config-filter">
@@ -1268,23 +1263,35 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       </div>
       <div class="pagination" id="simPagination">共5条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
       </div>
-      <div class="auth-manage-panel" id="authWhitelistPanel">
-        <div class="auth-whitelist-subtabs" role="tablist" aria-label="白名单类型切换">
-          <button type="button" class="auth-whitelist-subtab active" data-auth-whitelist-tab="sim" role="tab" aria-selected="true" onclick="switchAuthWhitelistTab('sim')">SIM卡白名单</button>
-          <button type="button" class="auth-whitelist-subtab" data-auth-whitelist-tab="device" role="tab" aria-selected="false" onclick="switchAuthWhitelistTab('device')">设备白名单</button>
+      <div class="auth-manage-panel" id="authDevicePanel"></div>
+      <div class="auth-manage-panel" id="authSimWhitelistPanel">
+        <div class="config-filter">
+          <input class="input" id="authSimWhitelistKeywordInput" placeholder="ICCID" oninput="searchAuthWhitelistRecords('sim')">
+          <input class="input" id="authSimWhitelistDeviceSnInput" placeholder="设备SN" oninput="searchAuthWhitelistRecords('sim')">
+          <div class="filter-actions"><button class="btn line" onclick="searchAuthWhitelistRecords('sim')">搜索</button><button class="btn gray" onclick="resetAuthWhitelistRecords('sim')">重置</button></div>
         </div>
-        <div class="auth-whitelist-filter">
-          <input class="input" id="authWhitelistKeywordInput" placeholder="ICCID" oninput="searchAuthWhitelistRecords()">
-          <div class="filter-actions"><button class="btn line" onclick="searchAuthWhitelistRecords()">搜索</button><button class="btn gray" onclick="resetAuthWhitelistRecords()">重置</button></div>
-        </div>
-        <div class="action-row"><button class="btn" onclick="openAuthWhitelistModal()">白名单新增</button></div>
-        <div class="table-card" style="margin-top:0">
+        <div class="action-row"><button class="btn" onclick="openAuthWhitelistModal('sim')">白名单新增</button></div>
+        <div class="table-card" style="margin-top:10px">
           <table class="auth-whitelist-table">
-            <thead id="authWhitelistHead"></thead>
-            <tbody id="authWhitelistRows"></tbody>
+            <thead id="authSimWhitelistHead"><tr><th>ICCID</th><th>设备SN</th><th>创建时间</th><th>操作</th></tr></thead>
+            <tbody id="authSimWhitelistRows"></tbody>
           </table>
         </div>
-        <div class="pagination" id="authWhitelistPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+        <div class="pagination" id="authSimWhitelistPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
+      <div class="auth-manage-panel" id="authDeviceWhitelistPanel">
+        <div class="config-filter">
+          <input class="input" id="authDeviceWhitelistKeywordInput" placeholder="设备SN" oninput="searchAuthWhitelistRecords('device')">
+          <div class="filter-actions"><button class="btn line" onclick="searchAuthWhitelistRecords('device')">搜索</button><button class="btn gray" onclick="resetAuthWhitelistRecords('device')">重置</button></div>
+        </div>
+        <div class="action-row"><button class="btn" onclick="openAuthWhitelistModal('device')">白名单新增</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="auth-whitelist-table">
+            <thead id="authDeviceWhitelistHead"><tr><th>设备SN</th><th>创建时间</th><th>操作</th></tr></thead>
+            <tbody id="authDeviceWhitelistRows"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="authDeviceWhitelistPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
       </div>
     </section>
 
@@ -2526,10 +2533,6 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="close" onclick="closeAuthWhitelistModal()">×</div>
     <div class="modal-title" id="authWhitelistModalTitle">白名单新增</div>
     <div class="modal-body">
-      <div class="form-row" id="authWhitelistModalTypeRow">
-        <div class="form-label req">白名单类型</div>
-        <div class="auth-whitelist-modal-radio-group"><span class="radio active" id="authWhitelistSimRadio" onclick="switchAuthWhitelistModalType('sim')"><i></i>SIM卡白名单</span><span class="radio" id="authWhitelistDeviceRadio" onclick="switchAuthWhitelistModalType('device')"><i></i>设备白名单</span></div>
-      </div>
       <div class="form-row" id="authWhitelistModalEntryRow">
         <div class="form-label req">添加方式</div>
         <div class="auth-whitelist-modal-radio-group"><span class="radio active" id="authWhitelistManualRadio" onclick="switchAuthWhitelistEntry('manual')"><i></i>手动录入</span><span class="radio" id="authWhitelistFileRadio" onclick="switchAuthWhitelistEntry('file')"><i></i>文件导入</span></div>
@@ -2540,14 +2543,14 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       </div>
       <div class="form-row form-field" id="authWhitelistModalField">
         <div class="form-label req" id="authWhitelistModalLabel">ICCID</div>
-        <div><input class="input" id="authWhitelistModalInput" placeholder="请输入ICCID" oninput="clearAuthWhitelistFieldError()"><div class="field-error"></div></div>
+        <div><textarea class="textarea" id="authWhitelistModalInput" rows="3" placeholder="请输入ICCID" oninput="clearAuthWhitelistFieldError()"></textarea><div class="field-error"></div></div>
       </div>
       <div class="form-row form-field hidden" id="authWhitelistFileField">
         <div class="form-label req">选择文件</div>
         <div>
           <input class="input auth-whitelist-file-input" id="authWhitelistFileInput" type="file" accept=".csv,.txt,.xls,.xlsx" onchange="handleAuthWhitelistFileChange()">
-          <div class="auth-whitelist-file-actions"><button type="button" class="btn line" onclick="downloadAuthWhitelistTemplate()" id="authWhitelistTemplateButton">下载SIM卡白名单模板</button></div>
-          <div class="help" id="authWhitelistFileHelp">支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个ICCID。</div>
+          <div class="auth-whitelist-file-actions"><button type="button" class="download" onclick="downloadAuthWhitelistTemplate()" id="authWhitelistTemplateButton">下载SIM卡白名单模板</button></div>
+          <div class="help" id="authWhitelistFileHelp">支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个ICCID及对应设备SN。</div>
           <div class="field-error"></div>
         </div>
       </div>
@@ -2608,14 +2611,12 @@ const detailData = {
 };
 const authWhitelistData = {
   sim:[
-    {iccid:'898604C01925D0207595',updatedAt:'2026-09-15 10:24:06',operator:'李凡'},
-    {iccid:'898604C01925D0207615',updatedAt:'2026-09-14 16:38:12',operator:'陈启安'},
-    {iccid:'898604C01925D0207668',updatedAt:'2026-09-12 14:06:28',operator:'段玉'}
+    {iccid:'898604C01925D0207811',sn:'MBB202609170021',createdAt:'2026-09-17 09:18:36',operator:'李凡'},
+    {iccid:'898604C01925D0207812',sn:'MBB202609170022',createdAt:'2026-09-17 10:42:08',operator:'王敏'}
   ],
   device:[
-    {sn:'MBB202605290001',updatedAt:'2026-09-15 10:24:06',operator:'李凡'},
-    {sn:'MBB202605290003',updatedAt:'2026-09-14 16:38:12',operator:'陈启安'},
-    {sn:'MBB202605280018',updatedAt:'2026-09-12 14:06:28',operator:'段玉'}
+    {sn:'MBB202609170021',createdAt:'2026-09-17 09:26:14',operator:'李凡'},
+    {sn:'MBB202609170022',createdAt:'2026-09-17 11:05:42',operator:'陈启安'}
   ]
 };
 const deviceManagementData = [
@@ -3347,10 +3348,9 @@ function applyPageState(type){
     syncAuthManageTabs();
     if(currentAuthManageTab === 'sim'){
       searchSimRecords();
-    }else if(currentAuthManageTab === 'whitelist'){
-      syncAuthWhitelistTabs();
-      searchAuthWhitelistRecords();
-    }else{
+    }else if(currentAuthManageTab === 'sim-whitelist' || currentAuthManageTab === 'device-whitelist'){
+      searchAuthWhitelistRecords(currentAuthManageTab === 'sim-whitelist' ? 'sim' : 'device');
+    }else if(currentAuthManageTab === 'config'){
       searchConfigRecords();
     }
     setActiveBatch('');
@@ -3972,10 +3972,14 @@ function syncAuthManageTabs(){
   });
   const configPanel = document.getElementById('authConfigPanel');
   const simPanel = document.getElementById('authSimPanel');
-  const whitelistPanel = document.getElementById('authWhitelistPanel');
-  if(configPanel){configPanel.classList.toggle('active', !['sim','whitelist'].includes(currentAuthManageTab))}
+  const devicePanel = document.getElementById('authDevicePanel');
+  const simWhitelistPanel = document.getElementById('authSimWhitelistPanel');
+  const deviceWhitelistPanel = document.getElementById('authDeviceWhitelistPanel');
+  if(configPanel){configPanel.classList.toggle('active', currentAuthManageTab === 'config')}
   if(simPanel){simPanel.classList.toggle('active', currentAuthManageTab === 'sim')}
-  if(whitelistPanel){whitelistPanel.classList.toggle('active', currentAuthManageTab === 'whitelist')}
+  if(devicePanel){devicePanel.classList.toggle('active', currentAuthManageTab === 'device')}
+  if(simWhitelistPanel){simWhitelistPanel.classList.toggle('active', currentAuthManageTab === 'sim-whitelist')}
+  if(deviceWhitelistPanel){deviceWhitelistPanel.classList.toggle('active', currentAuthManageTab === 'device-whitelist')}
 }
 function switchAuthManageTab(tab){
   currentAuthManageTab = tab;
@@ -3984,76 +3988,11 @@ function switchAuthManageTab(tab){
   closeInputCombos();
   if(tab === 'sim'){
     searchSimRecords();
-  }else if(tab === 'whitelist'){
-    syncAuthWhitelistTabs();
-    searchAuthWhitelistRecords();
-  }else{
+  }else if(tab === 'sim-whitelist' || tab === 'device-whitelist'){
+    searchAuthWhitelistRecords(tab === 'sim-whitelist' ? 'sim' : 'device');
+  }else if(tab === 'config'){
     searchConfigRecords();
   }
-}
-function syncAuthWhitelistTabs(){
-  document.querySelectorAll('[data-auth-whitelist-tab]').forEach(tab => {
-    const active = tab.dataset.authWhitelistTab === currentAuthWhitelistTab;
-    tab.classList.toggle('active', active);
-    tab.setAttribute('aria-selected', active ? 'true' : 'false');
-  });
-  const input = document.getElementById('authWhitelistKeywordInput');
-  if(input){
-    const label = currentAuthWhitelistTab === 'sim' ? 'ICCID' : '设备SN';
-    input.placeholder = label;
-  }
-  syncAuthWhitelistModalControls();
-}
-function switchAuthWhitelistTab(tab){
-  currentAuthWhitelistTab = tab === 'device' ? 'device' : 'sim';
-  syncAuthWhitelistTabs();
-  closeDropdowns();
-  closeInputCombos();
-  searchAuthWhitelistRecords();
-}
-function syncAuthWhitelistModalControls(){
-  const isSim = currentAuthWhitelistModalType === 'sim';
-  const label = isSim ? 'ICCID' : '设备SN';
-  const modalLabel = document.getElementById('authWhitelistModalLabel');
-  const modalInput = document.getElementById('authWhitelistModalInput');
-  const fileHelp = document.getElementById('authWhitelistFileHelp');
-  const templateButton = document.getElementById('authWhitelistTemplateButton');
-  const manualField = document.getElementById('authWhitelistModalField');
-  const fileField = document.getElementById('authWhitelistFileField');
-  const simDeviceSnField = document.getElementById('authWhitelistSimDeviceSnField');
-  const typeRow = document.getElementById('authWhitelistModalTypeRow');
-  const entryRow = document.getElementById('authWhitelistModalEntryRow');
-  if(modalLabel){modalLabel.textContent = label}
-  if(modalInput){modalInput.placeholder = `请输入${label}`}
-  if(fileHelp){fileHelp.textContent = isSim ? '支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个ICCID及对应设备SN。' : '支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个设备SN。'}
-  if(templateButton){templateButton.textContent = `下载${isSim ? 'SIM卡' : '设备'}白名单模板`}
-  if(manualField){manualField.classList.toggle('hidden', currentAuthWhitelistEntry === 'file')}
-  if(fileField){fileField.classList.toggle('hidden', currentAuthWhitelistEntry !== 'file')}
-  if(simDeviceSnField){simDeviceSnField.classList.toggle('hidden', !(isSim && currentAuthWhitelistModalMode === 'add' && currentAuthWhitelistEntry === 'manual'))}
-  if(typeRow){typeRow.classList.toggle('hidden', currentAuthWhitelistModalMode === 'edit')}
-  if(entryRow){entryRow.classList.toggle('hidden', currentAuthWhitelistModalMode === 'edit')}
-  const title = document.getElementById('authWhitelistModalTitle');
-  const submitButton = document.getElementById('authWhitelistModalSubmitButton');
-  const fileRadio = document.getElementById('authWhitelistFileRadio');
-  if(title){title.textContent = currentAuthWhitelistModalMode === 'edit' ? '白名单编辑' : '白名单新增'}
-  if(submitButton){submitButton.textContent = currentAuthWhitelistModalMode === 'edit' ? '保存修改' : '确认新增'}
-  if(fileRadio){fileRadio.classList.toggle('disabled', currentAuthWhitelistModalMode === 'edit')}
-  document.getElementById('authWhitelistSimRadio')?.classList.toggle('active', isSim);
-  document.getElementById('authWhitelistDeviceRadio')?.classList.toggle('active', !isSim);
-  document.getElementById('authWhitelistManualRadio')?.classList.toggle('active', currentAuthWhitelistEntry === 'manual');
-  document.getElementById('authWhitelistFileRadio')?.classList.toggle('active', currentAuthWhitelistEntry === 'file');
-}
-function switchAuthWhitelistModalType(type){
-  if(currentAuthWhitelistModalMode === 'edit'){return}
-  currentAuthWhitelistModalType = type === 'device' ? 'device' : 'sim';
-  syncAuthWhitelistModalControls();
-  clearAuthWhitelistFieldError();
-}
-function switchAuthWhitelistEntry(mode){
-  if(currentAuthWhitelistModalMode === 'edit' && mode === 'file'){return}
-  currentAuthWhitelistEntry = mode === 'file' ? 'file' : 'manual';
-  syncAuthWhitelistModalControls();
-  clearAuthWhitelistFieldError();
 }
 function openConfigDetail(batchNo){
   currentDetailBatch = batchNo;
@@ -7146,40 +7085,89 @@ function resetSimRecords(){
   resetSimLikeFilters('simIccidInput','simCertifiedFilter','simPriorityFilter','simAssignedFilter');
   searchSimRecords();
 }
-function renderAuthWhitelistTable(rows){
-  const isSim = currentAuthWhitelistTab === 'sim';
-  const fieldLabel = isSim ? 'ICCID' : '设备SN';
+function renderAuthWhitelistTable(type){
+  const isSim = type === 'sim';
   const fieldKey = isSim ? 'iccid' : 'sn';
-  const head = document.getElementById('authWhitelistHead');
-  const body = document.getElementById('authWhitelistRows');
+  const input = document.getElementById(isSim ? 'authSimWhitelistKeywordInput' : 'authDeviceWhitelistKeywordInput');
+  const deviceSnInput = isSim ? document.getElementById('authSimWhitelistDeviceSnInput') : null;
+  const head = document.getElementById(isSim ? 'authSimWhitelistHead' : 'authDeviceWhitelistHead');
+  const body = document.getElementById(isSim ? 'authSimWhitelistRows' : 'authDeviceWhitelistRows');
+  const paginationId = isSim ? 'authSimWhitelistPagination' : 'authDeviceWhitelistPagination';
   if(!head || !body){return}
-  head.innerHTML = `<tr><th>${fieldLabel}</th><th>更新时间</th><th>操作人</th><th>操作</th></tr>`;
+  const keyword = normalizeText(input ? input.value : '');
+  const deviceSnKeyword = normalizeText(deviceSnInput ? deviceSnInput.value : '');
+  const rows = (authWhitelistData[type] || []).filter(row => {
+    const primaryMatched = !keyword || normalizeText(row[fieldKey]).includes(keyword);
+    const deviceSnMatched = !deviceSnKeyword || normalizeText(row.sn).includes(deviceSnKeyword);
+    return primaryMatched && deviceSnMatched;
+  });
+  head.innerHTML = isSim ? '<tr><th>ICCID</th><th>设备SN</th><th>创建时间</th><th>操作</th></tr>' : '<tr><th>设备SN</th><th>创建时间</th><th>操作</th></tr>';
   body.innerHTML = rows.length ? rows.map(row => {
     const encodedValue = encodeURIComponent(String(row[fieldKey] || ''));
-    const type = currentAuthWhitelistTab;
-    return `<tr><td>${escapeHtml(row[fieldKey])}</td><td>${escapeHtml(row.updatedAt)}</td><td>${escapeHtml(row.operator)}</td><td><div class="auth-whitelist-action-group"><button type="button" class="auth-whitelist-action" onclick="openAuthWhitelistEdit('${type}','${encodedValue}')">编辑</button><button type="button" class="auth-whitelist-action danger" onclick="openAuthWhitelistDelete('${type}','${encodedValue}')">删除</button></div></td></tr>`;
-  }).join('') : '<tr><td colspan="4" class="notification-empty">暂无白名单数据</td></tr>';
-  updatePagination('authWhitelistPagination', rows.length);
+    const operation = `<div class="auth-whitelist-action-group"><button type="button" class="auth-whitelist-action" onclick="openAuthWhitelistEdit('${type}','${encodedValue}')">编辑</button><button type="button" class="auth-whitelist-action danger" onclick="openAuthWhitelistDelete('${type}','${encodedValue}')">删除</button></div>`;
+    return isSim ? `<tr><td>${escapeHtml(row.iccid)}</td><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.createdAt)}</td><td>${operation}</td></tr>` : `<tr><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.createdAt)}</td><td>${operation}</td></tr>`;
+  }).join('') : `<tr><td colspan="${isSim ? 4 : 3}" class="notification-empty">暂无${isSim ? 'SIM卡' : '设备'}白名单记录</td></tr>`;
+  updatePagination(paginationId,rows.length);
 }
-function searchAuthWhitelistRecords(){
+function syncAuthWhitelistTabs(){
+  const isSim = currentAuthWhitelistTab === 'sim';
+  const input = document.getElementById(isSim ? 'authSimWhitelistKeywordInput' : 'authDeviceWhitelistKeywordInput');
+  if(input){input.placeholder = isSim ? 'ICCID' : '设备SN'}
+  syncAuthWhitelistModalControls();
+}
+function searchAuthWhitelistRecords(type){
+  currentAuthWhitelistTab = type === 'device' ? 'device' : 'sim';
+  renderAuthWhitelistTable(currentAuthWhitelistTab);
   syncAuthWhitelistTabs();
-  const input = document.getElementById('authWhitelistKeywordInput');
-  const keyword = input ? normalizeText(input.value) : '';
-  const fieldKey = currentAuthWhitelistTab === 'sim' ? 'iccid' : 'sn';
-  const rows = (authWhitelistData[currentAuthWhitelistTab] || []).filter(row => !keyword || normalizeText(row[fieldKey]).includes(keyword));
-  renderAuthWhitelistTable(rows);
 }
-function resetAuthWhitelistRecords(){
-  const input = document.getElementById('authWhitelistKeywordInput');
+function resetAuthWhitelistRecords(type){
+  const target = type === 'device' ? 'device' : 'sim';
+  const input = document.getElementById(target === 'sim' ? 'authSimWhitelistKeywordInput' : 'authDeviceWhitelistKeywordInput');
   if(input){input.value = ''}
-  searchAuthWhitelistRecords();
+  if(target === 'sim'){
+    const deviceSnInput = document.getElementById('authSimWhitelistDeviceSnInput');
+    if(deviceSnInput){deviceSnInput.value = ''}
+  }
+  searchAuthWhitelistRecords(target);
 }
-function openAuthWhitelistModal(){
+function syncAuthWhitelistModalControls(){
+  const isSim = currentAuthWhitelistModalType === 'sim';
+  const label = isSim ? 'ICCID' : '设备SN';
+  const modalLabel = document.getElementById('authWhitelistModalLabel');
+  const modalInput = document.getElementById('authWhitelistModalInput');
+  const fileHelp = document.getElementById('authWhitelistFileHelp');
+  const templateButton = document.getElementById('authWhitelistTemplateButton');
+  const manualField = document.getElementById('authWhitelistModalField');
+  const fileField = document.getElementById('authWhitelistFileField');
+  const simDeviceSnField = document.getElementById('authWhitelistSimDeviceSnField');
+  const entryRow = document.getElementById('authWhitelistModalEntryRow');
+  if(modalLabel){modalLabel.textContent = label}
+  if(modalInput){modalInput.placeholder = isSim ? '请输入ICCID' : '请输入设备SN，多个请用换行或逗号分隔'}
+  if(fileHelp){fileHelp.textContent = isSim ? '支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个ICCID及对应设备SN。' : '支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个设备SN。'}
+  if(templateButton){templateButton.textContent = `下载${isSim ? 'SIM卡' : '设备'}白名单模板`}
+  if(manualField){manualField.classList.toggle('hidden', currentAuthWhitelistEntry === 'file')}
+  if(fileField){fileField.classList.toggle('hidden', currentAuthWhitelistEntry !== 'file')}
+  if(simDeviceSnField){simDeviceSnField.classList.toggle('hidden', !(isSim && currentAuthWhitelistModalMode === 'add' && currentAuthWhitelistEntry === 'manual'))}
+  if(entryRow){entryRow.classList.toggle('hidden', currentAuthWhitelistModalMode === 'edit')}
+  const title = document.getElementById('authWhitelistModalTitle');
+  const submitButton = document.getElementById('authWhitelistModalSubmitButton');
+  const fileRadio = document.getElementById('authWhitelistFileRadio');
+  if(title){title.textContent = currentAuthWhitelistModalMode === 'edit' ? '白名单编辑' : '白名单新增'}
+  if(submitButton){submitButton.textContent = currentAuthWhitelistModalMode === 'edit' ? '保存修改' : '确认新增'}
+  if(fileRadio){fileRadio.classList.toggle('disabled', currentAuthWhitelistModalMode === 'edit')}
+  document.getElementById('authWhitelistManualRadio')?.classList.toggle('active', currentAuthWhitelistEntry === 'manual');
+  document.getElementById('authWhitelistFileRadio')?.classList.toggle('active', currentAuthWhitelistEntry === 'file');
+}
+function switchAuthWhitelistEntry(mode){
+  if(currentAuthWhitelistModalMode === 'edit' && mode === 'file'){return}
+  currentAuthWhitelistEntry = mode === 'file' ? 'file' : 'manual';
+  syncAuthWhitelistModalControls();
+}
+function openAuthWhitelistModal(type){
   currentAuthWhitelistModalMode = 'add';
   currentAuthWhitelistEditingValue = '';
-  currentAuthWhitelistModalType = currentAuthWhitelistTab;
+  currentAuthWhitelistModalType = type === 'device' ? 'device' : currentAuthWhitelistTab;
   currentAuthWhitelistEntry = 'manual';
-  syncAuthWhitelistTabs();
   const input = document.getElementById('authWhitelistModalInput');
   const simDeviceSnInput = document.getElementById('authWhitelistSimDeviceSnInput');
   const simDeviceSnField = document.getElementById('authWhitelistSimDeviceSnField');
@@ -7197,6 +7185,7 @@ function openAuthWhitelistModal(){
 function openAuthWhitelistEdit(type,encodedValue){
   const modalType = type === 'device' ? 'device' : 'sim';
   const value = decodeURIComponent(encodedValue || '');
+  currentAuthWhitelistTab = modalType;
   currentAuthWhitelistModalMode = 'edit';
   currentAuthWhitelistEditingValue = value;
   currentAuthWhitelistModalType = modalType;
@@ -7211,7 +7200,6 @@ function openAuthWhitelistEdit(type,encodedValue){
   if(fileInput){fileInput.value = ''}
   if(field){field.classList.remove('invalid');const error = field.querySelector('.field-error');if(error){error.textContent = ''}}
   if(simDeviceSnField){simDeviceSnField.classList.remove('invalid');const error = simDeviceSnField.querySelector('.field-error');if(error){error.textContent = ''}}
-  syncAuthWhitelistTabs();
   syncAuthWhitelistModalControls();
   document.getElementById('authWhitelistModalMask').style.display = 'flex';
   if(input){input.focus()}
@@ -7230,9 +7218,7 @@ function clearAuthWhitelistDeviceSnError(){
   const field = document.getElementById('authWhitelistSimDeviceSnField');
   if(field){field.classList.remove('invalid');const error = field.querySelector('.field-error');if(error){error.textContent = ''}}
 }
-function handleAuthWhitelistFileChange(){
-  clearAuthWhitelistFieldError();
-}
+function handleAuthWhitelistFileChange(){clearAuthWhitelistFieldError()}
 function parseAuthWhitelistValues(text){
   return String(text || '').split(/[\s,，;；]+/).map(value => value.trim()).filter(Boolean);
 }
@@ -7321,21 +7307,18 @@ async function submitAuthWhitelistModal(){
       return;
     }
     const index = targetRows.findIndex(row => row[fieldKey] === currentAuthWhitelistEditingValue);
-    if(index < 0){
-      closeAuthWhitelistModal();
-      return;
-    }
+    if(index < 0){closeAuthWhitelistModal();return}
     const nextValue = values[0];
     if(nextValue !== currentAuthWhitelistEditingValue && targetRows.some(row => row[fieldKey] === nextValue)){
       if(field){field.classList.add('invalid')}
       if(error){error.textContent = `${fieldLabel}已存在于白名单中`}
       return;
     }
-    targetRows[index] = {...targetRows[index],[fieldKey]:nextValue,updatedAt:'2026-09-16 16:00:00',operator:'李凡'};
+    targetRows[index] = {...targetRows[index],[fieldKey]:nextValue,createdAt:'2026-09-17 14:16:28',operator:'李凡'};
     closeAuthWhitelistModal();
-    currentAuthWhitelistTab = currentAuthWhitelistModalType;
-    syncAuthWhitelistTabs();
-    searchAuthWhitelistRecords();
+    currentAuthManageTab = currentAuthWhitelistModalType === 'sim' ? 'sim-whitelist' : 'device-whitelist';
+    syncAuthManageTabs();
+    searchAuthWhitelistRecords(currentAuthWhitelistModalType);
     alert('白名单编辑成功');
     return;
   }
@@ -7345,11 +7328,11 @@ async function submitAuthWhitelistModal(){
     if(error){error.textContent = `${fieldLabel}均已存在于白名单中`}
     return;
   }
-  newValues.reverse().forEach(value => targetRows.unshift({[fieldKey]:value,...(isSim ? {sn:importedDeviceSnByValue[value] || deviceSn} : {}),updatedAt:'2026-09-16 16:00:00',operator:'李凡'}));
+  newValues.reverse().forEach(value => targetRows.unshift({[fieldKey]:value,...(isSim ? {sn:importedDeviceSnByValue[value] || deviceSn} : {}),createdAt:'2026-09-17 14:16:28',operator:'李凡'}));
   closeAuthWhitelistModal();
-  currentAuthWhitelistTab = currentAuthWhitelistModalType;
-  syncAuthWhitelistTabs();
-  searchAuthWhitelistRecords();
+  currentAuthManageTab = currentAuthWhitelistModalType === 'sim' ? 'sim-whitelist' : 'device-whitelist';
+  syncAuthManageTabs();
+  searchAuthWhitelistRecords(currentAuthWhitelistModalType);
   alert(`白名单新增成功，共${newValues.length}条`);
 }
 function openAuthWhitelistDelete(type,encodedValue){
@@ -7371,8 +7354,9 @@ function confirmAuthWhitelistDelete(){
   if(index >= 0){rows.splice(index,1)}
   closeAuthWhitelistDeleteModal();
   currentAuthWhitelistTab = type;
-  syncAuthWhitelistTabs();
-  searchAuthWhitelistRecords();
+  currentAuthManageTab = type === 'sim' ? 'sim-whitelist' : 'device-whitelist';
+  syncAuthManageTabs();
+  searchAuthWhitelistRecords(type);
   alert('白名单已删除');
 }
 function searchSimLikeRecords(options){
