@@ -1273,7 +1273,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <div class="action-row"><button class="btn" onclick="openAuthWhitelistModal('sim')">白名单新增</button></div>
         <div class="table-card" style="margin-top:10px">
           <table class="auth-whitelist-table">
-            <thead id="authSimWhitelistHead"><tr><th>ICCID</th><th>设备SN</th><th>创建时间</th><th>操作</th></tr></thead>
+            <thead id="authSimWhitelistHead"><tr><th>ICCID</th><th>设备SN</th><th>创建时间</th><th>创建人</th><th>操作</th></tr></thead>
             <tbody id="authSimWhitelistRows"></tbody>
           </table>
         </div>
@@ -1287,7 +1287,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <div class="action-row"><button class="btn" onclick="openAuthWhitelistModal('device')">白名单新增</button></div>
         <div class="table-card" style="margin-top:10px">
           <table class="auth-whitelist-table">
-            <thead id="authDeviceWhitelistHead"><tr><th>设备SN</th><th>创建时间</th><th>操作</th></tr></thead>
+            <thead id="authDeviceWhitelistHead"><tr><th>设备SN</th><th>创建时间</th><th>创建人</th><th>操作</th></tr></thead>
             <tbody id="authDeviceWhitelistRows"></tbody>
           </table>
         </div>
@@ -7101,12 +7101,12 @@ function renderAuthWhitelistTable(type){
     const deviceSnMatched = !deviceSnKeyword || normalizeText(row.sn).includes(deviceSnKeyword);
     return primaryMatched && deviceSnMatched;
   });
-  head.innerHTML = isSim ? '<tr><th>ICCID</th><th>设备SN</th><th>创建时间</th><th>操作</th></tr>' : '<tr><th>设备SN</th><th>创建时间</th><th>操作</th></tr>';
+  head.innerHTML = isSim ? '<tr><th>ICCID</th><th>设备SN</th><th>创建时间</th><th>创建人</th><th>操作</th></tr>' : '<tr><th>设备SN</th><th>创建时间</th><th>创建人</th><th>操作</th></tr>';
   body.innerHTML = rows.length ? rows.map(row => {
     const encodedValue = encodeURIComponent(String(row[fieldKey] || ''));
     const operation = `<div class="auth-whitelist-action-group"><button type="button" class="auth-whitelist-action" onclick="openAuthWhitelistEdit('${type}','${encodedValue}')">编辑</button><button type="button" class="auth-whitelist-action danger" onclick="openAuthWhitelistDelete('${type}','${encodedValue}')">删除</button></div>`;
-    return isSim ? `<tr><td>${escapeHtml(row.iccid)}</td><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.createdAt)}</td><td>${operation}</td></tr>` : `<tr><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.createdAt)}</td><td>${operation}</td></tr>`;
-  }).join('') : `<tr><td colspan="${isSim ? 4 : 3}" class="notification-empty">暂无${isSim ? 'SIM卡' : '设备'}白名单记录</td></tr>`;
+    return isSim ? `<tr><td>${escapeHtml(row.iccid)}</td><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.operator)}</td><td>${operation}</td></tr>` : `<tr><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.operator)}</td><td>${operation}</td></tr>`;
+  }).join('') : `<tr><td colspan="${isSim ? 5 : 4}" class="notification-empty">暂无${isSim ? 'SIM卡' : '设备'}白名单记录</td></tr>`;
   updatePagination(paginationId,rows.length);
 }
 function syncAuthWhitelistTabs(){
