@@ -113,6 +113,13 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .device-group-detail-table th,.device-group-detail-table td{white-space:nowrap}
 .auth-manage-panel{display:none;flex:1;min-height:0;flex-direction:column}
 .auth-manage-panel.active{display:flex}
+.auth-whitelist-subpanel{display:none;flex:1;min-height:0;flex-direction:column}
+.auth-whitelist-subpanel.active{display:flex}
+.auth-whitelist-subpanel > .action-row,.auth-whitelist-subpanel > .table-card,.auth-whitelist-subpanel > .pagination{width:100%}
+.auth-whitelist-subpanel > .table-card{margin-left:0!important;margin-right:0!important}
+.auth-whitelist-subtabs{display:flex;align-items:center;gap:0;width:max-content;margin-bottom:16px;border:1px solid #d8dee9;border-radius:6px;background:#f5f7fa;padding:4px}
+.auth-whitelist-subtab{height:32px;border:0;border-radius:4px;background:transparent;color:#4e5969;padding:0 20px;font-size:13px;cursor:pointer;white-space:nowrap}
+.auth-whitelist-subtab.active{background:#fff;color:var(--theme-color);box-shadow:0 1px 4px rgba(31,35,41,.12)}
 .auth-manage-panel .empty{padding:32px 16px;text-align:center;color:#8b96a6}
 .strategy-subpage{display:none;flex:1;min-height:0;flex-direction:column}
 .strategy-subpage.active{display:flex}
@@ -757,6 +764,24 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 }
 .notification-table{min-width:1120px}
 .notification-table th{text-align:center}.notification-table th,.notification-table td{white-space:nowrap}
+.notification-management-tabs{margin-bottom:16px}
+.notification-management-modal{width:min(980px,calc(100vw - 48px))!important;max-width:calc(100vw - 48px)!important;max-height:calc(100vh - 48px)}
+.notification-management-modal .modal-body{max-height:calc(100vh - 190px);overflow:auto}
+.notification-management-form .form-row{grid-template-columns:220px minmax(0,1fr)!important;align-items:start;margin-bottom:16px}
+.notification-management-form .form-label{color:#8b95a5!important;font-size:13px!important;font-weight:400!important;line-height:32px;white-space:nowrap}
+.notification-management-form .required-mark{color:#f53f3f;margin-right:4px}
+.notification-management-form .input,.notification-management-form .select,.notification-management-form .textarea{width:100%;color:#1f2329!important}
+.notification-management-form .input::placeholder,.notification-management-form .textarea::placeholder{color:#b8c0cc}
+.notification-management-form .textarea{height:104px;resize:vertical}
+.notification-management-form .radio-group{display:flex;align-items:center;gap:20px;min-height:32px;flex-wrap:wrap}
+.notification-template-variable-list{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:8px}
+.notification-template-variable{height:28px;border:1px solid #d8e8fb;background:#f4f9ff;color:#1687e8;border-radius:3px;padding:0 9px;cursor:pointer;font-size:12px}
+.notification-template-variable:hover{background:#eaf4ff;border-color:#1687e8}
+.notification-template-readonly{min-height:64px;padding:9px 10px;border:1px solid #e5e7eb;background:#f8fafc;color:#606a78;line-height:20px;white-space:pre-wrap}
+.notification-channel-secret{color:#8b95a5;letter-spacing:1px}
+.notification-record-summary{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 0;color:#606a78;font-size:12px}
+.notification-snapshot-content{padding:10px 12px;background:#f8fafc;border:1px solid #edf0f5;color:#4b5563;line-height:20px;white-space:pre-wrap}
+.notification-snapshot-channel{margin-bottom:12px}.notification-snapshot-channel:last-child{margin-bottom:0}
 #notificationConfigPage .notification-table th{color:#8b95a5;font-weight:500}
 #notificationConfigPage .ant-table-thead>tr>th{color:#8b95a5!important;font-weight:500;text-align:center}
 .notification-view-mode .ant-form-item-label>label{color:#8b95a5!important}
@@ -1010,7 +1035,8 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     </div>
     <div class="menu" id="menuNotification" onclick="toggleMenuGroup('notificationSubMenu','menuNotification')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 10a6 6 0 0 1 12 0v4l2 3H4l2-3v-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 20h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">通知中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="notificationSubMenu">
-      <div class="sub" id="menuNotificationConfig" onclick="showPage('notificationConfig')">通知配置</div>
+      <div class="sub" id="menuNotificationChannel" onclick="showPage('notificationChannel')">通知渠道</div>
+      <div class="sub" id="menuNotificationTemplate" onclick="showPage('notificationTemplate')">消息模板</div>
       <div class="sub" id="menuNotificationRecord" onclick="showPage('notificationRecord')">通知记录</div>
     </div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h5v5h-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="menu-title">其它功能</span></div>
@@ -1214,8 +1240,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <button type="button" class="auth-manage-tab" data-auth-manage-tab="sim" role="tab" aria-selected="false" onclick="switchAuthManageTab('sim')">二次认证SIM卡管理</button>
         <button type="button" class="auth-manage-tab active" data-auth-manage-tab="config" role="tab" aria-selected="true" onclick="switchAuthManageTab('config')">卡配置记录</button>
         <button type="button" class="auth-manage-tab" data-auth-manage-tab="device" role="tab" aria-selected="false" onclick="switchAuthManageTab('device')">设备配置记录</button>
-        <button type="button" class="auth-manage-tab" data-auth-manage-tab="sim-whitelist" role="tab" aria-selected="false" onclick="switchAuthManageTab('sim-whitelist')">SIM卡白名单</button>
-        <button type="button" class="auth-manage-tab" data-auth-manage-tab="device-whitelist" role="tab" aria-selected="false" onclick="switchAuthManageTab('device-whitelist')">设备白名单</button>
+        <button type="button" class="auth-manage-tab" data-auth-manage-tab="whitelist" role="tab" aria-selected="false" onclick="switchAuthManageTab('whitelist')">二次认证白名单</button>
       </div>
       <div class="auth-manage-panel active" id="authConfigPanel">
       <div class="config-filter">
@@ -1264,7 +1289,12 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="pagination" id="simPagination">共5条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
       </div>
       <div class="auth-manage-panel" id="authDevicePanel"></div>
-      <div class="auth-manage-panel" id="authSimWhitelistPanel">
+      <div class="auth-manage-panel" id="authWhitelistPanel">
+        <div class="auth-whitelist-subtabs" role="tablist" aria-label="二次认证白名单类型">
+          <button type="button" class="auth-whitelist-subtab active" data-auth-whitelist-tab="sim" onclick="switchAuthWhitelistTab('sim')">网页端白名单</button>
+          <button type="button" class="auth-whitelist-subtab" data-auth-whitelist-tab="device" onclick="switchAuthWhitelistTab('device')">小程序白名单</button>
+        </div>
+      <div class="auth-whitelist-subpanel active" id="authSimWhitelistPanel">
         <div class="config-filter">
           <input class="input" id="authSimWhitelistKeywordInput" placeholder="ICCID" oninput="searchAuthWhitelistRecords('sim')">
           <input class="input" id="authSimWhitelistDeviceSnInput" placeholder="设备SN" oninput="searchAuthWhitelistRecords('sim')">
@@ -1279,7 +1309,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         </div>
         <div class="pagination" id="authSimWhitelistPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
       </div>
-      <div class="auth-manage-panel" id="authDeviceWhitelistPanel">
+      <div class="auth-whitelist-subpanel" id="authDeviceWhitelistPanel">
         <div class="config-filter">
           <input class="input" id="authDeviceWhitelistKeywordInput" placeholder="设备SN" oninput="searchAuthWhitelistRecords('device')">
           <div class="filter-actions"><button class="btn line" onclick="searchAuthWhitelistRecords('device')">搜索</button><button class="btn gray" onclick="resetAuthWhitelistRecords('device')">重置</button></div>
@@ -1292,6 +1322,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
           </table>
         </div>
         <div class="pagination" id="authDeviceWhitelistPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
       </div>
     </section>
 
@@ -1885,6 +1916,40 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       </div>
     </section>
 
+    <section id="notificationChannelPage" class="content hidden">
+      <div class="inner-tabs notification-management-tabs" id="notificationChannelTabs">
+        <span class="inner-tab active" data-notification-channel-type="email" onclick="switchNotificationChannelType('email')">企业微信邮箱</span>
+        <span class="inner-tab" data-notification-channel-type="wechat" onclick="switchNotificationChannelType('wechat')">企业微信</span>
+        <span class="inner-tab" data-notification-channel-type="sms" onclick="switchNotificationChannelType('sms')">短信</span>
+        <span class="inner-tab" data-notification-channel-type="inbox" onclick="switchNotificationChannelType('inbox')">站内通知</span>
+      </div>
+      <div class="action-row" id="notificationChannelActions"><button class="btn" onclick="openNotificationChannelEditor('add')">创建渠道</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="notification-table">
+          <thead id="notificationChannelHead"></thead>
+          <tbody id="notificationChannelRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="notificationChannelPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="notificationTemplatePage" class="content hidden">
+      <div class="inner-tabs notification-management-tabs" id="notificationTemplateTabs">
+        <span class="inner-tab active" data-notification-template-type="email" onclick="switchNotificationTemplateType('email')">企业邮箱消息</span>
+        <span class="inner-tab" data-notification-template-type="wechat" onclick="switchNotificationTemplateType('wechat')">企业微信消息</span>
+        <span class="inner-tab" data-notification-template-type="sms" onclick="switchNotificationTemplateType('sms')">短信消息</span>
+        <span class="inner-tab" data-notification-template-type="inbox" onclick="switchNotificationTemplateType('inbox')">站内消息</span>
+      </div>
+      <div class="action-row"><button class="btn" onclick="openNotificationTemplateEditor('add')">创建消息模板</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="notification-table">
+          <thead id="notificationTemplateHead"></thead>
+          <tbody id="notificationTemplateRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="notificationTemplatePagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
     <section id="notificationConfigPage" class="content hidden">
       <div id="notificationConfigReactRoot" class="notification-react-root"></div>
       <div class="action-row"><button class="btn" onclick="openNotificationConfigEditor('add')">通知配置新增</button></div>
@@ -1894,35 +1959,27 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
           <tbody id="notificationConfigRows"></tbody>
         </table>
       </div>
-      <div class="pagination" id="notificationConfigPagination">共4条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      <div class="pagination" id="notificationConfigPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
     <section id="notificationRecordPage" class="content hidden">
-      <div class="inner-tabs notification-record-tabs">
-        <span class="inner-tab active">通知任务记录</span>
-        <span class="inner-tab" onclick="switchNotificationRecordTab('detail')">通知明细</span>
-      </div>
       <div class="notification-filter">
-        <input class="notification-input" id="notificationRecordTaskIdInput" placeholder="任务ID" oninput="searchNotificationRecords()">
-        <div class="select custom-select notification-select" id="notificationRecordEventFilter" data-value=""><span class="select-value">通知事件</span><div class="dropdown-menu"></div></div>
-        <input class="notification-input" id="notificationRecordInitiatorInput" placeholder="任务发起人" oninput="searchNotificationRecords()">
-        <div class="device-date-range" id="notificationRecordDateRange" data-range="notificationRecordDate" onclick="openUnifiedRangePicker(event,'notificationRecordDate')">
-          <span class="date-icon"></span><span class="device-date-text" data-part="start">触发开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">触发结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'notificationRecordDate')"></span>
-          <input id="notificationRecordDateStartInput" type="hidden"><input id="notificationRecordDateEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="notificationRecordDatePanel"></div>
+        <input class="notification-input" id="notificationSnapshotRuleIdInput" placeholder="触发规则ID" oninput="searchNotificationRecordSnapshots()">
+        <input class="notification-input" id="notificationSnapshotRuleNameInput" placeholder="触发规则名称" oninput="searchNotificationRecordSnapshots()">
+        <div class="select custom-select notification-select" id="notificationSnapshotStatusFilter" data-value=""><span class="select-value">通知状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="发送中">发送中</div><div class="dropdown-option" data-value="全部成功">全部成功</div><div class="dropdown-option" data-value="部分成功">部分成功</div><div class="dropdown-option" data-value="全部失败">全部失败</div></div></div>
+        <div class="device-date-range" id="notificationSnapshotDateRange" data-range="notificationSnapshotDate" onclick="openUnifiedRangePicker(event,'notificationSnapshotDate')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">触发开始时间</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">触发结束时间</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'notificationSnapshotDate')"></span>
+          <input id="notificationSnapshotDateStartInput" type="hidden"><input id="notificationSnapshotDateEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="notificationSnapshotDatePanel"></div>
         </div>
-        <input class="notification-input" id="notificationRecordNoticeObjectInput" placeholder="通知对象" oninput="searchNotificationRecords()">
-        <input class="notification-input" id="notificationRecordNotificationTimeInput" placeholder="通知时间" oninput="searchNotificationRecords()">
-        <div class="select custom-select notification-select" id="notificationRecordChannelFilter" data-value=""><span class="select-value">通知方式</span><div class="dropdown-menu"></div></div>
-        <div class="select custom-select notification-select" id="notificationRecordResultFilter" data-value=""><span class="select-value">通知状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="失败">失败</div><div class="dropdown-option" data-value="部分成功">部分成功</div><div class="dropdown-option" data-value="待通知">待通知</div></div></div>
-        <div class="filter-actions new-row"><button class="btn line" onclick="searchNotificationRecords()">搜索</button><button class="btn gray" onclick="resetNotificationRecords()">重置</button></div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchNotificationRecordSnapshots()">搜索</button><button class="btn gray" onclick="resetNotificationRecordSnapshots()">重置</button></div>
       </div>
       <div class="table-card" style="margin-top:10px">
         <table class="notification-table">
-          <thead><tr><th>任务ID</th><th>通知事件</th><th>任务发起人</th><th>触发时间</th><th>通知对象</th><th>通知时间</th><th>通知方式</th><th>通知状态</th></tr></thead>
+          <thead><tr><th>通知记录ID</th><th>触发规则ID</th><th>触发规则名称</th><th>触发时间</th><th>通知方式</th><th>通知总人数</th><th>成功数</th><th>失败数</th><th>通知状态</th><th>通知完成时间</th><th>操作</th></tr></thead>
           <tbody id="notificationRecordRows"></tbody>
         </table>
       </div>
-      <div class="pagination" id="notificationRecordPagination">共5条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      <div class="pagination" id="notificationRecordPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
     <section id="notificationRecordDetailPage" class="content hidden">
@@ -2001,6 +2058,33 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="modal-title">通知记录详情</div>
     <div class="modal-body" id="notificationRecordDetailBody"></div>
     <div class="modal-actions"><button class="confirm" onclick="closeNotificationRecordDetail()">关闭</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="notificationChannelModalMask">
+  <div class="modal notification-management-modal notification-management-form">
+    <div class="close" onclick="closeNotificationChannelEditor()">×</div>
+    <div class="modal-title" id="notificationChannelModalTitle">创建通知渠道</div>
+    <div class="modal-body" id="notificationChannelModalBody"></div>
+    <div class="modal-actions"><button class="cancel" onclick="closeNotificationChannelEditor()">取消</button><button class="confirm" onclick="saveNotificationChannelEditor()">保存渠道</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="notificationChannelTestModalMask">
+  <div class="modal notification-management-modal notification-management-form">
+    <div class="close" onclick="closeNotificationChannelTest()">×</div>
+    <div class="modal-title" id="notificationChannelTestModalTitle">发送测试消息</div>
+    <div class="modal-body" id="notificationChannelTestModalBody"></div>
+    <div class="modal-actions"><button class="cancel" onclick="closeNotificationChannelTest()">取消</button><button class="confirm" onclick="submitNotificationChannelTest()">发送测试</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="notificationTemplateModalMask">
+  <div class="modal notification-management-modal notification-management-form">
+    <div class="close" onclick="closeNotificationTemplateEditor()">×</div>
+    <div class="modal-title" id="notificationTemplateModalTitle">创建消息模板</div>
+    <div class="modal-body" id="notificationTemplateModalBody"></div>
+    <div class="modal-actions"><button class="cancel" onclick="closeNotificationTemplateEditor()">取消</button><button class="confirm" onclick="saveNotificationTemplateEditor()">保存模板</button></div>
   </div>
 </div>
 
@@ -2533,6 +2617,10 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="close" onclick="closeAuthWhitelistModal()">×</div>
     <div class="modal-title" id="authWhitelistModalTitle">白名单新增</div>
     <div class="modal-body">
+      <div class="form-row form-field" id="authWhitelistTypeRow">
+        <div class="form-label req">白名单类型</div>
+        <div><select class="input" id="authWhitelistTypeSelect" onchange="changeAuthWhitelistModalType(this.value)"><option value="sim">网页端白名单</option><option value="device">小程序白名单</option></select></div>
+      </div>
       <div class="form-row" id="authWhitelistModalEntryRow">
         <div class="form-label req">添加方式</div>
         <div class="auth-whitelist-modal-radio-group"><span class="radio active" id="authWhitelistManualRadio" onclick="switchAuthWhitelistEntry('manual')"><i></i>手动录入</span><span class="radio" id="authWhitelistFileRadio" onclick="switchAuthWhitelistEntry('file')"><i></i>文件导入</span></div>
@@ -2549,7 +2637,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <div class="form-label req">选择文件</div>
         <div>
           <input class="input auth-whitelist-file-input" id="authWhitelistFileInput" type="file" accept=".csv,.txt,.xls,.xlsx" onchange="handleAuthWhitelistFileChange()">
-          <div class="auth-whitelist-file-actions"><button type="button" class="download" onclick="downloadAuthWhitelistTemplate()" id="authWhitelistTemplateButton">下载SIM卡白名单模板</button></div>
+          <div class="auth-whitelist-file-actions"><button type="button" class="download" onclick="downloadAuthWhitelistTemplate()" id="authWhitelistTemplateButton">下载网页端白名单模板</button></div>
           <div class="help" id="authWhitelistFileHelp">支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个ICCID及对应设备SN。</div>
           <div class="field-error"></div>
         </div>
@@ -2876,6 +2964,33 @@ notificationRecords.forEach(item => {
   item.failureReason = override.reason || '';
   if(item.detail){item.detail.overall = override.result}
 });
+notificationConfigs.length = 0;
+notificationRecords.length = 0;
+const notificationChannelData = [
+  {id:'NCH-EMAIL-001',type:'email',name:'系统通知邮箱',senderEmail:'notify@example.com',smtpServer:'smtp.exmail.qq.com',smtpPort:'465',ssl:'SSL/TLS',smtpUser:'notify@example.com',smtpPassword:'smtp-client-secret',senderName:'诺达通信通知',remark:'系统默认邮件发送渠道',enabled:true,updatedAt:'2026-09-18 09:20:00',operator:'张三',referenced:true},
+  {id:'NCH-WECHAT-001',type:'wechat',name:'运营通知应用',corpId:'ww1234567890',agentId:'1000002',appSecret:'wechat-app-secret',remark:'运营中心企业微信应用',enabled:true,updatedAt:'2026-09-18 09:18:22',operator:'李四',referenced:true},
+  {id:'NCH-SMS-001',type:'sms',name:'腾讯云短信A',secretId:'AKIDEXAMPLE',secretKey:'sms-secret-key',smsSdkAppId:'1400999000',remark:'主短信发送渠道',enabled:true,updatedAt:'2026-09-18 09:16:05',operator:'王五',referenced:true},
+  {id:'NCH-INBOX-001',type:'inbox',name:'站内通知',remark:'系统内置通知渠道',enabled:true,updatedAt:'2026-09-18 09:12:36',operator:'系统',referenced:true}
+];
+const notificationTemplateData = [
+  {id:'NTPL-EMAIL-001',type:'email',name:'流量超阈值邮件模板',event:'流量超阈值',title:'设备流量已超过阈值',body:'设备{{设备编号}}流量已超过{{流量阈值}}，请及时处理。',variables:['设备编号','流量阈值','触发时间'],attachment:'设备流量明细',updatedAt:'2026-09-18 09:30:12',operator:'张三',referenced:true},
+  {id:'NTPL-WECHAT-001',type:'wechat',name:'流量超阈值企业微信模板',event:'流量超阈值',title:'流量超阈值提醒',body:'设备{{设备编号}}当前流量{{当前流量}}，已超过阈值{{流量阈值}}。',variables:['设备编号','当前流量','流量阈值'],attachment:'',updatedAt:'2026-09-18 09:28:40',operator:'李四',referenced:true},
+  {id:'NTPL-SMS-001',type:'sms',name:'流量超阈值短信模板',event:'流量超阈值',signature:'诺达通信',templateId:'154321',templateName:'设备流量超阈值通知',templateContent:'设备{{1}}流量已超过{{2}}，触发时间{{3}}。',updatedAt:'2026-09-18 09:26:18',operator:'王五',referenced:true},
+  {id:'NTPL-INBOX-001',type:'inbox',name:'批量任务完成站内消息',event:'批量任务执行完成',title:'批量任务执行完成',body:'任务{{任务名称}}已执行完成，成功{{成功数量}}条，失败{{失败数量}}条。',variables:['任务名称','成功数量','失败数量'],updatedAt:'2026-09-18 09:24:06',operator:'赵六',referenced:false}
+];
+const notificationRecordData = [
+  {id:'NREC-202609180001',ruleId:'RULE-FLOW-001',ruleName:'设备流量超阈值通知',triggeredAt:'2026-09-18 09:41:08',channels:['短信','企业微信'],noticeCount:2,successCount:3,failureCount:1,status:'部分成功',completedAt:'2026-09-18 09:41:12',detail:{contents:[{channel:'短信',channelName:'腾讯云短信A',content:'设备A123456流量已超过10GB，触发时间2026-09-18 09:41:08。'},{channel:'企业微信',channelName:'运营通知应用',content:'设备A123456当前流量10.8GB，已超过阈值10GB。'}],people:[{name:'张三',phone:'138****1234',email:'zhangsan@example.com',account:'zhangsan',merchant:'上海智联商贸',role:'运营专员',channel:'短信',status:'成功',reason:'',time:'2026-09-18 09:41:09'},{name:'张三',phone:'138****1234',email:'zhangsan@example.com',account:'zhangsan',merchant:'上海智联商贸',role:'运营专员',channel:'企业微信',status:'成功',reason:'',time:'2026-09-18 09:41:10'},{name:'李四',phone:'',email:'lisi@example.com',account:'lisi',merchant:'杭州云旅科技',role:'客服专员',channel:'短信',status:'失败',reason:'接收人未配置手机号',time:'2026-09-18 09:41:09'},{name:'李四',phone:'',email:'lisi@example.com',account:'lisi',merchant:'杭州云旅科技',role:'客服专员',channel:'企业微信',status:'成功',reason:'',time:'2026-09-18 09:41:11'}]}},
+  {id:'NREC-202609180002',ruleId:'RULE-TASK-002',ruleName:'批量任务执行完成通知',triggeredAt:'2026-09-18 09:35:22',channels:['站内通知'],noticeCount:1,successCount:1,failureCount:0,status:'全部成功',completedAt:'2026-09-18 09:35:22',detail:{contents:[{channel:'站内通知',channelName:'站内通知',content:'任务批量卡状态查询已执行完成，成功86条，失败0条。'}],people:[{name:'王五',phone:'139****5678',email:'',account:'wangwu',merchant:'苏州星河酒店',role:'财务专员',channel:'站内通知',status:'成功',reason:'',time:'2026-09-18 09:35:22'}]}},
+  {id:'NREC-202609180003',ruleId:'RULE-REFUND-003',ruleName:'退款处理完成通知',triggeredAt:'2026-09-18 09:30:16',channels:['企业微信邮箱'],noticeCount:1,successCount:0,failureCount:0,status:'发送中',completedAt:'',detail:{contents:[{channel:'企业微信邮箱',channelName:'系统通知邮箱',content:'退款处理任务RF202609180006已完成，成功0笔，失败1笔。'}],people:[{name:'赵六',phone:'137****2468',email:'zhaoliu@example.com',account:'zhaoliu',merchant:'广州启明商贸',role:'运营主管',channel:'企业微信邮箱',status:'成功',reason:'',time:'2026-09-18 09:30:17'}]}}
+];
+let currentNotificationChannelType = 'email';
+let currentNotificationChannelModalMode = 'add';
+let currentNotificationChannelModalId = '';
+let currentNotificationChannelTestId = '';
+let currentNotificationTemplateType = 'email';
+let currentNotificationTemplateModalMode = 'add';
+let currentNotificationTemplateModalId = '';
+let notificationTemplateActiveField = '';
 const topbarMessages = batchTaskData.map((task,index) => {
   const title = task.status === '成功' ? '批量任务已完成' : task.status === '失败' ? '批量任务执行失败' : '批量任务处理中';
   const content = task.status === '成功'
@@ -3007,7 +3122,7 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {home:'首页', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationConfig:'通知配置', notificationRecord:'通知任务记录', notificationRecordDetail:'通知明细', notificationConfigEdit:'通知配置编辑'};
+const pageTitles = {home:'首页', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
 let openTabs = [];
 let activePage = '';
 let deviceTypeCarrierOrder = [];
@@ -3302,7 +3417,8 @@ function applyPageState(type){
   document.getElementById('fieldVersionPage').classList.toggle('hidden', !['fieldVersion','fieldVersionEdit'].includes(type));
   document.getElementById('deviceDetailPage').classList.toggle('hidden', type !== 'deviceDetail');
   document.getElementById('simDetailPage').classList.toggle('hidden', type !== 'simDetail');
-  document.getElementById('notificationConfigPage').classList.toggle('hidden', type !== 'notificationConfig');
+  document.getElementById('notificationChannelPage').classList.toggle('hidden', type !== 'notificationChannel');
+  document.getElementById('notificationTemplatePage').classList.toggle('hidden', type !== 'notificationTemplate');
   document.getElementById('notificationRecordPage').classList.toggle('hidden', type !== 'notificationRecord');
   document.getElementById('notificationRecordDetailPage').classList.toggle('hidden', type !== 'notificationRecordDetail');
   document.getElementById('notificationConfigEditPage').classList.toggle('hidden', type !== 'notificationConfigEdit');
@@ -3331,7 +3447,8 @@ function applyPageState(type){
   document.getElementById('menuBatchTask').classList.toggle('active', ['task','batchTaskDetail'].includes(type));
   document.getElementById('menuNetworkLog').classList.toggle('active', type === 'networkLog');
   document.getElementById('menuFieldVersion').classList.toggle('active', ['fieldVersion','fieldVersionEdit'].includes(type));
-  document.getElementById('menuNotificationConfig').classList.toggle('active', ['notificationConfig','notificationConfigEdit'].includes(type));
+  document.getElementById('menuNotificationChannel').classList.toggle('active', type === 'notificationChannel');
+  document.getElementById('menuNotificationTemplate').classList.toggle('active', type === 'notificationTemplate');
   document.getElementById('menuNotificationRecord').classList.toggle('active', ['notificationRecord','notificationRecordDetail'].includes(type));
   if(type === 'home'){
     setActiveBatch('');
@@ -3348,8 +3465,8 @@ function applyPageState(type){
     syncAuthManageTabs();
     if(currentAuthManageTab === 'sim'){
       searchSimRecords();
-    }else if(currentAuthManageTab === 'sim-whitelist' || currentAuthManageTab === 'device-whitelist'){
-      searchAuthWhitelistRecords(currentAuthManageTab === 'sim-whitelist' ? 'sim' : 'device');
+    }else if(currentAuthManageTab === 'whitelist'){
+      searchAuthWhitelistRecords(currentAuthWhitelistTab);
     }else if(currentAuthManageTab === 'config'){
       searchConfigRecords();
     }
@@ -3457,13 +3574,20 @@ function applyPageState(type){
     renderSimDetail(currentSimIccid);
     setActiveBatch('');
     setActiveDeviceSn('');
+  }else if(type === 'notificationChannel'){
+    renderNotificationChannelPage();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'notificationTemplate'){
+    renderNotificationTemplatePage();
+    setActiveBatch('');
+    setActiveDeviceSn('');
   }else if(type === 'notificationConfig'){
-    if(window.NotificationCenterReact){window.NotificationCenterReact.render('config')}else{renderNotificationConfigList()}
+    renderNotificationChannelPage();
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'notificationRecord'){
-    initNotificationRecordFilters();
-    searchNotificationRecords();
+    renderNotificationRecordPage();
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'notificationRecordDetail'){
@@ -3973,13 +4097,19 @@ function syncAuthManageTabs(){
   const configPanel = document.getElementById('authConfigPanel');
   const simPanel = document.getElementById('authSimPanel');
   const devicePanel = document.getElementById('authDevicePanel');
+  const whitelistPanel = document.getElementById('authWhitelistPanel');
   const simWhitelistPanel = document.getElementById('authSimWhitelistPanel');
   const deviceWhitelistPanel = document.getElementById('authDeviceWhitelistPanel');
   if(configPanel){configPanel.classList.toggle('active', currentAuthManageTab === 'config')}
   if(simPanel){simPanel.classList.toggle('active', currentAuthManageTab === 'sim')}
   if(devicePanel){devicePanel.classList.toggle('active', currentAuthManageTab === 'device')}
-  if(simWhitelistPanel){simWhitelistPanel.classList.toggle('active', currentAuthManageTab === 'sim-whitelist')}
-  if(deviceWhitelistPanel){deviceWhitelistPanel.classList.toggle('active', currentAuthManageTab === 'device-whitelist')}
+  if(whitelistPanel){whitelistPanel.classList.toggle('active', currentAuthManageTab === 'whitelist')}
+  if(simWhitelistPanel){simWhitelistPanel.classList.toggle('active', currentAuthManageTab === 'whitelist' && currentAuthWhitelistTab === 'sim')}
+  if(deviceWhitelistPanel){deviceWhitelistPanel.classList.toggle('active', currentAuthManageTab === 'whitelist' && currentAuthWhitelistTab === 'device')}
+  document.querySelectorAll('[data-auth-whitelist-tab]').forEach(tab => {
+    tab.classList.toggle('active',tab.dataset.authWhitelistTab === currentAuthWhitelistTab);
+    tab.setAttribute('aria-selected',tab.dataset.authWhitelistTab === currentAuthWhitelistTab ? 'true' : 'false');
+  });
 }
 function switchAuthManageTab(tab){
   currentAuthManageTab = tab;
@@ -3988,11 +4118,19 @@ function switchAuthManageTab(tab){
   closeInputCombos();
   if(tab === 'sim'){
     searchSimRecords();
-  }else if(tab === 'sim-whitelist' || tab === 'device-whitelist'){
-    searchAuthWhitelistRecords(tab === 'sim-whitelist' ? 'sim' : 'device');
+  }else if(tab === 'whitelist'){
+    searchAuthWhitelistRecords(currentAuthWhitelistTab);
   }else if(tab === 'config'){
     searchConfigRecords();
   }
+}
+function switchAuthWhitelistTab(tab){
+  currentAuthManageTab = 'whitelist';
+  currentAuthWhitelistTab = tab === 'device' ? 'device' : 'sim';
+  syncAuthManageTabs();
+  closeDropdowns();
+  closeInputCombos();
+  searchAuthWhitelistRecords(currentAuthWhitelistTab);
 }
 function openConfigDetail(batchNo){
   currentDetailBatch = batchNo;
@@ -7106,7 +7244,7 @@ function renderAuthWhitelistTable(type){
     const encodedValue = encodeURIComponent(String(row[fieldKey] || ''));
     const operation = `<div class="auth-whitelist-action-group"><button type="button" class="auth-whitelist-action" onclick="openAuthWhitelistEdit('${type}','${encodedValue}')">编辑</button><button type="button" class="auth-whitelist-action danger" onclick="openAuthWhitelistDelete('${type}','${encodedValue}')">删除</button></div>`;
     return isSim ? `<tr><td>${escapeHtml(row.iccid)}</td><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.operator)}</td><td>${operation}</td></tr>` : `<tr><td>${escapeHtml(row.sn)}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.operator)}</td><td>${operation}</td></tr>`;
-  }).join('') : `<tr><td colspan="${isSim ? 5 : 4}" class="notification-empty">暂无${isSim ? 'SIM卡' : '设备'}白名单记录</td></tr>`;
+  }).join('') : `<tr><td colspan="${isSim ? 5 : 4}" class="notification-empty">暂无${isSim ? '网页端' : '小程序'}白名单记录</td></tr>`;
   updatePagination(paginationId,rows.length);
 }
 function syncAuthWhitelistTabs(){
@@ -7141,14 +7279,18 @@ function syncAuthWhitelistModalControls(){
   const fileField = document.getElementById('authWhitelistFileField');
   const simDeviceSnField = document.getElementById('authWhitelistSimDeviceSnField');
   const entryRow = document.getElementById('authWhitelistModalEntryRow');
+  const typeRow = document.getElementById('authWhitelistTypeRow');
+  const typeSelect = document.getElementById('authWhitelistTypeSelect');
   if(modalLabel){modalLabel.textContent = label}
   if(modalInput){modalInput.placeholder = isSim ? '请输入ICCID' : '请输入设备SN，多个请用换行或逗号分隔'}
   if(fileHelp){fileHelp.textContent = isSim ? '支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个ICCID及对应设备SN。' : '支持 CSV、TXT、XLS、XLSX 文件，文件中每行填写一个设备SN。'}
-  if(templateButton){templateButton.textContent = `下载${isSim ? 'SIM卡' : '设备'}白名单模板`}
+  if(templateButton){templateButton.textContent = `下载${isSim ? '网页端' : '小程序'}白名单模板`}
   if(manualField){manualField.classList.toggle('hidden', currentAuthWhitelistEntry === 'file')}
   if(fileField){fileField.classList.toggle('hidden', currentAuthWhitelistEntry !== 'file')}
   if(simDeviceSnField){simDeviceSnField.classList.toggle('hidden', !(isSim && currentAuthWhitelistModalMode === 'add' && currentAuthWhitelistEntry === 'manual'))}
   if(entryRow){entryRow.classList.toggle('hidden', currentAuthWhitelistModalMode === 'edit')}
+  if(typeRow){typeRow.classList.toggle('hidden', currentAuthWhitelistModalMode === 'edit')}
+  if(typeSelect){typeSelect.value = currentAuthWhitelistModalType}
   const title = document.getElementById('authWhitelistModalTitle');
   const submitButton = document.getElementById('authWhitelistModalSubmitButton');
   const fileRadio = document.getElementById('authWhitelistFileRadio');
@@ -7157,6 +7299,19 @@ function syncAuthWhitelistModalControls(){
   if(fileRadio){fileRadio.classList.toggle('disabled', currentAuthWhitelistModalMode === 'edit')}
   document.getElementById('authWhitelistManualRadio')?.classList.toggle('active', currentAuthWhitelistEntry === 'manual');
   document.getElementById('authWhitelistFileRadio')?.classList.toggle('active', currentAuthWhitelistEntry === 'file');
+}
+function changeAuthWhitelistModalType(type){
+  if(currentAuthWhitelistModalMode === 'edit'){return}
+  currentAuthWhitelistModalType = type === 'device' ? 'device' : 'sim';
+  currentAuthWhitelistTab = currentAuthWhitelistModalType;
+  currentAuthWhitelistEntry = 'manual';
+  const input = document.getElementById('authWhitelistModalInput');
+  const deviceSnInput = document.getElementById('authWhitelistSimDeviceSnInput');
+  const fileInput = document.getElementById('authWhitelistFileInput');
+  if(input){input.value = ''}
+  if(deviceSnInput){deviceSnInput.value = ''}
+  if(fileInput){fileInput.value = ''}
+  syncAuthWhitelistModalControls();
 }
 function switchAuthWhitelistEntry(mode){
   if(currentAuthWhitelistModalMode === 'edit' && mode === 'file'){return}
@@ -7229,7 +7384,7 @@ function downloadAuthWhitelistTemplate(){
   const blob = new Blob([csv],{type:'text/csv;charset=utf-8'});
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = `${isSim ? 'SIM卡' : '设备'}白名单导入模板.csv`;
+  link.download = `${isSim ? '网页端' : '小程序'}白名单导入模板.csv`;
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -7275,7 +7430,7 @@ async function submitAuthWhitelistModal(){
         });
         if(values.some(value => !importedDeviceSnByValue[value])){
           if(field){field.classList.add('invalid')}
-          if(error){error.textContent = '文件中每条SIM卡白名单数据都需要填写设备SN'}
+          if(error){error.textContent = '文件中每条网页端白名单数据都需要填写设备SN'}
           return;
         }
       }else{
@@ -7297,7 +7452,7 @@ async function submitAuthWhitelistModal(){
   }
   if(isSim && currentAuthWhitelistModalMode === 'add' && currentAuthWhitelistEntry === 'manual' && values.length !== 1){
     if(field){field.classList.add('invalid')}
-    if(error){error.textContent = 'SIM卡白名单手动录入仅支持填写一个ICCID'}
+    if(error){error.textContent = '网页端白名单手动录入仅支持填写一个ICCID'}
     return;
   }
   if(currentAuthWhitelistModalMode === 'edit'){
@@ -7316,7 +7471,7 @@ async function submitAuthWhitelistModal(){
     }
     targetRows[index] = {...targetRows[index],[fieldKey]:nextValue,createdAt:'2026-09-17 14:16:28',operator:'李凡'};
     closeAuthWhitelistModal();
-    currentAuthManageTab = currentAuthWhitelistModalType === 'sim' ? 'sim-whitelist' : 'device-whitelist';
+    currentAuthManageTab = 'whitelist';
     syncAuthManageTabs();
     searchAuthWhitelistRecords(currentAuthWhitelistModalType);
     alert('白名单编辑成功');
@@ -7330,7 +7485,7 @@ async function submitAuthWhitelistModal(){
   }
   newValues.reverse().forEach(value => targetRows.unshift({[fieldKey]:value,...(isSim ? {sn:importedDeviceSnByValue[value] || deviceSn} : {}),createdAt:'2026-09-17 14:16:28',operator:'李凡'}));
   closeAuthWhitelistModal();
-  currentAuthManageTab = currentAuthWhitelistModalType === 'sim' ? 'sim-whitelist' : 'device-whitelist';
+  currentAuthManageTab = 'whitelist';
   syncAuthManageTabs();
   searchAuthWhitelistRecords(currentAuthWhitelistModalType);
   alert(`白名单新增成功，共${newValues.length}条`);
@@ -7354,7 +7509,7 @@ function confirmAuthWhitelistDelete(){
   if(index >= 0){rows.splice(index,1)}
   closeAuthWhitelistDeleteModal();
   currentAuthWhitelistTab = type;
-  currentAuthManageTab = type === 'sim' ? 'sim-whitelist' : 'device-whitelist';
+  currentAuthManageTab = 'whitelist';
   syncAuthManageTabs();
   searchAuthWhitelistRecords(type);
   alert('白名单已删除');
@@ -8149,6 +8304,7 @@ const extraRangePickerState = {
   strategyReportDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'strategyReportDateRange',panelId:'strategyReportDatePanel',startId:'strategyReportStartInput',endId:'strategyReportEndInput',startPlaceholder:'开始日期',endPlaceholder:'结束日期'},
   deviceGroupBindingDetail:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'deviceGroupBindingDetailOperationRange',panelId:'deviceGroupBindingDetailOperationPanel',startId:'deviceGroupBindingDetailStartInput',endId:'deviceGroupBindingDetailEndInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'},
   notificationRecordDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'notificationRecordDateRange',panelId:'notificationRecordDatePanel',startId:'notificationRecordDateStartInput',endId:'notificationRecordDateEndInput',startPlaceholder:'触发开始时间',endPlaceholder:'触发结束时间'},
+  notificationSnapshotDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'notificationSnapshotDateRange',panelId:'notificationSnapshotDatePanel',startId:'notificationSnapshotDateStartInput',endId:'notificationSnapshotDateEndInput',startPlaceholder:'触发开始时间',endPlaceholder:'触发结束时间'},
   notificationDetailDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'notificationDetailDateRange',panelId:'notificationDetailDatePanel',startId:'notificationDetailDateStartInput',endId:'notificationDetailDateEndInput',startPlaceholder:'触发开始时间',endPlaceholder:'触发结束时间'}
 };
 function getUnifiedRangeState(key){
@@ -8333,6 +8489,7 @@ function triggerUnifiedRangeChange(key){
   if(key === 'strategyReportDate'){searchStrategyReportRecords()}
   if(key === 'deviceGroupBindingDetail'){searchDeviceGroupBindingDetails()}
   if(key === 'notificationRecordDate'){searchNotificationRecords()}
+  if(key === 'notificationSnapshotDate'){searchNotificationRecordSnapshots()}
   if(key === 'notificationDetailDate'){searchNotificationDetails()}
 }
 function openUnifiedRangePicker(event,key){
@@ -8356,6 +8513,349 @@ function closeDatePickers(except){
   document.querySelectorAll('.date-picker.open,.device-date-range.open').forEach(range => {
     if(range !== except){range.classList.remove('open')}
   });
+}
+function notificationChannelTypeLabel(type){
+  return ({email:'企业微信邮箱',wechat:'企业微信',sms:'短信',inbox:'站内通知'})[type] || type;
+}
+function notificationTemplateTypeLabel(type){
+  return ({email:'企业邮箱消息',wechat:'企业微信消息',sms:'短信消息',inbox:'站内消息'})[type] || type;
+}
+function notificationChannelSecret(value){
+  return value ? '<span class="notification-channel-secret">••••••••</span>' : '--';
+}
+function notificationChannelOperation(item){
+  const actions = [
+    `<span class="text-action" onclick="openNotificationChannelEditor('edit','${escapeHtml(item.id)}')">编辑</span>`,
+    `<span class="text-action" onclick="openNotificationChannelTest('${escapeHtml(item.id)}')">测试发送</span>`,
+    `<span class="text-action danger" onclick="deleteNotificationChannel('${escapeHtml(item.id)}')">删除</span>`
+  ];
+  if(item.type === 'inbox'){return '<span class="notification-empty">系统内置</span>'}
+  return `<span class="notification-action-list">${actions.join('')}</span>`;
+}
+function switchNotificationChannelType(type){
+  currentNotificationChannelType = type;
+  renderNotificationChannelPage();
+}
+function renderNotificationChannelPage(){
+  const tabs = document.querySelectorAll('#notificationChannelTabs [data-notification-channel-type]');
+  tabs.forEach(tab => tab.classList.toggle('active',tab.dataset.notificationChannelType === currentNotificationChannelType));
+  const actions = document.getElementById('notificationChannelActions');
+  if(actions){actions.classList.toggle('hidden',currentNotificationChannelType === 'inbox')}
+  const head = document.getElementById('notificationChannelHead');
+  const rows = document.getElementById('notificationChannelRows');
+  if(!head || !rows){return}
+  const columns = currentNotificationChannelType === 'email'
+    ? ['渠道ID','渠道名称','SMTP服务器','SMTP端口','加密方式','发件邮箱','SMTP用户名','SMTP密码/客户端专用密码','发件人名称','备注','启用状态','更新时间','操作人','操作']
+    : currentNotificationChannelType === 'wechat'
+      ? ['渠道ID','渠道名称','企业ID（CorpID）','应用AgentId','Secret','备注','启用状态','更新时间','操作人','操作']
+      : currentNotificationChannelType === 'sms'
+        ? ['渠道ID','渠道名称','SecretId','SecretKey','SmsSdkAppId','备注','启用状态','更新时间','操作人','操作']
+        : ['渠道ID','渠道名称','备注','启用状态','更新时间','操作人','操作'];
+  head.innerHTML = `<tr>${columns.map(column => `<th>${column}</th>`).join('')}</tr>`;
+  const list = notificationChannelData.filter(item => item.type === currentNotificationChannelType);
+  rows.innerHTML = list.length ? list.map(item => {
+    const status = `<span class="switch-toggle${item.enabled ? ' on' : ''}" role="switch" aria-checked="${item.enabled ? 'true' : 'false'}" onclick="toggleNotificationChannel('${escapeHtml(item.id)}')"></span>`;
+    const common = `<td>${escapeHtml(item.id)}</td><td>${escapeHtml(item.name)}</td>`;
+    if(item.type === 'email'){
+      return `<tr>${common}<td>${escapeHtml(item.smtpServer)}</td><td>${escapeHtml(item.smtpPort)}</td><td>${escapeHtml(item.ssl)}</td><td>${escapeHtml(item.senderEmail)}</td><td>${escapeHtml(item.smtpUser)}</td><td>${notificationChannelSecret(item.smtpPassword)}</td><td>${escapeHtml(item.senderName)}</td><td>${escapeHtml(item.remark || '--')}</td><td>${status}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action">${notificationChannelOperation(item)}</td></tr>`;
+    }
+    if(item.type === 'wechat'){
+      return `<tr>${common}<td>${escapeHtml(item.corpId)}</td><td>${escapeHtml(item.agentId)}</td><td>${notificationChannelSecret(item.appSecret)}</td><td>${escapeHtml(item.remark || '--')}</td><td>${status}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action">${notificationChannelOperation(item)}</td></tr>`;
+    }
+    if(item.type === 'sms'){
+      return `<tr>${common}<td>${escapeHtml(item.secretId)}</td><td>${notificationChannelSecret(item.secretKey)}</td><td>${escapeHtml(item.smsSdkAppId)}</td><td>${escapeHtml(item.remark || '--')}</td><td>${status}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action">${notificationChannelOperation(item)}</td></tr>`;
+    }
+    return `<tr>${common}<td>${escapeHtml(item.remark || '--')}</td><td>${status}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action">${notificationChannelOperation(item)}</td></tr>`;
+  }).join('') : `<tr><td colspan="${columns.length}" class="notification-empty">暂无${notificationChannelTypeLabel(currentNotificationChannelType)}渠道</td></tr>`;
+  updatePagination('notificationChannelPagination',list.length);
+}
+function notificationChannelFormRow(label,content,required){
+  return `<div class="form-row"><label class="form-label">${required ? '<span class="required-mark">*</span>' : ''}${label}</label><div>${content}</div></div>`;
+}
+function openNotificationChannelEditor(mode,id){
+  const item = id ? notificationChannelData.find(entry => entry.id === id) : null;
+  if(mode === 'edit' && !item){return}
+  if(currentNotificationChannelType === 'inbox' && !item){return}
+  currentNotificationChannelModalMode = mode;
+  currentNotificationChannelModalId = id || '';
+  const type = item ? item.type : currentNotificationChannelType;
+  const title = document.getElementById('notificationChannelModalTitle');
+  const body = document.getElementById('notificationChannelModalBody');
+  if(!title || !body){return}
+  title.textContent = `${mode === 'edit' ? '编辑' : '创建'}${notificationChannelTypeLabel(type)}渠道`;
+  const value = key => escapeHtml(item && item[key] || '');
+  const input = (idName,placeholder,typeName='text',val='') => `<input class="input" id="${idName}" type="${typeName}" value="${val}" placeholder="${placeholder}">`;
+  let html = notificationChannelFormRow('渠道名称',input('notificationChannelNameInput','请输入渠道名称','text',value('name')),true);
+  if(type === 'email'){
+    html += notificationChannelFormRow('SMTP服务器',input('notificationChannelSmtpServerInput','请输入SMTP服务器','text',value('smtpServer')),true);
+    html += notificationChannelFormRow('SMTP端口',input('notificationChannelSmtpPortInput','请输入SMTP端口','text',value('smtpPort')),true);
+    html += notificationChannelFormRow('加密方式',`<select class="input" id="notificationChannelSslInput"><option value="SSL/TLS">SSL/TLS</option><option value="STARTTLS">STARTTLS</option><option value="不使用">不使用</option></select>`,true);
+    html += notificationChannelFormRow('发件邮箱',input('notificationChannelSenderEmailInput','请输入发件邮箱','email',value('senderEmail')),true);
+    html += notificationChannelFormRow('SMTP用户名',input('notificationChannelSmtpUserInput','请输入SMTP用户名','text',value('smtpUser')),true);
+    html += notificationChannelFormRow('SMTP密码/客户端专用密码',input('notificationChannelSmtpPasswordInput','保存后将加密存储','password'),true);
+    html += notificationChannelFormRow('发件人名称',input('notificationChannelSenderNameInput','请输入发件人名称','text',value('senderName')),true);
+  }else if(type === 'wechat'){
+    html += notificationChannelFormRow('企业ID（CorpID）',input('notificationChannelCorpIdInput','请输入CorpID','text',value('corpId')),true);
+    html += notificationChannelFormRow('应用AgentId',input('notificationChannelAgentIdInput','请输入AgentId','text',value('agentId')),true);
+    html += notificationChannelFormRow('Secret',input('notificationChannelAppSecretInput','保存后将加密存储','password'),true);
+  }else if(type === 'sms'){
+    html += notificationChannelFormRow('SecretId',input('notificationChannelSecretIdInput','请输入SecretId','text',value('secretId')),true);
+    html += notificationChannelFormRow('SecretKey',input('notificationChannelSecretKeyInput','保存后将加密存储','password'),true);
+    html += notificationChannelFormRow('SmsSdkAppId',input('notificationChannelSmsSdkAppIdInput','请输入SmsSdkAppId','text',value('smsSdkAppId')),true);
+  }
+  html += notificationChannelFormRow('备注',`<textarea class="textarea" id="notificationChannelRemarkInput" placeholder="请输入备注">${value('remark')}</textarea>`);
+  html += notificationChannelFormRow('启用状态',`<span class="switch-toggle${!item || item.enabled ? ' on' : ''}" id="notificationChannelEnabledSwitch" data-enabled="${!item || item.enabled ? 'true' : 'false'}" role="switch" aria-checked="${!item || item.enabled ? 'true' : 'false'}" onclick="toggleNotificationChannelEditorSwitch(this)"></span>`);
+  body.innerHTML = `<div data-notification-channel-type-value="${type}">${html}</div>`;
+  if(type === 'email' && item){document.getElementById('notificationChannelSslInput').value = item.ssl || 'SSL/TLS'}
+  document.getElementById('notificationChannelModalMask').style.display = 'flex';
+}
+function closeNotificationChannelEditor(){
+  const mask = document.getElementById('notificationChannelModalMask');
+  if(mask){mask.style.display = 'none'}
+}
+function toggleNotificationChannelEditorSwitch(node){
+  if(!node){return}
+  const enabled = node.dataset.enabled !== 'true';
+  node.dataset.enabled = enabled ? 'true' : 'false';
+  node.classList.toggle('on',enabled);
+  node.setAttribute('aria-checked',enabled ? 'true' : 'false');
+}
+function saveNotificationChannelEditor(){
+  const body = document.getElementById('notificationChannelModalBody');
+  const type = body && body.querySelector('[data-notification-channel-type-value]') ? body.querySelector('[data-notification-channel-type-value]').dataset.notificationChannelTypeValue : currentNotificationChannelType;
+  const get = id => document.getElementById(id);
+  const name = get('notificationChannelNameInput') && get('notificationChannelNameInput').value.trim();
+  if(!name){alert('请输入渠道名称');return}
+  const old = notificationChannelData.find(item => item.id === currentNotificationChannelModalId);
+  const read = id => get(id) ? get(id).value.trim() : '';
+  const item = old || {id:`NCH-${type.toUpperCase()}-${Date.now()}`,type};
+  item.name = name;
+  item.enabled = get('notificationChannelEnabledSwitch') ? get('notificationChannelEnabledSwitch').dataset.enabled === 'true' : true;
+  item.remark = read('notificationChannelRemarkInput');
+  if(type === 'email'){
+    item.smtpServer = read('notificationChannelSmtpServerInput'); item.smtpPort = read('notificationChannelSmtpPortInput'); item.ssl = get('notificationChannelSslInput').value; item.senderEmail = read('notificationChannelSenderEmailInput'); item.smtpUser = read('notificationChannelSmtpUserInput'); item.senderName = read('notificationChannelSenderNameInput');
+    if(!item.smtpServer || !item.smtpPort || !item.senderEmail || !item.smtpUser || (!old && !read('notificationChannelSmtpPasswordInput'))){alert('请完整填写邮箱渠道必填项');return}
+    if(read('notificationChannelSmtpPasswordInput')){item.smtpPassword = read('notificationChannelSmtpPasswordInput')}
+  }else if(type === 'wechat'){
+    item.corpId = read('notificationChannelCorpIdInput'); item.agentId = read('notificationChannelAgentIdInput');
+    if(!item.corpId || !item.agentId || (!old && !read('notificationChannelAppSecretInput'))){alert('请完整填写企业微信渠道必填项');return}
+    if(read('notificationChannelAppSecretInput')){item.appSecret = read('notificationChannelAppSecretInput')}
+  }else if(type === 'sms'){
+    item.secretId = read('notificationChannelSecretIdInput'); item.smsSdkAppId = read('notificationChannelSmsSdkAppIdInput');
+    if(!item.secretId || !item.smsSdkAppId || (!old && !read('notificationChannelSecretKeyInput'))){alert('请完整填写短信渠道必填项');return}
+    if(read('notificationChannelSecretKeyInput')){item.secretKey = read('notificationChannelSecretKeyInput')}
+  }
+  item.updatedAt = '2026-09-18 10:00:00'; item.operator = '当前用户';
+  if(!old){item.referenced = false;notificationChannelData.unshift(item)}
+  closeNotificationChannelEditor(); renderNotificationChannelPage(); alert('通知渠道已保存');
+}
+function toggleNotificationChannel(id){
+  const item = notificationChannelData.find(entry => entry.id === id);
+  if(!item){return}
+  if(item.enabled && item.referenced && !confirm('当前渠道已被通知模板引用，停用后新的通知任务将无法使用该渠道，是否继续？')){return}
+  item.enabled = !item.enabled; item.updatedAt = '2026-09-18 10:00:00'; item.operator = '当前用户'; renderNotificationChannelPage();
+}
+function deleteNotificationChannel(id){
+  const index = notificationChannelData.findIndex(item => item.id === id);
+  const item = notificationChannelData[index];
+  if(!item || item.type === 'inbox'){return}
+  const message = item.referenced ? '当前渠道已被通知模板引用，删除后相关通知将无法发送，是否继续？' : '删除后不能恢复，是否继续？';
+  if(!confirm(message)){return}
+  notificationChannelData.splice(index,1); renderNotificationChannelPage();
+}
+function openNotificationChannelTest(id){
+  const item = notificationChannelData.find(entry => entry.id === id);
+  if(!item || item.type === 'inbox'){return}
+  currentNotificationChannelTestId = id;
+  const title = document.getElementById('notificationChannelTestModalTitle');
+  const body = document.getElementById('notificationChannelTestModalBody');
+  if(!title || !body){return}
+  title.textContent = `测试${notificationChannelTypeLabel(item.type)}渠道`;
+  const placeholder = item.type === 'email' ? '请输入接收邮箱' : item.type === 'sms' ? '请输入接收手机号' : '请输入企业微信账号';
+  const content = item.type === 'email' ? '这是一封通知渠道测试邮件，用于验证SMTP配置是否可用。' : item.type === 'sms' ? '这是一条短信测试消息，用于验证短信渠道配置是否可用。' : '这是一条企业微信测试消息，用于验证应用配置是否可用。';
+  body.innerHTML = notificationChannelFormRow(item.type === 'email' ? '接收邮箱' : item.type === 'sms' ? '接收手机号' : '接收账号',`<input class="input" id="notificationChannelTestReceiverInput" placeholder="${placeholder}">`,true) + notificationChannelFormRow('测试内容',`<div class="notification-snapshot-content">${content}</div>`);
+  document.getElementById('notificationChannelTestModalMask').style.display = 'flex';
+}
+function closeNotificationChannelTest(){
+  const mask = document.getElementById('notificationChannelTestModalMask');
+  if(mask){mask.style.display = 'none'}
+}
+function submitNotificationChannelTest(){
+  const input = document.getElementById('notificationChannelTestReceiverInput');
+  if(!input || !input.value.trim()){alert('请输入测试接收人');return}
+  const failed = /fail|失败/i.test(input.value);
+  closeNotificationChannelTest();
+  alert(failed ? '发送失败：模拟接口调用失败' : '测试消息发送成功');
+}
+function notificationTemplateEventOptions(selected){
+  const names = ['流量超阈值','批量任务执行完成'].concat(notificationEvents.map(item => item.name));
+  return Array.from(new Set(names)).map(name => `<option value="${escapeHtml(name)}" ${name === selected ? 'selected' : ''}>${escapeHtml(name)}</option>`).join('');
+}
+function notificationTemplateVariables(eventName){
+  const event = notificationEvents.find(item => item.name === eventName);
+  return event ? event.variables : ['设备编号','当前流量','流量阈值','任务名称','成功数量','失败数量','触发时间'];
+}
+function notificationTemplateVariableTools(field,eventName){
+  return `<div class="notification-template-variable-list" data-template-variable-field="${escapeHtml(field)}">${notificationTemplateVariables(eventName).map(variable => `<button type="button" class="notification-template-variable" onclick="insertNotificationTemplateVariable('${field}','${escapeHtml(variable)}')">插入${escapeHtml(variable)}</button>`).join('')}</div>`;
+}
+function switchNotificationTemplateType(type){
+  currentNotificationTemplateType = type;
+  renderNotificationTemplatePage();
+}
+function renderNotificationTemplatePage(){
+  document.querySelectorAll('#notificationTemplateTabs [data-notification-template-type]').forEach(tab => tab.classList.toggle('active',tab.dataset.notificationTemplateType === currentNotificationTemplateType));
+  const head = document.getElementById('notificationTemplateHead');
+  const rows = document.getElementById('notificationTemplateRows');
+  if(!head || !rows){return}
+  const columns = ['模板消息ID','模板消息名称','模板消息类型','模板消息内容','更新时间','操作人','操作'];
+  head.innerHTML = `<tr>${columns.map(column => `<th>${column}</th>`).join('')}</tr>`;
+  const list = notificationTemplateData.filter(item => item.type === currentNotificationTemplateType);
+  rows.innerHTML = list.length ? list.map(item => {
+    const content = item.type === 'sms' ? item.templateContent : `${item.title || ''}${item.body ? `：${item.body}` : ''}`;
+    return `<tr><td>${escapeHtml(item.id)}</td><td>${escapeHtml(item.name)}</td><td>${escapeHtml(notificationTemplateTypeLabel(item.type))}</td><td><span class="notification-content-cell" title="${escapeHtml(content)}">${escapeHtml(content || '--')}</span></td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action"><span class="notification-action-list"><span class="text-action" onclick="openNotificationTemplateEditor('edit','${escapeHtml(item.id)}')">编辑</span><span class="text-action danger" onclick="deleteNotificationTemplate('${escapeHtml(item.id)}')">删除</span></span></td></tr>`;
+  }).join('') : `<tr><td colspan="${columns.length}" class="notification-empty">暂无${notificationTemplateTypeLabel(currentNotificationTemplateType)}模板</td></tr>`;
+  updatePagination('notificationTemplatePagination',list.length);
+}
+function openNotificationTemplateEditor(mode,id){
+  const item = id ? notificationTemplateData.find(entry => entry.id === id) : null;
+  if(mode === 'edit' && !item){return}
+  currentNotificationTemplateModalMode = mode; currentNotificationTemplateModalId = id || '';
+  const title = document.getElementById('notificationTemplateModalTitle');
+  const body = document.getElementById('notificationTemplateModalBody');
+  if(!title || !body){return}
+  const type = item ? item.type : currentNotificationTemplateType;
+  title.textContent = `${mode === 'edit' ? '编辑' : '创建'}${notificationTemplateTypeLabel(type)}`;
+  const value = key => escapeHtml(item && item[key] || '');
+  const row = (label,content,required) => notificationChannelFormRow(label,content,required);
+  let html = row('模板消息名称',`<input class="input" id="notificationTemplateNameInput" value="${value('name')}" placeholder="请输入模板消息名称">`,true);
+  html += row('通知事件',`<select class="input" id="notificationTemplateEventInput" onchange="renderNotificationTemplateVariableTools()"><option value="" disabled ${item ? '' : 'selected'}>请选择通知事件</option>${notificationTemplateEventOptions(item && item.event)}</select>`,true);
+  if(type === 'sms'){
+    html += row('短信签名名称',`<input class="input" id="notificationTemplateSignatureInput" value="${value('signature')}" placeholder="请输入短信签名名称">`,true);
+    html += row('TemplateID',`<input class="input" id="notificationTemplateIdInput" value="${value('templateId')}" placeholder="请输入TemplateID">`,true);
+    html += row('模板正文名称',`<input class="input" id="notificationTemplateSmsNameInput" value="${value('templateName')}" placeholder="请输入模板正文名称">`,true);
+    html += row('模板正文',`<textarea class="textarea" id="notificationTemplateSmsContentInput" placeholder="请选择短信模板后展示正文" readonly>${value('templateContent')}</textarea>`,true);
+    html += '<div class="form-row"><label class="form-label">内容说明</label><div class="notification-template-readonly">短信模板内容由腾讯云审核通过的模板提供，保存时仅记录模板标识及模板正文快照。</div></div>';
+  }else{
+    html += row(type === 'wechat' ? '消息标题' : '通知标题',`<input class="input" id="notificationTemplateTitleInput" value="${value('title')}" placeholder="请输入标题" onfocus="notificationTemplateActiveField='title'">`,true);
+    html += row(type === 'wechat' ? '消息正文' : '通知正文',`<textarea class="textarea" id="notificationTemplateBodyInput" placeholder="请输入正文" onfocus="notificationTemplateActiveField='body'">${value('body')}</textarea>${notificationTemplateVariableTools('body',item && item.event || '')}`,true);
+    html += row('附件',`<label class="radio"><input type="checkbox" id="notificationTemplateAttachmentInput" ${item && item.attachment ? 'checked' : ''}> 附件</label>`);
+  }
+  body.innerHTML = `<div data-notification-template-type-value="${type}">${html}</div>`;
+  document.getElementById('notificationTemplateEventInput').addEventListener('change',renderNotificationTemplateVariableTools);
+  renderNotificationTemplateVariableTools();
+  document.getElementById('notificationTemplateModalMask').style.display = 'flex';
+}
+function renderNotificationTemplateVariableTools(){
+  const eventInput = document.getElementById('notificationTemplateEventInput');
+  const eventName = eventInput ? eventInput.value : '';
+  const tools = Array.from(document.querySelectorAll('#notificationTemplateModalBody [data-template-variable-field]'));
+  tools.forEach(node => {node.outerHTML = notificationTemplateVariableTools(node.dataset.templateVariableField || '',eventName)});
+}
+function insertNotificationTemplateVariable(field,variable){
+  const targetId = field === 'title' ? 'notificationTemplateTitleInput' : 'notificationTemplateBodyInput';
+  const target = document.getElementById(targetId);
+  if(!target){return}
+  const token = `{{${variable}}}`;
+  const start = typeof target.selectionStart === 'number' ? target.selectionStart : target.value.length;
+  const end = typeof target.selectionEnd === 'number' ? target.selectionEnd : target.value.length;
+  target.value = target.value.slice(0,start) + token + target.value.slice(end); target.focus(); target.setSelectionRange(start + token.length,start + token.length);
+}
+function closeNotificationTemplateEditor(){
+  const mask = document.getElementById('notificationTemplateModalMask');
+  if(mask){mask.style.display = 'none'}
+}
+function saveNotificationTemplateEditor(){
+  const body = document.getElementById('notificationTemplateModalBody');
+  const type = body && body.querySelector('[data-notification-template-type-value]') ? body.querySelector('[data-notification-template-type-value]').dataset.notificationTemplateTypeValue : currentNotificationTemplateType;
+  const read = id => document.getElementById(id) ? document.getElementById(id).value.trim() : '';
+  const name = read('notificationTemplateNameInput'); const event = read('notificationTemplateEventInput');
+  if(!name || !event){alert('请填写模板消息名称和通知事件');return}
+  const old = notificationTemplateData.find(item => item.id === currentNotificationTemplateModalId);
+  const item = old || {id:`NTPL-${type.toUpperCase()}-${Date.now()}`,type,referenced:false};
+  item.name = name; item.event = event;
+  if(type === 'sms'){
+    item.signature = read('notificationTemplateSignatureInput'); item.templateId = read('notificationTemplateIdInput'); item.templateName = read('notificationTemplateSmsNameInput'); item.templateContent = read('notificationTemplateSmsContentInput');
+    if(!item.signature || !item.templateId || !item.templateName || !item.templateContent){alert('请完整填写短信模板信息');return}
+  }else{
+    item.title = read('notificationTemplateTitleInput'); item.body = read('notificationTemplateBodyInput'); item.attachment = document.getElementById('notificationTemplateAttachmentInput') && document.getElementById('notificationTemplateAttachmentInput').checked ? '已配置附件' : '';
+    item.variables = Array.from(new Set((`${item.title} ${item.body}`.match(/\{\{([^}]+)\}\}/g) || []).map(token => token.slice(2,-2))));
+    if(!item.title || !item.body){alert('请填写通知标题和通知正文');return}
+  }
+  item.updatedAt = '2026-09-18 10:00:00'; item.operator = '当前用户';
+  if(!old){notificationTemplateData.unshift(item)}
+  closeNotificationTemplateEditor(); renderNotificationTemplatePage(); alert('消息模板已保存');
+}
+function deleteNotificationTemplate(id){
+  const index = notificationTemplateData.findIndex(item => item.id === id); const item = notificationTemplateData[index];
+  if(!item){return}
+  if(item.referenced){alert('该模板已被通知规则引用，暂不支持删除');return}
+  if(!confirm('删除后不能恢复，是否继续？')){return}
+  notificationTemplateData.splice(index,1); renderNotificationTemplatePage();
+}
+function notificationSnapshotStatusTag(status){
+  const className = status === '全部成功' ? 'success' : status === '部分成功' ? 'partial' : status === '发送中' ? 'unsent' : 'failed';
+  return `<span class="notification-result ${className}">${escapeHtml(status)}</span>`;
+}
+function renderNotificationRecordPage(){
+  searchNotificationRecordSnapshots();
+}
+function notificationRecordChannelRows(item){
+  const detail = item.detail || {};
+  const people = detail.people || [];
+  const channels = item.channels && item.channels.length ? item.channels : ['--'];
+  return channels.map((channel,index) => {
+    const channelPeople = people.filter(person => person.channel === channel);
+    const usePeopleResult = channelPeople.length && item.status !== '发送中';
+    const successCount = usePeopleResult ? channelPeople.filter(person => person.status === '成功').length : channels.length === 1 ? Number(item.successCount || 0) : 0;
+    const failureCount = usePeopleResult ? channelPeople.filter(person => person.status !== '成功').length : channels.length === 1 ? Number(item.failureCount || 0) : 0;
+    let status = item.status;
+    if(item.status !== '发送中' && item.status !== '待通知'){
+      status = failureCount === 0 ? '全部成功' : successCount === 0 ? '全部失败' : '部分成功';
+    }
+    return {
+      ...item,
+      recordId:`${item.id}-${String(index + 1).padStart(2,'0')}`,
+      baseRecordId:item.id,
+      channels:[channel],
+      channel,
+      noticeCount:channelPeople.length || (channels.length === 1 ? Number(item.noticeCount || 0) : 0),
+      successCount,
+      failureCount,
+      status,
+      detail:{...detail,contents:(detail.contents || []).filter(entry => entry.channel === channel),people:channelPeople}
+    };
+  });
+}
+function notificationRecordSnapshotRows(){
+  return notificationRecordData.flatMap(notificationRecordChannelRows);
+}
+function searchNotificationRecordSnapshots(){
+  const ruleId = (document.getElementById('notificationSnapshotRuleIdInput') || {}).value || '';
+  const ruleName = (document.getElementById('notificationSnapshotRuleNameInput') || {}).value || '';
+  const status = getSelectValue('notificationSnapshotStatusFilter');
+  const start = (document.getElementById('notificationSnapshotDateStartInput') || {}).value || '';
+  const end = (document.getElementById('notificationSnapshotDateEndInput') || {}).value || '';
+  const rows = notificationRecordSnapshotRows().filter(item => (!ruleId || item.ruleId.includes(ruleId.trim())) && (!ruleName || item.ruleName.includes(ruleName.trim())) && (!status || item.status === status) && (!start || item.triggeredAt.slice(0,10) >= start) && (!end || item.triggeredAt.slice(0,10) <= end));
+  const body = document.getElementById('notificationRecordRows');
+  if(!body){return}
+  body.innerHTML = rows.length ? rows.map(item => `<tr><td>${escapeHtml(item.recordId)}</td><td>${escapeHtml(item.ruleId)}</td><td>${escapeHtml(item.ruleName)}</td><td>${escapeHtml(item.triggeredAt)}</td><td><div class="notification-methods">${notificationMethodTags([item.channel])}</div></td><td>${item.noticeCount}</td><td>${item.successCount}</td><td>${item.failureCount}</td><td>${notificationSnapshotStatusTag(item.status)}</td><td>${escapeHtml(item.completedAt || '--')}</td><td class="sticky-action"><span class="text-action" onclick="openNotificationSnapshotDetail('${escapeHtml(item.baseRecordId)}','${escapeHtml(item.channel)}','${escapeHtml(item.recordId)}')">记录详情</span></td></tr>`).join('') : '<tr><td colspan="11" class="notification-empty">暂无通知记录</td></tr>';
+  updatePagination('notificationRecordPagination',rows.length);
+}
+function resetNotificationRecordSnapshots(){
+  const ruleId = document.getElementById('notificationSnapshotRuleIdInput'); const ruleName = document.getElementById('notificationSnapshotRuleNameInput');
+  if(ruleId){ruleId.value = ''} if(ruleName){ruleName.value = ''}
+  resetCustomSelect('notificationSnapshotStatusFilter','通知状态'); setUnifiedRangeValues('notificationSnapshotDate','','',false); searchNotificationRecordSnapshots();
+}
+function openNotificationSnapshotDetail(id,channel,recordId){
+  const source = notificationRecordData.find(entry => entry.id === id); if(!source){return}
+  const item = channel ? notificationRecordChannelRows(source).find(entry => entry.channel === channel) : source;
+  const detail = item.detail || {}; const contents = detail.contents || []; const people = detail.people || [];
+  const field = (label,value) => `<div class="notification-detail-item"><span class="notification-detail-label">${label}</span><span class="notification-detail-value">${escapeHtml(value || '--')}</span></div>`;
+  const contentHtml = contents.length ? contents.map(entry => `<div class="notification-snapshot-channel"><strong>${escapeHtml(entry.channel)}${entry.channelName ? `（${escapeHtml(entry.channelName)}）` : ''}</strong><div class="notification-snapshot-content">${escapeHtml(entry.content || '未生成实际发送内容')}</div></div>`).join('') : `<div class="notification-empty">${escapeHtml(detail.notSentReason || '暂无实际发送内容')}</div>`;
+  const peopleHtml = people.length ? `<div class="table-card" style="border:0;padding:0"><table class="notification-table"><thead><tr><th>姓名</th><th>手机号</th><th>邮箱</th><th>账号</th><th>商户名称</th><th>角色</th><th>通知方式</th><th>通知状态</th><th>失败原因</th><th>通知时间</th></tr></thead><tbody>${people.map(person => `<tr><td>${escapeHtml(person.name)}</td><td>${escapeHtml(person.phone || '--')}</td><td>${escapeHtml(person.email || '--')}</td><td>${escapeHtml(person.account || '--')}</td><td>${escapeHtml(person.merchant || '--')}</td><td>${escapeHtml(person.role || '--')}</td><td>${escapeHtml(person.channel || '--')}</td><td>${notificationResultTag(person.status === '成功' ? '成功' : '失败')}</td><td>${escapeHtml(person.reason || '--')}</td><td>${escapeHtml(person.time || '--')}</td></tr>`).join('')}</tbody></table></div>` : '<div class="notification-empty">暂无接收人明细</div>';
+  const body = document.getElementById('notificationRecordDetailBody'); if(!body){return}
+  body.innerHTML = `<div class="notification-detail-section"><h3 class="notification-detail-title">通知记录信息</h3><div class="notification-detail-grid">${field('通知记录ID',recordId || item.recordId || item.id)}${field('触发规则ID',item.ruleId)}${field('触发规则名称',item.ruleName)}${field('触发时间',item.triggeredAt)}${field('通知方式',(item.channels || []).join('、'))}${field('通知总人数',`${item.noticeCount}人`)}${field('通知状态',item.status)}${field('通知完成时间',item.completedAt || '--')}</div></div><div class="notification-detail-section"><h3 class="notification-detail-title">实际通知内容</h3>${contentHtml}</div><div class="notification-detail-section"><h3 class="notification-detail-title">发送明细</h3>${peopleHtml}</div>`;
+  const mask = document.getElementById('notificationRecordDetailModalMask'); if(mask){mask.style.display = 'flex'}
 }
 function initDatePicker(){
   const picker = document.getElementById('configDatePicker');
