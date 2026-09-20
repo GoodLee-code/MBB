@@ -969,7 +969,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 <div class="layout">
   <aside class="side" id="sideMenu">
     <div class="menu home-menu" id="menuHome" onclick="showPage('home')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11.5 12 4l8 7.5M6.5 10v9.5h11V10M10 19.5V15h4v4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">首页</span></div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">用户中心</span></div>
+    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">消费者中心</span></div>
     <div class="menu" id="menuDevice" onclick="toggleMenuGroup('deviceSubMenu','menuDevice')"><svg class="device-icon" viewBox="0 0 160 160" aria-hidden="true" focusable="false"><path d="M12 76c0-37.6 30.4-68 68-68s68 30.4 68 68" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M38 76c0-23.2 18.8-42 42-42s42 18.8 42 42" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M63 76c0-9.4 7.6-17 17-17s17 7.6 17 17" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M80 59v47" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"/><path d="M22 103h116c6.6 0 12 5.4 12 12v31H10v-31c0-6.6 5.4-12 12-12Z" fill="none" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><circle cx="40" cy="129" r="7" fill="currentColor"/><circle cx="64" cy="129" r="7" fill="currentColor"/></svg><span class="menu-title">设备中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="deviceSubMenu">
       <div class="sub" id="menuDeviceManage" onclick="showPage('device')">设备管理</div>
@@ -1016,6 +1016,12 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="sub-group" id="financeSubMenu">
       <div class="sub" id="menuWallet" onclick="showPage('wallet')">钱包余额管理</div>
     </div>
+    <div class="menu" id="menuNotification" onclick="toggleMenuGroup('notificationSubMenu','menuNotification')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 10a6 6 0 0 1 12 0v4l2 3H4l2-3v-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 20h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">通知中心</span><span class="collapse-icon"></span></div>
+    <div class="sub-group" id="notificationSubMenu">
+      <div class="sub" id="menuNotificationChannel" onclick="showPage('notificationChannel')">通知渠道</div>
+      <div class="sub" id="menuNotificationTemplate" onclick="showPage('notificationTemplate')">消息模板</div>
+      <div class="sub" id="menuNotificationRecord" onclick="showPage('notificationRecord')">通知记录</div>
+    </div>
     <div class="menu" id="menuTask" onclick="toggleMenuGroup('taskSubMenu','menuTask')"><svg class="task-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5h8M8 10.5h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h11A2.5 2.5 0 0 1 20 6v12a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 2.5h6v3H9z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">任务中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="taskSubMenu">
       <div class="sub" id="menuBatchTask" onclick="showPage('task')">批量任务</div>
@@ -1027,12 +1033,6 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="menu" id="menuSystem" onclick="toggleMenuGroup('systemSubMenu','menuSystem')"><svg class="system-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5v3M12 17.5v3M4.65 7.75l2.6 1.5M16.75 14.75l2.6 1.5M4.65 16.25l2.6-1.5M16.75 9.25l2.6-1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span class="menu-title">系统中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="systemSubMenu">
       <div class="sub" id="menuFieldVersion" onclick="openFieldVersionPage()">字段说明版本管理</div>
-    </div>
-    <div class="menu" id="menuNotification" onclick="toggleMenuGroup('notificationSubMenu','menuNotification')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 10a6 6 0 0 1 12 0v4l2 3H4l2-3v-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 20h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">通知中心</span><span class="collapse-icon"></span></div>
-    <div class="sub-group" id="notificationSubMenu">
-      <div class="sub" id="menuNotificationChannel" onclick="showPage('notificationChannel')">通知渠道</div>
-      <div class="sub" id="menuNotificationTemplate" onclick="showPage('notificationTemplate')">消息模板</div>
-      <div class="sub" id="menuNotificationRecord" onclick="showPage('notificationRecord')">通知记录</div>
     </div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h5v5h-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="menu-title">其它功能</span></div>
   </aside>
@@ -1913,7 +1913,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 
     <section id="notificationChannelPage" class="content hidden">
       <div class="inner-tabs notification-management-tabs" id="notificationChannelTabs">
-        <span class="inner-tab active" data-notification-channel-type="email" onclick="switchNotificationChannelType('email')">企业微信邮箱</span>
+        <span class="inner-tab active" data-notification-channel-type="email" onclick="switchNotificationChannelType('email')">邮箱</span>
         <span class="inner-tab" data-notification-channel-type="wechat" onclick="switchNotificationChannelType('wechat')">企业微信</span>
         <span class="inner-tab" data-notification-channel-type="sms" onclick="switchNotificationChannelType('sms')">短信</span>
         <span class="inner-tab" data-notification-channel-type="inbox" onclick="switchNotificationChannelType('inbox')">站内通知</span>
@@ -1935,7 +1935,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <span class="inner-tab" data-notification-template-type="sms" onclick="switchNotificationTemplateType('sms')">短信消息</span>
         <span class="inner-tab" data-notification-template-type="inbox" onclick="switchNotificationTemplateType('inbox')">站内消息</span>
       </div>
-      <div class="action-row"><button class="btn" onclick="openNotificationTemplateEditor('add')">创建消息模板</button></div>
+      <div class="action-row" id="notificationTemplateActions"><button class="btn" id="notificationTemplateCreateBtn" onclick="openNotificationTemplateEditor('add')">创建消息模板</button><button class="btn hidden" id="notificationTemplateSyncSmsBtn" onclick="syncNotificationSmsTemplates()">同步短信模板</button></div>
       <div class="table-card" style="margin-top:10px">
         <table class="notification-table">
           <thead id="notificationTemplateHead"></thead>
@@ -1970,7 +1970,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       </div>
       <div class="table-card" style="margin-top:10px">
         <table class="notification-table">
-          <thead><tr><th>通知记录ID</th><th>触发规则ID</th><th>触发规则名称</th><th>触发时间</th><th>通知方式</th><th>通知总人数</th><th>成功数</th><th>失败数</th><th>通知状态</th><th>通知完成时间</th><th>操作</th></tr></thead>
+          <thead><tr><th>通知记录ID</th><th>触发规则ID</th><th>触发规则名称</th><th>触发时间</th><th>通知消息总数</th><th>成功数</th><th>失败数</th><th>通知状态</th><th>通知完成时间</th><th>操作</th></tr></thead>
           <tbody id="notificationRecordRows"></tbody>
         </table>
       </div>
@@ -2962,14 +2962,14 @@ notificationRecords.forEach(item => {
 notificationConfigs.length = 0;
 notificationRecords.length = 0;
 const notificationChannelData = [
-  {id:'NCH-EMAIL-001',type:'email',name:'系统通知邮箱',senderEmail:'notify@example.com',smtpServer:'smtp.exmail.qq.com',smtpPort:'465',ssl:'SSL/TLS',smtpUser:'notify@example.com',smtpPassword:'smtp-client-secret',senderName:'诺达通信通知',remark:'系统默认邮件发送渠道',enabled:true,updatedAt:'2026-09-18 09:20:00',operator:'张三',referenced:true},
+  {id:'NCH-EMAIL-001',type:'email',serviceProvider:'企业微信邮箱',name:'系统通知邮箱',senderEmail:'notify@example.com',smtpServer:'smtp.exmail.qq.com',smtpPort:'465',ssl:'SSL/TLS',smtpUser:'notify@example.com',smtpPassword:'smtp-client-secret',senderName:'诺达通信通知',remark:'系统默认邮件发送渠道',enabled:true,updatedAt:'2026-09-18 09:20:00',operator:'张三',referenced:true},
   {id:'NCH-WECHAT-001',type:'wechat',name:'运营通知应用',corpId:'ww1234567890',agentId:'1000002',appSecret:'wechat-app-secret',remark:'运营中心企业微信应用',enabled:true,updatedAt:'2026-09-18 09:18:22',operator:'李四',referenced:true},
   {id:'NCH-SMS-001',type:'sms',name:'腾讯云短信A',secretId:'AKIDEXAMPLE',secretKey:'sms-secret-key',smsSdkAppId:'1400999000',remark:'主短信发送渠道',enabled:true,updatedAt:'2026-09-18 09:16:05',operator:'王五',referenced:true},
   {id:'NCH-INBOX-001',type:'inbox',name:'站内通知',remark:'系统内置通知渠道',enabled:true,updatedAt:'2026-09-18 09:12:36',operator:'系统',referenced:true}
 ];
 const notificationTemplateData = [
-  {id:'NTPL-EMAIL-001',type:'email',name:'流量超阈值邮件模板',event:'流量超阈值',title:'设备流量已超过阈值',body:'设备{{设备编号}}流量已超过{{流量阈值}}，请及时处理。',variables:['设备编号','流量阈值','触发时间'],attachment:'设备流量明细',updatedAt:'2026-09-18 09:30:12',operator:'张三',referenced:true},
-  {id:'NTPL-WECHAT-001',type:'wechat',name:'流量超阈值企业微信模板',event:'流量超阈值',title:'流量超阈值提醒',body:'设备{{设备编号}}当前流量{{当前流量}}，已超过阈值{{流量阈值}}。',variables:['设备编号','当前流量','流量阈值'],attachment:'',updatedAt:'2026-09-18 09:28:40',operator:'李四',referenced:true},
+  {id:'NTPL-EMAIL-001',type:'email',name:'流量超阈值邮件模板',event:'流量超阈值',title:'设备流量已超过阈值',body:'设备{{设备编号}}流量已超过{{流量阈值}}，请及时处理。',variables:['设备编号','流量阈值','触发时间'],attachment:'携带附件',updatedAt:'2026-09-18 09:30:12',operator:'张三',referenced:true},
+  {id:'NTPL-WECHAT-001',type:'wechat',name:'流量超阈值企业微信模板',event:'流量超阈值',title:'流量超阈值提醒',body:'设备{{设备编号}}当前流量{{当前流量}}，已超过阈值{{流量阈值}}。',variables:['设备编号','当前流量','流量阈值'],attachment:'不携带附件',updatedAt:'2026-09-18 09:28:40',operator:'李四',referenced:true},
   {id:'NTPL-SMS-001',type:'sms',name:'流量超阈值短信模板',event:'流量超阈值',signature:'诺达通信',templateId:'154321',templateName:'设备流量超阈值通知',templateContent:'设备{{1}}流量已超过{{2}}，触发时间{{3}}。',updatedAt:'2026-09-18 09:26:18',operator:'王五',referenced:true},
   {id:'NTPL-INBOX-001',type:'inbox',name:'批量任务完成站内消息',event:'批量任务执行完成',title:'批量任务执行完成',body:'任务{{任务名称}}已执行完成，成功{{成功数量}}条，失败{{失败数量}}条。',variables:['任务名称','成功数量','失败数量'],updatedAt:'2026-09-18 09:24:06',operator:'赵六',referenced:false}
 ];
@@ -2977,7 +2977,7 @@ window.notificationTemplateData = notificationTemplateData;
 const notificationRecordData = [
   {id:'NREC-202609180001',ruleId:'RULE-FLOW-001',ruleName:'设备流量超阈值通知',triggeredAt:'2026-09-18 09:41:08',channels:['短信','企业微信'],noticeCount:2,successCount:3,failureCount:1,status:'部分成功',completedAt:'2026-09-18 09:41:12',detail:{contents:[{channel:'短信',channelName:'腾讯云短信A',content:'设备A123456流量已超过10GB，触发时间2026-09-18 09:41:08。'},{channel:'企业微信',channelName:'运营通知应用',content:'设备A123456当前流量10.8GB，已超过阈值10GB。'}],people:[{name:'张三',phone:'138****1234',email:'zhangsan@example.com',account:'zhangsan',merchant:'上海智联商贸',role:'运营专员',channel:'短信',status:'成功',reason:'',time:'2026-09-18 09:41:09'},{name:'张三',phone:'138****1234',email:'zhangsan@example.com',account:'zhangsan',merchant:'上海智联商贸',role:'运营专员',channel:'企业微信',status:'成功',reason:'',time:'2026-09-18 09:41:10'},{name:'李四',phone:'',email:'lisi@example.com',account:'lisi',merchant:'杭州云旅科技',role:'客服专员',channel:'短信',status:'失败',reason:'接收人未配置手机号',time:'2026-09-18 09:41:09'},{name:'李四',phone:'',email:'lisi@example.com',account:'lisi',merchant:'杭州云旅科技',role:'客服专员',channel:'企业微信',status:'成功',reason:'',time:'2026-09-18 09:41:11'}]}},
   {id:'NREC-202609180002',ruleId:'RULE-TASK-002',ruleName:'批量任务执行完成通知',triggeredAt:'2026-09-18 09:35:22',channels:['站内通知'],noticeCount:1,successCount:1,failureCount:0,status:'全部成功',completedAt:'2026-09-18 09:35:22',detail:{contents:[{channel:'站内通知',channelName:'站内通知',content:'任务批量卡状态查询已执行完成，成功86条，失败0条。'}],people:[{name:'王五',phone:'139****5678',email:'',account:'wangwu',merchant:'苏州星河酒店',role:'财务专员',channel:'站内通知',status:'成功',reason:'',time:'2026-09-18 09:35:22'}]}},
-  {id:'NREC-202609180003',ruleId:'RULE-REFUND-003',ruleName:'退款处理完成通知',triggeredAt:'2026-09-18 09:30:16',channels:['企业微信邮箱'],noticeCount:1,successCount:0,failureCount:0,status:'发送中',completedAt:'',detail:{contents:[{channel:'企业微信邮箱',channelName:'系统通知邮箱',content:'退款处理任务RF202609180006已完成，成功0笔，失败1笔。'}],people:[{name:'赵六',phone:'137****2468',email:'zhaoliu@example.com',account:'zhaoliu',merchant:'广州启明商贸',role:'运营主管',channel:'企业微信邮箱',status:'成功',reason:'',time:'2026-09-18 09:30:17'}]}}
+  {id:'NREC-202609180003',ruleId:'RULE-REFUND-003',ruleName:'退款处理完成通知',triggeredAt:'2026-09-18 09:30:16',channels:['邮箱'],noticeCount:1,successCount:0,failureCount:0,status:'发送中',completedAt:'',detail:{contents:[{channel:'邮箱',channelName:'系统通知邮箱',content:'退款处理任务RF202609180006已完成，成功0笔，失败1笔。'}],people:[{name:'赵六',phone:'137****2468',email:'zhaoliu@example.com',account:'zhaoliu',merchant:'广州启明商贸',role:'运营主管',channel:'邮箱',status:'成功',reason:'',time:'2026-09-18 09:30:17'}]}}
 ];
 window.notificationRecordData = notificationRecordData;
 let currentNotificationChannelType = 'email';
@@ -8512,7 +8512,7 @@ function closeDatePickers(except){
   });
 }
 function notificationChannelTypeLabel(type){
-  return ({email:'企业微信邮箱',wechat:'企业微信',sms:'短信',inbox:'站内通知'})[type] || type;
+  return ({email:'邮箱',wechat:'企业微信',sms:'短信',inbox:'站内通知'})[type] || type;
 }
 function notificationTemplateTypeLabel(type){
   return ({email:'企业邮箱消息',wechat:'企业微信消息',sms:'短信消息',inbox:'站内消息'})[type] || type;
@@ -8542,7 +8542,7 @@ function renderNotificationChannelPage(){
   const rows = document.getElementById('notificationChannelRows');
   if(!head || !rows){return}
   const columns = currentNotificationChannelType === 'email'
-    ? ['渠道ID','渠道名称','SMTP服务器','SMTP端口','加密方式','发件邮箱','SMTP用户名','SMTP密码/客户端专用密码','发件人名称','备注','启用状态','更新时间','操作人','操作']
+    ? ['渠道ID','服务商','渠道名称','SMTP服务器','SMTP端口','加密方式','发件邮箱','SMTP用户名','SMTP密码/客户端专用密码','发件人名称','备注','启用状态','更新时间','操作人','操作']
     : currentNotificationChannelType === 'wechat'
       ? ['渠道ID','渠道名称','企业ID（CorpID）','应用AgentId','Secret','备注','启用状态','更新时间','操作人','操作']
       : currentNotificationChannelType === 'sms'
@@ -8554,7 +8554,7 @@ function renderNotificationChannelPage(){
     const status = `<span class="switch-toggle${item.enabled ? ' on' : ''}" role="switch" aria-checked="${item.enabled ? 'true' : 'false'}" onclick="toggleNotificationChannel('${escapeHtml(item.id)}')"></span>`;
     const common = `<td>${escapeHtml(item.id)}</td><td>${escapeHtml(item.name)}</td>`;
     if(item.type === 'email'){
-      return `<tr>${common}<td>${escapeHtml(item.smtpServer)}</td><td>${escapeHtml(item.smtpPort)}</td><td>${escapeHtml(item.ssl)}</td><td>${escapeHtml(item.senderEmail)}</td><td>${escapeHtml(item.smtpUser)}</td><td>${notificationChannelSecret(item.smtpPassword)}</td><td>${escapeHtml(item.senderName)}</td><td>${escapeHtml(item.remark || '--')}</td><td>${status}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action">${notificationChannelOperation(item)}</td></tr>`;
+      return `<tr><td>${escapeHtml(item.id)}</td><td>${escapeHtml(item.serviceProvider || '企业微信邮箱')}</td><td>${escapeHtml(item.name)}</td><td>${escapeHtml(item.smtpServer)}</td><td>${escapeHtml(item.smtpPort)}</td><td>${escapeHtml(item.ssl)}</td><td>${escapeHtml(item.senderEmail)}</td><td>${escapeHtml(item.smtpUser)}</td><td>${notificationChannelSecret(item.smtpPassword)}</td><td>${escapeHtml(item.senderName)}</td><td>${escapeHtml(item.remark || '--')}</td><td>${status}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action">${notificationChannelOperation(item)}</td></tr>`;
     }
     if(item.type === 'wechat'){
       return `<tr>${common}<td>${escapeHtml(item.corpId)}</td><td>${escapeHtml(item.agentId)}</td><td>${notificationChannelSecret(item.appSecret)}</td><td>${escapeHtml(item.remark || '--')}</td><td>${status}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action">${notificationChannelOperation(item)}</td></tr>`;
@@ -8582,7 +8582,11 @@ function openNotificationChannelEditor(mode,id){
   title.textContent = `${mode === 'edit' ? '编辑' : '创建'}${notificationChannelTypeLabel(type)}渠道`;
   const value = key => escapeHtml(item && item[key] || '');
   const input = (idName,placeholder,typeName='text',val='') => `<input class="input" id="${idName}" type="${typeName}" value="${val}" placeholder="${placeholder}">`;
-  let html = notificationChannelFormRow('渠道名称',input('notificationChannelNameInput','请输入渠道名称','text',value('name')),true);
+  let html = '';
+  if(type === 'email'){
+    html += notificationChannelFormRow('服务商',`<select class="input" id="notificationChannelProviderInput"><option value="企业微信邮箱">企业微信邮箱</option></select>`,true);
+  }
+  html += notificationChannelFormRow('渠道名称',input('notificationChannelNameInput','请输入渠道名称','text',value('name')),true);
   if(type === 'email'){
     html += notificationChannelFormRow('SMTP服务器',input('notificationChannelSmtpServerInput','请输入SMTP服务器','text',value('smtpServer')),true);
     html += notificationChannelFormRow('SMTP端口',input('notificationChannelSmtpPortInput','请输入SMTP端口','text',value('smtpPort')),true);
@@ -8603,7 +8607,11 @@ function openNotificationChannelEditor(mode,id){
   html += notificationChannelFormRow('备注',`<textarea class="textarea" id="notificationChannelRemarkInput" placeholder="请输入备注">${value('remark')}</textarea>`);
   html += notificationChannelFormRow('启用状态',`<span class="switch-toggle${!item || item.enabled ? ' on' : ''}" id="notificationChannelEnabledSwitch" data-enabled="${!item || item.enabled ? 'true' : 'false'}" role="switch" aria-checked="${!item || item.enabled ? 'true' : 'false'}" onclick="toggleNotificationChannelEditorSwitch(this)"></span>`);
   body.innerHTML = `<div data-notification-channel-type-value="${type}">${html}</div>`;
-  if(type === 'email' && item){document.getElementById('notificationChannelSslInput').value = item.ssl || 'SSL/TLS'}
+  if(type === 'email'){
+    const providerInput = document.getElementById('notificationChannelProviderInput');
+    if(providerInput){providerInput.value = item?.serviceProvider || '企业微信邮箱'}
+    if(item){document.getElementById('notificationChannelSslInput').value = item.ssl || 'SSL/TLS'}
+  }
   document.getElementById('notificationChannelModalMask').style.display = 'flex';
 }
 function closeNotificationChannelEditor(){
@@ -8630,6 +8638,7 @@ function saveNotificationChannelEditor(){
   item.enabled = get('notificationChannelEnabledSwitch') ? get('notificationChannelEnabledSwitch').dataset.enabled === 'true' : true;
   item.remark = read('notificationChannelRemarkInput');
   if(type === 'email'){
+    item.serviceProvider = read('notificationChannelProviderInput') || '企业微信邮箱';
     item.smtpServer = read('notificationChannelSmtpServerInput'); item.smtpPort = read('notificationChannelSmtpPortInput'); item.ssl = get('notificationChannelSslInput').value; item.senderEmail = read('notificationChannelSenderEmailInput'); item.smtpUser = read('notificationChannelSmtpUserInput'); item.senderName = read('notificationChannelSenderNameInput');
     if(!item.smtpServer || !item.smtpPort || !item.senderEmail || !item.smtpUser || (!old && !read('notificationChannelSmtpPasswordInput'))){alert('请完整填写邮箱渠道必填项');return}
     if(read('notificationChannelSmtpPasswordInput')){item.smtpPassword = read('notificationChannelSmtpPasswordInput')}
@@ -8699,23 +8708,40 @@ function switchNotificationTemplateType(type){
   currentNotificationTemplateType = type;
   renderNotificationTemplatePage();
 }
+function syncNotificationSmsTemplates(){
+  if(currentNotificationTemplateType !== 'sms'){return}
+  renderNotificationTemplatePage();
+}
 function renderNotificationTemplatePage(){
   document.querySelectorAll('#notificationTemplateTabs [data-notification-template-type]').forEach(tab => tab.classList.toggle('active',tab.dataset.notificationTemplateType === currentNotificationTemplateType));
+  const actions = document.getElementById('notificationTemplateActions');
+  const createAction = document.getElementById('notificationTemplateCreateBtn');
+  const syncSmsAction = document.getElementById('notificationTemplateSyncSmsBtn');
+  if(actions){actions.classList.remove('hidden')}
+  if(createAction){createAction.classList.toggle('hidden',currentNotificationTemplateType === 'sms')}
+  if(syncSmsAction){syncSmsAction.classList.toggle('hidden',currentNotificationTemplateType !== 'sms')}
   const head = document.getElementById('notificationTemplateHead');
   const rows = document.getElementById('notificationTemplateRows');
   if(!head || !rows){return}
-  const columns = ['模板消息ID','模板消息名称','模板消息类型','模板消息内容','更新时间','操作人','操作'];
+  const columns = currentNotificationTemplateType === 'sms'
+    ? ['模板消息ID','绑定规则','模板消息名称','模板消息内容','渠道ID','渠道名称','更新时间','操作人']
+    : ['模板消息ID','模板消息名称','模板消息类型','模板消息内容','更新时间','操作人','操作'];
   head.innerHTML = `<tr>${columns.map(column => `<th>${column}</th>`).join('')}</tr>`;
   const list = notificationTemplateData.filter(item => item.type === currentNotificationTemplateType);
   rows.innerHTML = list.length ? list.map(item => {
     const content = item.type === 'sms' ? item.templateContent : `${item.title || ''}${item.body ? `：${item.body}` : ''}`;
+    if(item.type === 'sms'){
+      const smsChannel = notificationChannelData.find(channel => channel.type === 'sms' && (channel.id === item.channelId || channel.name === item.channelName)) || notificationChannelData.find(channel => channel.type === 'sms');
+      return `<tr><td>${escapeHtml(item.id)}</td><td>${escapeHtml(item.event || '--')}</td><td>${escapeHtml(item.name)}</td><td><span class="notification-content-cell" title="${escapeHtml(content)}">${escapeHtml(content || '--')}</span></td><td>${escapeHtml(item.channelId || smsChannel?.id || '--')}</td><td>${escapeHtml(item.channelName || smsChannel?.name || '--')}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td></tr>`;
+    }
     return `<tr><td>${escapeHtml(item.id)}</td><td>${escapeHtml(item.name)}</td><td>${escapeHtml(notificationTemplateTypeLabel(item.type))}</td><td><span class="notification-content-cell" title="${escapeHtml(content)}">${escapeHtml(content || '--')}</span></td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td><td class="sticky-action"><span class="notification-action-list"><span class="text-action" onclick="openNotificationTemplateEditor('edit','${escapeHtml(item.id)}')">编辑</span><span class="text-action danger" onclick="deleteNotificationTemplate('${escapeHtml(item.id)}')">删除</span></span></td></tr>`;
   }).join('') : `<tr><td colspan="${columns.length}" class="notification-empty">暂无${notificationTemplateTypeLabel(currentNotificationTemplateType)}模板</td></tr>`;
   updatePagination('notificationTemplatePagination',list.length);
 }
 function openNotificationTemplateEditor(mode,id){
+  if(mode === 'add' && currentNotificationTemplateType === 'sms'){return}
   const item = id ? notificationTemplateData.find(entry => entry.id === id) : null;
-  if(mode === 'edit' && !item){return}
+  if(mode === 'edit' && (!item || item.type === 'sms')){return}
   currentNotificationTemplateModalMode = mode; currentNotificationTemplateModalId = id || '';
   const title = document.getElementById('notificationTemplateModalTitle');
   const body = document.getElementById('notificationTemplateModalBody');
@@ -8725,7 +8751,7 @@ function openNotificationTemplateEditor(mode,id){
   const value = key => escapeHtml(item && item[key] || '');
   const row = (label,content,required) => notificationChannelFormRow(label,content,required);
   let html = row('模板消息名称',`<input class="input" id="notificationTemplateNameInput" value="${value('name')}" placeholder="请输入模板消息名称">`,true);
-  html += row('通知事件',`<select class="input" id="notificationTemplateEventInput" onchange="renderNotificationTemplateVariableTools()"><option value="" disabled ${item ? '' : 'selected'}>请选择通知事件</option>${notificationTemplateEventOptions(item && item.event)}</select>`,true);
+  html += row('绑定规则',`<select class="input" id="notificationTemplateEventInput" onchange="renderNotificationTemplateVariableTools()"><option value="" disabled ${item ? '' : 'selected'}>请选择绑定规则</option>${notificationTemplateEventOptions(item && item.event)}</select>`,true);
   if(type === 'sms'){
     html += row('短信签名名称',`<input class="input" id="notificationTemplateSignatureInput" value="${value('signature')}" placeholder="请输入短信签名名称">`,true);
     html += row('TemplateID',`<input class="input" id="notificationTemplateIdInput" value="${value('templateId')}" placeholder="请输入TemplateID">`,true);
@@ -8735,7 +8761,8 @@ function openNotificationTemplateEditor(mode,id){
   }else{
     html += row(type === 'wechat' ? '消息标题' : '通知标题',`<input class="input" id="notificationTemplateTitleInput" value="${value('title')}" placeholder="请输入标题" onfocus="notificationTemplateActiveField='title'">`,true);
     html += row(type === 'wechat' ? '消息正文' : '通知正文',`<textarea class="textarea" id="notificationTemplateBodyInput" placeholder="请输入正文" onfocus="notificationTemplateActiveField='body'">${value('body')}</textarea>${notificationTemplateVariableTools('body',item && item.event || '')}`,true);
-    html += row('附件',`<label class="radio"><input type="checkbox" id="notificationTemplateAttachmentInput" ${item && item.attachment ? 'checked' : ''}> 附件</label>`);
+    const carriesAttachment = Boolean(item && item.attachment && item.attachment !== '不携带附件');
+    html += row('是否携带附件通知',`<label class="radio"><input type="radio" name="notificationTemplateAttachment" value="携带附件" ${carriesAttachment ? 'checked' : ''}> 携带附件</label><label class="radio"><input type="radio" name="notificationTemplateAttachment" value="不携带附件" ${carriesAttachment ? '' : 'checked'}> 不携带附件</label>`);
   }
   body.innerHTML = `<div data-notification-template-type-value="${type}">${html}</div>`;
   document.getElementById('notificationTemplateEventInput').addEventListener('change',renderNotificationTemplateVariableTools);
@@ -8766,7 +8793,7 @@ function saveNotificationTemplateEditor(){
   const type = body && body.querySelector('[data-notification-template-type-value]') ? body.querySelector('[data-notification-template-type-value]').dataset.notificationTemplateTypeValue : currentNotificationTemplateType;
   const read = id => document.getElementById(id) ? document.getElementById(id).value.trim() : '';
   const name = read('notificationTemplateNameInput'); const event = read('notificationTemplateEventInput');
-  if(!name || !event){alert('请填写模板消息名称和通知事件');return}
+  if(!name || !event){alert('请填写模板消息名称和绑定规则');return}
   const old = notificationTemplateData.find(item => item.id === currentNotificationTemplateModalId);
   const item = old || {id:`NTPL-${type.toUpperCase()}-${Date.now()}`,type,referenced:false};
   item.name = name; item.event = event;
@@ -8774,7 +8801,7 @@ function saveNotificationTemplateEditor(){
     item.signature = read('notificationTemplateSignatureInput'); item.templateId = read('notificationTemplateIdInput'); item.templateName = read('notificationTemplateSmsNameInput'); item.templateContent = read('notificationTemplateSmsContentInput');
     if(!item.signature || !item.templateId || !item.templateName || !item.templateContent){alert('请完整填写短信模板信息');return}
   }else{
-    item.title = read('notificationTemplateTitleInput'); item.body = read('notificationTemplateBodyInput'); item.attachment = document.getElementById('notificationTemplateAttachmentInput') && document.getElementById('notificationTemplateAttachmentInput').checked ? '已配置附件' : '';
+    item.title = read('notificationTemplateTitleInput'); item.body = read('notificationTemplateBodyInput'); item.attachment = document.querySelector('input[name="notificationTemplateAttachment"]:checked')?.value || '不携带附件';
     item.variables = Array.from(new Set((`${item.title} ${item.body}`.match(/\{\{([^}]+)\}\}/g) || []).map(token => token.slice(2,-2))));
     if(!item.title || !item.body){alert('请填写通知标题和通知正文');return}
   }
@@ -8835,7 +8862,7 @@ function searchNotificationRecordSnapshots(){
   const rows = notificationRecordSnapshotRows().filter(item => (!ruleId || item.ruleId.includes(ruleId.trim())) && (!ruleName || item.ruleName.includes(ruleName.trim())) && (!status || item.status === status) && (!start || item.triggeredAt.slice(0,10) >= start) && (!end || item.triggeredAt.slice(0,10) <= end));
   const body = document.getElementById('notificationRecordRows');
   if(!body){return}
-  body.innerHTML = rows.length ? rows.map(item => `<tr><td>${escapeHtml(item.recordId)}</td><td>${escapeHtml(item.ruleId)}</td><td>${escapeHtml(item.ruleName)}</td><td>${escapeHtml(item.triggeredAt)}</td><td><div class="notification-methods">${notificationMethodTags([item.channel])}</div></td><td>${item.noticeCount}</td><td>${item.successCount}</td><td>${item.failureCount}</td><td>${notificationSnapshotStatusTag(item.status)}</td><td>${escapeHtml(item.completedAt || '--')}</td><td class="sticky-action"><span class="text-action" onclick="openNotificationSnapshotDetail('${escapeHtml(item.baseRecordId)}','${escapeHtml(item.channel)}','${escapeHtml(item.recordId)}')">记录详情</span></td></tr>`).join('') : '<tr><td colspan="11" class="notification-empty">暂无通知记录</td></tr>';
+  body.innerHTML = rows.length ? rows.map(item => `<tr><td>${escapeHtml(item.recordId)}</td><td>${escapeHtml(item.ruleId)}</td><td>${escapeHtml(item.ruleName)}</td><td>${escapeHtml(item.triggeredAt)}</td><td>${item.noticeCount}</td><td>${item.successCount}</td><td>${item.failureCount}</td><td>${notificationSnapshotStatusTag(item.status)}</td><td>${escapeHtml(item.completedAt || '--')}</td><td class="sticky-action"><span class="text-action" onclick="openNotificationSnapshotDetail('${escapeHtml(item.baseRecordId)}','${escapeHtml(item.channel)}','${escapeHtml(item.recordId)}')">记录详情</span></td></tr>`).join('') : '<tr><td colspan="10" class="notification-empty">暂无通知记录</td></tr>';
   updatePagination('notificationRecordPagination',rows.length);
 }
 function resetNotificationRecordSnapshots(){
@@ -8843,15 +8870,19 @@ function resetNotificationRecordSnapshots(){
   if(ruleId){ruleId.value = ''} if(ruleName){ruleName.value = ''}
   resetCustomSelect('notificationSnapshotStatusFilter','通知状态'); setUnifiedRangeValues('notificationSnapshotDate','','',false); searchNotificationRecordSnapshots();
 }
+function notificationTemplateIdForChannel(channel){
+  const type = ({邮箱:'email','企业微信邮箱':'email','企业微信':'wechat','短信':'sms','短信通知':'sms','站内通知':'inbox'})[channel];
+  const template = type ? notificationTemplateData.find(item => item.type === type) : null;
+  return template?.id || '--';
+}
 function openNotificationSnapshotDetail(id,channel,recordId){
   const source = notificationRecordData.find(entry => entry.id === id); if(!source){return}
   const item = channel ? notificationRecordChannelRows(source).find(entry => entry.channel === channel) : source;
-  const detail = item.detail || {}; const contents = detail.contents || []; const people = detail.people || [];
+  const detail = item.detail || {}; const people = detail.people || [];
   const field = (label,value) => `<div class="notification-detail-item"><span class="notification-detail-label">${label}</span><span class="notification-detail-value">${escapeHtml(value || '--')}</span></div>`;
-  const contentHtml = contents.length ? contents.map(entry => `<div class="notification-snapshot-channel"><strong>${escapeHtml(entry.channel)}${entry.channelName ? `（${escapeHtml(entry.channelName)}）` : ''}</strong><div class="notification-snapshot-content">${escapeHtml(entry.content || '未生成实际发送内容')}</div></div>`).join('') : `<div class="notification-empty">${escapeHtml(detail.notSentReason || '暂无实际发送内容')}</div>`;
-  const peopleHtml = people.length ? `<div class="table-card" style="border:0;padding:0"><table class="notification-table"><thead><tr><th>姓名</th><th>手机号</th><th>邮箱</th><th>账号</th><th>商户名称</th><th>角色</th><th>通知方式</th><th>通知状态</th><th>失败原因</th><th>通知时间</th></tr></thead><tbody>${people.map(person => `<tr><td>${escapeHtml(person.name)}</td><td>${escapeHtml(person.phone || '--')}</td><td>${escapeHtml(person.email || '--')}</td><td>${escapeHtml(person.account || '--')}</td><td>${escapeHtml(person.merchant || '--')}</td><td>${escapeHtml(person.role || '--')}</td><td>${escapeHtml(person.channel || '--')}</td><td>${notificationResultTag(person.status === '成功' ? '成功' : '失败')}</td><td>${escapeHtml(person.reason || '--')}</td><td>${escapeHtml(person.time || '--')}</td></tr>`).join('')}</tbody></table></div>` : '<div class="notification-empty">暂无接收人明细</div>';
+  const peopleHtml = people.length ? `<div class="table-card" style="border:0;padding:0"><table class="notification-table"><thead><tr><th>姓名</th><th>手机号</th><th>邮箱</th><th>账号</th><th>商户名称</th><th>角色</th><th>通知方式</th><th>通知模板ID</th><th>通知状态</th><th>失败原因</th><th>通知时间</th></tr></thead><tbody>${people.map(person => `<tr><td>${escapeHtml(person.name)}</td><td>${escapeHtml(person.phone || '--')}</td><td>${escapeHtml(person.email || '--')}</td><td>${escapeHtml(person.account || '--')}</td><td>${escapeHtml(person.merchant || '--')}</td><td>${escapeHtml(person.role || '--')}</td><td>${escapeHtml(person.channel || '--')}</td><td>${escapeHtml(person.templateId || notificationTemplateIdForChannel(person.channel))}</td><td>${notificationResultTag(person.status === '成功' ? '成功' : '失败')}</td><td>${escapeHtml(person.reason || '--')}</td><td>${escapeHtml(person.time || '--')}</td></tr>`).join('')}</tbody></table></div>` : '<div class="notification-empty">暂无接收人明细</div>';
   const body = document.getElementById('notificationRecordDetailBody'); if(!body){return}
-  body.innerHTML = `<div class="notification-detail-section"><h3 class="notification-detail-title">通知记录信息</h3><div class="notification-detail-grid">${field('通知记录ID',recordId || item.recordId || item.id)}${field('触发规则ID',item.ruleId)}${field('触发规则名称',item.ruleName)}${field('触发时间',item.triggeredAt)}${field('通知方式',(item.channels || []).join('、'))}${field('通知总人数',`${item.noticeCount}人`)}${field('通知状态',item.status)}${field('通知完成时间',item.completedAt || '--')}</div></div><div class="notification-detail-section"><h3 class="notification-detail-title">实际通知内容</h3>${contentHtml}</div><div class="notification-detail-section"><h3 class="notification-detail-title">发送明细</h3>${peopleHtml}</div>`;
+  body.innerHTML = `<div class="notification-detail-section"><h3 class="notification-detail-title">通知记录信息</h3><div class="notification-detail-grid">${field('通知记录ID',recordId || item.recordId || item.id)}${field('触发规则ID',item.ruleId)}${field('触发规则名称',item.ruleName)}${field('触发时间',item.triggeredAt)}${field('通知方式',(item.channels || []).join('、'))}${field('通知消息总数',item.noticeCount)}${field('通知状态',item.status)}${field('通知完成时间',item.completedAt || '--')}</div></div><div class="notification-detail-section"><h3 class="notification-detail-title">发送明细</h3>${peopleHtml}</div>`;
   const mask = document.getElementById('notificationRecordDetailModalMask'); if(mask){mask.style.display = 'flex'}
 }
 function initDatePicker(){
