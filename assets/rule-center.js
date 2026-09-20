@@ -1,10 +1,11 @@
 (function(){
   'use strict';
 
-  const RULE_PAGE_TYPES = ['ruleList','ruleTriggerRecords','ruleCreate','ruleDetail'];
+  const RULE_PAGE_TYPES = ['ruleList','ruleTriggerRecords','ruleTriggerSummary','ruleCreate','ruleDetail'];
   const RULE_TITLES = {
     ruleList: '规则管理',
-    ruleTriggerRecords: '触发记录',
+    ruleTriggerRecords: '触发明细',
+    ruleTriggerSummary: '触发记录',
     ruleCreate: '规则新增',
     ruleDetail: '规则详情'
   };
@@ -85,15 +86,41 @@
       <div class="pagination rule-pagination" id="ruleListPagination"></div>
     </section>
 
+    <section id="ruleTriggerSummaryPage" class="content hidden rule-center-page">
+      <div class="inner-tabs rule-trigger-tabs" role="tablist" aria-label="规则触发页面切换">
+        <span class="inner-tab active" role="tab" aria-selected="true">触发记录</span>
+        <span class="inner-tab" role="tab" aria-selected="false" onclick="showPage('ruleTriggerRecords')">触发明细</span>
+      </div>
+      <div class="system-filter rule-center-filter" id="ruleTriggerSummaryFilter">
+        ${selectMarkup('triggerSummaryRuleTypeFilter','触发规则类型',ruleTypes)}
+        <input class="input" id="triggerSummaryRuleKeyword" placeholder="触发规则ID/触发规则名称" aria-label="触发规则ID或触发规则名称">
+        <div class="device-date-range" id="triggerSummaryTimeRange" data-range="triggerSummaryTime" onclick="openUnifiedRangePicker(event,'triggerSummaryTime')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">触发开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">触发结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'triggerSummaryTime')"></span>
+          <input id="triggerSummaryTimeStartInput" type="hidden"><input id="triggerSummaryTimeEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="triggerSummaryTimePanel"></div>
+        </div>
+        <div class="filter-actions new-row"><button type="button" class="btn line" id="triggerSummarySearchBtn">搜索</button><button type="button" class="btn gray" id="triggerSummaryResetBtn">重置</button></div>
+      </div>
+      <div class="table-card rule-table-wrap"><table class="rule-table trigger-summary-table"><thead><tr><th>触发记录ID</th><th>触发规则类型</th><th>触发规则ID</th><th>触发规则名称</th><th>触发时间</th><th>触发卡数</th><th>通知记录ID</th></tr></thead><tbody id="ruleTriggerSummaryRows"></tbody></table></div>
+      <div class="pagination rule-pagination" id="ruleTriggerSummaryPagination"></div>
+    </section>
+
     <section id="ruleTriggerRecordsPage" class="content hidden rule-center-page">
+      <div class="inner-tabs rule-trigger-tabs" role="tablist" aria-label="规则触发页面切换">
+        <span class="inner-tab" role="tab" aria-selected="false" onclick="showPage('ruleTriggerSummary')">触发记录</span>
+        <span class="inner-tab active" role="tab" aria-selected="true">触发明细</span>
+      </div>
       <div class="system-filter rule-center-filter" id="ruleTriggerFilter">
+        <input class="input" id="triggerRecordIdFilter" placeholder="触发记录ID" aria-label="触发记录ID">
         ${selectMarkup('triggerRuleTypeFilter','触发规则类型',ruleTypes)}
         <input class="input" id="triggerRuleKeyword" placeholder="触发规则ID/触发规则名称" aria-label="触发规则ID或触发规则名称">
-        <input class="input" id="triggerRuleTime" placeholder="触发时间" aria-label="触发时间">
+        <div class="device-date-range" id="triggerDetailTimeRange" data-range="triggerDetailTime" onclick="openUnifiedRangePicker(event,'triggerDetailTime')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">触发开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">触发结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'triggerDetailTime')"></span>
+          <input id="triggerDetailTimeStartInput" type="hidden"><input id="triggerDetailTimeEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="triggerDetailTimePanel"></div>
+        </div>
         <input class="input" id="triggerMsisdnIccid" placeholder="MSISDN/ICCID" aria-label="MSISDN或ICCID">
         <div class="filter-actions new-row"><button type="button" class="btn line" id="triggerSearchBtn">搜索</button><button type="button" class="btn gray" id="triggerResetBtn">重置</button></div>
       </div>
-      <div class="table-card rule-table-wrap"><table class="rule-table trigger-table"><thead><tr><th>触发规则类型</th><th>触发规则ID</th><th>触发规则名称</th><th>触发时间</th><th>MSISDN</th><th>ICCID</th><th>所属商户</th><th>供应商</th><th>运营商</th><th>使用量（MB）</th><th>触发条件</th><th>触发动作</th><th>动作结果</th><th>通知记录ID</th></tr></thead><tbody id="ruleTriggerRows"></tbody></table></div>
+      <div class="table-card rule-table-wrap"><table class="rule-table trigger-table"><thead><tr><th>触发记录ID</th><th>触发规则类型</th><th>触发规则ID</th><th>触发规则名称</th><th>触发时间</th><th>MSISDN</th><th>ICCID</th><th>所属商户</th><th>供应商</th><th>运营商</th><th>使用量（MB）</th><th>触发条件</th><th>触发动作</th><th>动作结果</th><th>通知记录ID</th></tr></thead><tbody id="ruleTriggerRows"></tbody></table></div>
       <div class="pagination rule-pagination" id="ruleTriggerPagination"></div>
     </section>
 
@@ -630,15 +657,58 @@
     const row = ruleRecords.find(item => item.id === currentRuleDetailId);
     body.innerHTML = row ? ruleDetailSectionsMarkup(row) : '<div class="rule-empty">暂无规则详情</div>';
   }
+  function triggerSummaryRows(){
+    const groups = new Map();
+    triggerRecords.forEach((row,index) => {
+      const key = `${row.notificationRecordIndex ?? 'record'}|${row.id}|${row.triggerAt}`;
+      const current = groups.get(key);
+      if(current){
+        current.cardCount += 1;
+        current.actionResults.push(row.actionResult);
+        return;
+      }
+      groups.set(key,{...row,groupKey:key,triggerRecordId:`TRIGGER${String(groups.size + 1).padStart(4,'0')}`,firstIndex:index,cardCount:1,actionResults:[row.actionResult]});
+    });
+    return Array.from(groups.values()).map(row => ({
+      ...row,
+      summaryResult: row.actionResults.every(result => result === '成功') ? '成功' : row.actionResults.every(result => result === '失败') ? '失败' : '部分成功',
+      notificationRecordId: notificationRecordIdForTrigger(row,row.firstIndex)
+    }));
+  }
+  function triggerRecordIdForTrigger(row,index){
+    const key = `${row.notificationRecordIndex ?? 'record'}|${row.id}|${row.triggerAt}`;
+    const summary = triggerSummaryRows().find(item => item.groupKey === key);
+    return summary?.triggerRecordId || `TRIGGER${String(index + 1).padStart(4,'0')}`;
+  }
+  function triggerDateInRange(value,start,end){
+    const date = String(value || '').slice(0,10);
+    return Boolean(date && (!start || date >= start) && (!end || date <= end));
+  }
+  function renderTriggerSummary(){
+    const type = selectValue('triggerSummaryRuleTypeFilter');
+    const keyword = textValue('triggerSummaryRuleKeyword');
+    const start = document.getElementById('triggerSummaryTimeStartInput')?.value || '';
+    const end = document.getElementById('triggerSummaryTimeEndInput')?.value || '';
+    const rows = triggerSummaryRows().filter(row => (!type || row.type === type) && matchText(`${row.id}${row.name}`,keyword) && triggerDateInRange(row.triggerAt,start,end));
+    const tbody = document.getElementById('ruleTriggerSummaryRows');
+    if(!tbody){return}
+    tbody.innerHTML = rows.length ? rows.map(row => `<tr><td><button type="button" class="link-action" onclick="openTriggerDetailByRecordId('${escapeHtml(row.triggerRecordId)}')">${escapeHtml(row.triggerRecordId)}</button></td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.triggerAt)}</td><td>${escapeHtml(row.cardCount)}</td><td>${escapeHtml(row.notificationRecordId)}</td></tr>`).join('') : '<tr><td colspan="7" class="rule-empty">暂无符合条件的触发记录</td></tr>';
+    renderPagination('ruleTriggerSummaryPagination',rows.length);
+  }
   function renderTriggerRecords(){
+    const recordId = textValue('triggerRecordIdFilter');
     const type = selectValue('triggerRuleTypeFilter');
     const keyword = textValue('triggerRuleKeyword');
-    const triggerTime = textValue('triggerRuleTime');
+    const start = document.getElementById('triggerDetailTimeStartInput')?.value || '';
+    const end = document.getElementById('triggerDetailTimeEndInput')?.value || '';
     const identity = textValue('triggerMsisdnIccid');
-    const rows = triggerRecords.filter(row => (!type || row.type === type) && matchText(`${row.id}${row.name}`,keyword) && matchText(row.triggerAt,triggerTime) && matchText(`${row.msisdn}${row.iccid}`,identity));
+    const rows = triggerRecords.map((row,index) => ({row,index})).filter(entry => {
+      const row = entry.row;
+      return (!recordId || matchText(triggerRecordIdForTrigger(row,entry.index),recordId)) && (!type || row.type === type) && matchText(`${row.id}${row.name}`,keyword) && triggerDateInRange(row.triggerAt,start,end) && matchText(`${row.msisdn}${row.iccid}`,identity);
+    });
     const tbody = document.getElementById('ruleTriggerRows');
     if(!tbody){return}
-    tbody.innerHTML = rows.length ? rows.map((row,index) => `<tr><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.triggerAt)}</td><td>${escapeHtml(row.msisdn)}</td><td>${escapeHtml(row.iccid)}</td><td>${escapeHtml(row.merchant)}</td><td>${escapeHtml(row.supplier)}</td><td>${escapeHtml(row.operator)}</td><td>${escapeHtml(row.usage)}</td><td>${escapeHtml(row.condition)}</td><td>${escapeHtml(row.action)}</td><td><span class="rule-action-result ${actionResultClass(row.actionResult)}">${escapeHtml(row.actionResult)}</span></td><td>${escapeHtml(notificationRecordIdForTrigger(row,index))}</td></tr>`).join('') : '<tr><td colspan="14" class="rule-empty">暂无符合条件的触发记录</td></tr>';
+    tbody.innerHTML = rows.length ? rows.map(entry => {const row = entry.row; const index = entry.index; return `<tr><td>${escapeHtml(triggerRecordIdForTrigger(row,index))}</td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.triggerAt)}</td><td>${escapeHtml(row.msisdn)}</td><td>${escapeHtml(row.iccid)}</td><td>${escapeHtml(row.merchant)}</td><td>${escapeHtml(row.supplier)}</td><td>${escapeHtml(row.operator)}</td><td>${escapeHtml(row.usage)}</td><td>${escapeHtml(row.condition)}</td><td>${escapeHtml(row.action)}</td><td><span class="rule-action-result ${actionResultClass(row.actionResult)}">${escapeHtml(row.actionResult)}</span></td><td>${escapeHtml(notificationRecordIdForTrigger(row,index))}</td></tr>`;}).join('') : '<tr><td colspan="15" class="rule-empty">暂无符合条件的触发明细</td></tr>';
     renderPagination('ruleTriggerPagination',rows.length);
   }
   function resetRuleSelect(id){
@@ -655,10 +725,28 @@
     renderRuleList();
   }
   function resetTriggerRecords(){
-    ['triggerRuleKeyword','triggerRuleTime','triggerMsisdnIccid'].forEach(id => {const input=document.getElementById(id);if(input){input.value='';}});
+    ['triggerRecordIdFilter','triggerRuleKeyword','triggerMsisdnIccid'].forEach(id => {const input=document.getElementById(id);if(input){input.value='';}});
     resetRuleSelect('triggerRuleTypeFilter');
+    if(typeof window.setUnifiedRangeValues === 'function'){window.setUnifiedRangeValues('triggerDetailTime','','',false);}
     document.querySelectorAll('#ruleTriggerFilter input.input').forEach(syncRuleInputClear);
     renderTriggerRecords();
+  }
+  function openTriggerDetailByRecordId(recordId){
+    ['triggerRuleKeyword','triggerMsisdnIccid'].forEach(id => {const input=document.getElementById(id);if(input){input.value='';}});
+    resetRuleSelect('triggerRuleTypeFilter');
+    if(typeof window.setUnifiedRangeValues === 'function'){window.setUnifiedRangeValues('triggerDetailTime','','',false);}
+    const input = document.getElementById('triggerRecordIdFilter');
+    if(input){input.value = recordId || '';syncRuleInputClear(input);}
+    if(typeof window.showPage === 'function'){window.showPage('ruleTriggerRecords');}
+    renderTriggerRecords();
+  }
+  function resetTriggerSummary(){
+    const input = document.getElementById('triggerSummaryRuleKeyword');
+    if(input){input.value='';}
+    resetRuleSelect('triggerSummaryRuleTypeFilter');
+    if(typeof window.setUnifiedRangeValues === 'function'){window.setUnifiedRangeValues('triggerSummaryTime','','',false);}
+    document.querySelectorAll('#ruleTriggerSummaryFilter input.input').forEach(syncRuleInputClear);
+    renderTriggerSummary();
   }
   function openRuleCreatePage(){
     if(typeof window.showPage === 'function'){window.showPage('ruleCreate');}
@@ -1210,7 +1298,7 @@
     const active = RULE_PAGE_TYPES.includes(type);
     if(menu){menu.classList.toggle('active',active);}
     document.getElementById('menuRuleList')?.classList.toggle('active',type === 'ruleList' || type === 'ruleCreate' || type === 'ruleDetail');
-    document.getElementById('menuRuleTriggerRecords')?.classList.toggle('active',type === 'ruleTriggerRecords');
+    document.getElementById('menuRuleTriggerRecords')?.classList.toggle('active',['ruleTriggerRecords','ruleTriggerSummary'].includes(type));
     if(group && active && type !== 'ruleCreate'){group.classList.remove('collapsed');menu?.classList.remove('collapsed');}
   }
   function boot(){
@@ -1230,12 +1318,15 @@
     wireRuleInputClears();
     wireRuleMonthPicker();
     renderRuleList();
+    renderTriggerSummary();
     renderTriggerRecords();
     renderRuleDetail();
     renderRuleNotificationCards();
     renderSharedRuleNotificationTargets();
     document.getElementById('ruleListSearchBtn')?.addEventListener('click',renderRuleList);
     document.getElementById('ruleListResetBtn')?.addEventListener('click',resetRuleList);
+    document.getElementById('triggerSummarySearchBtn')?.addEventListener('click',renderTriggerSummary);
+    document.getElementById('triggerSummaryResetBtn')?.addEventListener('click',resetTriggerSummary);
     document.getElementById('triggerSearchBtn')?.addEventListener('click',renderTriggerRecords);
     document.getElementById('triggerResetBtn')?.addEventListener('click',resetTriggerRecords);
     document.getElementById('ruleCreateBtn')?.addEventListener('click',()=>{resetCreatePage();openRuleCreatePage();});
@@ -1250,13 +1341,15 @@
     document.querySelectorAll('#ruleCreatePage input[name="ruleNotify"]').forEach(input => input.addEventListener('change',renderRuleNotificationCards));
     document.querySelectorAll('#ruleCenterPages input').forEach(input => input.addEventListener('input',()=>{
       if(input.id.startsWith('ruleList')){renderRuleList();}
-      if(input.id.startsWith('trigger')){renderTriggerRecords();}
+      if(input.id.startsWith('triggerSummary')){renderTriggerSummary();}
+      else if(input.id.startsWith('trigger')){renderTriggerRecords();}
       input.classList.remove('rule-invalid');input.removeAttribute('aria-invalid');
     }));
     const syncRulePageState = type => {
       RULE_PAGE_TYPES.forEach(page => document.getElementById(`${page}Page`)?.classList.toggle('hidden',type !== page));
       syncRuleNav(type);
       if(type === 'ruleList'){renderRuleList();}
+      if(type === 'ruleTriggerSummary'){renderTriggerSummary();}
       if(type === 'ruleTriggerRecords'){renderTriggerRecords();}
       if(type === 'ruleDetail'){renderRuleDetail();}
     };
@@ -1306,9 +1399,12 @@
   }
   window.openRuleCreatePage = openRuleCreatePage;
   window.openRuleDetail = openRuleDetail;
+  window.openTriggerDetailByRecordId = openTriggerDetailByRecordId;
   window.closeRuleDetailDrawer = closeRuleDetailDrawer;
   window.toggleRuleStatus = toggleRuleStatus;
   window.renderRuleList = renderRuleList;
+  window.renderTriggerSummary = renderTriggerSummary;
+  window.renderTriggerRecords = renderTriggerRecords;
   window.ruleTriggerRecords = triggerRecords;
   window.openRuleNotificationAccountModal = openRuleNotificationAccountModal;
 })();
