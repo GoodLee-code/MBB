@@ -47,6 +47,48 @@ final result: passed
 
 ---
 
+## 规则中心增量检查（2026-09-19）
+
+**Comparison Target**
+
+- Source visual truth: `/Users/goodlee/Downloads/yuque_diagram.jpg`（规则中心结构图，2684 x 2888）
+- Implementation: `http://127.0.0.1:8770/index.html`，Codex In-app Browser live capture at `1280 x 720`
+- State: 首页默认状态；规则中心展开后的规则管理、触发记录、规则新增页签
+
+**Full-View Comparison Evidence**
+
+- 结构图定义的规则管理查询区、规则新增操作、规则列表字段、触发记录查询区和列表字段均已映射到独立页面。
+- 页面沿用现有 MBB 后台的蓝色顶栏、左侧一级菜单、面包屑页签、查询网格、表格、状态点和表格外分页布局。
+
+**Focused Region Comparison Evidence**
+
+- 规则列表重点检查：规则名称与规则类型为独立列，规则新增为主按钮，筛选下拉提供完整示例选项，分页位于列表框外。
+- 规则新增重点检查：基础信息、监测范围（全平台监测、自定义监测、范围监测同级展示）、监测规则、生效时间和通知方式均可见；供应商、商户、运营商仅在选择范围监测时显示并可编辑，选择自定义监测时才显示上传文件入口。
+
+**Findings**
+
+- Fonts and typography: passed. New screens use the existing Arial/中文回退字体和 12–13px 后台密度。
+- Spacing and layout rhythm: passed. 查询区、表格、页签和分页沿用现有页面节奏，新增页未引入独立头图区域。
+- Colors and visual tokens: passed. 新增页面使用现有主题蓝、边框灰和状态色。
+- Image quality and asset fidelity: passed. 结构图没有需要额外导入的图片资产，菜单图标复用现有线性图标。
+- Copy and content: passed. 图中字段均有对应中文标签，供应商、商户、运营商保持独立。
+- Interaction: passed. 一级菜单展开、规则管理/触发记录切换、规则新增面包屑页签、下拉筛选、自定义监测上传入口和保存返回列表均已验证。
+- Console errors: none observed in the browser-rendered check.
+
+**Implementation Checklist**
+
+- [x] 新增规则中心一级菜单及规则管理、触发记录二级菜单。
+- [x] 新增规则管理列表和触发记录列表页面。
+- [x] 新增规则新增页签及表单交互。
+- [x] 将范围监测调整为与全平台监测、自定义监测同级，范围监测不显示上传文件入口。
+- [x] 通知方式选中后展示对应配置行，可选择通知模板，并通过账号管理弹窗多选通知对象。
+- [x] 保持首页默认打开，其他一级菜单默认折叠。
+- [x] 保留现有页面内容，仅新增 `assets/rule-center.js` 和脚本挂接。
+
+final result: passed
+
+---
+
 ## 顶部搜索栏 UI 对照检查（2026-09-04）
 
 **Comparison Target**
