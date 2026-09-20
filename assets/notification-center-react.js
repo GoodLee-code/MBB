@@ -158,23 +158,24 @@
     React.useEffect(() => {if(open){setMerchant('');setKeyword('');setTempIds(selectedIds)}},[open,selectedIds]);
     const people = dataPeople().filter(person => {
       const merchantMatch = !merchant || person.merchant.includes(merchant);
-      const keywordMatch = !keyword || [person.account,person.phone,person.name].some(value => value.includes(keyword));
+      const keywordMatch = !keyword || [person.account,person.phone,person.name,person.wechatUserId || person.wechat || ''].some(value => value.includes(keyword));
       return merchantMatch && keywordMatch;
     });
     const columns = [
       {title:'账号',dataIndex:'account',key:'account',align:'center'},
       {title:'手机号',dataIndex:'phone',key:'phone',align:'center',render:value => value || '--'},
       {title:'邮箱',dataIndex:'email',key:'email',align:'center',render:value => value || '--'},
+      {title:'企业微信userid',key:'wechatUserId',align:'center',render:(_,person) => person.wechatUserId || person.wechat || '--'},
       {title:'姓名',dataIndex:'name',key:'name',align:'center'},
       {title:'角色',dataIndex:'role',key:'role',align:'center'},
       {title:'所属商户',dataIndex:'merchant',key:'merchant',align:'center'}
     ];
     const rowSelection = {selectedRowKeys:tempIds,onChange:keys => setTempIds(keys),preserveSelectedRowKeys:true};
-    return h(Modal,{open,title:'选择目标对象',width:900,destroyOnClose:true,onCancel,onOk:() => onConfirm(tempIds),okText:'确认选择',cancelText:'取消'},
+    return h(Modal,{open,title:'选择通知对象',width:900,destroyOnClose:true,onCancel,onOk:() => onConfirm(tempIds),okText:'确认选择',cancelText:'取消'},
       h(Space,{direction:'vertical',size:12,style:{width:'100%'}},[
         h(Space,{key:'filters',wrap:true},[
           h(Input,{key:'merchant',placeholder:'商户名称',value:merchant,onChange:event => setMerchant(event.target.value),style:{width:220}}),
-          h(Input,{key:'keyword',placeholder:'账号/手机号/姓名',value:keyword,onChange:event => setKeyword(event.target.value),style:{width:240}}),
+          h(Input,{key:'keyword',placeholder:'账号/手机号/姓名/企业微信userid',value:keyword,onChange:event => setKeyword(event.target.value),style:{width:240}}),
           h(Button,{key:'reset',onClick:() => {setMerchant('');setKeyword('')}},'重置')
         ]),
         h(Table,{key:'table',rowKey:'id',rowSelection,columns,dataSource:people,pagination:false,size:'small',scroll:{y:360}})
@@ -298,6 +299,7 @@
       {title:'账号',dataIndex:'account',key:'account',width:130},
       {title:'手机号',dataIndex:'phone',key:'phone',width:140,render:value => value || '--'},
       {title:'邮箱',dataIndex:'email',key:'email',width:190,render:value => value || '--'},
+      {title:'企业微信userid',key:'wechatUserId',width:160,render:(_,person) => person.wechatUserId || person.wechat || '--'},
       {title:'角色',dataIndex:'role',key:'role',width:120},
       {title:'所属商户',dataIndex:'merchant',key:'merchant',width:170}
     ];
@@ -345,7 +347,7 @@
               h(Typography.Text,{key:'hint',type:'secondary',style:{display:'block',marginTop:8}},'可同时选择多个通知对象')
             ]),
             (targetEnabled || selectedIds.length || (initiator && showIndividualRecipientRows)) ? h(Form.Item,{key:'targets',label:null},[
-              targetEnabled && !viewOnly ? h(Button,{key:'select',type:'default',className:'notification-target-add',icon:h('span',{className:'notification-plus-icon','aria-hidden':'true'}),onClick:() => setAccountModalOpen(true)},'选择目标对象') : null,
+              targetEnabled && !viewOnly ? h(Button,{key:'select',type:'default',className:'notification-target-add',icon:h('span',{className:'notification-plus-icon','aria-hidden':'true'}),onClick:() => setAccountModalOpen(true)},'选择通知对象') : null,
               h(Table,{key:'targetTable',rowKey:'id',bordered:true,size:'middle',pagination:false,scroll:{x:1100},style:{marginTop:targetEnabled ? 12 : 0},locale:{emptyText:'暂未选择目标对象'},dataSource:targetTableRows,columns:targetColumns})
             ]) : null,
             missingContact.length ? h(Alert,{key:'warning',type:'warning',showIcon:true,message:missingContact.join('；') + '，无法通过对应渠道接收通知'}) : null

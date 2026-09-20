@@ -29,7 +29,7 @@
   let ruleScopeIccids = [];
   let ruleEffectiveMonthView = new Date(new Date().getFullYear(),new Date().getMonth(),1);
   const ruleRecords = [
-    {id:'RULE202609180001',name:'月度流量阈值提醒',type:'流量用量监测',status:'生效中',effectiveAt:'2026-09-18',createdAt:'2026-09-18 09:12:08',updatedAt:'2026-09-18 09:12:08',operator:'陈思远'},
+    {id:'RULE202609180001',name:'月度流量阈值提醒',type:'流量用量监测',status:'生效中',effectiveAt:'2026-09-18',createdAt:'2026-09-18 09:12:08',updatedAt:'2026-09-18 09:12:08',operator:'陈思远',scopeMode:'iccid',scopeLabel:'指定ICCID',scopeFileName:'ICCID监测名单_20260918.xlsx',scopeIccids:['89860488192540182881']},
     {id:'RULE202609150003',name:'企业卡用量间隔通知',type:'流量用量监测',status:'生效中',effectiveAt:'2026-09-01',createdAt:'2026-09-15 16:40:21',updatedAt:'2026-09-16 10:18:30',operator:'周文博'},
     {id:'RULE202609120006',name:'南区流量高峰提醒',type:'流量用量监测',status:'待生效',effectiveAt:'2026-10-01',createdAt:'2026-09-12 14:25:16',updatedAt:'2026-09-12 14:25:16',operator:'林若安'},
     {id:'RULE202609080004',name:'套餐流量提前通知',type:'流量用量监测',status:'生效中',effectiveAt:'2026-09-08',createdAt:'2026-09-08 11:06:45',updatedAt:'2026-09-08 11:06:45',operator:'张可昕'},
@@ -39,9 +39,9 @@
   const triggerRecords = [
     {type:'流量用量监测',id:'RULE202609180001',name:'月度流量阈值提醒',triggerAt:'2026-09-19 09:28:42',msisdn:'138****2468',iccid:'89860488192540182881',merchant:'上海智联商贸',supplier:'中国移动',operator:'中国移动',usage:'4,096.00',condition:'达到 4,000 MB',action:'仅通知',actionResult:'成功',notificationRecordIndex:0},
     {type:'流量用量监测',id:'RULE202609150003',name:'企业卡用量间隔通知',triggerAt:'2026-09-19 08:16:20',msisdn:'139****7214',iccid:'89860488192540182905',merchant:'杭州云旅科技',supplier:'中国联通',operator:'中国联通',usage:'2,048.72',condition:'达到 2,000 MB',action:'仅通知',actionResult:'成功',notificationRecordIndex:1},
-    {type:'流量用量监测',id:'RULE202609120006',name:'南区流量高峰提醒',triggerAt:'2026-09-18 23:40:12',msisdn:'136****9182',iccid:'89860488192540182764',merchant:'苏州星河酒店',supplier:'中国电信',operator:'中国电信',usage:'0.00',condition:'达到 0 MB',action:'通知并关闭数据服务',actionResult:'失败',notificationRecordIndex:2},
+    {type:'流量用量监测',id:'RULE202609120006',name:'南区流量高峰提醒',triggerAt:'2026-09-18 23:40:12',msisdn:'136****9182',iccid:'89860488192540182764',merchant:'苏州星河酒店',supplier:'中国电信',operator:'中国电信',usage:'0.00',condition:'达到 0 MB',action:'通知并关闭流量数据服务',actionResult:'失败',notificationRecordIndex:2},
     {type:'流量用量监测',id:'RULE202609080004',name:'套餐流量提前通知',triggerAt:'2026-09-18 18:02:07',msisdn:'137****5061',iccid:'89860488192540182690',merchant:'深圳远帆科技',supplier:'中国移动',operator:'中国联通',usage:'812.40',condition:'达到 800 MB',action:'仅通知',actionResult:'成功',notificationRecordIndex:0},
-    {type:'流量用量监测',id:'RULE202608270002',name:'区域流量高峰提醒',triggerAt:'2026-09-18 16:45:33',msisdn:'150****4638',iccid:'89860488192540182571',merchant:'上海智联商贸',supplier:'中国联通',operator:'中国移动',usage:'6,240.18',condition:'达到 6,000 MB',action:'通知并关闭数据服务',actionResult:'成功',notificationRecordIndex:1}
+    {type:'流量用量监测',id:'RULE202608270002',name:'区域流量高峰提醒',triggerAt:'2026-09-18 16:45:33',msisdn:'150****4638',iccid:'89860488192540182571',merchant:'上海智联商贸',supplier:'中国联通',operator:'中国移动',usage:'6,240.18',condition:'达到 6,000 MB',action:'通知并关闭流量数据服务',actionResult:'成功',notificationRecordIndex:1}
   ];
 
   const escapeHtml = value => String(value == null ? '' : value)
@@ -72,6 +72,10 @@
         ${selectMarkup('ruleListTypeFilter','规则类型',ruleTypes)}
         ${selectMarkup('ruleListStatusFilter','生效状态',ruleStatuses)}
         ${selectMarkup('ruleListTriggerStatusFilter','触发状态',triggerStatuses)}
+        <div class="device-date-range" id="ruleListRecentTriggerRange" data-range="ruleListRecentTrigger" onclick="openUnifiedRangePicker(event,'ruleListRecentTrigger')">
+          <span class="date-icon"></span><span class="device-date-text" data-part="start">最近触发开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">最近触发结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'ruleListRecentTrigger')"></span>
+          <input id="ruleListRecentTriggerStartInput" type="hidden"><input id="ruleListRecentTriggerEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="ruleListRecentTriggerPanel"></div>
+        </div>
         <div class="filter-actions new-row"><button type="button" class="btn line" id="ruleListSearchBtn">搜索</button><button type="button" class="btn gray" id="ruleListResetBtn">重置</button></div>
       </div>
       <div class="action-row rule-center-actions"><button type="button" class="btn" id="ruleCreateBtn">规则新增</button></div>
@@ -111,7 +115,7 @@
           <div class="rule-threshold-reminders rule-field-wide hidden" id="ruleThresholdReminders"></div>
           <div class="rule-interval-reminder rule-field-wide hidden" id="ruleIntervalReminder"><div class="rule-interval-line">数据使用每增加 <input class="input rule-interval-input" id="ruleCreateIntervalValue" placeholder="请输入数值" inputmode="decimal" type="number" min="0" step="0.01"> MB，下发一次提醒，直到不再触发。</div></div>
           <div class="rule-field rule-field-wide hidden" id="ruleFollowUpField"><span class="rule-field-label req">跟进动作</span><div class="rule-radio-row"><label><input type="radio" name="ruleFollowUp" value="no" checked>仅通知</label><label><input type="radio" name="ruleFollowUp" value="yes">通知并关闭流量数据服务</label></div></div>
-          <label class="rule-field rule-field-wide" id="ruleRestoreField"><span class="rule-field-label req">次月是否恢复数据服务</span><div class="rule-radio-row"><label><input type="radio" name="ruleRestore" value="yes" checked>次月恢复数据服务</label><label><input type="radio" name="ruleRestore" value="no">不恢复</label></div></label>
+          <label class="rule-field rule-field-wide" id="ruleRestoreField"><span class="rule-field-label req">次月是否恢复流量数据服务</span><div class="rule-radio-row"><label><input type="radio" name="ruleRestore" value="yes" checked>次月恢复流量数据服务</label><label><input type="radio" name="ruleRestore" value="no">不恢复</label></div></label>
         </div></section>
         <section class="rule-form-section"><div class="rule-form-title">生效时间</div><div class="rule-notification-base-row"><span class="rule-field-label req">生效时间</span><div class="rule-radio-row" role="radiogroup" aria-label="生效时间"><label><input type="radio" name="ruleEffective" value="now" checked>立即生效</label><label><input type="radio" name="ruleEffective" value="scheduled">指定日期生效</label><div class="rule-effective-control hidden" id="ruleEffectiveControl"><div class="rule-month-picker" id="ruleEffectiveMonthPicker"><input class="input rule-effective-input" id="ruleCreateEffectiveDate" placeholder="请选择生效年月" aria-label="指定生效年月" readonly><span class="rule-month-clear" role="button" tabindex="0" aria-label="清除生效年月" title="清除"></span><span class="rule-month-trigger" aria-hidden="true"></span><div class="rule-month-panel"><div class="rule-month-toolbar"><button type="button" class="rule-month-nav" data-month-nav="prev" aria-label="上一年">‹</button><span class="rule-month-year" id="ruleMonthYear"></span><button type="button" class="rule-month-nav" data-month-nav="next" aria-label="下一年">›</button></div><div class="rule-month-grid" id="ruleMonthGrid"></div></div></div><div class="rule-effective-help">默认当月1日0点生效</div></div></div></div></section>
         <section class="rule-form-section"><div class="rule-form-title">通知配置</div><div class="rule-notification-base">
@@ -131,7 +135,14 @@
 
     <section id="ruleDetailPage" class="content hidden rule-center-page rule-detail-page">
       <div class="rule-detail-shell" id="ruleDetailShell"></div>
-    </section>`;
+    </section>
+
+    <div class="rule-detail-drawer-mask" id="ruleDetailDrawerMask" onclick="if(event.target===this)closeRuleDetailDrawer()">
+      <aside class="rule-detail-drawer" role="dialog" aria-modal="true" aria-labelledby="ruleDetailDrawerTitle">
+        <div class="rule-detail-drawer-head"><strong id="ruleDetailDrawerTitle">规则详情</strong><button type="button" class="rule-detail-drawer-close" aria-label="关闭规则详情" onclick="closeRuleDetailDrawer()">×</button></div>
+        <div class="rule-detail-drawer-body" id="ruleDetailDrawerBody"></div>
+      </aside>
+    </div>`;
 
   const style = document.createElement('style');
   style.textContent = `
@@ -144,6 +155,27 @@
     .rule-table{min-width:1180px;table-layout:auto}
     .rule-table th,.rule-table td{white-space:nowrap;font-size:12px}
     .rule-table td{height:44px}
+    .rule-detail-drawer-mask{position:fixed;inset:0;z-index:30;display:none;align-items:stretch;justify-content:flex-end;overflow:hidden;background:rgba(15,23,42,.22)}
+    .rule-detail-drawer-mask.open{display:flex}
+    .rule-detail-drawer{width:min(880px,92vw);height:100%;background:#fff;box-shadow:-10px 0 28px rgba(31,35,41,.16);display:flex;flex-direction:column;transform:translateX(0);animation:rule-detail-drawer-in .2s ease-out both}
+    .rule-detail-drawer-head{height:52px;flex:0 0 52px;padding:0 18px 0 24px;border-bottom:1px solid #edf0f5;display:flex;align-items:center;justify-content:space-between;color:#1f2329;font-size:16px}
+    .rule-detail-drawer-close{width:28px;height:28px;padding:0;border:0;background:transparent;color:#7b8797;font-size:24px;line-height:24px;cursor:pointer}
+    .rule-detail-drawer-close:hover{color:#1f2329;background:#f5f7fa}
+    .rule-detail-drawer-body{min-height:0;flex:1 1 auto;overflow:auto;padding:20px 24px 28px}
+    .rule-detail-drawer-body .rule-detail-shell{border:0}
+    .rule-detail-drawer-body .rule-field{grid-template-columns:180px minmax(0,1fr);align-items:start}
+    .rule-detail-drawer-body .rule-notification-base-row{grid-template-columns:180px minmax(0,1fr)}
+    .rule-detail-drawer-body .rule-field > .rule-detail-radio-row,
+    .rule-detail-drawer-body .rule-field > .rule-detail-check-row{min-width:0;display:flex;align-items:center;gap:18px;flex-wrap:wrap;line-height:20px}
+    .rule-detail-drawer-body .rule-field > .rule-detail-radio-row label,
+    .rule-detail-drawer-body .rule-field > .rule-detail-check-row label{display:inline-flex;align-items:center;gap:7px;min-width:0;white-space:normal;line-height:20px}
+    .rule-detail-drawer-body .rule-field > .rule-detail-radio-row .rule-detail-radio,
+    .rule-detail-drawer-body .rule-field > .rule-detail-check-row .rule-detail-check{margin-right:0;flex:0 0 14px}
+    .rule-detail-drawer-body .rule-detail-threshold-reminders{padding-left:18px;text-align:left}
+    .rule-detail-drawer-body .rule-detail-threshold-reminders .rule-threshold-row{justify-content:flex-start;text-align:left}
+    .rule-detail-file-row{display:flex;align-items:center;gap:10px;margin-top:14px;color:#667085;font-size:12px}
+    .rule-detail-file-name{display:flex;align-items:center;min-height:32px;max-width:100%;padding:0 10px;border:1px solid #e5e7eb;border-radius:4px;background:#f8fafc;color:#4e5969;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    @keyframes rule-detail-drawer-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
     .rule-table .sticky-action{min-width:150px}
     .rule-table .link-action{border:0;padding:0;background:transparent;color:#1687e8;cursor:pointer;margin:0 5px;font:inherit;font-size:12px}
     .rule-table .link-action:hover{text-decoration:underline;color:#0b6ed0}
@@ -450,6 +482,12 @@
     const latest = triggerRecords.filter(record => record.id === row.id).sort((a,b) => String(b.triggerAt).localeCompare(String(a.triggerAt)))[0];
     return latest?.triggerAt || '--';
   }
+  function ruleTriggerTimeInRange(row,start,end){
+    if(!start && !end){return true;}
+    const latest = latestTriggerTimeForRule(row);
+    const date = latest === '--' ? '' : latest.slice(0,10);
+    return Boolean(date && (!start || date >= start) && (!end || date <= end));
+  }
   function triggerStatusForRule(row){
     return triggerRecords.some(record => record.id === row.id) ? '已触发' : '未触发';
   }
@@ -458,7 +496,9 @@
     const type = selectValue('ruleListTypeFilter');
     const status = selectValue('ruleListStatusFilter');
     const triggerStatus = selectValue('ruleListTriggerStatusFilter');
-    const rows = ruleRecords.filter(row => matchText(`${row.id}${row.name}`,keyword) && (!type || row.type === type) && (!status || ruleStatusFilterValue(row.status) === status) && (!triggerStatus || triggerStatusForRule(row) === triggerStatus));
+    const recentTriggerStart = document.getElementById('ruleListRecentTriggerStartInput')?.value || '';
+    const recentTriggerEnd = document.getElementById('ruleListRecentTriggerEndInput')?.value || '';
+    const rows = ruleRecords.filter(row => matchText(`${row.id}${row.name}`,keyword) && (!type || row.type === type) && (!status || ruleStatusFilterValue(row.status) === status) && (!triggerStatus || triggerStatusForRule(row) === triggerStatus) && ruleTriggerTimeInRange(row,recentTriggerStart,recentTriggerEnd));
     const tbody = document.getElementById('ruleListRows');
     if(!tbody){return}
     tbody.innerHTML = rows.length ? rows.map(row => `<tr><td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.type)}</td><td>${ruleStatusSwitch(row)}</td><td><span class="rule-trigger-status ${triggerStatusForRule(row) === '已触发' ? 'triggered' : 'untriggered'}">${escapeHtml(triggerStatusForRule(row))}</span></td><td>${escapeHtml(row.effectiveAt)}</td><td>${escapeHtml(latestTriggerTimeForRule(row))}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.updatedAt)}</td><td>${escapeHtml(row.operator)}</td><td class="sticky-action"><button type="button" class="link-action" onclick="openRuleCreatePage('${escapeHtml(row.id)}')">编辑</button><button type="button" class="link-action" onclick="openRuleDetail('${escapeHtml(row.id)}')">查看</button></td></tr>`).join('') : '<tr><td colspan="11" class="rule-empty">暂无符合条件的规则</td></tr>';
@@ -522,7 +562,7 @@
     const scopeMode = row.scopeMode === 'range' ? 'range' : 'iccid';
     const reminder = row.reminder || '阈值提醒';
     const followUp = row.followUp || '通知并关闭流量数据服务';
-    const restore = row.restore || '次月恢复数据服务';
+    const restore = row.restore || '次月恢复流量数据服务';
     const thresholds = row.thresholds && row.thresholds.length ? row.thresholds : ['--'];
     const intervalReminder = row.intervalReminder || '--';
     const effectiveAt = row.effectiveAt || '--';
@@ -552,7 +592,7 @@
       </div></section>
       <section class="rule-form-section"><div class="rule-form-title">监测范围</div>
         ${ruleDetailRadioMarkup([{value:'iccid',label:'指定ICCID'},{value:'range',label:'指定范围'}],scopeMode)}
-        ${scopeMode === 'iccid' ? `<div class="rule-upload-row"><div class="rule-detail-upload">${escapeHtml(row.scopeFileName ? `已上传：${row.scopeFileName}` : '未上传ICCID文件')}</div><span>${row.scopeIccids && row.scopeIccids.length ? `共${row.scopeIccids.length}个ICCID` : '支持 TXT、CSV、XLSX、XLS 文件'}</span></div>` : ''}
+        ${scopeMode === 'iccid' ? `<div class="rule-detail-file-row"><div class="rule-detail-file-name" title="${escapeHtml(row.scopeFileName || '未上传ICCID文件')}">${escapeHtml(row.scopeFileName || '未上传ICCID文件')}</div>${row.scopeIccids && row.scopeIccids.length ? `<span>共${row.scopeIccids.length}个ICCID</span>` : ''}</div>` : ''}
         ${scopeMode === 'range' ? `<div class="rule-form-grid rule-scope-grid">
           ${ruleDetailReadonlyField('商户',row.merchant || '全部')}
           ${ruleDetailReadonlyField('卡组',row.cardGroup || '全部')}
@@ -565,7 +605,7 @@
         ${reminder === '阈值提醒' ? `<div class="rule-threshold-reminders rule-detail-threshold-reminders rule-field-wide">${thresholds.map((value,index) => `<div class="rule-threshold-row"><span class="rule-threshold-row-label">第${thresholdReminderOrdinal(index)}次通知提醒：单卡累计数据使用量达到</span><div class="rule-threshold-value"><div class="rule-detail-readonly">${escapeHtml(value || '--')}</div><span class="rule-threshold-unit">MB</span></div></div>`).join('')}</div>` : ''}
         ${reminder === '间隔提醒' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">提醒规则</span><div class="rule-detail-interval-line">数据使用每增加 <div class="rule-detail-readonly rule-detail-interval-value">${escapeHtml(intervalReminder)}</div> MB，下发一次提醒，直到不再触发。</div></div>` : ''}
         ${reminder === '阈值提醒' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">跟进动作</span>${ruleDetailRadioMarkup([{value:'仅通知',label:'仅通知'},{value:'通知并关闭流量数据服务',label:'通知并关闭流量数据服务'}],followUp)}</div>` : ''}
-        ${reminder !== '间隔提醒' && followUp !== '仅通知' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">次月是否恢复数据服务</span>${ruleDetailRadioMarkup([{value:'次月恢复数据服务',label:'次月恢复数据服务'},{value:'不恢复',label:'不恢复'}],restore)}</div>` : ''}
+        ${reminder !== '间隔提醒' && followUp !== '仅通知' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">次月是否恢复流量数据服务</span>${ruleDetailRadioMarkup([{value:'次月恢复流量数据服务',label:'次月恢复流量数据服务'},{value:'不恢复',label:'不恢复'}],restore)}</div>` : ''}
       </div></section>
       <section class="rule-form-section"><div class="rule-form-title">生效时间</div>
         ${ruleDetailRadioMarkup([{value:'now',label:'立即生效'},{value:'scheduled',label:'指定日期生效'}],isScheduled ? 'scheduled' : 'now')}
@@ -583,6 +623,12 @@
     if(!shell){return;}
     const row = ruleRecords.find(item => item.id === currentRuleDetailId);
     shell.innerHTML = row ? ruleDetailSectionsMarkup(row) : '<div class="rule-empty">暂无规则详情</div>';
+  }
+  function renderRuleDetailDrawer(){
+    const body = document.getElementById('ruleDetailDrawerBody');
+    if(!body){return;}
+    const row = ruleRecords.find(item => item.id === currentRuleDetailId);
+    body.innerHTML = row ? ruleDetailSectionsMarkup(row) : '<div class="rule-empty">暂无规则详情</div>';
   }
   function renderTriggerRecords(){
     const type = selectValue('triggerRuleTypeFilter');
@@ -604,6 +650,7 @@
     resetRuleSelect('ruleListTypeFilter');
     resetRuleSelect('ruleListStatusFilter');
     resetRuleSelect('ruleListTriggerStatusFilter');
+    if(typeof window.setUnifiedRangeValues === 'function'){window.setUnifiedRangeValues('ruleListRecentTrigger','','',false);}
     document.querySelectorAll('#ruleListFilter input.input').forEach(syncRuleInputClear);
     renderRuleList();
   }
@@ -619,16 +666,26 @@
   function openRuleDetail(id){
     if(!ruleRecords.some(row => row.id === id)){return;}
     currentRuleDetailId = id;
-    if(typeof window.showPage === 'function'){window.showPage('ruleDetail');}
-    renderRuleDetail();
+    renderRuleDetailDrawer();
+    const mask = document.getElementById('ruleDetailDrawerMask');
+    if(mask){mask.classList.add('open');mask.style.display='flex';}
+  }
+  function closeRuleDetailDrawer(){
+    const mask = document.getElementById('ruleDetailDrawerMask');
+    if(mask){mask.classList.remove('open');mask.style.display='none';}
   }
   function toggleRuleStatus(id){
     const row = ruleRecords.find(item => item.id === id);
     if(!row){return;}
-    row.status = row.status === '已停用' ? '生效中' : '已停用';
+    const enabling = row.status === '已停用';
+    const message = enabling
+      ? `确定要启用规则“${row.name}”吗？启用后规则将开始执行。`
+      : `确定要停用规则“${row.name}”吗？停用后规则将停止执行。`;
+    if(!window.confirm(message)){return;}
+    row.status = enabling ? '生效中' : '已停用';
     row.updatedAt = new Date().toISOString().slice(0,19).replace('T',' ');
     renderRuleList();
-    if(currentRuleDetailId === id){renderRuleDetail();}
+    if(currentRuleDetailId === id){renderRuleDetail();renderRuleDetailDrawer();}
   }
   function resetCreatePage(){
     ['ruleCreateName','ruleCreateRemark','ruleCreateEffectiveDate','ruleNotificationTimeInput'].forEach(id => {const input=document.getElementById(id);if(input){input.value='';}});
@@ -876,7 +933,7 @@
   }
   function ruleNotificationTargetTableMarkup(channel,people){
     if(!people.length){return '';}
-    return `<div class="rule-target-table-wrap"><table class="rule-target-table"><thead><tr><th>账号</th><th>手机号</th><th>邮箱</th><th>姓名</th><th>角色</th><th>所属商户</th><th>操作</th></tr></thead><tbody>${people.map(person => `<tr><td>${escapeHtml(person.account || '--')}</td><td>${escapeHtml(person.phone || '--')}</td><td>${escapeHtml(person.email || '--')}</td><td>${escapeHtml(person.name || '--')}</td><td>${escapeHtml(person.role || '--')}</td><td>${escapeHtml(person.merchant || '--')}</td><td><button type="button" class="rule-target-remove" data-rule-remove-channel="${escapeHtml(channel)}" data-rule-remove-id="${escapeHtml(person.id)}">移除</button></td></tr>`).join('')}</tbody></table></div>`;
+    return `<div class="rule-target-table-wrap"><table class="rule-target-table"><thead><tr><th>账号</th><th>手机号</th><th>邮箱</th><th>企业微信userid</th><th>姓名</th><th>角色</th><th>所属商户</th><th>操作</th></tr></thead><tbody>${people.map(person => `<tr><td>${escapeHtml(person.account || '--')}</td><td>${escapeHtml(person.phone || '--')}</td><td>${escapeHtml(person.email || '--')}</td><td>${escapeHtml(person.wechatUserId || person.wechat || '--')}</td><td>${escapeHtml(person.name || '--')}</td><td>${escapeHtml(person.role || '--')}</td><td>${escapeHtml(person.merchant || '--')}</td><td><button type="button" class="rule-target-remove" data-rule-remove-channel="${escapeHtml(channel)}" data-rule-remove-id="${escapeHtml(person.id)}">移除</button></td></tr>`).join('')}</tbody></table></div>`;
   }
   function renderSharedRuleNotificationTargets(){
     const button = document.getElementById('ruleSharedTargetPicker');
@@ -1139,7 +1196,7 @@
     const effectiveMode = document.querySelector('#ruleCreatePage input[name="ruleEffective"]:checked')?.value || 'now';
     if(!validateRuleRequiredFields(scopeMode,reminder,effectiveMode)){return;}
     const followUp = document.querySelector('#ruleCreatePage input[name="ruleFollowUp"]:checked')?.value === 'no' ? '仅通知' : '通知并关闭流量数据服务';
-    const restore = document.querySelector('#ruleCreatePage input[name="ruleRestore"]:checked')?.value === 'no' ? '不恢复' : '次月恢复数据服务';
+    const restore = document.querySelector('#ruleCreatePage input[name="ruleRestore"]:checked')?.value === 'no' ? '不恢复' : '次月恢复流量数据服务';
     const now = new Date();
     const immediateDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
     ruleRecords.unshift({id:`RULE${new Date().toISOString().slice(0,10).replace(/-/g,'')}${String(ruleRecords.length+1).padStart(4,'0')}`,name,type,remark:textValue('ruleCreateRemark'),status:'待生效',scopeMode,scopeLabel,scopeFileName:scopeMode === 'iccid' ? ruleScopeFileName : '',scopeIccids:scopeMode === 'iccid' ? ruleScopeIccids.slice() : [],supplier,merchant,cardGroup,operatorScope,reminder,intervalReminder:reminder === '间隔提醒' ? ruleIntervalReminderValue : '',followUp,restore,effectiveAt:effectiveMonth ? `${effectiveMonth}-01` : immediateDate,thresholds:reminder === '阈值提醒' ? ruleThresholdReminderValues.slice() : [],notificationTargetIds:ruleSharedNotificationTargets.slice(),notificationConfigMode:ruleNotificationConfigMode,notificationObjectSettings:ruleNotificationConfigMode === 'individual' ? JSON.parse(JSON.stringify(ruleIndividualNotificationSettings)) : {},notificationChannels:ruleNotificationConfigMode === 'shared' ? selectedRuleNotificationTypes() : [],notificationChannelSelections:ruleNotificationConfigMode === 'shared' ? {...ruleNotificationChannelSelections} : {},notificationTime:ruleNotificationConfigMode === 'shared' && ruleNotificationTime === 'scheduled' ? textValue('ruleNotificationTimeInput') : 'immediate',createdAt:'2026-09-19 10:00:00',updatedAt:'2026-09-19 10:00:00',operator:'当前用户'});
@@ -1249,6 +1306,9 @@
   }
   window.openRuleCreatePage = openRuleCreatePage;
   window.openRuleDetail = openRuleDetail;
+  window.closeRuleDetailDrawer = closeRuleDetailDrawer;
   window.toggleRuleStatus = toggleRuleStatus;
+  window.renderRuleList = renderRuleList;
+  window.ruleTriggerRecords = triggerRecords;
   window.openRuleNotificationAccountModal = openRuleNotificationAccountModal;
 })();
