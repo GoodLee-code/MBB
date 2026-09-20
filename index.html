@@ -1924,7 +1924,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <span class="inner-tab" data-notification-channel-type="sms" onclick="switchNotificationChannelType('sms')">短信</span>
         <span class="inner-tab" data-notification-channel-type="inbox" onclick="switchNotificationChannelType('inbox')">站内通知</span>
       </div>
-      <div class="action-row" id="notificationChannelActions"><button class="btn" onclick="openNotificationChannelEditor('add')">创建渠道</button></div>
+      <div class="action-row" id="notificationChannelActions"><button class="btn" onclick="openNotificationChannelEditor('add')">渠道新增</button></div>
       <div class="table-card" style="margin-top:10px">
         <table class="notification-table">
           <thead id="notificationChannelHead"></thead>
@@ -1941,7 +1941,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <span class="inner-tab" data-notification-template-type="sms" onclick="switchNotificationTemplateType('sms')">短信消息</span>
         <span class="inner-tab" data-notification-template-type="inbox" onclick="switchNotificationTemplateType('inbox')">站内消息</span>
       </div>
-      <div class="action-row" id="notificationTemplateActions"><button class="btn" id="notificationTemplateCreateBtn" onclick="openNotificationTemplateEditor('add')">创建消息模板</button><button class="btn hidden" id="notificationTemplateSyncSmsBtn" onclick="syncNotificationSmsTemplates()">同步短信模板</button></div>
+      <div class="action-row" id="notificationTemplateActions"><button class="btn" id="notificationTemplateCreateBtn" onclick="openNotificationTemplateEditor('add')">模板消息新增</button><button class="btn hidden" id="notificationTemplateSyncSmsBtn" onclick="syncNotificationSmsTemplates()">同步短信模板</button></div>
       <div class="table-card" style="margin-top:10px">
         <table class="notification-table">
           <thead id="notificationTemplateHead"></thead>
@@ -2065,7 +2065,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 <div class="modal-mask" id="notificationChannelModalMask">
   <div class="modal notification-management-modal notification-management-form">
     <div class="close" onclick="closeNotificationChannelEditor()">×</div>
-    <div class="modal-title" id="notificationChannelModalTitle">创建通知渠道</div>
+    <div class="modal-title" id="notificationChannelModalTitle">渠道新增</div>
     <div class="modal-body" id="notificationChannelModalBody"></div>
     <div class="modal-actions"><button class="cancel" onclick="closeNotificationChannelEditor()">取消</button><button class="confirm" onclick="saveNotificationChannelEditor()">保存渠道</button></div>
   </div>
@@ -2083,7 +2083,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 <div class="modal-mask" id="notificationTemplateModalMask">
   <div class="modal notification-management-modal notification-management-form">
     <div class="close" onclick="closeNotificationTemplateEditor()">×</div>
-    <div class="modal-title" id="notificationTemplateModalTitle">创建消息模板</div>
+    <div class="modal-title" id="notificationTemplateModalTitle">模板消息新增</div>
     <div class="modal-body" id="notificationTemplateModalBody"></div>
     <div class="modal-actions"><button class="cancel" onclick="closeNotificationTemplateEditor()">取消</button><button class="confirm" onclick="saveNotificationTemplateEditor()">保存模板</button></div>
   </div>
@@ -8604,7 +8604,7 @@ function openNotificationChannelEditor(mode,id){
   const title = document.getElementById('notificationChannelModalTitle');
   const body = document.getElementById('notificationChannelModalBody');
   if(!title || !body){return}
-  title.textContent = `${mode === 'edit' ? '编辑' : '创建'}${notificationChannelTypeLabel(type)}渠道`;
+  title.textContent = mode === 'edit' ? `编辑${notificationChannelTypeLabel(type)}渠道` : '渠道新增';
   const value = key => escapeHtml(item && item[key] || '');
   const input = (idName,placeholder,typeName='text',val='') => `<input class="input" id="${idName}" type="${typeName}" value="${val}" placeholder="${placeholder}">`;
   let html = '';
@@ -8772,7 +8772,7 @@ function openNotificationTemplateEditor(mode,id){
   const body = document.getElementById('notificationTemplateModalBody');
   if(!title || !body){return}
   const type = item ? item.type : currentNotificationTemplateType;
-  title.textContent = `${mode === 'edit' ? '编辑' : '创建'}${notificationTemplateTypeLabel(type)}`;
+  title.textContent = mode === 'edit' ? `编辑${notificationTemplateTypeLabel(type)}` : '模板消息新增';
   const value = key => escapeHtml(item && item[key] || '');
   const row = (label,content,required) => notificationChannelFormRow(label,content,required);
   let html = row('模板消息名称',`<input class="input" id="notificationTemplateNameInput" value="${value('name')}" placeholder="请输入模板消息名称">`,true);
