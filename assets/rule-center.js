@@ -198,10 +198,18 @@
     .rule-detail-drawer-body .rule-field > .rule-detail-check-row label{display:inline-flex;align-items:center;gap:7px;min-width:0;white-space:normal;line-height:20px}
     .rule-detail-drawer-body .rule-field > .rule-detail-radio-row .rule-detail-radio,
     .rule-detail-drawer-body .rule-field > .rule-detail-check-row .rule-detail-check{margin-right:0;flex:0 0 14px}
-    .rule-detail-drawer-body .rule-detail-threshold-reminders{padding-left:18px;text-align:left}
+    .rule-detail-drawer-body .rule-detail-threshold-reminders{padding-left:192px;text-align:left}
     .rule-detail-drawer-body .rule-detail-threshold-reminders .rule-threshold-row{justify-content:flex-start;text-align:left}
+    .rule-detail-drawer-body .rule-detail-plain-value{display:flex;align-items:center;min-width:0;min-height:32px;color:#4e5969;line-height:20px;white-space:pre-wrap;word-break:break-word}
+    .rule-detail-drawer-body .rule-detail-plain-value.rule-trigger-status{display:inline-flex;min-height:20px;line-height:20px}
+    .rule-detail-drawer-body .rule-detail-readonly{padding:0;border:0;border-radius:0;background:transparent}
+    .rule-detail-drawer-body .rule-detail-readonly.multiline{padding-top:0;padding-bottom:0}
+    .rule-detail-drawer-body .rule-detail-file-name{min-height:32px;max-width:100%;padding:0;border:0;border-radius:0;background:transparent;color:#4e5969}
+    .rule-detail-drawer-body .rule-target-picker.rule-detail-target-picker{width:auto;height:auto;min-height:32px;padding:0;border:0;background:transparent!important;justify-content:flex-start}
+    .rule-detail-drawer-body .rule-detail-inline-value{color:#4e5969;white-space:nowrap}
+    .rule-detail-drawer-body .rule-threshold-value-plain{display:flex;align-items:center;min-height:32px;color:#4e5969;line-height:20px;white-space:nowrap}
     .rule-detail-file-row{display:flex;align-items:center;gap:10px;margin-top:14px;color:#667085;font-size:12px}
-    .rule-detail-file-name{display:flex;align-items:center;min-height:32px;max-width:100%;padding:0 10px;border:1px solid #e5e7eb;border-radius:4px;background:#f8fafc;color:#4e5969;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .rule-detail-file-name{display:flex;align-items:center;min-height:32px;max-width:100%;padding:0;border:0;border-radius:0;background:transparent;color:#4e5969;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     @keyframes rule-detail-drawer-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
     .rule-table .sticky-action{min-width:150px}
     .rule-table .link-action{border:0;padding:0;background:transparent;color:#1687e8;cursor:pointer;margin:0 5px;font:inherit;font-size:12px}
@@ -250,6 +258,7 @@
     .rule-detail-value{min-width:0;min-height:32px;padding:7px 10px;border:1px solid #edf0f5;background:#f8fafc;color:#4e5969;line-height:18px;white-space:pre-wrap;word-break:break-word}
     .rule-detail-item.span-all{grid-column:1 / -1}
     .rule-detail-status{display:inline-flex;align-items:center;min-height:18px}
+    .rule-detail-plain-value{display:flex;align-items:center;min-width:0;min-height:32px;color:#4e5969;line-height:20px;white-space:pre-wrap;word-break:break-word}
     .rule-detail-readonly{display:flex;align-items:center;min-width:0;min-height:32px;padding:0 10px;border:1px solid #e5e7eb;border-radius:4px;background:#f8fafc;color:#4e5969;line-height:20px;white-space:pre-wrap;word-break:break-word}
     .rule-detail-readonly.multiline{height:auto;align-items:flex-start;padding-top:6px;padding-bottom:6px}
     .rule-detail-readonly.select-value{justify-content:space-between}
@@ -537,14 +546,16 @@
   function ruleDetailReadonlyField(label,value,extraClass=''){
     const display = value == null || value === '' ? '--' : value;
     const triggerClass = label === '触发状态' ? ` rule-trigger-status ${value === '已触发' ? 'triggered' : 'untriggered'}` : '';
-    return `<div class="rule-field${extraClass ? ` ${extraClass}` : ''}"><span class="rule-field-label">${escapeHtml(label)}</span><div class="rule-detail-readonly${triggerClass}">${escapeHtml(display)}</div></div>`;
+    return `<div class="rule-field${extraClass ? ` ${extraClass}` : ''}"><span class="rule-field-label">${escapeHtml(label)}</span><div class="rule-detail-plain-value${triggerClass}">${escapeHtml(display)}</div></div>`;
   }
   function ruleDetailRadioMarkup(options,selected){
-    return `<div class="rule-radio-row rule-detail-radio-row" role="radiogroup">${options.map(option => `<label><span class="rule-detail-radio${option.value === selected ? ' selected' : ''}" aria-hidden="true"></span>${escapeHtml(option.label)}</label>`).join('')}</div>`;
+    const selectedOption = options.find(option => option.value === selected) || (selected && options.find(option => option.value === 'scheduled'));
+    return `<div class="rule-detail-plain-value">${escapeHtml(selectedOption?.label || '--')}</div>`;
   }
   function ruleDetailCheckMarkup(options,selected){
     const values = Array.isArray(selected) ? selected : [];
-    return `<div class="rule-check-row rule-detail-check-row" role="group">${options.map(option => `<label><span class="rule-detail-check${values.includes(option) ? ' selected' : ''}" aria-hidden="true"></span>${escapeHtml(option)}</label>`).join('')}</div>`;
+    const display = options.filter(option => values.includes(option)).join('、');
+    return `<div class="rule-detail-plain-value">${escapeHtml(display || '--')}</div>`;
   }
   function ruleDetailTargetTableMarkup(people){
     if(!people.length){return '';}
@@ -580,9 +591,10 @@
         const selectedId = templates[channel] || templates[notificationTypeKeys[channel] || ''] || '';
         const entry = selectedId ? entries.find(item => item.id === selectedId) : null;
         const content = ruleNotificationTemplateContent(entry) || '未选择通知模板';
-        return `<div class="rule-individual-channel-config"><div class="rule-individual-channel-title">通知方式：${escapeHtml(channel)}</div><div class="rule-individual-template-field"><span class="rule-field-label">通知渠道</span><div class="rule-detail-readonly rule-detail-template-value">${escapeHtml(channelEntry?.name || '--')}</div></div><div class="rule-individual-template-field"><span class="rule-field-label">通知模板</span><div class="rule-detail-readonly rule-detail-template-value">${escapeHtml(entry?.name || '--')}</div></div><div class="rule-template-preview"><span class="rule-template-preview-label">模板内容</span><div class="rule-template-preview-content">${escapeHtml(content)}</div></div></div>`;
+        return `<div class="rule-individual-channel-config"><div class="rule-individual-channel-title">通知方式：${escapeHtml(channel)}</div><div class="rule-individual-template-field"><span class="rule-field-label">通知渠道</span><div class="rule-detail-plain-value rule-detail-template-value">${escapeHtml(channelEntry?.name || '--')}</div></div><div class="rule-individual-template-field"><span class="rule-field-label">通知模板</span><div class="rule-detail-plain-value rule-detail-template-value">${escapeHtml(entry?.name || '--')}</div></div><div class="rule-template-preview"><span class="rule-template-preview-label">模板内容</span><div class="rule-template-preview-content">${escapeHtml(content)}</div></div></div>`;
       }).join('');
-      return `<div class="rule-individual-notification-card"><div class="rule-individual-notification-title">通知对象：${escapeHtml(person.name || person.account || person.id)}${person.account ? `（${escapeHtml(person.account)}）` : ''}</div><div class="rule-individual-notification-grid"><div class="rule-field rule-field-wide"><span class="rule-field-label">通知时间</span><div>${ruleDetailRadioMarkup([{value:'immediate',label:'规则触发后立即通知'},{value:'scheduled',label:'指定通知时间'}],time)}${time === 'scheduled' ? `<div class="rule-notification-time-control"><div class="rule-detail-readonly rule-detail-notification-time">${escapeHtml(setting.scheduledTime || '--')}</div><span class="rule-effective-help">请选择时、分</span></div>` : ''}</div></div><div class="rule-field rule-field-wide"><span class="rule-field-label">通知方式</span>${ruleDetailCheckMarkup(notificationTypes,channels)}</div></div>${templateRows ? `<div class="rule-individual-template-list">${templateRows}</div>` : ''}</div>`;
+      const timeDisplay = time === 'scheduled' ? `指定通知时间（${setting.scheduledTime || '--'}）` : '规则触发后立即通知';
+      return `<div class="rule-individual-notification-card"><div class="rule-individual-notification-title">通知对象：${escapeHtml(person.name || person.account || person.id)}${person.account ? `（${escapeHtml(person.account)}）` : ''}</div><div class="rule-individual-notification-grid"><div class="rule-field rule-field-wide"><span class="rule-field-label">通知时间</span><div class="rule-detail-plain-value">${escapeHtml(timeDisplay)}</div></div><div class="rule-field rule-field-wide"><span class="rule-field-label">通知方式</span><div class="rule-detail-plain-value">${escapeHtml(channels.length ? channels.join('、') : '--')}</div></div></div>${templateRows ? `<div class="rule-individual-template-list">${templateRows}</div>` : ''}</div>`;
     }).join('');
   }
   function ruleDetailSectionsMarkup(row){
@@ -603,7 +615,7 @@
       const channelEntry = ruleDetailChannelEntry(channel,row);
       const entry = ruleDetailTemplateEntry(channel,row);
       const content = ruleNotificationTemplateContent(entry) || '暂无模板内容';
-      return `<div class="rule-notification-card" data-rule-channel="${escapeHtml(channel)}"><div class="rule-notification-card-title">通知方式：${escapeHtml(channel)}</div><div class="rule-notification-card-grid"><div class="rule-field rule-field-wide"><span class="rule-field-label">通知渠道</span><div class="rule-detail-readonly rule-detail-template-value">${escapeHtml(channelEntry?.name || '--')}</div></div><div class="rule-field rule-field-wide"><span class="rule-field-label">通知模板</span><div class="rule-detail-readonly rule-detail-template-value">${escapeHtml(entry?.name || '--')}</div></div><div class="rule-template-preview"><span class="rule-template-preview-label">模板内容</span><div class="rule-template-preview-content">${escapeHtml(content)}</div></div></div></div>`;
+      return `<div class="rule-notification-card" data-rule-channel="${escapeHtml(channel)}"><div class="rule-notification-card-title">通知方式：${escapeHtml(channel)}</div><div class="rule-notification-card-grid"><div class="rule-field rule-field-wide"><span class="rule-field-label">通知渠道</span><div class="rule-detail-plain-value rule-detail-template-value">${escapeHtml(channelEntry?.name || '--')}</div></div><div class="rule-field rule-field-wide"><span class="rule-field-label">通知模板</span><div class="rule-detail-plain-value rule-detail-template-value">${escapeHtml(entry?.name || '--')}</div></div><div class="rule-template-preview"><span class="rule-template-preview-label">模板内容</span><div class="rule-template-preview-content">${escapeHtml(content)}</div></div></div></div>`;
     }).join('');
     return `<div class="rule-detail-sections">
       <section class="rule-form-section"><div class="rule-form-title">基础信息</div><div class="rule-form-grid">
@@ -618,8 +630,8 @@
         ${ruleDetailReadonlyField('备注',row.remark,'rule-field-wide')}
       </div></section>
       <section class="rule-form-section"><div class="rule-form-title">监测范围</div>
-        ${ruleDetailRadioMarkup([{value:'iccid',label:'指定ICCID'},{value:'range',label:'指定范围'}],scopeMode)}
-        ${scopeMode === 'iccid' ? `<div class="rule-detail-file-row"><div class="rule-detail-file-name" title="${escapeHtml(row.scopeFileName || '未上传ICCID文件')}">${escapeHtml(row.scopeFileName || '未上传ICCID文件')}</div>${row.scopeIccids && row.scopeIccids.length ? `<span>共${row.scopeIccids.length}个ICCID</span>` : ''}</div>` : ''}
+        ${ruleDetailReadonlyField('监测范围',scopeMode === 'range' ? '指定范围' : '指定ICCID')}
+        ${scopeMode === 'iccid' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">ICCID文件</span><div class="rule-detail-plain-value rule-detail-file-name" title="${escapeHtml(row.scopeFileName || '未上传ICCID文件')}">${escapeHtml(row.scopeFileName || '未上传ICCID文件')}${row.scopeIccids && row.scopeIccids.length ? `（共${row.scopeIccids.length}个ICCID）` : ''}</div></div>` : ''}
         ${scopeMode === 'range' ? `<div class="rule-form-grid rule-scope-grid">
           ${ruleDetailReadonlyField('商户',row.merchant || '全部')}
           ${ruleDetailReadonlyField('卡组',row.cardGroup || '全部')}
@@ -629,19 +641,19 @@
       </section>
       <section class="rule-form-section"><div class="rule-form-title">监测规则</div><div class="rule-form-grid">
         ${ruleDetailReadonlyField('提醒方式',reminder)}
-        ${reminder === '阈值提醒' ? `<div class="rule-threshold-reminders rule-detail-threshold-reminders rule-field-wide">${thresholds.map((value,index) => `<div class="rule-threshold-row"><span class="rule-threshold-row-label">第${thresholdReminderOrdinal(index)}次通知提醒：单卡累计数据使用量达到</span><div class="rule-threshold-value"><div class="rule-detail-readonly">${escapeHtml(value || '--')}</div><span class="rule-threshold-unit">MB</span></div></div>`).join('')}</div>` : ''}
-        ${reminder === '间隔提醒' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">提醒规则</span><div class="rule-detail-interval-line">数据使用每增加 <div class="rule-detail-readonly rule-detail-interval-value">${escapeHtml(intervalReminder)}</div> MB，下发一次提醒，直到不再触发。</div></div>` : ''}
+        ${reminder === '阈值提醒' ? `<div class="rule-threshold-reminders rule-detail-threshold-reminders rule-field-wide">${thresholds.map((value,index) => `<div class="rule-threshold-row"><span class="rule-threshold-row-label">第${thresholdReminderOrdinal(index)}次通知提醒：单卡累计数据使用量达到</span><div class="rule-threshold-value-plain">${escapeHtml(value || '--')} MB</div></div>`).join('')}</div>` : ''}
+        ${reminder === '间隔提醒' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">提醒规则</span><div class="rule-detail-interval-line">数据使用每增加 <span class="rule-detail-inline-value">${escapeHtml(intervalReminder)}</span> MB，下发一次提醒，直到不再触发。</div></div>` : ''}
         ${reminder === '阈值提醒' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">跟进动作</span>${ruleDetailRadioMarkup([{value:'仅通知',label:'仅通知'},{value:'通知并关闭流量数据服务',label:'通知并关闭流量数据服务'}],followUp)}</div>` : ''}
         ${reminder !== '间隔提醒' && followUp !== '仅通知' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">次月是否恢复流量数据服务</span>${ruleDetailRadioMarkup([{value:'次月恢复流量数据服务',label:'次月恢复流量数据服务'},{value:'不恢复',label:'不恢复'}],restore)}</div>` : ''}
       </div></section>
       <section class="rule-form-section"><div class="rule-form-title">生效时间</div>
-        ${ruleDetailRadioMarkup([{value:'now',label:'立即生效'},{value:'scheduled',label:'指定日期生效'}],isScheduled ? 'scheduled' : 'now')}
-        ${isScheduled ? `<div class="rule-effective-control"><div class="rule-detail-readonly rule-detail-notification-time">${escapeHtml(effectiveAt.slice(0,7))}</div><div class="rule-effective-help">默认当月1日0点生效</div></div>` : ''}
+        ${ruleDetailReadonlyField('生效时间',isScheduled ? '指定日期生效' : '立即生效')}
+        ${isScheduled ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">生效日期</span><div class="rule-detail-plain-value">${escapeHtml(effectiveAt.slice(0,7))}（默认当月1日0点生效）</div></div>` : ''}
       </section>
       <section class="rule-form-section"><div class="rule-form-title">通知配置</div><div class="rule-notification-base">
-        <div class="rule-notification-base-row"><span class="rule-field-label">通知对象</span><div><div class="rule-target-picker rule-detail-target-picker"><span>${escapeHtml(people.length ? `已选择 ${people.length} 个通知对象` : (row.notificationTargetLabel || '按共享通知对象配置'))}</span></div>${ruleDetailTargetTableMarkup(people)}</div></div>
-        <div class="rule-notification-base-row"><span class="rule-field-label">配置方式</span>${ruleDetailRadioMarkup([{value:'shared',label:'所有通知对象统一配置'},{value:'individual',label:'按通知对象分别配置'}],notificationMode)}</div>
-        ${notificationMode === 'shared' ? `<div class="rule-notification-base-row"><span class="rule-field-label">通知时间</span><div>${ruleDetailRadioMarkup([{value:'immediate',label:'规则触发后立即通知'},{value:'scheduled',label:'指定通知时间'}],notificationTime)}${notificationTime !== 'immediate' ? `<div class="rule-notification-time-control"><div class="rule-detail-readonly rule-detail-notification-time">${escapeHtml(notificationTime)}</div><span class="rule-effective-help">请选择时、分</span></div>` : ''}</div></div><div class="rule-notification-base-row"><span class="rule-field-label">通知方式</span>${ruleDetailCheckMarkup(notificationOptions,channels)}</div>` : ''}
+        <div class="rule-notification-base-row"><span class="rule-field-label">通知对象</span><div><div class="rule-detail-plain-value">${escapeHtml(people.length ? `已选择 ${people.length} 个通知对象` : (row.notificationTargetLabel || '按共享通知对象配置'))}</div>${ruleDetailTargetTableMarkup(people)}</div></div>
+        <div class="rule-notification-base-row"><span class="rule-field-label">配置方式</span><div class="rule-detail-plain-value">${escapeHtml(notificationMode === 'individual' ? '按通知对象分别配置' : '所有通知对象统一配置')}</div></div>
+        ${notificationMode === 'shared' ? `${ruleDetailReadonlyField('通知时间',notificationTime === 'immediate' ? '规则触发后立即通知' : `指定通知时间（${notificationTime}）`)}${ruleDetailReadonlyField('通知方式',channels.length ? channels.join('、') : '--')}` : ''}
       </div>${notificationMode === 'shared' ? `<div class="rule-notification-config-list">${notificationCards || '<div class="rule-empty">请先选择通知方式</div>'}</div>` : `<div class="rule-individual-settings">${ruleDetailIndividualNotificationMarkup(row,people) || '<div class="rule-empty">请先选择通知对象</div>'}</div>`}</section>
     </div>`;
   }
