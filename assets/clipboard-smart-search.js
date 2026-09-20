@@ -11,6 +11,7 @@
   let state = Object.assign({}, initialState);
   let nodes = {};
   let clipboardReadInFlight = false;
+  let clipboardEntryAttempted = false;
   let lastAutoReadAt = 0;
 
   function escapeText(value){
@@ -319,6 +320,10 @@
   }
   function tryReadClipboard(options){
     const config = Object.assign({silent:false}, options || {});
+    if(clipboardEntryAttempted){
+      return;
+    }
+    clipboardEntryAttempted = true;
     if(!navigator.clipboard || !navigator.clipboard.readText){
       if(!config.silent){setState({clipboardStatus:'denied'})}
       return;

@@ -976,6 +976,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="sub" id="menuDeviceType" onclick="showPage('deviceType')">设备类型</div>
       <div class="sub" id="menuConfig" onclick="showPage('config')">二次认证管理</div>
       <div class="sub" id="menuFlow" onclick="showPage('flow')">设备流量</div>
+      <div class="sub" id="menuDeviceGroup" onclick="showPage('deviceGroup')">设备组管理</div>
     </div>
     <div class="menu" id="menuSupplyChain" onclick="toggleMenuGroup('supplyChainSubMenu','menuSupplyChain')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5v9L12 21l8-4.5v-9M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 5.2 16 9.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">供应链中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="supplyChainSubMenu">
@@ -1004,13 +1005,8 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="sub" id="menuActivityCenter" onclick="showPage('activityCenter')">活动管理</div>
     </div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M6 7v12h12V7M9 11h6M9 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">方案商中心</span></div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v10M8 7l4-4 4 4M5 17h14v3H5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">fota升级</span></div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 9 5 12l3 3M16 9l3 3-3 3M13 6l-2 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">API集成</span></div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10h16l-2-5H6l-2 5ZM6 10v10h12V10M9 14h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">商户中心</span></div>
-    <div class="menu" id="menuSchedule" onclick="toggleMenuGroup('scheduleSubMenu','menuSchedule')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v4M12 16v4M4 12h4M16 12h4M7 7l2.5 2.5M14.5 14.5 17 17M17 7l-2.5 2.5M9.5 14.5 7 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">调度中心</span><span class="collapse-icon"></span></div>
-    <div class="sub-group" id="scheduleSubMenu">
-      <div class="sub" id="menuDeviceGroup" onclick="showPage('deviceGroup')">设备组管理</div>
-    </div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4h10v16H7zM10 4v4h4V4M10 17h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">SIM卡中心</span></div>
     <div class="menu" id="menuPackage" onclick="toggleMenuGroup('packageSubMenu','menuPackage')"><svg class="package-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5v9L12 21l8-4.5v-9M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8 5.2 8 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">套餐中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="packageSubMenu">
@@ -1020,7 +1016,6 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="sub-group" id="financeSubMenu">
       <div class="sub" id="menuWallet" onclick="showPage('wallet')">钱包余额管理</div>
     </div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 20V6.5A2.5 2.5 0 0 1 7.5 4H17v16H5ZM8 8h6M8 12h6M8 16h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">生产支持</span></div>
     <div class="menu" id="menuTask" onclick="toggleMenuGroup('taskSubMenu','menuTask')"><svg class="task-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5h8M8 10.5h8M8 15.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 3.5h11A2.5 2.5 0 0 1 20 6v12a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18V6a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 2.5h6v3H9z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="menu-title">任务中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="taskSubMenu">
       <div class="sub" id="menuBatchTask" onclick="showPage('task')">批量任务</div>
@@ -2978,11 +2973,13 @@ const notificationTemplateData = [
   {id:'NTPL-SMS-001',type:'sms',name:'流量超阈值短信模板',event:'流量超阈值',signature:'诺达通信',templateId:'154321',templateName:'设备流量超阈值通知',templateContent:'设备{{1}}流量已超过{{2}}，触发时间{{3}}。',updatedAt:'2026-09-18 09:26:18',operator:'王五',referenced:true},
   {id:'NTPL-INBOX-001',type:'inbox',name:'批量任务完成站内消息',event:'批量任务执行完成',title:'批量任务执行完成',body:'任务{{任务名称}}已执行完成，成功{{成功数量}}条，失败{{失败数量}}条。',variables:['任务名称','成功数量','失败数量'],updatedAt:'2026-09-18 09:24:06',operator:'赵六',referenced:false}
 ];
+window.notificationTemplateData = notificationTemplateData;
 const notificationRecordData = [
   {id:'NREC-202609180001',ruleId:'RULE-FLOW-001',ruleName:'设备流量超阈值通知',triggeredAt:'2026-09-18 09:41:08',channels:['短信','企业微信'],noticeCount:2,successCount:3,failureCount:1,status:'部分成功',completedAt:'2026-09-18 09:41:12',detail:{contents:[{channel:'短信',channelName:'腾讯云短信A',content:'设备A123456流量已超过10GB，触发时间2026-09-18 09:41:08。'},{channel:'企业微信',channelName:'运营通知应用',content:'设备A123456当前流量10.8GB，已超过阈值10GB。'}],people:[{name:'张三',phone:'138****1234',email:'zhangsan@example.com',account:'zhangsan',merchant:'上海智联商贸',role:'运营专员',channel:'短信',status:'成功',reason:'',time:'2026-09-18 09:41:09'},{name:'张三',phone:'138****1234',email:'zhangsan@example.com',account:'zhangsan',merchant:'上海智联商贸',role:'运营专员',channel:'企业微信',status:'成功',reason:'',time:'2026-09-18 09:41:10'},{name:'李四',phone:'',email:'lisi@example.com',account:'lisi',merchant:'杭州云旅科技',role:'客服专员',channel:'短信',status:'失败',reason:'接收人未配置手机号',time:'2026-09-18 09:41:09'},{name:'李四',phone:'',email:'lisi@example.com',account:'lisi',merchant:'杭州云旅科技',role:'客服专员',channel:'企业微信',status:'成功',reason:'',time:'2026-09-18 09:41:11'}]}},
   {id:'NREC-202609180002',ruleId:'RULE-TASK-002',ruleName:'批量任务执行完成通知',triggeredAt:'2026-09-18 09:35:22',channels:['站内通知'],noticeCount:1,successCount:1,failureCount:0,status:'全部成功',completedAt:'2026-09-18 09:35:22',detail:{contents:[{channel:'站内通知',channelName:'站内通知',content:'任务批量卡状态查询已执行完成，成功86条，失败0条。'}],people:[{name:'王五',phone:'139****5678',email:'',account:'wangwu',merchant:'苏州星河酒店',role:'财务专员',channel:'站内通知',status:'成功',reason:'',time:'2026-09-18 09:35:22'}]}},
   {id:'NREC-202609180003',ruleId:'RULE-REFUND-003',ruleName:'退款处理完成通知',triggeredAt:'2026-09-18 09:30:16',channels:['企业微信邮箱'],noticeCount:1,successCount:0,failureCount:0,status:'发送中',completedAt:'',detail:{contents:[{channel:'企业微信邮箱',channelName:'系统通知邮箱',content:'退款处理任务RF202609180006已完成，成功0笔，失败1笔。'}],people:[{name:'赵六',phone:'137****2468',email:'zhaoliu@example.com',account:'zhaoliu',merchant:'广州启明商贸',role:'运营主管',channel:'企业微信邮箱',status:'成功',reason:'',time:'2026-09-18 09:30:17'}]}}
 ];
+window.notificationRecordData = notificationRecordData;
 let currentNotificationChannelType = 'email';
 let currentNotificationChannelModalMode = 'add';
 let currentNotificationChannelModalId = '';
@@ -8884,8 +8881,11 @@ initClipboardSmartSearch('#clipboardSmartSearch');
 renderMessageNotifications();
 Object.keys(deviceRangeState).forEach(syncDeviceRange);
 syncDeviceFilterCollapse();
+document.querySelectorAll('.sub-group').forEach(group=>group.classList.add('collapsed'));
+document.querySelectorAll('.menu[onclick*="toggleMenuGroup"]').forEach(menu=>menu.classList.add('collapsed'));
 showPage('home');
 </script>
+<script src="assets/rule-center.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.13/dayjs.min.js"></script>
