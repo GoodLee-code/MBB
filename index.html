@@ -946,6 +946,8 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 @keyframes notification-detail-drawer-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
 .notification-detail-section{padding:0 0 16px;margin-bottom:16px;border-bottom:1px solid #edf0f5}
 .notification-detail-section:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.notification-detail-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.notification-detail-title-row .notification-detail-title{margin-bottom:0}
 .notification-detail-title{margin:0 0 12px;font-size:14px;font-weight:600;color:#30343b}
 .notification-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 16px}
 .notification-detail-item{min-height:24px;line-height:20px}
@@ -8906,6 +8908,21 @@ function notificationTemplateIdForChannel(channel){
   const template = type ? notificationTemplateData.find(item => item.type === type) : null;
   return template?.id || '--';
 }
+function exportNotificationDetail(id,channel,recordId){
+  const source = notificationRecordData.find(entry => entry.id === id); if(!source){return}
+  const item = channel ? notificationRecordChannelRows(source).find(entry => entry.channel === channel) : source;
+  const people = item && item.detail && item.detail.people || [];
+  const headers = ['姓名','手机号','邮箱','账号','商户名称','角色','通知方式','通知模板ID','通知状态','失败原因','通知时间'];
+  const rows = people.map(person => [person.name,person.phone || '--',person.email || '--',person.account || '--',person.merchant || '--',person.role || '--',person.channel || '--',person.templateId || notificationTemplateIdForChannel(person.channel),person.status === '成功' ? '成功' : '失败',person.reason || '--',person.time || '--']);
+  const csv = '\uFEFF' + [headers,...rows].map(row => row.map(value => `"${String(value == null ? '' : value).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  link.download = `通知明细-${recordId || item?.recordId || id}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(()=>URL.revokeObjectURL(link.href),0);
+}
 function openNotificationSnapshotDetail(id,channel,recordId){
   const source = notificationRecordData.find(entry => entry.id === id); if(!source){return}
   const item = channel ? notificationRecordChannelRows(source).find(entry => entry.channel === channel) : source;
@@ -8914,7 +8931,7 @@ function openNotificationSnapshotDetail(id,channel,recordId){
   const triggeredCards = notificationTriggeredCardsForRecord(source);
   const peopleHtml = people.length ? `<div class="table-card" style="border:0;padding:0"><table class="notification-table"><thead><tr><th>姓名</th><th>手机号</th><th>邮箱</th><th>账号</th><th>商户名称</th><th>角色</th><th>通知方式</th><th>通知模板ID</th><th>通知状态</th><th>失败原因</th><th>通知时间</th></tr></thead><tbody>${people.map(person => `<tr><td>${escapeHtml(person.name)}</td><td>${escapeHtml(person.phone || '--')}</td><td>${escapeHtml(person.email || '--')}</td><td>${escapeHtml(person.account || '--')}</td><td>${escapeHtml(person.merchant || '--')}</td><td>${escapeHtml(person.role || '--')}</td><td>${escapeHtml(person.channel || '--')}</td><td>${escapeHtml(person.templateId || notificationTemplateIdForChannel(person.channel))}</td><td>${notificationResultTag(person.status === '成功' ? '成功' : '失败')}</td><td>${escapeHtml(person.reason || '--')}</td><td>${escapeHtml(person.time || '--')}</td></tr>`).join('')}</tbody></table></div>` : '<div class="notification-empty">暂无接收人明细</div>';
   const body = document.getElementById('notificationRecordDetailBody'); if(!body){return}
-  body.innerHTML = `<div class="notification-detail-section"><h3 class="notification-detail-title">通知记录信息</h3><div class="notification-detail-grid">${field('通知记录ID',recordId || item.recordId || item.id)}${field('触发规则ID',item.ruleId)}${field('触发规则名称',item.ruleName)}${field('触发时间',item.triggeredAt)}${field('触发卡数',triggeredCards.length)}${field('通知方式',(item.channels || []).join('、'))}${field('通知消息总数',item.noticeCount)}${field('通知状态',item.status)}${field('通知完成时间',item.completedAt || '--')}</div></div><div class="notification-detail-section"><h3 class="notification-detail-title">通知明细</h3>${peopleHtml}</div>`;
+  body.innerHTML = `<div class="notification-detail-section"><h3 class="notification-detail-title">通知记录信息</h3><div class="notification-detail-grid">${field('通知记录ID',recordId || item.recordId || item.id)}${field('触发规则ID',item.ruleId)}${field('触发规则名称',item.ruleName)}${field('触发时间',item.triggeredAt)}${field('触发卡数',triggeredCards.length)}${field('通知方式',(item.channels || []).join('、'))}${field('通知消息总数',item.noticeCount)}${field('通知状态',item.status)}${field('通知完成时间',item.completedAt || '--')}</div></div><div class="notification-detail-section"><div class="notification-detail-title-row"><h3 class="notification-detail-title">通知明细</h3><button type="button" class="btn notification-detail-export-btn" onclick="exportNotificationDetail('${escapeHtml(id)}','${escapeHtml(channel || '')}','${escapeHtml(recordId || '')}')">导出</button></div>${peopleHtml}</div>`;
   const mask = document.getElementById('notificationRecordDetailModalMask'); if(mask){mask.style.display = 'flex'}
 }
 function initDatePicker(){

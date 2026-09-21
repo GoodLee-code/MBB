@@ -49,6 +49,15 @@
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/\"/g,'&quot;').replace(/'/g,'&#39;');
 
+  const trafficRuleHelpMarkup = '规则生效后，系统将于每日凌晨 <strong>01:50</strong> 执行 SIM 卡流量批量查询任务，并根据监测规则识别、记录触发规则的 SIM 卡。<strong>待本次批量查询任务全部执行完成后，系统将汇总触发规则的 SIM 卡信息，并通知对应业务人员。</strong>';
+  function ruleTypeHintMarkup(value){
+    const display = value == null || value === '' ? '--' : value;
+    if(display !== '流量用量监测'){
+      return escapeHtml(display);
+    }
+    return `<span class="rule-type-hint"><span class="rule-type-hint-value">${escapeHtml(display)}</span><span class="rule-type-hint-icon" tabindex="0" role="img" aria-label="流量用量监测提示">i</span><span class="rule-type-hint-popover" role="tooltip">${trafficRuleHelpMarkup}</span></span>`;
+  }
+
   const selectMarkup = (id, placeholder, options, extraClass='') => `
     <div class="select custom-select rule-select ${extraClass}" id="${id}" data-value="" data-placeholder="${escapeHtml(placeholder)}">
       <span class="select-value">${escapeHtml(placeholder)}</span>
@@ -120,6 +129,7 @@
         <input class="input" id="triggerMsisdnIccid" placeholder="MSISDN/ICCID" aria-label="MSISDN或ICCID">
         <div class="filter-actions new-row"><button type="button" class="btn line" id="triggerSearchBtn">搜索</button><button type="button" class="btn gray" id="triggerResetBtn">重置</button></div>
       </div>
+      <div class="action-row rule-center-actions"><button type="button" class="btn" id="triggerExportBtn">导出</button></div>
       <div class="table-card rule-table-wrap"><table class="rule-table trigger-table"><thead><tr><th>触发记录ID</th><th>触发规则类型</th><th>触发规则ID</th><th>触发规则名称</th><th>触发时间</th><th>MSISDN</th><th>ICCID</th><th>所属商户</th><th>供应商</th><th>运营商</th><th>使用量（MB）</th><th>触发条件</th><th>触发动作</th><th>动作结果</th><th>通知记录ID</th></tr></thead><tbody id="ruleTriggerRows"></tbody></table></div>
       <div class="pagination rule-pagination" id="ruleTriggerPagination"></div>
     </section>
@@ -127,11 +137,11 @@
     <section id="ruleCreatePage" class="content hidden rule-center-page rule-create-page">
       <div class="rule-create-shell">
         <section class="rule-form-section"><div class="rule-form-title">基础信息</div><div class="rule-form-grid">
-          <label class="rule-field"><span class="rule-field-label req">规则类型</span>${selectMarkup('ruleCreateType','请选择规则类型',ruleTypes)}</label>
-          <label class="rule-field"><span class="rule-field-label req">规则名称</span><input class="input" id="ruleCreateName" placeholder="请输入规则名称"></label>
+          <label class="rule-field rule-field-wide rule-type-field"><span class="rule-field-label req">规则类型</span><div>${selectMarkup('ruleCreateType','请选择规则类型',ruleTypes)}<div class="rule-type-help hidden" id="ruleCreateTypeHelp"><span class="rule-type-help-icon" aria-hidden="true">i</span><span>${trafficRuleHelpMarkup}</span></div></div></label>
+          <label class="rule-field rule-field-wide rule-name-field"><span class="rule-field-label req">规则名称</span><input class="input" id="ruleCreateName" placeholder="请输入规则名称"></label>
           <div class="rule-field rule-field-wide"><span class="rule-field-label">备注<span class="rule-field-optional">（选填）</span></span><textarea class="textarea rule-remark-textarea" id="ruleCreateRemark" placeholder="请输入备注"></textarea></div>
         </div></section>
-        <section class="rule-form-section"><div class="rule-form-title">监测范围</div><div class="rule-notification-base-row"><span class="rule-field-label req">监测范围</span><div class="rule-radio-row" role="radiogroup" aria-label="监测范围"><label><input type="radio" name="ruleScope" value="iccid" checked>指定ICCID</label><label><input type="radio" name="ruleScope" value="range">指定范围</label></div></div><div class="rule-upload-row hidden" id="ruleScopeUploadRow"><label class="rule-upload-btn">上传ICCID文件<input type="file" id="ruleScopeUpload" accept=".txt,.csv,.xlsx,.xls"></label><span id="ruleScopeUploadName">支持 TXT、CSV、XLSX、XLS 文件</span></div><div class="rule-form-grid rule-scope-grid">
+        <section class="rule-form-section"><div class="rule-form-title">监测范围</div><div class="rule-notification-base-row"><span class="rule-field-label req">监测范围</span><div class="rule-radio-row" role="radiogroup" aria-label="监测范围"><label><input type="radio" name="ruleScope" value="iccid" checked>指定ICCID</label><label><input type="radio" name="ruleScope" value="range">指定范围</label></div></div><div class="rule-upload-row hidden" id="ruleScopeUploadRow"><label class="rule-upload-btn">上传ICCID文件<input type="file" id="ruleScopeUpload" accept=".txt,.csv,.xlsx,.xls"></label><button type="button" class="rule-upload-template-btn" id="ruleScopeTemplateDownloadBtn">下载模板</button><span id="ruleScopeUploadName">支持 TXT、CSV、XLSX、XLS 文件</span></div><div class="rule-form-grid rule-scope-grid">
           <label class="rule-field"><span class="rule-field-label req">商户</span>${selectMarkup('ruleCreateMerchant','请选择商户',['全部','上海智联商贸','杭州云旅科技','苏州星河酒店','深圳远帆科技'])}</label>
           <label class="rule-field"><span class="rule-field-label req">卡组</span>${selectMarkup('ruleCreateCardGroup','请选择卡组',['全部','华东移动优先卡组','旅游渠道三网卡组','酒店轻量卡组','物流高稳卡组','代理体验卡组'])}</label>
           <label class="rule-field"><span class="rule-field-label req">供应商</span>${selectMarkup('ruleCreateSupplier','请选择供应商',['全部','中国移动','中国联通','中国电信'])}</label>
@@ -219,7 +229,7 @@
     .rule-status.active{color:#1a9b5a}.rule-status.active:before{background:#1a9b5a}
     .rule-status.pending{color:#d78b16}.rule-status.pending:before{background:#d78b16}
     .rule-status.off{color:#8b95a5}.rule-status.off:before{background:#8b95a5}
-    .rule-trigger-status{font-weight:500}.rule-trigger-status.triggered{color:#e2473f}.rule-trigger-status.untriggered{color:#8b95a5}
+    .rule-trigger-status{font-weight:500}.rule-trigger-status.triggered{color:#e2473f}.rule-trigger-status.untriggered{color:#1a9b5a}
     .rule-action-result.success{color:#1a9b5a;font-weight:500}.rule-action-result.fail{color:#e2473f;font-weight:500}
     .rule-create-shell{width:100%;background:#fff;border:1px solid #e6ebf2}
     .rule-form-section{padding:20px 24px;border-bottom:1px solid #edf0f5}
@@ -346,16 +356,33 @@
     .rule-radio-row input,.rule-check-row input{accent-color:#1687e8}
     .rule-radio-row.rule-invalid,.rule-check-row.rule-invalid{border-radius:4px;box-shadow:0 0 0 2px rgba(240,68,56,.08)}
     .rule-scope-caption{margin:18px 0 12px;font-size:12px;color:#667085}
-    .rule-upload-row{display:flex;align-items:center;gap:10px;margin-top:14px;color:#9aa4b2;font-size:12px}
+    .rule-upload-row{display:flex;align-items:center;gap:10px;margin:14px 0 0 140px;color:#9aa4b2;font-size:12px}
     .rule-upload-row > span{white-space:nowrap;flex:none}
     .rule-upload-row.rule-invalid .rule-upload-btn{border-color:#f04438;color:#f04438}
     .rule-upload-btn{display:inline-flex;align-items:center;height:32px;padding:0 16px;border:1px solid #d9dee8;border-radius:4px;color:#1687e8;background:#fff;cursor:pointer}
     .rule-upload-btn:hover{border-color:#1687e8;background:#f4f9ff}
     .rule-upload-btn input{display:none}
+    .rule-upload-template-btn{height:32px;padding:0;border:0;background:transparent;color:#1687e8;font:inherit;cursor:pointer;white-space:nowrap}
+    .rule-upload-template-btn:hover{text-decoration:underline;color:#0b6ed0}
     .rule-scope-grid.is-disabled{opacity:.52}
     .rule-scope-grid.is-disabled .custom-select{pointer-events:none;background:#f7f8fa}
     .rule-invalid{border-color:#f04438!important;box-shadow:0 0 0 2px rgba(240,68,56,.08)}
     .rule-help{grid-column:2;color:#9aa4b2;font-size:12px;line-height:18px;margin-bottom:-4px}
+    .rule-type-field{align-items:start}
+    .rule-type-field > div{min-width:0}
+    .rule-type-field .custom-select{width:100%;box-sizing:border-box}
+    .rule-name-field{grid-column:1 / -1}
+    .rule-type-help{display:flex;align-items:flex-start;gap:6px;width:100%;max-width:100%;box-sizing:border-box;margin-top:8px;color:#1687e8;font-size:12px;line-height:18px;white-space:normal;overflow-wrap:anywhere}
+    .rule-type-help-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:14px;height:14px;margin-top:2px;border:1px solid #1687e8;border-radius:50%;color:#1687e8;font-size:10px;font-style:normal;font-weight:600;line-height:12px}
+    .rule-type-help > span:last-child{min-width:0}
+    .rule-type-help strong{color:#1687e8;font-weight:600}
+    .rule-type-hint{position:relative;display:inline-flex;align-items:center;gap:6px;max-width:100%;color:#4e5969;white-space:nowrap}
+    .rule-type-hint-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:14px;height:14px;border:1px solid #1687e8;border-radius:50%;color:#1687e8;font-size:10px;font-style:normal;font-weight:600;line-height:12px;cursor:help}
+    .rule-type-hint-icon:focus-visible{outline:2px solid rgba(22,135,232,.25);outline-offset:2px}
+    .rule-type-hint-popover{display:none;position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);z-index:100;width:360px;padding:10px 12px;border-radius:3px;background:#333;color:#fff;font-size:12px;font-weight:400;line-height:18px;text-align:left;white-space:normal;word-break:break-word;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+    .rule-type-hint-popover strong{color:#fff;font-weight:600}
+    .rule-type-hint:hover .rule-type-hint-popover,.rule-type-hint:focus-within .rule-type-hint-popover{display:block}
+    .rule-table td.rule-type-cell{position:relative;overflow:visible}
     .rule-effective-control{display:flex;flex-direction:row;align-items:center;gap:8px;margin-left:8px;flex-wrap:wrap}
     .rule-month-picker{position:relative;width:220px;z-index:4}
     .rule-effective-input{width:220px!important;padding-right:58px!important;color:#596273}
@@ -381,9 +408,9 @@
     .rule-month-option.active{background:var(--theme-color);color:#fff}
     .rule-effective-help{color:#9aa4b2;font-size:12px;line-height:18px;white-space:nowrap}
     .rule-create-actions{height:68px;display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:0 24px;border-top:1px solid #edf0f5}
-    .rule-create-actions .btn{min-width:88px}
+    .rule-create-actions .btn{align-self:center;min-width:88px}
     @media(max-width:1000px){.rule-scope-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rule-form-grid{gap:14px 20px}}
-    @media(max-width:720px){.rule-form-grid,.rule-scope-grid,.rule-notify-grid,.rule-notification-card-grid,.rule-detail-grid{grid-template-columns:1fr}.rule-field-wide{grid-column:auto}.rule-field,.rule-notification-base-row,.rule-detail-item,.rule-individual-template-row{grid-template-columns:110px minmax(0,1fr)}.rule-notification-target-list-row{padding-left:122px}.rule-effective-control{margin-left:0}.rule-effective-input{width:220px!important}.rule-threshold-reminders,.rule-interval-reminder{padding-left:0}.rule-threshold-row{align-items:flex-start;flex-wrap:wrap}.rule-threshold-value{width:calc(100% - 10px)}}
+    @media(max-width:720px){.rule-form-grid,.rule-scope-grid,.rule-notify-grid,.rule-notification-card-grid,.rule-detail-grid{grid-template-columns:1fr}.rule-field-wide{grid-column:auto}.rule-field,.rule-notification-base-row,.rule-detail-item,.rule-individual-template-row{grid-template-columns:110px minmax(0,1fr)}.rule-name-field{grid-column:auto}.rule-notification-target-list-row{padding-left:122px}.rule-upload-row{margin-left:122px;flex-wrap:wrap}.rule-effective-control{margin-left:0}.rule-effective-input{width:220px!important}.rule-threshold-reminders,.rule-interval-reminder{padding-left:0}.rule-threshold-row{align-items:flex-start;flex-wrap:wrap}.rule-threshold-value{width:calc(100% - 10px)}}
   `;
 
   function closeRuleSelects(except){
@@ -404,6 +431,7 @@
     setRuleSelectValue(select,'',select.dataset.placeholder || '请选择');
     if(select.id === 'ruleListTypeFilter' || select.id === 'ruleListStatusFilter' || select.id === 'ruleListTriggerStatusFilter'){renderRuleList();}
     if(select.id === 'triggerRuleTypeFilter'){renderTriggerRecords();}
+    if(select.id === 'ruleCreateType'){syncRuleTypeHelp('');}
     if(select.id === 'ruleCreateReminder'){syncReminderMode('');}
     if(select.classList.contains('rule-notification-channel-select')){syncRuleNotificationChannelSelection(select);}
     if(select.classList.contains('rule-individual-notification-select')){renderRuleIndividualNotificationTemplatePreview(select);}
@@ -424,6 +452,7 @@
           setRuleSelectValue(select,option.dataset.value || '',option.textContent.trim());
           if(select.id === 'ruleListTypeFilter' || select.id === 'ruleListStatusFilter' || select.id === 'ruleListTriggerStatusFilter'){renderRuleList();}
           if(select.id === 'triggerRuleTypeFilter'){renderTriggerRecords();}
+          if(select.id === 'ruleCreateType'){syncRuleTypeHelp(select.dataset.value || '');}
           if(select.id === 'ruleCreateReminder'){syncReminderMode(select.dataset.value || '');}
           if(select.classList.contains('rule-notification-channel-select')){syncRuleNotificationChannelSelection(select);}
           if(select.classList.contains('rule-individual-notification-select')){renderRuleIndividualNotificationTemplatePreview(select);}
@@ -537,7 +566,7 @@
     const rows = ruleRecords.filter(row => matchText(`${row.id}${row.name}`,keyword) && (!type || row.type === type) && (!status || ruleStatusFilterValue(row.status) === status) && (!triggerStatus || triggerStatusForRule(row) === triggerStatus) && ruleTriggerTimeInRange(row,recentTriggerStart,recentTriggerEnd));
     const tbody = document.getElementById('ruleListRows');
     if(!tbody){return}
-    tbody.innerHTML = rows.length ? rows.map(row => `<tr><td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.type)}</td><td>${ruleStatusSwitch(row)}</td><td><span class="rule-trigger-status ${triggerStatusForRule(row) === '已触发' ? 'triggered' : 'untriggered'}">${escapeHtml(triggerStatusForRule(row))}</span></td><td>${escapeHtml(row.effectiveAt)}</td><td>${escapeHtml(latestTriggerTimeForRule(row))}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.updatedAt)}</td><td>${escapeHtml(row.operator)}</td><td class="sticky-action"><button type="button" class="link-action" onclick="openRuleCreatePage('${escapeHtml(row.id)}')">编辑</button><button type="button" class="link-action" onclick="openRuleDetail('${escapeHtml(row.id)}')">查看</button></td></tr>`).join('') : '<tr><td colspan="11" class="rule-empty">暂无符合条件的规则</td></tr>';
+    tbody.innerHTML = rows.length ? rows.map(row => `<tr><td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.name)}</td><td class="rule-type-cell">${ruleTypeHintMarkup(row.type)}</td><td>${ruleStatusSwitch(row)}</td><td><span class="rule-trigger-status ${triggerStatusForRule(row) === '已触发' ? 'triggered' : 'untriggered'}">${escapeHtml(triggerStatusForRule(row))}</span></td><td>${escapeHtml(row.effectiveAt)}</td><td>${escapeHtml(latestTriggerTimeForRule(row))}</td><td>${escapeHtml(row.createdAt)}</td><td>${escapeHtml(row.updatedAt)}</td><td>${escapeHtml(row.operator)}</td><td class="sticky-action"><button type="button" class="link-action" onclick="openRuleCreatePage('${escapeHtml(row.id)}')">编辑</button><button type="button" class="link-action" onclick="openRuleDetail('${escapeHtml(row.id)}')">查看</button></td></tr>`).join('') : '<tr><td colspan="11" class="rule-empty">暂无符合条件的规则</td></tr>';
     renderPagination('ruleListPagination',rows.length);
   }
   function ruleDetailItemMarkup(label,value,spanAll=false){
@@ -546,7 +575,8 @@
   function ruleDetailReadonlyField(label,value,extraClass=''){
     const display = value == null || value === '' ? '--' : value;
     const triggerClass = label === '触发状态' ? ` rule-trigger-status ${value === '已触发' ? 'triggered' : 'untriggered'}` : '';
-    return `<div class="rule-field${extraClass ? ` ${extraClass}` : ''}"><span class="rule-field-label">${escapeHtml(label)}</span><div class="rule-detail-plain-value${triggerClass}">${escapeHtml(display)}</div></div>`;
+    const valueMarkup = label === '规则类型' ? ruleTypeHintMarkup(display) : escapeHtml(display);
+    return `<div class="rule-field${extraClass ? ` ${extraClass}` : ''}"><span class="rule-field-label">${escapeHtml(label)}</span><div class="rule-detail-plain-value${triggerClass}">${valueMarkup}</div></div>`;
   }
   function ruleDetailRadioMarkup(options,selected){
     const selectedOption = options.find(option => option.value === selected) || (selected && options.find(option => option.value === 'scheduled'));
@@ -707,21 +737,38 @@
     tbody.innerHTML = rows.length ? rows.map(row => `<tr><td><button type="button" class="link-action" onclick="openTriggerDetailByRecordId('${escapeHtml(row.triggerRecordId)}')">${escapeHtml(row.triggerRecordId)}</button></td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.triggerAt)}</td><td>${escapeHtml(row.cardCount)}</td><td>${escapeHtml(row.notificationRecordId)}</td></tr>`).join('') : '<tr><td colspan="7" class="rule-empty">暂无符合条件的触发记录</td></tr>';
     renderPagination('ruleTriggerSummaryPagination',rows.length);
   }
-  function renderTriggerRecords(){
+  function filteredTriggerDetailRows(){
     const recordId = textValue('triggerRecordIdFilter');
     const type = selectValue('triggerRuleTypeFilter');
     const keyword = textValue('triggerRuleKeyword');
     const start = document.getElementById('triggerDetailTimeStartInput')?.value || '';
     const end = document.getElementById('triggerDetailTimeEndInput')?.value || '';
     const identity = textValue('triggerMsisdnIccid');
-    const rows = triggerRecords.map((row,index) => ({row,index})).filter(entry => {
+    return triggerRecords.map((row,index) => ({row,index})).filter(entry => {
       const row = entry.row;
       return (!recordId || matchText(triggerRecordIdForTrigger(row,entry.index),recordId)) && (!type || row.type === type) && matchText(`${row.id}${row.name}`,keyword) && triggerDateInRange(row.triggerAt,start,end) && matchText(`${row.msisdn}${row.iccid}`,identity);
     });
+  }
+  function renderTriggerRecords(){
+    const rows = filteredTriggerDetailRows();
     const tbody = document.getElementById('ruleTriggerRows');
     if(!tbody){return}
     tbody.innerHTML = rows.length ? rows.map(entry => {const row = entry.row; const index = entry.index; return `<tr><td>${escapeHtml(triggerRecordIdForTrigger(row,index))}</td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.id)}</td><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.triggerAt)}</td><td>${escapeHtml(row.msisdn)}</td><td>${escapeHtml(row.iccid)}</td><td>${escapeHtml(row.merchant)}</td><td>${escapeHtml(row.supplier)}</td><td>${escapeHtml(row.operator)}</td><td>${escapeHtml(row.usage)}</td><td>${escapeHtml(row.condition)}</td><td>${escapeHtml(row.action)}</td><td><span class="rule-action-result ${actionResultClass(row.actionResult)}">${escapeHtml(row.actionResult)}</span></td><td>${escapeHtml(notificationRecordIdForTrigger(row,index))}</td></tr>`;}).join('') : '<tr><td colspan="15" class="rule-empty">暂无符合条件的触发明细</td></tr>';
     renderPagination('ruleTriggerPagination',rows.length);
+  }
+  function exportTriggerRecords(){
+    const headers = ['触发记录ID','触发规则类型','触发规则ID','触发规则名称','触发时间','MSISDN','ICCID','所属商户','供应商','运营商','使用量（MB）','触发条件','触发动作','动作结果','通知记录ID'];
+    const rows = filteredTriggerDetailRows().map(entry => {
+      const row = entry.row;
+      const index = entry.index;
+      return [triggerRecordIdForTrigger(row,index),row.type,row.id,row.name,row.triggerAt,row.msisdn,row.iccid,row.merchant,row.supplier,row.operator,row.usage,row.condition,row.action,row.actionResult,notificationRecordIdForTrigger(row,index)];
+    });
+    const csv = '\uFEFF' + [headers,...rows].map(row => row.map(value => `"${String(value == null ? '' : value).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+    link.download = '触发明细.csv';
+    link.click();
+    window.setTimeout(()=>URL.revokeObjectURL(link.href),0);
   }
   function resetRuleSelect(id){
     const select = document.getElementById(id);
@@ -818,12 +865,17 @@
     document.getElementById('ruleEffectiveMonthPicker')?.classList.remove('open');
     renderRuleMonthPicker();
     syncRuleMonthClear();
+    syncRuleTypeHelp('');
     syncReminderMode('');
     syncFollowUpMode('no');
     syncEffectiveMode('now');
     syncNotificationTimeMode('immediate');
     syncRuleNotificationConfigMode('shared');
     syncScopeMode('iccid');
+  }
+  function syncRuleTypeHelp(value){
+    const help = document.getElementById('ruleCreateTypeHelp');
+    if(help){help.classList.toggle('hidden',value !== '流量用量监测');}
   }
   function syncReminderMode(value){
     const field = document.getElementById('ruleFollowUpField');
@@ -1224,6 +1276,15 @@
       updateRuleScopeUploadName();
     }
   }
+  function downloadRuleScopeTemplate(){
+    const blob = new Blob(['\uFEFFICCID\n'],{type:'text/csv;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'ICCID监测模板.csv';
+    link.click();
+    window.setTimeout(()=>URL.revokeObjectURL(url),0);
+  }
   function markRuleInvalid(target){
     if(!target){return false;}
     target.classList.add('rule-invalid');
@@ -1341,11 +1402,13 @@
     document.getElementById('triggerSummaryResetBtn')?.addEventListener('click',resetTriggerSummary);
     document.getElementById('triggerSearchBtn')?.addEventListener('click',renderTriggerRecords);
     document.getElementById('triggerResetBtn')?.addEventListener('click',resetTriggerRecords);
+    document.getElementById('triggerExportBtn')?.addEventListener('click',exportTriggerRecords);
     document.getElementById('ruleCreateBtn')?.addEventListener('click',()=>{resetCreatePage();openRuleCreatePage();});
     document.getElementById('ruleCreateCancelBtn')?.addEventListener('click',()=>{resetCreatePage();if(typeof window.showPage === 'function'){window.showPage('ruleList');}});
     document.getElementById('ruleCreateSaveBtn')?.addEventListener('click',saveRule);
     document.querySelectorAll('#ruleCreatePage input[name="ruleScope"]').forEach(input => input.addEventListener('change',()=>syncScopeMode(input.value)));
     document.getElementById('ruleScopeUpload')?.addEventListener('change',event=>handleRuleScopeFileChange(event.target.files?.[0]));
+    document.getElementById('ruleScopeTemplateDownloadBtn')?.addEventListener('click',downloadRuleScopeTemplate);
     document.querySelectorAll('#ruleCreatePage input[name="ruleEffective"]').forEach(input => input.addEventListener('change',()=>syncEffectiveMode(input.value)));
     document.querySelectorAll('#ruleCreatePage input[name="ruleFollowUp"]').forEach(input => input.addEventListener('change',()=>syncFollowUpMode(input.value)));
     document.querySelectorAll('#ruleCreatePage input[name="ruleNotificationTime"]').forEach(input => input.addEventListener('change',()=>syncNotificationTimeMode(input.value)));
@@ -1417,6 +1480,7 @@
   window.renderRuleList = renderRuleList;
   window.renderTriggerSummary = renderTriggerSummary;
   window.renderTriggerRecords = renderTriggerRecords;
+  window.exportTriggerRecords = exportTriggerRecords;
   window.ruleTriggerRecords = triggerRecords;
   window.openRuleNotificationAccountModal = openRuleNotificationAccountModal;
 })();

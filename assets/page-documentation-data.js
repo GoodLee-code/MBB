@@ -44,19 +44,16 @@
       }]
     },
     deviceGroup:{empty:true},
-    notificationConfig:{
-      chapters:[{
-        title:'数据说明',
-        items:[{title:'',description:'每一种通知事件存在通知配置信息数量为1。'}]
-      }]
-    },
-    notificationConfigEdit:{
-      chapters:[{
-        title:'功能说明',
-        items:[{title:'',description:'通知事件单独开发接入。'}]
-      }]
-    },
+    notificationChannel:{empty:true},
+    notificationTemplate:{empty:true},
+    notificationConfig:{empty:true},
+    notificationConfigEdit:{empty:true},
     notificationRecord:{empty:true},
-    notificationRecordDetail:{empty:true}
+    notificationRecordDetail:{empty:true},
+    ruleList:{empty:true},
+    ruleTriggerRecords:{empty:true},
+    ruleTriggerSummary:{empty:true},
+    ruleCreate:{empty:true},
+    ruleDetail:{empty:true}
   };
 })();
