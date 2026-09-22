@@ -765,6 +765,29 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
   #strategyModalMask .time-icons{justify-content:flex-start}
 }
 .notification-table{min-width:1120px}
+#consumerManagementPanel{display:flex;flex:1;min-height:0;flex-direction:column}
+#consumerManagementPanel>.system-filter,#consumerManagementPanel>.action-row{flex:none}
+#consumerManagementPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:10px!important;overflow:auto}
+#consumerManagementPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
+#consumerTagListPanel,#consumerTagChangeLogPanel{display:flex;flex:1;min-height:0;flex-direction:column}
+#consumerTagListPanel>.system-filter,#consumerTagListPanel>.content-actions,#consumerTagChangeLogPanel>.system-filter{flex:none}
+#consumerTagFilterPanel{padding-bottom:0}
+#consumerTagListPanel>.consumer-tag-actions{justify-content:flex-start;margin-top:16px}
+#consumerTagListPanel>.table-card,#consumerTagChangeLogPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:10px!important;overflow:auto}
+#consumerTagListPanel>.pagination,#consumerTagChangeLogPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
+#consumerTagChangeLogPanel>.consumer-tag-detail-content-wrap{flex:none;width:100%}
+#consumerTagChangeLogPanel>.table-card{flex:0 0 auto;overflow-x:auto;overflow-y:hidden}
+#consumerTagChangeLogPanel>.consumer-tag-detail-content-wrap.hidden{display:none!important}
+#consumerTagChangeDetailPanel{display:flex;flex:1;min-height:0;flex-direction:column}
+#consumerTagChangeDetailPanel>.system-filter{flex:none}
+#consumerTagChangeDetailPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:10px!important;overflow:auto}
+#consumerTagChangeDetailPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
+.consumer-tag-record-filter{grid-template-columns:repeat(4,minmax(0,1fr))}.consumer-tag-record-range{display:flex;align-items:center;gap:8px;min-width:0}.consumer-tag-record-range .input{width:100%;min-width:0}.consumer-tag-record-range .date-range-separator{color:#8a95a5;white-space:nowrap}.consumer-tag-record-table{min-width:640px}
+.consumer-management-table{min-width:1240px}
+.consumer-tag-table{min-width:980px}.consumer-tag-change-table{min-width:1580px}.consumer-tag-actions{display:flex;justify-content:flex-end;margin-top:16px}.consumer-tag-panel .table-card{overflow-x:auto}.consumer-tag-change-filter{grid-template-columns:repeat(4,minmax(0,1fr))}.consumer-tag-change-range{display:flex;align-items:center;gap:8px;min-width:0}.consumer-tag-change-range .input{width:100%;min-width:0}.consumer-tag-change-range .date-range-separator{color:#8a95a5;white-space:nowrap}.consumer-tag-record-range{gap:6px}.consumer-tag-status-cell{display:inline-flex;align-items:center;gap:7px}.consumer-tag-status-text{color:#4b5563;font-size:12px}.consumer-tag-status-toggle[disabled]{cursor:default;opacity:.9}.consumer-tag-editor-status{display:inline-flex;align-items:center;gap:8px;height:32px}.consumer-tag-detail-card{background:#fff;border:1px solid #e6ebf2;border-radius:2px;padding:20px}.consumer-tag-detail-title{font-size:16px;font-weight:600;color:#1f2d3d;margin-bottom:18px}.consumer-tag-detail-section{border-top:1px solid #edf0f5;padding-top:16px;margin-top:18px}.consumer-tag-detail-section:first-of-type{border-top:0;padding-top:0;margin-top:0}.consumer-tag-detail-section h4{margin:0 0 14px;color:#344054;font-size:14px}.consumer-tag-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 28px}.consumer-tag-detail-item{display:flex;gap:12px;min-width:0;color:#4b5563;font-size:13px}.consumer-tag-detail-item .detail-label{color:#8a95a5;white-space:nowrap}.consumer-tag-detail-item .detail-value{min-width:0;overflow-wrap:anywhere;color:#344054}.consumer-tag-detail-empty{padding:48px 20px;text-align:center;color:#98a2b3;background:#fff;border:1px solid #e6ebf2}.consumer-tag-modal{width:min(620px,calc(100vw - 48px))}.consumer-tag-modal .form-row{grid-template-columns:112px 1fr!important;margin-bottom:16px}.consumer-tag-modal .input,.consumer-tag-modal .textarea,.consumer-tag-modal .select{width:100%;max-width:none}.consumer-tag-modal .textarea{min-height:88px;resize:vertical}.consumer-tag-modal .field-error{min-height:18px;color:#f04438;font-size:12px;margin-top:4px}.consumer-tag-modal .form-field.invalid .input,.consumer-tag-modal .form-field.invalid .textarea,.consumer-tag-modal .form-field.invalid .select{border-color:#f04438}.consumer-tag-readonly .form-row{grid-template-columns:112px 1fr!important;margin-bottom:14px}.consumer-tag-readonly .detail-value{color:#344054;line-height:32px}
+.consumerTagChangeLogPanel>.consumer-tag-actions{justify-content:flex-start;margin-top:16px;gap:16px}
+#consumerTagAssignmentModalMask .modal.consumer-tag-assignment-modal{width:680px!important;max-width:calc(100vw - 48px);max-height:calc(100vh - 48px)}
+.consumer-tag-assignment-modal .form-row{grid-template-columns:112px 1fr!important;margin-bottom:16px;align-items:start}.consumer-tag-assignment-modal .form-label{color:#8b95a5!important;font-size:13px!important;font-weight:400!important;line-height:32px;white-space:nowrap}.consumer-tag-assignment-modal .input,.consumer-tag-assignment-modal .textarea,.consumer-tag-assignment-modal .select{width:100%;color:#1f2329!important}.consumer-tag-assignment-modal .textarea{min-height:96px;resize:vertical}.consumer-tag-assignment-modal .radio-group{display:flex;align-items:center;gap:24px;min-height:32px;flex-wrap:wrap}.consumer-tag-assignment-modal .radio{margin-right:0;color:#4b5563;font-size:13px}.consumer-tag-assignment-modal .radio.active{color:var(--theme-color)}.consumer-tag-assignment-tags{display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap;min-height:32px;padding:5px 0}.consumer-tag-assignment-tag{display:inline-flex;align-items:center;gap:6px;color:#4b5563;font-size:13px;white-space:nowrap}.consumer-tag-assignment-tag input{margin:0}.consumer-tag-assignment-file-row.hidden,.consumer-tag-assignment-manual-row.hidden{display:none!important}.consumer-tag-assignment-file-name{margin-left:10px;color:#596273;font-size:12px}.consumer-tag-assignment-modal .help{margin-top:7px;color:#8b95a5;white-space:nowrap}.consumer-tag-assignment-modal .field-error{min-height:18px;color:#f04438;font-size:12px;margin-top:4px}.consumer-tag-assignment-modal .form-field.invalid .input,.consumer-tag-assignment-modal .form-field.invalid .textarea,.consumer-tag-assignment-modal .form-field.invalid .select{border-color:#f04438}
 .notification-table th{text-align:center}.notification-table th,.notification-table td{white-space:nowrap}
 .notification-management-tabs{margin-bottom:16px}
 .notification-management-modal{width:min(980px,calc(100vw - 48px))!important;max-width:calc(100vw - 48px)!important;max-height:calc(100vh - 48px)}
@@ -977,7 +1000,11 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 <div class="layout">
   <aside class="side" id="sideMenu">
     <div class="menu home-menu" id="menuHome" onclick="showPage('home')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11.5 12 4l8 7.5M6.5 10v9.5h11V10M10 19.5V15h4v4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">首页</span></div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">消费者中心</span></div>
+    <div class="menu" id="menuConsumer" onclick="toggleMenuGroup('consumerSubMenu','menuConsumer')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">消费者中心</span><span class="collapse-icon"></span></div>
+    <div class="sub-group collapsed" id="consumerSubMenu">
+      <div class="sub" id="menuConsumerManage" onclick="showPage('consumerManage')">消费者管理</div>
+      <div class="sub" id="menuConsumerTags" onclick="showPage('consumerTags')">消费者标签</div>
+    </div>
     <div class="menu" id="menuDevice" onclick="toggleMenuGroup('deviceSubMenu','menuDevice')"><svg class="device-icon" viewBox="0 0 160 160" aria-hidden="true" focusable="false"><path d="M12 76c0-37.6 30.4-68 68-68s68 30.4 68 68" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M38 76c0-23.2 18.8-42 42-42s42 18.8 42 42" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M63 76c0-9.4 7.6-17 17-17s17 7.6 17 17" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round"/><path d="M80 59v47" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"/><path d="M22 103h116c6.6 0 12 5.4 12 12v31H10v-31c0-6.6 5.4-12 12-12Z" fill="none" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><circle cx="40" cy="129" r="7" fill="currentColor"/><circle cx="64" cy="129" r="7" fill="currentColor"/></svg><span class="menu-title">设备中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="deviceSubMenu">
       <div class="sub" id="menuDeviceManage" onclick="showPage('device')">设备管理</div>
@@ -1049,6 +1076,103 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 
     <section id="homePage" class="content hidden">
       <div class="strategy-subpage-empty"><strong>首页</strong><span>未设计</span></div>
+    </section>
+
+    <section id="consumerManagePage" class="content hidden">
+      <div class="inner-tabs consumer-tag-tabs consumer-manage-tabs">
+        <span class="inner-tab active" id="consumerManagementTab" onclick="switchConsumerManageTab('consumer')">消费者管理</span>
+        <span class="inner-tab" id="consumerTagChangeDetailTab" onclick="switchConsumerManageTab('detail')">标签变更记录</span>
+        <span class="inner-tab" id="consumerTagChangeLogTab" onclick="switchConsumerManageTab('changeLog')">标签变更明细</span>
+      </div>
+      <div id="consumerManagementPanel" class="consumer-tag-panel">
+      <div class="system-filter consumer-filter" id="consumerFilterPanel">
+        <input class="input" id="consumerOpenidInput" placeholder="微信openid" oninput="searchConsumerManagementRecords()">
+        <input class="input" id="consumerPhoneInput" placeholder="手机号" oninput="searchConsumerManagementRecords()">
+        <div class="select custom-select" id="consumerDefaultDeviceFilter" data-value=""><span class="select-value">是否默认设备</span><div class="dropdown-menu"><div class="dropdown-option" data-value="是">是</div><div class="dropdown-option" data-value="否">否</div></div></div>
+        <input class="input" id="consumerDeviceNoInput" placeholder="设备号" oninput="searchConsumerManagementRecords()">
+        <input class="input" id="consumerMerchantInput" placeholder="商户名称" oninput="searchConsumerManagementRecords()">
+        <div class="select custom-select" id="consumerDeviceTypeFilter" data-value=""><span class="select-value">设备类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="MIFI">MIFI</div><div class="dropdown-option" data-value="CPE">CPE</div><div class="dropdown-option" data-value="DTU">DTU</div><div class="dropdown-option" data-value="随身WiFi">随身WiFi</div></div></div>
+        <div class="select custom-select" id="consumerJdPlusFilter" data-value=""><span class="select-value">京东Plus会员</span><div class="dropdown-menu"><div class="dropdown-option" data-value="是">是</div><div class="dropdown-option" data-value="否">否</div></div></div>
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchConsumerManagementRecords()">搜索</button><button class="btn gray" onclick="resetConsumerManagementRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button class="btn primary" onclick="openConsumerTagAssignmentModal()">标签添加/移除</button></div>
+      <div class="table-card" style="margin-top:10px">
+        <table class="notification-table consumer-management-table">
+          <thead><tr><th>序号</th><th>微信openid</th><th>微信unioid</th><th>手机号码</th><th>是否默认设备</th><th>设备号</th><th>商户名称</th><th>设备类型</th><th>绑定时间</th><th>充值时间</th><th>京东plus会员</th></tr></thead>
+          <tbody id="consumerManagementRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="consumerManagementPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
+
+      <div id="consumerTagChangeDetailPanel" class="consumer-tag-panel hidden">
+        <div class="system-filter consumer-tag-record-filter" id="consumerTagChangeRecordFilterPanel">
+          <input class="input" id="consumerTagChangeRecordBatchFilter" placeholder="批次号" oninput="searchConsumerTagChangeRecords()">
+          <div class="select custom-select" id="consumerTagChangeRecordTypeFilter" data-value=""><span class="select-value">操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="标签添加">标签添加</div><div class="dropdown-option" data-value="标签删除">标签删除</div></div></div>
+          <input class="input" id="consumerTagChangeRecordRemarkFilter" placeholder="备注" oninput="searchConsumerTagChangeRecords()">
+          <div class="device-date-range consumer-tag-record-range" id="consumerTagChangeRecordRange" data-range="consumerTagChangeRecordDate" onclick="openDeviceRangePicker(event,'consumerTagChangeRecordDate')">
+            <span class="date-icon"></span><span class="device-date-text" data-part="start">操作开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">操作结束日期</span><span class="date-range-clear" onclick="clearDeviceRange(event,'consumerTagChangeRecordDate')"></span>
+            <input id="consumerTagChangeRecordStartInput" type="hidden"><input id="consumerTagChangeRecordEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="consumerTagChangeRecordDatePanel"></div>
+          </div>
+          <input class="input" id="consumerTagChangeRecordOperatorFilter" placeholder="操作人" oninput="searchConsumerTagChangeRecords()">
+          <div class="filter-actions new-row"><button class="btn line" onclick="searchConsumerTagChangeRecords()">搜索</button><button class="btn gray" onclick="resetConsumerTagChangeRecords()">重置</button></div>
+        </div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="notification-table consumer-tag-record-table">
+            <thead><tr><th>批次号</th><th>操作类型</th><th>备注</th><th>操作时间</th><th>操作人</th></tr></thead>
+            <tbody id="consumerTagChangeRecordRows"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="consumerTagChangeRecordPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
+
+      <div id="consumerTagChangeLogPanel" class="consumer-tag-panel hidden">
+        <div class="system-filter consumer-tag-change-filter" id="consumerTagChangeFilterPanel">
+          <input class="input" id="consumerTagChangeBatchFilter" placeholder="批次号" oninput="searchConsumerTagChangeLogs()">
+          <div class="select custom-select" id="consumerTagChangeTypeFilter" data-value=""><span class="select-value">操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="标签添加">标签添加</div><div class="dropdown-option" data-value="标签删除">标签删除</div></div></div>
+          <input class="input" id="consumerTagChangeNameFilter" placeholder="标签名称" oninput="searchConsumerTagChangeLogs()">
+          <div class="select custom-select" id="consumerTagChangeTagTypeFilter" data-value=""><span class="select-value">标签类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="系统标签">系统标签</div><div class="dropdown-option" data-value="自定义标签">自定义标签</div></div></div>
+          <input class="input" id="consumerTagChangeOpenidFilter" placeholder="微信 OpenID" oninput="searchConsumerTagChangeLogs()">
+          <input class="input" id="consumerTagChangeUnionidFilter" placeholder="微信 UnionID" oninput="searchConsumerTagChangeLogs()">
+          <input class="input" id="consumerTagChangePhoneFilter" placeholder="手机号码" oninput="searchConsumerTagChangeLogs()">
+          <input class="input" id="consumerTagChangeDeviceFilter" placeholder="设备号" oninput="searchConsumerTagChangeLogs()">
+          <div class="device-date-range consumer-tag-change-range" id="consumerTagChangeRange" data-range="consumerTagChangeLogDate" onclick="openDeviceRangePicker(event,'consumerTagChangeLogDate')">
+            <span class="date-icon"></span><span class="device-date-text" data-part="start">操作开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">操作结束日期</span><span class="date-range-clear" onclick="clearDeviceRange(event,'consumerTagChangeLogDate')"></span>
+            <input id="consumerTagChangeStartInput" type="hidden"><input id="consumerTagChangeEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="consumerTagChangeLogDatePanel"></div>
+          </div>
+          <input class="input" id="consumerTagChangeOperatorFilter" placeholder="操作人" oninput="searchConsumerTagChangeLogs()">
+          <div class="filter-actions new-row"><button class="btn line" onclick="searchConsumerTagChangeLogs()">搜索</button><button class="btn gray" onclick="resetConsumerTagChangeLogs()">重置</button></div>
+        </div>
+        <div class="content-actions consumer-tag-actions"><button class="btn primary" onclick="exportConsumerTagChangeDetails()">导出</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="notification-table consumer-tag-change-table">
+            <thead><tr><th>批次号</th><th>操作类型</th><th>标签名称</th><th>标签类型</th><th>微信 OpenID</th><th>微信 UnionID</th><th>手机号码</th><th>设备号</th><th>操作时间</th><th>操作人</th></tr></thead>
+            <tbody id="consumerTagChangeRows"></tbody>
+          </table>
+        </div>
+        <div class="consumer-tag-detail-content-wrap hidden" style="margin-top:16px"><div id="consumerTagChangeDetailContent"></div></div>
+        <div class="pagination" id="consumerTagChangePagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
+    </section>
+
+    <section id="consumerTagsPage" class="content hidden">
+      <div id="consumerTagListPanel" class="consumer-tag-panel">
+        <div class="system-filter consumer-tag-filter" id="consumerTagFilterPanel">
+          <input class="input" id="consumerTagNameFilter" placeholder="标签名称" oninput="searchConsumerTags()">
+          <div class="select custom-select" id="consumerTagTypeFilter" data-value=""><span class="select-value">标签类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="系统标签">系统标签</div><div class="dropdown-option" data-value="自定义标签">自定义标签</div></div></div>
+          <div class="select custom-select" id="consumerTagStatusFilter" data-value=""><span class="select-value">状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="开启">开启</div><div class="dropdown-option" data-value="关闭">关闭</div></div></div>
+          <div class="filter-actions new-row"><button class="btn line" onclick="searchConsumerTags()">搜索</button><button class="btn gray" onclick="resetConsumerTags()">重置</button></div>
+        </div>
+        <div class="content-actions consumer-tag-actions"><button class="btn primary" onclick="openConsumerTagEditor('add')">自定义标签新增</button></div>
+        <div class="table-card" style="margin-top:10px">
+          <table class="notification-table consumer-tag-table">
+            <thead><tr><th>标签名称</th><th>标签类型</th><th>标签说明</th><th>状态</th><th>关联用户数</th><th>更新时间</th><th>操作人</th><th>操作</th></tr></thead>
+            <tbody id="consumerTagRows"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="consumerTagPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      </div>
+
     </section>
 
     <section id="devicePreStockPage" class="content hidden">
@@ -2112,6 +2236,62 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
   </div>
 </div>
 
+<div class="modal-mask" id="consumerTagEditorModalMask" onclick="if(event.target===this)closeConsumerTagEditor()">
+  <div class="modal consumer-tag-modal">
+    <div class="close" onclick="closeConsumerTagEditor()">×</div>
+    <div class="modal-title" id="consumerTagEditorModalTitle">自定义标签新增</div>
+    <div class="modal-body">
+      <div class="form-row form-field" id="consumerTagNameField">
+        <div class="form-label req">标签名称</div>
+        <div><input class="input" id="consumerTagNameInput" placeholder="请输入标签名称" oninput="clearConsumerTagEditorError('consumerTagNameField')"><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" id="consumerTagDescriptionField">
+        <div class="form-label">标签说明</div>
+        <div><textarea class="textarea" id="consumerTagDescriptionInput" placeholder="请输入标签说明"></textarea><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" id="consumerTagStatusField">
+        <div class="form-label req">状态</div>
+        <div><div class="consumer-tag-editor-status"><button type="button" class="switch-toggle on" id="consumerTagStatusToggle" aria-label="切换标签状态" aria-pressed="true" onclick="toggleConsumerTagEditorStatus()"></button><span class="consumer-tag-status-text" id="consumerTagStatusValue">开启</span></div><div class="field-error"></div></div>
+      </div>
+    </div>
+    <div class="modal-actions"><button class="cancel" onclick="closeConsumerTagEditor()">取消</button><button class="confirm" onclick="saveConsumerTagEditor()">保存</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="consumerTagAssignmentModalMask" onclick="if(event.target===this)closeConsumerTagAssignmentModal()">
+  <div class="modal auth-whitelist-modal consumer-tag-assignment-modal">
+    <div class="close" onclick="closeConsumerTagAssignmentModal()">×</div>
+    <div class="modal-title">标签添加/移除</div>
+    <div class="modal-body">
+      <div class="form-row form-field" id="consumerTagAssignmentOperationField">
+        <div class="form-label req">操作类型</div>
+        <div><div class="select custom-select" id="consumerTagAssignmentOperation" data-value="add"><span class="select-value">标签添加</span><div class="dropdown-menu"><div class="dropdown-option" data-value="add">标签添加</div><div class="dropdown-option" data-value="remove">标签移除</div></div></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field" id="consumerTagAssignmentTagField">
+        <div class="form-label req">选择标签</div>
+        <div><div class="consumer-tag-assignment-tags" id="consumerTagAssignmentTagOptions"></div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row">
+        <div class="form-label req">录入方式</div>
+        <div class="radio-group"><span class="radio active" id="consumerTagAssignmentManualRadio" onclick="switchConsumerTagAssignmentEntry('manual')"><i></i>手动录入</span><span class="radio" id="consumerTagAssignmentFileRadio" onclick="switchConsumerTagAssignmentEntry('file')"><i></i>文件导入</span></div>
+      </div>
+      <div class="form-row form-field consumer-tag-assignment-manual-row" id="consumerTagAssignmentManualField">
+        <div class="form-label req">手机号</div>
+        <div><textarea class="textarea" id="consumerTagAssignmentPhoneInput" placeholder="请输入手机号，多个手机号用逗号或换行分隔" oninput="clearConsumerTagAssignmentFieldError('consumerTagAssignmentManualField')"></textarea><div class="field-error"></div></div>
+      </div>
+      <div class="form-row form-field consumer-tag-assignment-file-row hidden" id="consumerTagAssignmentFileField">
+        <div class="form-label req">选择文件</div>
+        <div><button type="button" class="filebtn" onclick="document.getElementById('consumerTagAssignmentFileInput').click()">上传文件</button><input class="hidden" id="consumerTagAssignmentFileInput" type="file" accept=".csv,.txt,.xls,.xlsx" onchange="handleConsumerTagAssignmentFileChange()"><span class="consumer-tag-assignment-file-name" id="consumerTagAssignmentFileName">未选择文件</span><div class="help">支持 CSV、TXT、XLS、XLSX 文件，文件中填写手机号。</div><div class="field-error"></div></div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">备注</div>
+        <div><textarea class="textarea" id="consumerTagAssignmentRemarkInput" placeholder="请输入备注"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-actions"><button class="cancel" onclick="closeConsumerTagAssignmentModal()">取消</button><button class="confirm" onclick="submitConsumerTagAssignment()">确认</button></div>
+  </div>
+</div>
+
 <div class="modal-mask" id="modalMask">
   <div class="modal">
     <div class="close" onclick="closeModal()">×</div>
@@ -2710,6 +2890,38 @@ const authWhitelistData = {
     {sn:'MBB202609170022',createdAt:'2026-09-17 11:05:42',operator:'陈启安'}
   ]
 };
+const consumerManagementData = [
+  {openid:'o7crs64vkd8m2a01',unionid:'oK2G56CR9x81a01',phone:'13800138001',defaultDevice:'是',deviceNo:'MBB202605290001',merchant:'上海智联商贸',deviceType:'MIFI',boundAt:'2026-01-15 09:20:00',rechargeAt:'2026-09-18 10:24:16',jdPlus:'是'},
+  {openid:'o7crs64vkd6q9b02',unionid:'oK2G56CR7b32b02',phone:'13900139002',defaultDevice:'否',deviceNo:'MBB202605290002',merchant:'杭州云旅科技',deviceType:'CPE',boundAt:'2026-02-03 11:08:45',rechargeAt:'2026-09-17 15:12:44',jdPlus:'否'},
+  {openid:'o7crs64vkd3p1c03',unionid:'oK2G56CR5c76c03',phone:'13700137003',defaultDevice:'是',deviceNo:'MBB202605290003',merchant:'苏州星河酒店',deviceType:'随身WiFi',boundAt:'2026-03-12 13:45:22',rechargeAt:'2026-09-16 09:42:08',jdPlus:'是'},
+  {openid:'o7crs64vkd2e5d04',unionid:'oK2G56CR3f90d04',phone:'13600136004',defaultDevice:'否',deviceNo:'MBB202605280018',merchant:'南京万联物流',deviceType:'DTU',boundAt:'2026-04-08 08:36:10',rechargeAt:'2026-09-15 18:21:39',jdPlus:'否'},
+  {openid:'o7crs64vkd9t4e05',unionid:'oK2G56CR2a11e05',phone:'13500135005',defaultDevice:'是',deviceNo:'MBB202604300086',merchant:'广州启明商贸',deviceType:'CPE',boundAt:'2026-04-12 10:22:16',rechargeAt:'2026-09-14 11:05:20',jdPlus:'否'},
+  {openid:'o7crs64vkd1n8f06',unionid:'oK2G56CR8d48f06',phone:'13400134006',defaultDevice:'是',deviceNo:'MBB202604150021',merchant:'深圳远帆科技',deviceType:'MIFI',boundAt:'2026-04-15 15:02:31',rechargeAt:'2026-09-13 14:36:55',jdPlus:'是'},
+  {openid:'o7crs64vkd4r7g07',unionid:'oK2G56CR6e27g07',phone:'13300133007',defaultDevice:'否',deviceNo:'MBB202606010011',merchant:'北京数联科技',deviceType:'CPE',boundAt:'2026-05-02 10:10:11',rechargeAt:'2026-09-12 16:48:12',jdPlus:'否'},
+  {openid:'o7crs64vkd5s6h08',unionid:'oK2G56CR4f36h08',phone:'13200132008',defaultDevice:'是',deviceNo:'MBB202606010012',merchant:'成都天府互联',deviceType:'随身WiFi',boundAt:'2026-05-06 15:33:21',rechargeAt:'2026-09-11 08:18:09',jdPlus:'否'}
+];
+const consumerTagData = [
+  {id:'TAG-SYS-001',name:'高价值用户',type:'系统标签',description:'',triggerRule:'近90天累计充值金额 ≥ 1000元',status:'开启',updatedAt:'2026-09-18 10:20:00',operator:'系统',linkedUserCount:126},
+  {id:'TAG-SYS-002',name:'沉默用户',type:'系统标签',description:'',triggerRule:'连续90天未产生充值或设备使用记录',status:'开启',updatedAt:'2026-09-15 08:00:00',operator:'系统',linkedUserCount:42},
+  {id:'TAG-CUS-001',name:'重点客户',type:'自定义标签',description:'由运营团队维护的重点服务客户',triggerRule:'',status:'开启',createdAt:'2026-08-20 11:15:08',updatedAt:'2026-09-19 16:30:12',operator:'张可昕',linkedUserCount:0},
+  {id:'TAG-CUS-002',name:'售后跟进',type:'自定义标签',description:'需要售后专员持续跟进的客户',triggerRule:'',status:'关闭',createdAt:'2026-08-12 09:26:40',updatedAt:'2026-09-12 14:05:36',operator:'王敏',linkedUserCount:18}
+];
+const consumerUserTagAssignments = {};
+const consumerTagChangeData = [
+  {id:'TAG-LOG-202609190001',batchNo:'TAG-BATCH-202609190001',changedAt:'2026-09-19 16:31:04',userId:'U100001',openid:'o7crs64vkd8m2a01',unionid:'oK2G56CR9x81a01',phone:'13800138001',deviceNo:'MBB202605290001',tagId:'TAG-CUS-001',tagName:'重点客户',tagType:'自定义标签',changeType:'标签添加',source:'人工操作',operator:'张可昕'},
+  {id:'TAG-LOG-202609180001',batchNo:'TAG-BATCH-202609180001',changedAt:'2026-09-18 10:24:18',userId:'U100001',openid:'o7crs64vkd8m2a01',unionid:'oK2G56CR9x81a01',phone:'13800138001',deviceNo:'MBB202605290001',tagId:'TAG-SYS-001',tagName:'高价值用户',tagType:'系统标签',changeType:'标签添加',source:'系统规则',operator:'系统',triggerRule:'近90天累计充值金额 ≥ 1000元',triggerReason:'该用户近90天累计充值金额为1286元'},
+  {id:'TAG-LOG-202609170002',batchNo:'TAG-BATCH-202609170002',changedAt:'2026-09-17 15:13:02',userId:'U100002',openid:'o7crs64vkd6q9b02',unionid:'oK2G56CR7b32b02',phone:'13900139002',deviceNo:'MBB202605290002',tagId:'TAG-CUS-002',tagName:'售后跟进',tagType:'自定义标签',changeType:'标签删除',source:'人工操作',operator:'李四'},
+  {id:'TAG-LOG-202609160003',batchNo:'TAG-BATCH-202609160003',changedAt:'2026-09-16 09:43:10',userId:'U100003',openid:'o7crs64vkd3p1c03',unionid:'oK2G56CR5c76c03',phone:'13700137003',deviceNo:'MBB202605290003',tagId:'TAG-SYS-002',tagName:'沉默用户',tagType:'系统标签',changeType:'标签添加',source:'系统规则',operator:'系统',triggerRule:'连续90天未产生充值或设备使用记录',triggerReason:'该用户连续90天无充值和设备使用记录'},
+  {id:'TAG-LOG-202609150004',batchNo:'TAG-BATCH-202609150004',changedAt:'2026-09-15 18:22:01',userId:'U100004',openid:'o7crs64vkd2e5d04',unionid:'oK2G56CR3f90d04',phone:'13600136004',deviceNo:'MBB202605280018',tagId:'TAG-CUS-001',tagName:'重点客户',tagType:'自定义标签',changeType:'标签添加',source:'人工操作',operator:'张可昕'},
+  {id:'TAG-LOG-202609150005',batchNo:'TAG-BATCH-202609150004',changedAt:'2026-09-15 18:22:07',userId:'U100004',openid:'o7crs64vkd2e5d04',unionid:'oK2G56CR3f90d04',phone:'13600136004',deviceNo:'MBB202605280019',tagId:'TAG-CUS-001',tagName:'重点客户',tagType:'自定义标签',changeType:'标签添加',source:'人工操作',operator:'张可昕'}
+];
+const consumerTagChangeRecordData = [
+  {batchNo:'TAG-BATCH-202609190001',operationType:'标签添加',remark:'重点客户运营分组',operationTime:'2026-09-19 16:31:04',operator:'张可昕'},
+  {batchNo:'TAG-BATCH-202609180001',operationType:'标签添加',remark:'系统规则自动维护',operationTime:'2026-09-18 10:24:18',operator:'系统'},
+  {batchNo:'TAG-BATCH-202609170002',operationType:'标签删除',remark:'售后跟进结束',operationTime:'2026-09-17 15:13:02',operator:'李四'},
+  {batchNo:'TAG-BATCH-202609160003',operationType:'标签添加',remark:'系统规则自动维护',operationTime:'2026-09-16 09:43:10',operator:'系统'},
+  {batchNo:'TAG-BATCH-202609150004',operationType:'标签添加',remark:'批量标记重点客户',operationTime:'2026-09-15 18:22:01',operator:'张可昕'}
+];
 const deviceManagementData = [
   {sn:'MBB202605290001', externalSn:'EXT-SH-0001', group:'华东直营组', marketName:'畅连MIFI Pro', category:'本地卡', package:'月包 100GB', vendor:'智联方案', region:'上海', merchant:'上海智联商贸', mainMerchant:'上海智联商贸', secondAuth:'开启', serviceExpire:'2026-12-31', iccid:'898604C01925D0207595', smartNetwork:'开启', network:'中国移动', smartLock:true, hideWifi:false, disabled:false, speedLimit:'关闭', localCardDevice:'是', connectedAt:'2026-05-29 10:58:24', offlineDays:0, appVersion:'V2.1.3', mac:'6E:A4:34:5E:14:70', activatedAt:'2026-01-15 09:20:00', createdAt:'2026-01-10 14:32:18', activeStatus:'已激活', packageExpired:'否', type:'MIFI', version:'V2.1.3'},
   {sn:'MBB202605290002', externalSn:'EXT-HZ-0002', group:'旅游渠道组', marketName:'云旅CPE 5G', category:'云卡', package:'月包 200GB', vendor:'云芯方案', region:'杭州', merchant:'杭州云旅科技', mainMerchant:'杭州云旅科技', secondAuth:'关闭', serviceExpire:'2026-10-30', iccid:'898604C01925D0207596', smartNetwork:'开启', network:'中国联通', smartLock:false, hideWifi:true, disabled:false, speedLimit:'打开', localCardDevice:'否', connectedAt:'2026-05-29 09:41:12', offlineDays:0, appVersion:'V2.0.1', mac:'4A:2C:19:8F:43:61', activatedAt:'2026-02-03 11:08:45', createdAt:'2026-01-28 16:26:37', activeStatus:'已激活', packageExpired:'否', type:'CPE', version:'V2.0.1'},
@@ -3139,7 +3351,7 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {home:'首页', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
+const pageTitles = {home:'首页', consumerManage:'消费者管理', consumerTags:'消费者标签', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
 let openTabs = [];
 let activePage = '';
 let deviceTypeCarrierOrder = [];
@@ -3156,6 +3368,13 @@ let currentStrategySubpage = 'policy';
 let currentAuthManageTab = 'config';
 let currentAuthWhitelistTab = 'sim';
 let currentAuthWhitelistModalType = 'sim';
+let currentConsumerManageTab = 'consumer';
+let currentConsumerTagTab = 'list';
+let currentConsumerTagDetailId = '';
+let consumerTagEditorMode = 'add';
+let consumerTagEditingId = '';
+let consumerTagEditorStatus = '开启';
+let consumerTagAssignmentEntry = 'manual';
 let currentAuthWhitelistEntry = 'manual';
 let currentAuthWhitelistModalMode = 'add';
 let currentAuthWhitelistEditingValue = '';
@@ -3268,6 +3487,10 @@ function showPage(type){
     currentAuthManageTab = 'config';
   }else if(type === 'deviceGroup'){
     currentDeviceGroupTab = 'list';
+  }else if(type === 'consumerTags'){
+    currentConsumerTagTab = 'list';
+  }else if(type === 'consumerManage'){
+    currentConsumerManageTab = 'consumer';
   }
   ensureTab(type);
   activateTab(type);
@@ -3381,6 +3604,7 @@ function activateTab(type){
   closeNotificationRecordDetail();
   closeNotificationAccountModal();
   closeDeviceTypeModal();
+  closeConsumerTagEditor();
 }
 function closeTab(event,type){
   event.stopPropagation();
@@ -3402,6 +3626,8 @@ function closeTab(event,type){
 }
 function applyPageState(type){
   document.getElementById('homePage').classList.toggle('hidden', type !== 'home');
+  document.getElementById('consumerManagePage').classList.toggle('hidden', type !== 'consumerManage');
+  document.getElementById('consumerTagsPage').classList.toggle('hidden', type !== 'consumerTags');
   document.getElementById('devicePage').classList.toggle('hidden', type !== 'device');
   document.getElementById('deviceTypePage').classList.toggle('hidden', type !== 'deviceType');
   document.getElementById('configPage').classList.toggle('hidden', type !== 'config');
@@ -3441,6 +3667,8 @@ function applyPageState(type){
   document.getElementById('notificationRecordDetailPage').classList.toggle('hidden', type !== 'notificationRecordDetail');
   document.getElementById('notificationConfigEditPage').classList.toggle('hidden', type !== 'notificationConfigEdit');
   document.getElementById('menuHome').classList.toggle('active', type === 'home');
+  document.getElementById('menuConsumerManage').classList.toggle('active', type === 'consumerManage');
+  document.getElementById('menuConsumerTags').classList.toggle('active', type === 'consumerTags');
   document.getElementById('menuDeviceManage').classList.toggle('active', type === 'device');
   document.getElementById('menuDeviceType').classList.toggle('active', type === 'deviceType');
   document.getElementById('menuConfig').classList.toggle('active', type === 'config');
@@ -3469,6 +3697,14 @@ function applyPageState(type){
   document.getElementById('menuNotificationTemplate').classList.toggle('active', type === 'notificationTemplate');
   document.getElementById('menuNotificationRecord').classList.toggle('active', ['notificationRecord','notificationRecordDetail'].includes(type));
   if(type === 'home'){
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'consumerManage'){
+    switchConsumerManageTab(currentConsumerManageTab);
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'consumerTags'){
+    switchConsumerTagTab(currentConsumerTagTab);
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'device'){
@@ -4519,6 +4755,423 @@ function resetDeviceTypeRecords(){
   });
   document.querySelectorAll('#deviceTypePage .input-combo').forEach(syncInputComboState);
   searchDeviceTypeRecords();
+}
+function renderConsumerManagementTable(rows){
+  const rowsNode = document.getElementById('consumerManagementRows');
+  if(!rowsNode){return}
+  rowsNode.innerHTML = rows.length ? rows.map((row,index) => `
+    <tr>
+      <td>${index + 1}</td><td>${escapeHtml(row.openid)}</td><td>${escapeHtml(row.unionid)}</td><td>${escapeHtml(row.phone)}</td>
+      <td>${escapeHtml(row.defaultDevice)}</td><td>${escapeHtml(row.deviceNo)}</td><td>${escapeHtml(row.merchant)}</td><td>${escapeHtml(row.deviceType)}</td>
+      <td>${escapeHtml(row.boundAt)}</td><td>${escapeHtml(row.rechargeAt)}</td><td>${escapeHtml(row.jdPlus)}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="11" class="notification-empty">暂无符合条件的消费者</td></tr>';
+  updatePagination('consumerManagementPagination',rows.length);
+}
+function getFilteredConsumerManagementRows(){
+  const openid = normalizeText(document.getElementById('consumerOpenidInput')?.value);
+  const phone = normalizeText(document.getElementById('consumerPhoneInput')?.value);
+  const defaultDevice = getSelectValue('consumerDefaultDeviceFilter');
+  const deviceNo = normalizeText(document.getElementById('consumerDeviceNoInput')?.value);
+  const merchant = normalizeText(document.getElementById('consumerMerchantInput')?.value);
+  const deviceType = getSelectValue('consumerDeviceTypeFilter');
+  const jdPlus = getSelectValue('consumerJdPlusFilter');
+  return consumerManagementData.filter(row => {
+    return (!openid || normalizeText(row.openid).includes(openid)) &&
+      (!phone || normalizeText(row.phone).includes(phone)) &&
+      (!defaultDevice || row.defaultDevice === defaultDevice) &&
+      (!deviceNo || normalizeText(row.deviceNo).includes(deviceNo)) &&
+      (!merchant || normalizeText(row.merchant).includes(merchant)) &&
+      (!deviceType || row.deviceType === deviceType) &&
+      (!jdPlus || row.jdPlus === jdPlus);
+  });
+}
+function searchConsumerManagementRecords(){
+  const rowsNode = document.getElementById('consumerManagementRows');
+  if(!rowsNode){return}
+  renderConsumerManagementTable(getFilteredConsumerManagementRows());
+}
+function resetConsumerManagementRecords(){
+  ['consumerOpenidInput','consumerPhoneInput','consumerDeviceNoInput','consumerMerchantInput'].forEach(id => {
+    const input = document.getElementById(id);
+    if(input){input.value = ''}
+  });
+  resetCustomSelect('consumerDefaultDeviceFilter','是否默认设备');
+  resetCustomSelect('consumerDeviceTypeFilter','设备类型');
+  resetCustomSelect('consumerJdPlusFilter','京东Plus会员');
+  searchConsumerManagementRecords();
+}
+function formatConsumerTagNow(){
+  const date = new Date();
+  const pad = value => String(value).padStart(2,'0');
+  return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+}
+function renderConsumerTagAssignmentOptions(){
+  const container = document.getElementById('consumerTagAssignmentTagOptions');
+  if(!container){return}
+  const tags = consumerTagData.filter(row => row.type === '自定义标签');
+  container.innerHTML = tags.length ? tags.map(row => `<label class="consumer-tag-assignment-tag"><input type="checkbox" value="${escapeHtml(row.id)}">${escapeHtml(row.name)}</label>`).join('') : '<span class="help">暂无可用的自定义标签</span>';
+}
+function clearConsumerTagAssignmentFieldError(fieldId){
+  const field = document.getElementById(fieldId);
+  if(field){field.classList.remove('invalid');const error = field.querySelector('.field-error');if(error){error.textContent = ''}}
+}
+function switchConsumerTagAssignmentEntry(mode){
+  consumerTagAssignmentEntry = mode === 'file' ? 'file' : 'manual';
+  document.getElementById('consumerTagAssignmentManualRadio')?.classList.toggle('active',consumerTagAssignmentEntry === 'manual');
+  document.getElementById('consumerTagAssignmentFileRadio')?.classList.toggle('active',consumerTagAssignmentEntry === 'file');
+  document.getElementById('consumerTagAssignmentManualField')?.classList.toggle('hidden',consumerTagAssignmentEntry !== 'manual');
+  document.getElementById('consumerTagAssignmentFileField')?.classList.toggle('hidden',consumerTagAssignmentEntry !== 'file');
+}
+function handleConsumerTagAssignmentFileChange(){
+  const input = document.getElementById('consumerTagAssignmentFileInput');
+  const name = document.getElementById('consumerTagAssignmentFileName');
+  if(name){name.textContent = input?.files?.[0]?.name || '未选择文件'}
+  clearConsumerTagAssignmentFieldError('consumerTagAssignmentFileField');
+}
+function openConsumerTagAssignmentModal(){
+  setCustomSelectValue('consumerTagAssignmentOperation','add','标签添加');
+  renderConsumerTagAssignmentOptions();
+  consumerTagAssignmentEntry = 'manual';
+  switchConsumerTagAssignmentEntry('manual');
+  const phoneInput = document.getElementById('consumerTagAssignmentPhoneInput');
+  const remarkInput = document.getElementById('consumerTagAssignmentRemarkInput');
+  const fileInput = document.getElementById('consumerTagAssignmentFileInput');
+  const fileName = document.getElementById('consumerTagAssignmentFileName');
+  if(phoneInput){phoneInput.value = ''}
+  if(remarkInput){remarkInput.value = ''}
+  if(fileInput){fileInput.value = ''}
+  if(fileName){fileName.textContent = '未选择文件'}
+  ['consumerTagAssignmentOperationField','consumerTagAssignmentTagField','consumerTagAssignmentManualField','consumerTagAssignmentFileField'].forEach(clearConsumerTagAssignmentFieldError);
+  const modal = document.getElementById('consumerTagAssignmentModalMask');
+  if(modal){modal.style.display = 'flex'}
+  phoneInput?.focus();
+}
+function closeConsumerTagAssignmentModal(){
+  const modal = document.getElementById('consumerTagAssignmentModalMask');
+  if(modal){modal.style.display = 'none'}
+}
+function getConsumerTagAssignmentPhoneValues(){
+  const input = document.getElementById('consumerTagAssignmentPhoneInput');
+  return parseAuthWhitelistValues(input ? input.value : '');
+}
+async function submitConsumerTagAssignment(){
+  const operation = getSelectValue('consumerTagAssignmentOperation') || 'add';
+  const remark = document.getElementById('consumerTagAssignmentRemarkInput')?.value.trim() || '';
+  const selectedTagIds = Array.from(document.querySelectorAll('#consumerTagAssignmentTagOptions input[type="checkbox"]:checked')).map(node => node.value);
+  if(!selectedTagIds.length){
+    const field = document.getElementById('consumerTagAssignmentTagField');
+    if(field){field.classList.add('invalid');const error = field.querySelector('.field-error');if(error){error.textContent = '请选择至少一个标签'}}
+    return;
+  }
+  const field = consumerTagAssignmentEntry === 'file' ? document.getElementById('consumerTagAssignmentFileField') : document.getElementById('consumerTagAssignmentManualField');
+  const error = field ? field.querySelector('.field-error') : null;
+  let phones = [];
+  if(consumerTagAssignmentEntry === 'file'){
+    const fileInput = document.getElementById('consumerTagAssignmentFileInput');
+    const file = fileInput?.files?.[0];
+    if(!file){
+      field?.classList.add('invalid');
+      if(error){error.textContent = '请选择要导入的文件'}
+      return;
+    }
+    if(/\.(csv|txt)$/i.test(file.name)){
+      const content = await file.text();
+      phones = parseAuthWhitelistValues(content).filter(value => /^1\d{10}$/.test(value));
+    }else{
+      closeConsumerTagAssignmentModal();
+      alert('文件已提交导入，原型中将按手机号处理。');
+      return;
+    }
+  }else{
+    phones = getConsumerTagAssignmentPhoneValues();
+  }
+  if(!phones.length){
+    field?.classList.add('invalid');
+    if(error){error.textContent = '请输入有效的手机号'}
+    return;
+  }
+  const matchedUsers = consumerManagementData.filter(row => phones.includes(row.phone));
+  if(!matchedUsers.length){
+    field?.classList.add('invalid');
+    if(error){error.textContent = '未找到匹配的消费者手机号'}
+    return;
+  }
+  const now = formatConsumerTagNow();
+  const batchNo = `TAG-BATCH-${now.replace(/\D/g,'')}`;
+  const changeType = operation === 'remove' ? '标签删除' : '标签添加';
+  let affectedUsers = 0;
+  let changedCount = 0;
+  let sequence = 0;
+  matchedUsers.forEach(user => {
+    const assignments = consumerUserTagAssignments[user.phone] || (consumerUserTagAssignments[user.phone] = []);
+    let userChanged = false;
+    selectedTagIds.forEach(tagId => {
+      const tag = consumerTagData.find(row => row.id === tagId);
+      if(!tag){return}
+      const index = assignments.indexOf(tagId);
+      if(operation === 'remove' && index >= 0){
+        assignments.splice(index,1);
+        tag.linkedUserCount = Math.max(0,Number(tag.linkedUserCount) - 1);
+        userChanged = true;
+      }else if(operation !== 'remove' && index < 0){
+        assignments.push(tagId);
+        tag.linkedUserCount = Number(tag.linkedUserCount) + 1;
+        userChanged = true;
+      }else{
+        return;
+      }
+      changedCount += 1;
+      consumerTagChangeData.unshift({id:`TAG-LOG-${Date.now()}-${sequence++}`,batchNo,changedAt:now,userId:`U${String(consumerManagementData.indexOf(user)+100001).padStart(6,'0')}`,openid:user.openid,unionid:user.unionid,phone:user.phone,deviceNo:user.deviceNo,tagId,tagName:tag.name,tagType:tag.type,changeType,source:'人工操作',operator:'当前用户',remark});
+    });
+    if(userChanged){affectedUsers += 1}
+  });
+  if(!changedCount){
+    field?.classList.add('invalid');
+    if(error){error.textContent = operation === 'remove' ? '所选用户未关联这些标签' : '所选用户已关联这些标签'}
+    return;
+  }
+  consumerTagChangeRecordData.unshift({batchNo,operationType:changeType,remark,operationTime:now,operator:'当前用户'});
+  closeConsumerTagAssignmentModal();
+  alert(`${changeType}成功，共${affectedUsers}位消费者、${changedCount}条标签关系`);
+}
+function switchConsumerManageTab(tab){
+  currentConsumerManageTab = tab || 'consumer';
+  const activeTabId = {consumer:'consumerManagementTab',detail:'consumerTagChangeDetailTab',changeLog:'consumerTagChangeLogTab'}[currentConsumerManageTab] || 'consumerManagementTab';
+  document.querySelectorAll('#consumerManagePage .consumer-manage-tabs .inner-tab').forEach(node => node.classList.toggle('active', node.id === activeTabId));
+  document.getElementById('consumerManagementPanel')?.classList.toggle('hidden', currentConsumerManageTab !== 'consumer');
+  document.getElementById('consumerTagChangeDetailPanel')?.classList.toggle('hidden', currentConsumerManageTab !== 'detail');
+  document.getElementById('consumerTagChangeLogPanel')?.classList.toggle('hidden', currentConsumerManageTab !== 'changeLog');
+  if(currentConsumerManageTab === 'consumer'){
+    searchConsumerManagementRecords();
+  }else if(currentConsumerManageTab === 'detail'){
+    currentConsumerTagDetailId = '';
+    searchConsumerTagChangeRecords();
+  }else{
+    searchConsumerTagChangeLogs();
+    renderConsumerTagChangeDetail(currentConsumerTagDetailId);
+  }
+}
+function switchConsumerTagTab(tab){
+  currentConsumerTagTab = tab || 'list';
+  document.getElementById('consumerTagListPanel')?.classList.toggle('hidden', currentConsumerTagTab !== 'list');
+  if(currentConsumerTagTab === 'list'){
+    searchConsumerTags();
+  }
+}
+function renderConsumerTagTable(rows){
+  const rowsNode = document.getElementById('consumerTagRows');
+  if(!rowsNode){return}
+  rowsNode.innerHTML = rows.length ? rows.map(row => {
+    const description = row.type === '系统标签' ? row.triggerRule : row.description;
+    const actions = row.type === '自定义标签'
+      ? `<span class="text-action" onclick="openConsumerTagEditor('edit','${escapeHtml(row.id)}')">编辑</span><span class="text-action danger" onclick="deleteConsumerTag('${escapeHtml(row.id)}')">删除</span>`
+      : '';
+    const statusToggle = `<span class="consumer-tag-status-cell"><button type="button" class="switch-toggle consumer-tag-status-toggle ${row.status === '开启' ? 'on' : ''}" onclick="toggleConsumerTagStatus('${escapeHtml(row.id)}')" aria-label="${escapeHtml(row.status)}" aria-pressed="${row.status === '开启' ? 'true' : 'false'}"></button><span class="consumer-tag-status-text">${escapeHtml(row.status)}</span></span>`;
+    return `<tr><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(description || '--')}</td><td>${statusToggle}</td><td>${escapeHtml(row.linkedUserCount ?? 0)}</td><td>${escapeHtml(row.updatedAt)}</td><td>${escapeHtml(row.operator)}</td><td class="sticky-action">${actions ? `<span class="device-type-action-list">${actions}</span>` : ''}</td></tr>`;
+  }).join('') : '<tr><td colspan="8" class="notification-empty">暂无符合条件的标签</td></tr>';
+  updatePagination('consumerTagPagination', rows.length);
+}
+function getFilteredConsumerTags(){
+  const name = normalizeText(document.getElementById('consumerTagNameFilter')?.value);
+  const type = getSelectValue('consumerTagTypeFilter');
+  const status = getSelectValue('consumerTagStatusFilter');
+  return consumerTagData.filter(row => (!name || normalizeText(row.name).includes(name)) && (!type || row.type === type) && (!status || row.status === status));
+}
+function searchConsumerTags(){
+  if(!document.getElementById('consumerTagRows')){return}
+  renderConsumerTagTable(getFilteredConsumerTags());
+}
+function resetConsumerTags(){
+  const input = document.getElementById('consumerTagNameFilter');
+  if(input){input.value = ''}
+  resetCustomSelect('consumerTagTypeFilter','标签类型');
+  resetCustomSelect('consumerTagStatusFilter','状态');
+  searchConsumerTags();
+}
+function renderConsumerTagChangeRecordTable(rows){
+  const rowsNode = document.getElementById('consumerTagChangeRecordRows');
+  if(!rowsNode){return}
+  rowsNode.innerHTML = rows.length ? rows.map(row => `<tr><td><span class="text-action" onclick="openConsumerTagChangeBatch('${escapeHtml(row.batchNo)}')">${escapeHtml(row.batchNo)}</span></td><td>${escapeHtml(row.operationType)}</td><td>${escapeHtml(row.remark || '--')}</td><td>${escapeHtml(row.operationTime)}</td><td>${escapeHtml(row.operator)}</td></tr>`).join('') : '<tr><td colspan="5" class="notification-empty">暂无符合条件的标签变更记录</td></tr>';
+  updatePagination('consumerTagChangeRecordPagination', rows.length);
+}
+function getFilteredConsumerTagChangeRecords(){
+  const batchNo = normalizeText(document.getElementById('consumerTagChangeRecordBatchFilter')?.value);
+  const operationType = getSelectValue('consumerTagChangeRecordTypeFilter');
+  const remark = normalizeText(document.getElementById('consumerTagChangeRecordRemarkFilter')?.value);
+  const start = document.getElementById('consumerTagChangeRecordStartInput')?.value || '';
+  const end = document.getElementById('consumerTagChangeRecordEndInput')?.value || '';
+  const operator = normalizeText(document.getElementById('consumerTagChangeRecordOperatorFilter')?.value);
+  return consumerTagChangeRecordData.filter(row => {
+    const date = row.operationTime.slice(0,10);
+    return (!batchNo || normalizeText(row.batchNo).includes(batchNo)) &&
+      (!operationType || row.operationType === operationType) &&
+      (!remark || normalizeText(row.remark).includes(remark)) &&
+      (!start || date >= start) && (!end || date <= end) &&
+      (!operator || normalizeText(row.operator).includes(operator));
+  });
+}
+function searchConsumerTagChangeRecords(){
+  if(!document.getElementById('consumerTagChangeRecordRows')){return}
+  renderConsumerTagChangeRecordTable(getFilteredConsumerTagChangeRecords());
+}
+function resetConsumerTagChangeRecords(){
+  ['consumerTagChangeRecordBatchFilter','consumerTagChangeRecordRemarkFilter','consumerTagChangeRecordOperatorFilter'].forEach(id => {const node = document.getElementById(id);if(node){node.value = ''}});
+  resetCustomSelect('consumerTagChangeRecordTypeFilter','操作类型');
+  setUnifiedRangeValues('consumerTagChangeRecordDate','','',false);
+  searchConsumerTagChangeRecords();
+}
+function openConsumerTagChangeBatch(batchNo){
+  currentConsumerTagDetailId = '';
+  showPage('consumerManage');
+  switchConsumerManageTab('changeLog');
+  const input = document.getElementById('consumerTagChangeBatchFilter');
+  if(input){input.value = batchNo || ''}
+  searchConsumerTagChangeLogs();
+}
+function renderConsumerTagChangeTable(rows){
+  const rowsNode = document.getElementById('consumerTagChangeRows');
+  if(!rowsNode){return}
+  rowsNode.innerHTML = rows.length ? rows.map(row => `<tr><td>${escapeHtml(row.batchNo || '--')}</td><td>${escapeHtml(row.changeType)}</td><td>${escapeHtml(row.tagName)}</td><td>${escapeHtml(row.tagType)}</td><td>${escapeHtml(row.openid)}</td><td>${escapeHtml(row.unionid)}</td><td>${escapeHtml(row.phone)}</td><td>${escapeHtml(row.deviceNo)}</td><td>${escapeHtml(row.changedAt)}</td><td>${escapeHtml(row.operator)}</td></tr>`).join('') : '<tr><td colspan="10" class="notification-empty">暂无符合条件的标签变更记录</td></tr>';
+  updatePagination('consumerTagChangePagination', rows.length);
+}
+function getFilteredConsumerTagChangeLogs(){
+  const start = document.getElementById('consumerTagChangeStartInput')?.value || '';
+  const end = document.getElementById('consumerTagChangeEndInput')?.value || '';
+  const values = {
+    batchNo:normalizeText(document.getElementById('consumerTagChangeBatchFilter')?.value),
+    openid:normalizeText(document.getElementById('consumerTagChangeOpenidFilter')?.value),
+    unionid:normalizeText(document.getElementById('consumerTagChangeUnionidFilter')?.value),
+    phone:normalizeText(document.getElementById('consumerTagChangePhoneFilter')?.value),
+    deviceNo:normalizeText(document.getElementById('consumerTagChangeDeviceFilter')?.value),
+    tagName:normalizeText(document.getElementById('consumerTagChangeNameFilter')?.value),
+    operator:normalizeText(document.getElementById('consumerTagChangeOperatorFilter')?.value)
+  };
+  const tagType = getSelectValue('consumerTagChangeTagTypeFilter');
+  const changeType = getSelectValue('consumerTagChangeTypeFilter');
+  return consumerTagChangeData.filter(row => {
+    const date = row.changedAt.slice(0,10);
+    return (!values.batchNo || normalizeText(row.batchNo).includes(values.batchNo)) &&
+      (!start || date >= start) && (!end || date <= end) &&
+      (!values.openid || normalizeText(row.openid).includes(values.openid)) &&
+      (!values.unionid || normalizeText(row.unionid).includes(values.unionid)) &&
+      (!values.phone || normalizeText(row.phone).includes(values.phone)) &&
+      (!values.deviceNo || normalizeText(row.deviceNo).includes(values.deviceNo)) &&
+      (!values.tagName || normalizeText(row.tagName).includes(values.tagName)) &&
+      (!values.operator || normalizeText(row.operator).includes(values.operator)) &&
+      (!tagType || row.tagType === tagType) && (!changeType || row.changeType === changeType);
+  });
+}
+function searchConsumerTagChangeLogs(){
+  if(!document.getElementById('consumerTagChangeRows')){return}
+  renderConsumerTagChangeTable(getFilteredConsumerTagChangeLogs());
+}
+function resetConsumerTagChangeLogs(){
+  ['consumerTagChangeBatchFilter','consumerTagChangeOpenidFilter','consumerTagChangeUnionidFilter','consumerTagChangePhoneFilter','consumerTagChangeDeviceFilter','consumerTagChangeNameFilter','consumerTagChangeOperatorFilter'].forEach(id => {const node = document.getElementById(id);if(node){node.value = ''}});
+  setUnifiedRangeValues('consumerTagChangeLogDate','','',false);
+  resetCustomSelect('consumerTagChangeTagTypeFilter','标签类型');
+  resetCustomSelect('consumerTagChangeTypeFilter','操作类型');
+  searchConsumerTagChangeLogs();
+}
+function exportConsumerTagChangeDetails(){
+  const rows = getFilteredConsumerTagChangeLogs();
+  const header = ['批次号','操作类型','标签名称','标签类型','微信 OpenID','微信 UnionID','手机号码','设备号','操作时间','操作人'];
+  const body = rows.map(row => [row.batchNo,row.changeType,row.tagName,row.tagType,row.openid,row.unionid,row.phone,row.deviceNo,row.changedAt,row.operator]);
+  const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '标签变更明细.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+function clearConsumerTagEditorError(fieldId){
+  const field = document.getElementById(fieldId);
+  if(field){field.classList.remove('invalid');const error = field.querySelector('.field-error');if(error){error.textContent = ''}}
+}
+function setConsumerTagEditorError(fieldId,message){
+  const field = document.getElementById(fieldId);
+  if(field){field.classList.add('invalid');const error = field.querySelector('.field-error');if(error){error.textContent = message || ''}}
+}
+function setConsumerTagEditorStatus(value){
+  consumerTagEditorStatus = value === '关闭' ? '关闭' : '开启';
+  const toggle = document.getElementById('consumerTagStatusToggle');
+  const valueNode = document.getElementById('consumerTagStatusValue');
+  if(toggle){toggle.classList.toggle('on',consumerTagEditorStatus === '开启');toggle.setAttribute('aria-pressed',consumerTagEditorStatus === '开启' ? 'true' : 'false')}
+  if(valueNode){valueNode.textContent = consumerTagEditorStatus}
+}
+function toggleConsumerTagEditorStatus(){setConsumerTagEditorStatus(consumerTagEditorStatus === '开启' ? '关闭' : '开启')}
+function toggleConsumerTagStatus(id){
+  const row = consumerTagData.find(item => item.id === id);
+  if(!row){return}
+  if(Number(row.linkedUserCount) > 0){alert('当前标签已关联用户，不支持操作。');return}
+  if(row.type === '系统标签'){alert('系统标签由系统规则维护，不支持手动改变状态。');return}
+  row.status = row.status === '开启' ? '关闭' : '开启';
+  row.updatedAt = formatConsumerTagNow();
+  row.operator = '当前用户';
+  searchConsumerTags();
+}
+function openConsumerTagEditor(mode,id){
+  const row = id ? consumerTagData.find(item => item.id === id) : null;
+  if(mode === 'edit' && (!row || row.type !== '自定义标签')){return}
+  if(mode === 'edit' && Number(row.linkedUserCount) > 0){alert('当前标签已关联用户，不支持操作。');return}
+  consumerTagEditorMode = mode;
+  consumerTagEditingId = id || '';
+  document.getElementById('consumerTagEditorModalTitle').textContent = mode === 'edit' ? '自定义标签编辑' : '自定义标签新增';
+  document.getElementById('consumerTagNameInput').value = row?.name || '';
+  document.getElementById('consumerTagDescriptionInput').value = row?.description || '';
+  setConsumerTagEditorStatus(row?.status || '开启');
+  ['consumerTagNameField','consumerTagDescriptionField','consumerTagStatusField'].forEach(clearConsumerTagEditorError);
+  document.getElementById('consumerTagEditorModalMask').style.display = 'flex';
+}
+function closeConsumerTagEditor(){document.getElementById('consumerTagEditorModalMask').style.display = 'none'}
+function saveConsumerTagEditor(){
+  const name = document.getElementById('consumerTagNameInput').value.trim();
+  const description = document.getElementById('consumerTagDescriptionInput').value.trim();
+  const status = consumerTagEditorStatus;
+  if(!name){setConsumerTagEditorError('consumerTagNameField','标签名称不能为空');return}
+  const duplicate = consumerTagData.some(row => row.name === name && row.id !== consumerTagEditingId);
+  if(duplicate){setConsumerTagEditorError('consumerTagNameField','标签名称已存在，请更换后再保存。');return}
+  const now = formatConsumerTagNow();
+  if(consumerTagEditorMode === 'edit'){
+    const row = consumerTagData.find(item => item.id === consumerTagEditingId);
+    if(!row){return}
+    row.name = name; row.description = description; row.status = status; row.updatedAt = now; row.operator = '当前用户';
+  }else{
+    const customSeq = consumerTagData.reduce((max,row) => {
+      const match = /^TAG-CUS-(\d+)$/.exec(row.id || '');
+      return match ? Math.max(max,Number(match[1])) : max;
+    },0);
+    const nextId = `TAG-CUS-${String(customSeq + 1).padStart(3,'0')}`;
+    consumerTagData.push({id:nextId,name,type:'自定义标签',description,triggerRule:'',status,createdAt:now,updatedAt:now,operator:'当前用户',linkedUserCount:0});
+  }
+  closeConsumerTagEditor();
+  searchConsumerTags();
+}
+function deleteConsumerTag(id){
+  const row = consumerTagData.find(item => item.id === id);
+  if(!row || row.type !== '自定义标签'){return}
+  if(Number(row.linkedUserCount) > 0){alert('当前标签已关联用户，不支持操作。');return}
+  if(!confirm(`确定删除标签“${row.name}”吗？删除后不可恢复。`)){return}
+  const index = consumerTagData.findIndex(item => item.id === id);
+  if(index >= 0){consumerTagData.splice(index,1)}
+  searchConsumerTags();
+}
+function openConsumerTagChangeDetail(id){
+  currentConsumerTagDetailId = id || '';
+  showPage('consumerManage');
+  switchConsumerManageTab('changeLog');
+}
+function renderConsumerTagChangeDetail(id){
+  const container = document.getElementById('consumerTagChangeDetailContent');
+  if(!container){return}
+  const contentWrap = container.closest('.consumer-tag-detail-content-wrap');
+  const row = consumerTagChangeData.find(item => item.id === id);
+  if(!row){container.innerHTML = '';contentWrap?.classList.add('hidden');return}
+  contentWrap?.classList.remove('hidden');
+  const item = (label,value) => `<div class="consumer-tag-detail-item"><span class="detail-label">${label}</span><span class="detail-value">${escapeHtml(value || '--')}</span></div>`;
+  const trigger = row.source === '系统规则' ? `<div class="consumer-tag-detail-section"><h4>触发信息</h4><div class="consumer-tag-detail-grid">${item('触发规则',row.triggerRule)}${item('触发原因 / 命中条件',row.triggerReason || '--')}</div></div>` : '';
+  container.innerHTML = `<div class="consumer-tag-detail-card"><div class="consumer-tag-detail-title">标签变更明细 <button class="btn line" style="float:right" onclick="currentConsumerTagDetailId='';renderConsumerTagChangeDetail('')">返回明细列表</button></div><div class="consumer-tag-detail-section"><h4>变更信息</h4><div class="consumer-tag-detail-grid">${item('批次号',row.batchNo)}${item('操作类型',row.changeType)}${item('标签名称',row.tagName)}${item('标签类型',row.tagType)}${item('操作时间',row.changedAt)}${item('操作人',row.operator)}</div></div><div class="consumer-tag-detail-section"><h4>用户信息</h4><div class="consumer-tag-detail-grid">${item('微信 OpenID',row.openid)}${item('微信 UnionID',row.unionid)}${item('手机号码',row.phone)}${item('设备号',row.deviceNo)}</div></div>${trigger}</div>`;
 }
 function handleDeviceTypeAction(action,typeCode){
   const row = deviceTypeData.find(item => item.typeCode === typeCode);
@@ -8193,6 +8846,15 @@ function setCustomSelectValue(target,value,label,emitChange){
   if(['deviceOfflineCondition','deviceNetworkFilter','deviceSpeedFilter','deviceDisabledFilter','deviceActiveFilter','devicePackageExpiredFilter','deviceSecondAuthFilter'].includes(select.id)){
     searchDeviceManageRecords();
   }
+  if(['consumerDefaultDeviceFilter','consumerDeviceTypeFilter','consumerJdPlusFilter'].includes(select.id)){
+    searchConsumerManagementRecords();
+  }
+  if(['consumerTagTypeFilter','consumerTagStatusFilter'].includes(select.id)){
+    searchConsumerTags();
+  }
+  if(['consumerTagChangeTagTypeFilter','consumerTagChangeTypeFilter'].includes(select.id)){
+    searchConsumerTagChangeLogs();
+  }
   if(['strategyUsageStatusFilter','strategyTimeStatusFilter'].includes(select.id)){
     searchStrategyRecords();
   }
@@ -8326,7 +8988,9 @@ const extraRangePickerState = {
   notificationDetailDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'notificationDetailDateRange',panelId:'notificationDetailDatePanel',startId:'notificationDetailDateStartInput',endId:'notificationDetailDateEndInput',startPlaceholder:'触发开始时间',endPlaceholder:'触发结束时间'},
   ruleListRecentTrigger:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'ruleListRecentTriggerRange',panelId:'ruleListRecentTriggerPanel',startId:'ruleListRecentTriggerStartInput',endId:'ruleListRecentTriggerEndInput',startPlaceholder:'最近触发开始日期',endPlaceholder:'最近触发结束日期'},
   triggerSummaryTime:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'triggerSummaryTimeRange',panelId:'triggerSummaryTimePanel',startId:'triggerSummaryTimeStartInput',endId:'triggerSummaryTimeEndInput',startPlaceholder:'触发开始日期',endPlaceholder:'触发结束日期'},
-  triggerDetailTime:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'triggerDetailTimeRange',panelId:'triggerDetailTimePanel',startId:'triggerDetailTimeStartInput',endId:'triggerDetailTimeEndInput',startPlaceholder:'触发开始日期',endPlaceholder:'触发结束日期'}
+  triggerDetailTime:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'triggerDetailTimeRange',panelId:'triggerDetailTimePanel',startId:'triggerDetailTimeStartInput',endId:'triggerDetailTimeEndInput',startPlaceholder:'触发开始日期',endPlaceholder:'触发结束日期'},
+  consumerTagChangeRecordDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'consumerTagChangeRecordRange',panelId:'consumerTagChangeRecordDatePanel',startId:'consumerTagChangeRecordStartInput',endId:'consumerTagChangeRecordEndInput',startPlaceholder:'操作开始日期',endPlaceholder:'操作结束日期'},
+  consumerTagChangeLogDate:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'consumerTagChangeRange',panelId:'consumerTagChangeLogDatePanel',startId:'consumerTagChangeStartInput',endId:'consumerTagChangeEndInput',startPlaceholder:'操作开始日期',endPlaceholder:'操作结束日期'}
 };
 function getUnifiedRangeState(key){
   return deviceRangeState[key] || extraRangePickerState[key];
@@ -8515,6 +9179,8 @@ function triggerUnifiedRangeChange(key){
   if(key === 'ruleListRecentTrigger' && typeof window.renderRuleList === 'function'){window.renderRuleList()}
   if(key === 'triggerSummaryTime' && typeof window.renderTriggerSummary === 'function'){window.renderTriggerSummary()}
   if(key === 'triggerDetailTime' && typeof window.renderTriggerRecords === 'function'){window.renderTriggerRecords()}
+  if(key === 'consumerTagChangeRecordDate'){searchConsumerTagChangeRecords()}
+  if(key === 'consumerTagChangeLogDate'){searchConsumerTagChangeLogs()}
 }
 function openUnifiedRangePicker(event,key){
   const state = getUnifiedRangeState(key);
