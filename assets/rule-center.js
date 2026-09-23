@@ -28,6 +28,8 @@
   let ruleIntervalReminderValue = '';
   let ruleScopeFileName = '';
   let ruleScopeIccids = [];
+  let ruleScopeEntryMode = 'file';
+  let ruleScopeManualValue = '';
   let ruleEffectiveMonthView = new Date(new Date().getFullYear(),new Date().getMonth(),1);
   const ruleRecords = [
     {id:'RULE202609180001',name:'月度流量阈值提醒',type:'流量用量监测',status:'生效中',effectiveAt:'2026-09-18',createdAt:'2026-09-18 09:12:08',updatedAt:'2026-09-18 09:12:08',operator:'陈思远',scopeMode:'iccid',scopeLabel:'指定ICCID',scopeFileName:'ICCID监测名单_20260918.xlsx',scopeIccids:['89860488192540182881']},
@@ -141,7 +143,11 @@
           <label class="rule-field rule-field-wide rule-name-field"><span class="rule-field-label req">规则名称</span><input class="input" id="ruleCreateName" placeholder="请输入规则名称"></label>
           <div class="rule-field rule-field-wide"><span class="rule-field-label">备注<span class="rule-field-optional">（选填）</span></span><textarea class="textarea rule-remark-textarea" id="ruleCreateRemark" placeholder="请输入备注"></textarea></div>
         </div></section>
-        <section class="rule-form-section"><div class="rule-form-title">监测范围</div><div class="rule-notification-base-row"><span class="rule-field-label req">监测范围</span><div class="rule-radio-row" role="radiogroup" aria-label="监测范围"><label><input type="radio" name="ruleScope" value="iccid" checked>指定ICCID</label><label><input type="radio" name="ruleScope" value="range">指定范围</label></div></div><div class="rule-upload-row hidden" id="ruleScopeUploadRow"><label class="rule-upload-btn">上传ICCID文件<input type="file" id="ruleScopeUpload" accept=".txt,.csv,.xlsx,.xls"></label><button type="button" class="rule-upload-template-btn" id="ruleScopeTemplateDownloadBtn">下载模板</button><span id="ruleScopeUploadName">支持 TXT、CSV、XLSX、XLS 文件</span></div><div class="rule-form-grid rule-scope-grid">
+        <section class="rule-form-section"><div class="rule-form-title">监测范围</div><div class="rule-notification-base-row"><span class="rule-field-label req">监测范围</span><div class="rule-radio-row" role="radiogroup" aria-label="监测范围"><label><input type="radio" name="ruleScope" value="iccid" checked>指定ICCID</label><label><input type="radio" name="ruleScope" value="range">指定范围</label></div></div>
+          <div class="rule-notification-base-row hidden" id="ruleScopeEntryModeRow"><span class="rule-field-label req">录入方式</span><div class="rule-radio-row" role="radiogroup" aria-label="ICCID录入方式"><label><input type="radio" name="ruleScopeEntry" value="file" checked>文件导入</label><label><input type="radio" name="ruleScopeEntry" value="manual">手动录入</label></div></div>
+          <div class="rule-field rule-field-wide rule-scope-file-row hidden" id="ruleScopeUploadRow"><span class="rule-field-label req">选择文件</span><div class="rule-scope-file-content"><div class="rule-scope-file-actions"><label class="rule-upload-btn">上传ICCID文件<input type="file" id="ruleScopeUpload" accept=".txt,.csv,.xlsx,.xls"></label><button type="button" class="rule-upload-template-btn" id="ruleScopeTemplateDownloadBtn">下载模板</button></div><div class="help" id="ruleScopeUploadName">支持 TXT、CSV、XLSX、XLS 文件</div><div class="field-error"></div></div></div>
+          <label class="rule-field rule-field-wide rule-scope-manual-row hidden" id="ruleScopeManualRow"><span class="rule-field-label req">ICCID</span><div><textarea class="textarea rule-scope-manual-input" id="ruleScopeManualInput" rows="3" placeholder="请输入ICCID，多个ICCID请用换行或逗号分隔"></textarea><div class="help" id="ruleScopeManualHelp">支持录入多个ICCID，请使用换行、逗号或空格分隔</div><div class="field-error" id="ruleScopeManualError"></div></div></label>
+          <div class="rule-form-grid rule-scope-grid">
           <label class="rule-field"><span class="rule-field-label req">商户</span>${selectMarkup('ruleCreateMerchant','请选择商户',['全部','上海智联商贸','杭州云旅科技','苏州星河酒店','深圳远帆科技'])}</label>
           <label class="rule-field"><span class="rule-field-label req">卡组</span>${selectMarkup('ruleCreateCardGroup','请选择卡组',['全部','华东移动优先卡组','旅游渠道三网卡组','酒店轻量卡组','物流高稳卡组','代理体验卡组'])}</label>
           <label class="rule-field"><span class="rule-field-label req">供应商</span>${selectMarkup('ruleCreateSupplier','请选择供应商',['全部','中国移动','中国联通','中国电信'])}</label>
@@ -188,6 +194,9 @@
     .rule-center-filter{padding-top:0}
     .rule-center-filter .filter-actions{grid-column:1 / -1}
     .rule-center-actions{margin-bottom:10px}
+    #ruleTriggerRecordsPage #ruleTriggerFilter{padding-bottom:0;margin-bottom:16px}
+    #ruleTriggerRecordsPage #ruleTriggerFilter .filter-actions{height:32px}
+    #ruleTriggerRecordsPage .rule-center-actions{margin-bottom:16px}
     .rule-table-wrap{min-height:0;overflow:auto}
     .rule-table{min-width:1180px;table-layout:auto}
     .rule-table th,.rule-table td{white-space:nowrap;font-size:12px}
@@ -356,14 +365,20 @@
     .rule-radio-row input,.rule-check-row input{accent-color:#1687e8}
     .rule-radio-row.rule-invalid,.rule-check-row.rule-invalid{border-radius:4px;box-shadow:0 0 0 2px rgba(240,68,56,.08)}
     .rule-scope-caption{margin:18px 0 12px;font-size:12px;color:#667085}
-    .rule-upload-row{display:flex;align-items:center;gap:10px;margin:14px 0 0 140px;color:#9aa4b2;font-size:12px}
-    .rule-upload-row > span{white-space:nowrap;flex:none}
-    .rule-upload-row.rule-invalid .rule-upload-btn{border-color:#f04438;color:#f04438}
+    .rule-scope-file-content{min-width:0}
+    .rule-scope-file-actions{display:flex;align-items:center;gap:12px;min-height:32px}
+    .rule-scope-file-row.rule-invalid .rule-upload-btn{border-color:#f04438;color:#f04438}
     .rule-upload-btn{display:inline-flex;align-items:center;height:32px;padding:0 16px;border:1px solid #d9dee8;border-radius:4px;color:#1687e8;background:#fff;cursor:pointer}
     .rule-upload-btn:hover{border-color:#1687e8;background:#f4f9ff}
     .rule-upload-btn input{display:none}
     .rule-upload-template-btn{height:32px;padding:0;border:0;background:transparent;color:#1687e8;font:inherit;cursor:pointer;white-space:nowrap}
     .rule-upload-template-btn:hover{text-decoration:underline;color:#0b6ed0}
+    .rule-scope-file-content .help{margin-top:6px}
+    .rule-scope-manual-row{align-items:start}
+    .rule-scope-manual-row .rule-field-label{line-height:20px}
+    .rule-scope-manual-input{width:100%;max-width:560px;min-height:76px;resize:vertical;line-height:20px}
+    .rule-scope-manual-row .help{margin-top:6px}
+    .rule-scope-manual-row .field-error{margin-top:4px;color:#f04438;font-size:12px;line-height:18px}
     .rule-scope-grid.is-disabled{opacity:.52}
     .rule-scope-grid.is-disabled .custom-select{pointer-events:none;background:#f7f8fa}
     .rule-invalid{border-color:#f04438!important;box-shadow:0 0 0 2px rgba(240,68,56,.08)}
@@ -410,7 +425,7 @@
     .rule-create-actions{height:68px;display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:0 24px;border-top:1px solid #edf0f5}
     .rule-create-actions .btn{align-self:center;min-width:88px}
     @media(max-width:1000px){.rule-scope-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rule-form-grid{gap:14px 20px}}
-    @media(max-width:720px){.rule-form-grid,.rule-scope-grid,.rule-notify-grid,.rule-notification-card-grid,.rule-detail-grid{grid-template-columns:1fr}.rule-field-wide{grid-column:auto}.rule-field,.rule-notification-base-row,.rule-detail-item,.rule-individual-template-row{grid-template-columns:110px minmax(0,1fr)}.rule-name-field{grid-column:auto}.rule-notification-target-list-row{padding-left:122px}.rule-upload-row{margin-left:122px;flex-wrap:wrap}.rule-effective-control{margin-left:0}.rule-effective-input{width:220px!important}.rule-threshold-reminders,.rule-interval-reminder{padding-left:0}.rule-threshold-row{align-items:flex-start;flex-wrap:wrap}.rule-threshold-value{width:calc(100% - 10px)}}
+    @media(max-width:720px){.rule-form-grid,.rule-scope-grid,.rule-notify-grid,.rule-notification-card-grid,.rule-detail-grid{grid-template-columns:1fr}.rule-field-wide{grid-column:auto}.rule-field,.rule-notification-base-row,.rule-detail-item,.rule-individual-template-row{grid-template-columns:110px minmax(0,1fr)}.rule-name-field{grid-column:auto}.rule-notification-target-list-row{padding-left:122px}.rule-scope-file-actions{flex-wrap:wrap}.rule-effective-control{margin-left:0}.rule-effective-input{width:220px!important}.rule-threshold-reminders,.rule-interval-reminder{padding-left:0}.rule-threshold-row{align-items:flex-start;flex-wrap:wrap}.rule-threshold-value{width:calc(100% - 10px)}}
   `;
 
   function closeRuleSelects(except){
@@ -578,6 +593,16 @@
     const valueMarkup = label === '规则类型' ? ruleTypeHintMarkup(display) : escapeHtml(display);
     return `<div class="rule-field${extraClass ? ` ${extraClass}` : ''}"><span class="rule-field-label">${escapeHtml(label)}</span><div class="rule-detail-plain-value${triggerClass}">${valueMarkup}</div></div>`;
   }
+  function ruleScopeIccidDetailMarkup(row){
+    const mode = row.scopeEntryMode === 'manual' ? 'manual' : 'file';
+    const iccids = Array.isArray(row.scopeIccids) ? row.scopeIccids : [];
+    const entryDetail = ruleDetailReadonlyField('录入方式',mode === 'manual' ? '手动录入' : '文件导入');
+    if(mode === 'manual'){
+      return `${entryDetail}${ruleDetailReadonlyField('ICCID',iccids.length ? iccids.join('、') : (row.scopeManualValue || '--'),'rule-field-wide')}`;
+    }
+    const filename = row.scopeFileName || '未上传ICCID文件';
+    return `${entryDetail}<div class="rule-field rule-field-wide"><span class="rule-field-label">ICCID文件</span><div class="rule-detail-plain-value rule-detail-file-name" title="${escapeHtml(filename)}">${escapeHtml(filename)}${iccids.length ? `（共${iccids.length}个ICCID）` : ''}</div></div>`;
+  }
   function ruleDetailRadioMarkup(options,selected){
     const selectedOption = options.find(option => option.value === selected) || (selected && options.find(option => option.value === 'scheduled'));
     return `<div class="rule-detail-plain-value">${escapeHtml(selectedOption?.label || '--')}</div>`;
@@ -661,7 +686,7 @@
       </div></section>
       <section class="rule-form-section"><div class="rule-form-title">监测范围</div>
         ${ruleDetailReadonlyField('监测范围',scopeMode === 'range' ? '指定范围' : '指定ICCID')}
-        ${scopeMode === 'iccid' ? `<div class="rule-field rule-field-wide"><span class="rule-field-label">ICCID文件</span><div class="rule-detail-plain-value rule-detail-file-name" title="${escapeHtml(row.scopeFileName || '未上传ICCID文件')}">${escapeHtml(row.scopeFileName || '未上传ICCID文件')}${row.scopeIccids && row.scopeIccids.length ? `（共${row.scopeIccids.length}个ICCID）` : ''}</div></div>` : ''}
+        ${scopeMode === 'iccid' ? ruleScopeIccidDetailMarkup(row) : ''}
         ${scopeMode === 'range' ? `<div class="rule-form-grid rule-scope-grid">
           ${ruleDetailReadonlyField('商户',row.merchant || '全部')}
           ${ruleDetailReadonlyField('卡组',row.cardGroup || '全部')}
@@ -838,7 +863,7 @@
     ['ruleCreateName','ruleCreateRemark','ruleCreateEffectiveDate','ruleNotificationTimeInput'].forEach(id => {const input=document.getElementById(id);if(input){input.value='';}});
     ['ruleCreateType','ruleCreateSupplier','ruleCreateMerchant','ruleCreateCardGroup','ruleCreateOperator','ruleCreateReminder'].forEach(resetRuleSelect);
     document.querySelectorAll('#ruleCreatePage input[type="radio"]').forEach(input => {
-      const defaultValue = input.name === 'ruleScope' ? 'iccid' : input.name === 'ruleEffective' ? 'now' : input.name === 'ruleFollowUp' ? 'no' : input.name === 'ruleRestore' ? 'yes' : input.name === 'ruleNotificationConfigMode' ? 'shared' : input.name === 'ruleNotificationTime' ? 'immediate' : '';
+      const defaultValue = input.name === 'ruleScope' ? 'iccid' : input.name === 'ruleScopeEntry' ? 'file' : input.name === 'ruleEffective' ? 'now' : input.name === 'ruleFollowUp' ? 'no' : input.name === 'ruleRestore' ? 'yes' : input.name === 'ruleNotificationConfigMode' ? 'shared' : input.name === 'ruleNotificationTime' ? 'immediate' : '';
       input.checked = input.value === defaultValue;
     });
     document.querySelectorAll('#ruleCreatePage input[type="checkbox"]').forEach((input,index) => {input.checked = index === 0 || index === 3;});
@@ -852,10 +877,18 @@
     ruleIntervalReminderValue = '';
     ruleScopeFileName = '';
     ruleScopeIccids = [];
+    ruleScopeEntryMode = 'file';
+    ruleScopeManualValue = '';
     const scopeUpload = document.getElementById('ruleScopeUpload');
     if(scopeUpload){scopeUpload.value = '';}
     const scopeUploadName = document.getElementById('ruleScopeUploadName');
     if(scopeUploadName){scopeUploadName.textContent = '支持 TXT、CSV、XLSX、XLS 文件';}
+    const scopeManualInput = document.getElementById('ruleScopeManualInput');
+    if(scopeManualInput){scopeManualInput.value = '';scopeManualInput.classList.remove('rule-invalid');scopeManualInput.removeAttribute('aria-invalid');}
+    const scopeManualError = document.getElementById('ruleScopeManualError');
+    if(scopeManualError){scopeManualError.textContent = '';}
+    const scopeManualHelp = document.getElementById('ruleScopeManualHelp');
+    if(scopeManualHelp){scopeManualHelp.textContent = '支持录入多个ICCID，请使用换行、逗号或空格分隔';}
     renderRuleNotificationCards();
     renderSharedRuleNotificationTargets();
     document.querySelectorAll('#ruleCreatePage input.input').forEach(syncRuleInputClear);
@@ -871,6 +904,7 @@
     syncEffectiveMode('now');
     syncNotificationTimeMode('immediate');
     syncRuleNotificationConfigMode('shared');
+    syncScopeEntryMode('file');
     syncScopeMode('iccid');
   }
   function syncRuleTypeHelp(value){
@@ -1228,10 +1262,14 @@
   }
   function syncScopeMode(mode){
     const upload = document.getElementById('ruleScopeUploadRow');
+    const entryMode = document.getElementById('ruleScopeEntryModeRow');
     const scopeGrid = document.querySelector('.rule-scope-grid');
     const uploadVisible = mode === 'iccid';
     const fieldsEnabled = mode === 'range';
-    if(upload){upload.classList.toggle('hidden',!uploadVisible);}
+    if(entryMode){entryMode.classList.toggle('hidden',!uploadVisible);}
+    if(upload){upload.classList.toggle('hidden',!uploadVisible || ruleScopeEntryMode !== 'file');}
+    const manual = document.getElementById('ruleScopeManualRow');
+    if(manual){manual.classList.toggle('hidden',!uploadVisible || ruleScopeEntryMode !== 'manual');}
     if(scopeGrid){
       scopeGrid.classList.toggle('hidden',!fieldsEnabled);
       scopeGrid.classList.toggle('is-disabled',!fieldsEnabled);
@@ -1245,6 +1283,34 @@
         if(select && !select.dataset.value){setRuleSelectValue(select,'全部','全部');}
       });
     }
+  }
+  function parseRuleScopeIccids(value){
+    const tokens = String(value || '').split(/[\s,，;；、]+/).map(item => item.trim()).filter(Boolean);
+    const values = Array.from(new Set(tokens.filter(item => /^\d{10,22}$/.test(item))));
+    const invalid = tokens.filter(item => !/^\d{10,22}$/.test(item));
+    return {values,invalid};
+  }
+  function updateRuleScopeManualState(){
+    const input = document.getElementById('ruleScopeManualInput');
+    const help = document.getElementById('ruleScopeManualHelp');
+    const error = document.getElementById('ruleScopeManualError');
+    ruleScopeManualValue = input?.value || '';
+    const parsed = parseRuleScopeIccids(ruleScopeManualValue);
+    if(help){help.textContent = parsed.values.length ? `已识别 ${parsed.values.length} 个ICCID；支持使用换行、逗号或空格分隔` : '支持录入多个ICCID，请使用换行、逗号或空格分隔';}
+    if(error){error.textContent = '';}
+    if(input){input.classList.remove('rule-invalid');input.removeAttribute('aria-invalid');}
+  }
+  function syncScopeEntryMode(mode){
+    ruleScopeEntryMode = mode === 'manual' ? 'manual' : 'file';
+    const fileRadio = document.querySelector('#ruleCreatePage input[name="ruleScopeEntry"][value="file"]');
+    const manualRadio = document.querySelector('#ruleCreatePage input[name="ruleScopeEntry"][value="manual"]');
+    if(fileRadio){fileRadio.checked = ruleScopeEntryMode === 'file';}
+    if(manualRadio){manualRadio.checked = ruleScopeEntryMode === 'manual';}
+    const upload = document.getElementById('ruleScopeUploadRow');
+    const manual = document.getElementById('ruleScopeManualRow');
+    const iccidSelected = document.querySelector('#ruleCreatePage input[name="ruleScope"]:checked')?.value === 'iccid';
+    if(upload){upload.classList.toggle('hidden',!iccidSelected || ruleScopeEntryMode !== 'file');}
+    if(manual){manual.classList.toggle('hidden',!iccidSelected || ruleScopeEntryMode !== 'manual');}
   }
   function updateRuleScopeUploadName(){
     const node = document.getElementById('ruleScopeUploadName');
@@ -1296,7 +1362,15 @@
   function validateRuleRequiredFields(scopeMode,reminder,effectiveMode){
     if(!selectValue('ruleCreateType')){return markRuleInvalid(document.getElementById('ruleCreateType'));}
     if(!textValue('ruleCreateName')){return markRuleInvalid(document.getElementById('ruleCreateName'));}
-    if(scopeMode === 'iccid' && !ruleScopeFileName){return markRuleInvalid(document.getElementById('ruleScopeUploadRow'));}
+    if(scopeMode === 'iccid' && ruleScopeEntryMode === 'file' && !ruleScopeFileName){return markRuleInvalid(document.getElementById('ruleScopeUploadRow'));}
+    if(scopeMode === 'iccid' && ruleScopeEntryMode === 'manual'){
+      const parsed = parseRuleScopeIccids(textValue('ruleScopeManualInput'));
+      if(!parsed.values.length || parsed.invalid.length){
+        const error = document.getElementById('ruleScopeManualError');
+        if(error){error.textContent = parsed.invalid.length ? '存在格式不正确的ICCID，请检查后重新录入。' : '请输入至少一个有效ICCID。';}
+        return markRuleInvalid(document.getElementById('ruleScopeManualInput'));
+      }
+    }
     if(scopeMode === 'range'){
       for(const id of ruleScopeFieldIds){
         if(!selectValue(id)){return markRuleInvalid(document.getElementById(id));}
@@ -1360,7 +1434,8 @@
     const restore = document.querySelector('#ruleCreatePage input[name="ruleRestore"]:checked')?.value === 'no' ? '不恢复' : '次月恢复流量数据服务';
     const now = new Date();
     const immediateDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-    ruleRecords.unshift({id:`RULE${new Date().toISOString().slice(0,10).replace(/-/g,'')}${String(ruleRecords.length+1).padStart(4,'0')}`,name,type,remark:textValue('ruleCreateRemark'),status:'待生效',scopeMode,scopeLabel,scopeFileName:scopeMode === 'iccid' ? ruleScopeFileName : '',scopeIccids:scopeMode === 'iccid' ? ruleScopeIccids.slice() : [],supplier,merchant,cardGroup,operatorScope,reminder,intervalReminder:reminder === '间隔提醒' ? ruleIntervalReminderValue : '',followUp,restore,effectiveAt:effectiveMonth ? `${effectiveMonth}-01` : immediateDate,thresholds:reminder === '阈值提醒' ? ruleThresholdReminderValues.slice() : [],notificationTargetIds:ruleSharedNotificationTargets.slice(),notificationConfigMode:ruleNotificationConfigMode,notificationObjectSettings:ruleNotificationConfigMode === 'individual' ? JSON.parse(JSON.stringify(ruleIndividualNotificationSettings)) : {},notificationChannels:ruleNotificationConfigMode === 'shared' ? selectedRuleNotificationTypes() : [],notificationChannelSelections:ruleNotificationConfigMode === 'shared' ? {...ruleNotificationChannelSelections} : {},notificationTime:ruleNotificationConfigMode === 'shared' && ruleNotificationTime === 'scheduled' ? textValue('ruleNotificationTimeInput') : 'immediate',createdAt:'2026-09-19 10:00:00',updatedAt:'2026-09-19 10:00:00',operator:'当前用户'});
+    const manualIccids = ruleScopeEntryMode === 'manual' ? parseRuleScopeIccids(textValue('ruleScopeManualInput')).values : [];
+    ruleRecords.unshift({id:`RULE${new Date().toISOString().slice(0,10).replace(/-/g,'')}${String(ruleRecords.length+1).padStart(4,'0')}`,name,type,remark:textValue('ruleCreateRemark'),status:'待生效',scopeMode,scopeLabel,scopeEntryMode:scopeMode === 'iccid' ? ruleScopeEntryMode : '',scopeManualValue:scopeMode === 'iccid' && ruleScopeEntryMode === 'manual' ? ruleScopeManualValue.trim() : '',scopeFileName:scopeMode === 'iccid' && ruleScopeEntryMode === 'file' ? ruleScopeFileName : '',scopeIccids:scopeMode === 'iccid' ? (ruleScopeEntryMode === 'manual' ? manualIccids : ruleScopeIccids.slice()) : [],supplier,merchant,cardGroup,operatorScope,reminder,intervalReminder:reminder === '间隔提醒' ? ruleIntervalReminderValue : '',followUp,restore,effectiveAt:effectiveMonth ? `${effectiveMonth}-01` : immediateDate,thresholds:reminder === '阈值提醒' ? ruleThresholdReminderValues.slice() : [],notificationTargetIds:ruleSharedNotificationTargets.slice(),notificationConfigMode:ruleNotificationConfigMode,notificationObjectSettings:ruleNotificationConfigMode === 'individual' ? JSON.parse(JSON.stringify(ruleIndividualNotificationSettings)) : {},notificationChannels:ruleNotificationConfigMode === 'shared' ? selectedRuleNotificationTypes() : [],notificationChannelSelections:ruleNotificationConfigMode === 'shared' ? {...ruleNotificationChannelSelections} : {},notificationTime:ruleNotificationConfigMode === 'shared' && ruleNotificationTime === 'scheduled' ? textValue('ruleNotificationTimeInput') : 'immediate',createdAt:'2026-09-19 10:00:00',updatedAt:'2026-09-19 10:00:00',operator:'当前用户'});
     resetCreatePage();
     if(typeof window.showPage === 'function'){window.showPage('ruleList');}
     renderRuleList();
@@ -1407,8 +1482,10 @@
     document.getElementById('ruleCreateCancelBtn')?.addEventListener('click',()=>{resetCreatePage();if(typeof window.showPage === 'function'){window.showPage('ruleList');}});
     document.getElementById('ruleCreateSaveBtn')?.addEventListener('click',saveRule);
     document.querySelectorAll('#ruleCreatePage input[name="ruleScope"]').forEach(input => input.addEventListener('change',()=>syncScopeMode(input.value)));
+    document.querySelectorAll('#ruleCreatePage input[name="ruleScopeEntry"]').forEach(input => input.addEventListener('change',()=>syncScopeEntryMode(input.value)));
     document.getElementById('ruleScopeUpload')?.addEventListener('change',event=>handleRuleScopeFileChange(event.target.files?.[0]));
     document.getElementById('ruleScopeTemplateDownloadBtn')?.addEventListener('click',downloadRuleScopeTemplate);
+    document.getElementById('ruleScopeManualInput')?.addEventListener('input',updateRuleScopeManualState);
     document.querySelectorAll('#ruleCreatePage input[name="ruleEffective"]').forEach(input => input.addEventListener('change',()=>syncEffectiveMode(input.value)));
     document.querySelectorAll('#ruleCreatePage input[name="ruleFollowUp"]').forEach(input => input.addEventListener('change',()=>syncFollowUpMode(input.value)));
     document.querySelectorAll('#ruleCreatePage input[name="ruleNotificationTime"]').forEach(input => input.addEventListener('change',()=>syncNotificationTimeMode(input.value)));

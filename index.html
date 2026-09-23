@@ -22,8 +22,13 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .message-bell-icon{position:relative;width:15px;height:16px;border:1.6px solid currentColor;border-radius:9px 9px 4px 4px;border-bottom:0}
 .message-bell-icon:before{content:"";position:absolute;left:-3px;right:-3px;bottom:0;height:1.6px;background:currentColor;border-radius:2px}
 .message-bell-icon:after{content:"";position:absolute;left:5px;bottom:-5px;width:4px;height:4px;border:1.4px solid currentColor;border-radius:50%;background:#1687e8}
+.message-notification.has-unread .message-bell-icon{animation:message-bell-wiggle 1.8s ease-in-out infinite;transform-origin:50% 10%}
+@keyframes message-bell-wiggle{0%,72%,100%{transform:rotate(0)}76%{transform:rotate(-14deg)}80%{transform:rotate(12deg)}84%{transform:rotate(-9deg)}88%{transform:rotate(6deg)}92%{transform:rotate(-3deg)}}
 .message-badge{position:absolute;right:-2px;top:-3px;min-width:15px;height:15px;padding:0 4px;border-radius:8px;background:#f04438;color:#fff;font-size:10px;line-height:15px;text-align:center}
 .message-badge.hidden{display:none}
+.message-notification-prompt{position:absolute;right:calc(100% + 10px);top:50%;z-index:1201;width:max-content;max-width:min(280px,calc(100vw - 32px));padding:8px 11px;border:1px solid #cfe3fb;border-radius:4px;background:#fff;color:#3e5268;font-size:12px;line-height:18px;white-space:normal;box-shadow:0 4px 14px rgba(17,24,39,.12);transform:translateY(-50%)}
+.message-notification-prompt:after{content:"";position:absolute;right:-5px;top:50%;width:8px;height:8px;border-top:1px solid #cfe3fb;border-right:1px solid #cfe3fb;background:#fff;transform:translateY(-50%) rotate(45deg)}
+.message-notification-prompt.hidden,.message-notification.open .message-notification-prompt{display:none}
 .message-dropdown{display:none;position:absolute;right:0;top:calc(100% + 8px);width:360px;background:#fff;border:1px solid #e1e7ef;border-radius:4px;box-shadow:0 8px 22px rgba(17,24,39,.12);z-index:1200;overflow:hidden;color:#30343b}
 .message-notification.open .message-dropdown{display:block}
 .message-dropdown-head{height:44px;padding:0 14px;border-bottom:1px solid #edf0f5;display:flex;align-items:center;justify-content:space-between}
@@ -40,7 +45,8 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .message-item.unread .message-item-title{color:#1687e8}
 .message-dropdown-footer{height:40px;border-top:1px solid #edf0f5;display:flex;align-items:center;justify-content:center}
 .message-dropdown-footer .text-action{font-size:12px}
-@media(max-width:760px){.message-dropdown{right:-8px;width:min(360px,calc(100vw - 32px))}}
+@media(max-width:760px){.message-dropdown{right:-8px;width:min(360px,calc(100vw - 32px))}.message-notification-prompt{right:-8px;top:calc(100% + 8px);transform:none}.message-notification-prompt:after{right:18px;top:-5px;transform:rotate(-45deg)}}
+@media(prefers-reduced-motion:reduce){.message-notification.has-unread .message-bell-icon{animation:none}}
 .layout{display:flex;height:calc(100vh - 66px);min-height:0;overflow:hidden}
 .side{width:226px;height:100%;background:#fff;border-right:1px solid #e5eaf1;padding-top:10px;flex-shrink:0;color:#4d5664;line-height:1.5;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
 .menu{height:47px;padding:0 17px 0 19px;color:#4d5664;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;font-weight:400;line-height:inherit;border-right:3px solid transparent}
@@ -64,6 +70,11 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .tab{min-width:92px;height:34px;line-height:34px;text-align:center;border-right:1px solid #edf0f5;color:#5d6675;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;cursor:pointer}.tab.active{color:#1687e8;background:#f9fbff;border-bottom:2px solid #1687e8}.tab-close{color:#8b95a5;font-size:14px;line-height:1;cursor:pointer}.tab-close:hover{color:#1687e8}
 .content{min-height:calc(100vh - 108px);padding:16px;display:flex;flex-direction:column;background:#fff}
 .inner-tabs{height:34px;border-bottom:1px solid #e6ebf2;margin-bottom:24px}.inner-tab{display:inline-block;height:34px;line-height:34px;margin-right:28px}.inner-tab.active{color:#1687e8;border-bottom:2px solid #1687e8}
+#notificationRecordPage>.notification-record-scope-tabs{display:inline-flex;align-self:flex-start;align-items:center;gap:2px;width:max-content;height:auto;padding:3px;margin:0 0 16px;border:1px solid #e6ebf2;border-radius:4px;background:#f5f7fa}
+#notificationRecordPage>.notification-record-scope-tabs .inner-tab{display:inline-flex;align-items:center;justify-content:center;min-width:68px;height:28px;line-height:28px;margin:0;padding:0 12px;border:1px solid transparent;border-radius:3px;color:#667085;font-size:12px;cursor:pointer;transition:color .16s ease,background-color .16s ease,border-color .16s ease}
+#notificationRecordPage>.notification-record-scope-tabs .inner-tab:hover:not(.active){color:#1687e8;background:#edf4fc}
+#notificationRecordPage>.notification-record-scope-tabs .inner-tab.active{color:#1687e8;background:#fff;border-color:#d7e8fa;box-shadow:0 1px 2px rgba(22,135,232,.08)}
+#notificationRecordPage>.notification-record-scope-tabs .inner-tab:focus-visible{outline:2px solid rgba(22,135,232,.35);outline-offset:1px}
 .strategy-page-tabs{height:42px;background:#fff;border-bottom:1px solid #e6ebf2;display:flex;align-items:flex-end;gap:32px;padding:0 18px;margin-bottom:16px;flex:none}
 .strategy-page-tab{height:42px;border:0;border-bottom:2px solid transparent;background:transparent;color:#4d5664;font-size:12px;font-weight:500;padding:0 2px 11px;cursor:pointer;white-space:nowrap;transition:color .16s ease,border-color .16s ease}
 .strategy-page-tab:hover{color:var(--theme-color)}
@@ -270,6 +281,9 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .batch-task-row-highlight td:first-child{box-shadow:inset 3px 0 0 #1687e8,inset 0 2px 0 #b8d4ff,inset 0 -2px 0 #b8d4ff}
 .notification-record-row-highlight td{background:#eef6ff!important;box-shadow:inset 0 2px 0 #b8d4ff,inset 0 -2px 0 #b8d4ff}
 .notification-record-row-highlight td:first-child{box-shadow:inset 3px 0 0 #1687e8,inset 0 2px 0 #b8d4ff,inset 0 -2px 0 #b8d4ff}
+.notification-record-row-unread td{background:#f4f8ff!important}
+.notification-record-row-unread td:first-child{box-shadow:inset 3px 0 0 #1687e8}
+.notification-record-unread-dot{display:inline-block;width:6px;height:6px;margin-right:7px;border-radius:50%;background:#1687e8;vertical-align:middle}
 .batch-task-detail-status{font-weight:600}
 .batch-task-detail-status.success{color:#16a34a}
 .batch-task-detail-status.fail{color:#f04438}
@@ -1042,7 +1056,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 <link rel="stylesheet" href="assets/clipboard-smart-search.css">
 </head>
 <body>
-<div class="topbar"><div class="logo">无线宽带运营平台</div><div id="clipboardSmartSearch" class="clipboard-smart-search"></div><div class="topbar-actions"><div class="message-notification" id="messageNotification"><button class="message-notification-trigger" type="button" aria-label="消息通知" aria-expanded="false" onclick="toggleMessageNotification(event)"><span class="message-bell-icon" aria-hidden="true"></span><span class="message-badge" id="messageNotificationBadge"></span></button><div class="message-dropdown" id="messageNotificationDropdown" role="dialog" aria-label="消息通知列表"><div class="message-dropdown-head"><strong>消息通知</strong><span id="messageNotificationCount"></span></div><div class="message-list" id="messageNotificationList"></div><div class="message-dropdown-footer"><button type="button" class="text-action" onclick="markAllMessagesRead()">全部标记为已读</button></div></div></div><div class="user">ifan⌄</div></div></div>
+<div class="topbar"><div class="logo">无线宽带运营平台</div><div id="clipboardSmartSearch" class="clipboard-smart-search"></div><div class="topbar-actions"><div class="message-notification" id="messageNotification"><button class="message-notification-trigger" type="button" aria-label="消息通知" aria-expanded="false" onclick="toggleMessageNotification(event)"><span class="message-bell-icon" aria-hidden="true"></span><span class="message-badge" id="messageNotificationBadge"></span></button><div class="message-notification-prompt hidden" id="messageNotificationPrompt" role="status" aria-live="polite"></div><div class="message-dropdown" id="messageNotificationDropdown" role="dialog" aria-label="消息通知列表"><div class="message-dropdown-head"><strong>消息通知</strong><span id="messageNotificationCount"></span></div><div class="message-list" id="messageNotificationList"></div><div class="message-dropdown-footer"><button type="button" class="text-action" onclick="markAllMessagesRead()">全部标记为已读</button></div></div></div><div class="user">ifan⌄</div></div></div>
 <div class="layout">
   <aside class="side" id="sideMenu">
     <div class="menu home-menu" id="menuHome" onclick="showPage('home')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 11.5 12 4l8 7.5M6.5 10v9.5h11V10M10 19.5V15h4v4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">首页</span></div>
@@ -2164,6 +2178,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 
     <section id="notificationRecordPage" class="content hidden">
       <div class="notification-filter">
+        <input class="notification-input" id="notificationSnapshotRecordIdInput" placeholder="通知记录ID" aria-label="通知记录ID" oninput="searchNotificationRecordSnapshots()">
         <input class="notification-input" id="notificationSnapshotRuleIdInput" placeholder="触发规则ID" oninput="searchNotificationRecordSnapshots()">
         <input class="notification-input" id="notificationSnapshotRuleNameInput" placeholder="触发规则名称" oninput="searchNotificationRecordSnapshots()">
         <div class="select custom-select notification-select" id="notificationSnapshotStatusFilter" data-value=""><span class="select-value">通知状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="发送中">发送中</div><div class="dropdown-option" data-value="全部成功">全部成功</div><div class="dropdown-option" data-value="部分成功">部分成功</div><div class="dropdown-option" data-value="全部失败">全部失败</div></div></div>
@@ -2173,7 +2188,11 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         </div>
         <div class="filter-actions new-row"><button class="btn line" onclick="searchNotificationRecordSnapshots()">搜索</button><button class="btn gray" onclick="resetNotificationRecordSnapshots()">重置</button></div>
       </div>
-      <div class="table-card" style="margin-top:10px">
+      <div class="inner-tabs notification-record-scope-tabs" role="tablist" aria-label="通知记录范围">
+        <span class="inner-tab active" id="notificationRecordRelatedTab" role="tab" aria-selected="true" tabindex="0" onclick="switchNotificationRecordScope('related')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchNotificationRecordScope('related')}">与我相关</span>
+        <span class="inner-tab" id="notificationRecordAllTab" role="tab" aria-selected="false" tabindex="0" onclick="switchNotificationRecordScope('all')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchNotificationRecordScope('all')}">全部</span>
+      </div>
+      <div class="table-card" style="margin-top:0">
         <table class="notification-table">
           <thead><tr><th>通知记录ID</th><th>触发规则ID</th><th>触发规则名称</th><th>触发时间</th><th>通知消息总数</th><th>成功数</th><th>失败数</th><th>通知状态</th><th>通知完成时间</th><th>操作</th></tr></thead>
           <tbody id="notificationRecordRows"></tbody>
@@ -3339,6 +3358,9 @@ const notificationRecordData = [
   {id:'NREC-202609180002',ruleId:'RULE-TASK-002',ruleName:'批量任务执行完成通知',triggeredAt:'2026-09-18 09:35:22',channels:['站内通知'],noticeCount:1,successCount:1,failureCount:0,status:'全部成功',completedAt:'2026-09-18 09:35:22',detail:{contents:[{channel:'站内通知',channelName:'站内通知',content:'任务批量卡状态查询已执行完成，成功86条，失败0条。'}],people:[{name:'王五',phone:'139****5678',email:'',account:'wangwu',merchant:'苏州星河酒店',role:'财务专员',channel:'站内通知',status:'成功',reason:'',time:'2026-09-18 09:35:22'}]}},
   {id:'NREC-202609180003',ruleId:'RULE-REFUND-003',ruleName:'退款处理完成通知',triggeredAt:'2026-09-18 09:30:16',channels:['邮箱'],noticeCount:1,successCount:0,failureCount:0,status:'发送中',completedAt:'',detail:{contents:[{channel:'邮箱',channelName:'系统通知邮箱',content:'退款处理任务RF202609180006已完成，成功0笔，失败1笔。'}],people:[{name:'赵六',phone:'137****2468',email:'zhaoliu@example.com',account:'zhaoliu',merchant:'广州启明商贸',role:'运营主管',channel:'邮箱',status:'成功',reason:'',time:'2026-09-18 09:30:17'}]}}
 ];
+// 原型数据标记当前账号相关的通知记录，供“与我相关”页签筛选。
+notificationRecordData[0].relatedToCurrentUser = true;
+notificationRecordData[1].relatedToCurrentUser = true;
 window.notificationRecordData = notificationRecordData;
 let currentNotificationChannelType = 'email';
 let currentNotificationChannelModalMode = 'add';
@@ -3357,8 +3379,21 @@ function renderMessageNotifications(){
   const list = document.getElementById('messageNotificationList');
   const badge = document.getElementById('messageNotificationBadge');
   const count = document.getElementById('messageNotificationCount');
+  const root = document.getElementById('messageNotification');
+  const trigger = root ? root.querySelector('.message-notification-trigger') : null;
+  const prompt = document.getElementById('messageNotificationPrompt');
   if(!list){return}
   const unreadCount = topbarMessages.filter(message => message.unread).length;
+  if(root){root.classList.toggle('has-unread',unreadCount > 0);}
+  if(trigger){
+    const label = unreadCount ? `消息通知，您有${unreadCount}条待处理的消息，请尽快查看` : '消息通知';
+    trigger.setAttribute('aria-label',label);
+    trigger.removeAttribute('title');
+  }
+  if(prompt){
+    prompt.textContent = unreadCount ? `您有${unreadCount}条待处理的消息，请尽快查看～` : '';
+    prompt.classList.toggle('hidden',unreadCount === 0);
+  }
   if(badge){
     badge.textContent = unreadCount > 99 ? '99+' : String(unreadCount);
     badge.classList.toggle('hidden', unreadCount === 0);
@@ -3391,6 +3426,12 @@ function markMessageRead(id){
   if(message){message.unread = false}
   renderMessageNotifications();
 }
+function markNotificationRecordViewed(recordId){
+  const message = topbarMessages.find(item => item.recordId === recordId);
+  if(!message || !message.unread){return}
+  markMessageRead(message.id);
+  searchNotificationRecordSnapshots();
+}
 function openMessageTaskPage(id){
   const message = topbarMessages.find(item => item.id === id);
   markMessageRead(id);
@@ -3404,12 +3445,16 @@ function openMessageTaskPage(id){
 }
 function openMessageNotificationRecord(recordId){
   highlightedNotificationRecordId = recordId || '';
+  const record = notificationRecordData.find(item => item.id === recordId);
+  const recordIdInput = document.getElementById('notificationSnapshotRecordIdInput');
   const ruleId = document.getElementById('notificationSnapshotRuleIdInput');
   const ruleName = document.getElementById('notificationSnapshotRuleNameInput');
+  if(recordIdInput){recordIdInput.value = recordId || ''}
   if(ruleId){ruleId.value = ''}
   if(ruleName){ruleName.value = ''}
   resetCustomSelect('notificationSnapshotStatusFilter','通知状态');
   setUnifiedRangeValues('notificationSnapshotDate','','',false);
+  switchNotificationRecordScope(record && record.relatedToCurrentUser ? 'related' : 'all');
   showPage('notificationRecord');
   const row = document.querySelector('.notification-record-row-highlight');
   if(row){row.scrollIntoView({block:'center',behavior:'smooth'});}
@@ -3417,6 +3462,8 @@ function openMessageNotificationRecord(recordId){
 function markAllMessagesRead(){
   topbarMessages.forEach(message => {message.unread = false});
   renderMessageNotifications();
+  const recordPage = document.getElementById('notificationRecordPage');
+  if(recordPage && !recordPage.classList.contains('hidden')){searchNotificationRecordSnapshots()}
 }
 document.addEventListener('click', event => {
   const root = document.getElementById('messageNotification');
@@ -10012,6 +10059,15 @@ function notificationSnapshotStatusTag(status){
 function renderNotificationRecordPage(){
   searchNotificationRecordSnapshots();
 }
+let currentNotificationRecordScope = 'related';
+function switchNotificationRecordScope(scope){
+  currentNotificationRecordScope = scope === 'all' ? 'all' : 'related';
+  const relatedTab = document.getElementById('notificationRecordRelatedTab');
+  const allTab = document.getElementById('notificationRecordAllTab');
+  if(relatedTab){relatedTab.classList.toggle('active',currentNotificationRecordScope === 'related');relatedTab.setAttribute('aria-selected',String(currentNotificationRecordScope === 'related'))}
+  if(allTab){allTab.classList.toggle('active',currentNotificationRecordScope === 'all');allTab.setAttribute('aria-selected',String(currentNotificationRecordScope === 'all'))}
+  searchNotificationRecordSnapshots();
+}
 function notificationRecordChannelRows(item){
   const detail = item.detail || {};
   const people = detail.people || [];
@@ -10046,23 +10102,42 @@ function notificationTriggeredCardsForRecord(record){
   return linked.length ? linked : (Array.isArray(record && record.triggeredCards) ? record.triggeredCards : []);
 }
 function notificationRecordSnapshotRows(){
-  return notificationRecordData.flatMap(notificationRecordChannelRows);
+  return notificationRecordData.map(item => {
+    const people = item.detail && Array.isArray(item.detail.people) ? item.detail.people : [];
+    const isComplete = item.status !== '发送中' && item.status !== '待通知';
+    return {
+      ...item,
+      recordId:item.id,
+      baseRecordId:item.id,
+      noticeCount:people.length || Number(item.noticeCount || 0),
+      successCount:isComplete && people.length ? people.filter(person => person.status === '成功').length : Number(item.successCount || 0),
+      failureCount:isComplete && people.length ? people.filter(person => person.status !== '成功').length : Number(item.failureCount || 0)
+    };
+  });
 }
 function searchNotificationRecordSnapshots(){
+  const notificationRecordId = (document.getElementById('notificationSnapshotRecordIdInput') || {}).value || '';
   const ruleId = (document.getElementById('notificationSnapshotRuleIdInput') || {}).value || '';
   const ruleName = (document.getElementById('notificationSnapshotRuleNameInput') || {}).value || '';
   const status = getSelectValue('notificationSnapshotStatusFilter');
   const start = (document.getElementById('notificationSnapshotDateStartInput') || {}).value || '';
   const end = (document.getElementById('notificationSnapshotDateEndInput') || {}).value || '';
-  const rows = notificationRecordSnapshotRows().filter(item => (!ruleId || item.ruleId.includes(ruleId.trim())) && (!ruleName || item.ruleName.includes(ruleName.trim())) && (!status || item.status === status) && (!start || item.triggeredAt.slice(0,10) >= start) && (!end || item.triggeredAt.slice(0,10) <= end));
+  const rows = notificationRecordSnapshotRows().filter(item => (currentNotificationRecordScope === 'all' || item.relatedToCurrentUser) && (!notificationRecordId || item.id.includes(notificationRecordId.trim())) && (!ruleId || item.ruleId.includes(ruleId.trim())) && (!ruleName || item.ruleName.includes(ruleName.trim())) && (!status || item.status === status) && (!start || item.triggeredAt.slice(0,10) >= start) && (!end || item.triggeredAt.slice(0,10) <= end));
   const body = document.getElementById('notificationRecordRows');
   if(!body){return}
-  body.innerHTML = rows.length ? rows.map(item => `<tr class="${item.baseRecordId === highlightedNotificationRecordId ? 'notification-record-row-highlight' : ''}"><td>${escapeHtml(item.recordId)}</td><td>${escapeHtml(item.ruleId)}</td><td>${escapeHtml(item.ruleName)}</td><td>${escapeHtml(item.triggeredAt)}</td><td>${item.noticeCount}</td><td>${item.successCount}</td><td>${item.failureCount}</td><td>${notificationSnapshotStatusTag(item.status)}</td><td>${escapeHtml(item.completedAt || '--')}</td><td class="sticky-action"><span class="text-action" onclick="openNotificationSnapshotDetail('${escapeHtml(item.baseRecordId)}','${escapeHtml(item.channel)}','${escapeHtml(item.recordId)}')">记录详情</span></td></tr>`).join('') : '<tr><td colspan="10" class="notification-empty">暂无通知记录</td></tr>';
+  const unreadRecordIds = new Set(topbarMessages.filter(message => message.unread).map(message => message.recordId));
+  body.innerHTML = rows.length ? rows.map(item => {
+    const isUnreadRelated = Boolean(item.relatedToCurrentUser && unreadRecordIds.has(item.id));
+    const rowClasses = [item.id === highlightedNotificationRecordId ? 'notification-record-row-highlight' : '',isUnreadRelated ? 'notification-record-row-unread' : ''].filter(Boolean).join(' ');
+    const unreadMarker = isUnreadRelated ? '<span class="notification-record-unread-dot" role="img" aria-label="未查看通知记录" title="未查看"></span>' : '';
+    return `<tr class="${rowClasses}"><td>${unreadMarker}${escapeHtml(item.id)}</td><td>${escapeHtml(item.ruleId)}</td><td>${escapeHtml(item.ruleName)}</td><td>${escapeHtml(item.triggeredAt)}</td><td>${item.noticeCount}</td><td>${item.successCount}</td><td>${item.failureCount}</td><td>${notificationSnapshotStatusTag(item.status)}</td><td>${escapeHtml(item.completedAt || '--')}</td><td class="sticky-action"><span class="text-action" onclick="openNotificationSnapshotDetail('${escapeHtml(item.id)}','','${escapeHtml(item.id)}')">记录详情</span></td></tr>`;
+  }).join('') : '<tr><td colspan="10" class="notification-empty">暂无通知记录</td></tr>';
   updatePagination('notificationRecordPagination',rows.length);
 }
 function resetNotificationRecordSnapshots(){
-  const ruleId = document.getElementById('notificationSnapshotRuleIdInput'); const ruleName = document.getElementById('notificationSnapshotRuleNameInput');
-  if(ruleId){ruleId.value = ''} if(ruleName){ruleName.value = ''}
+  const recordId = document.getElementById('notificationSnapshotRecordIdInput'); const ruleId = document.getElementById('notificationSnapshotRuleIdInput'); const ruleName = document.getElementById('notificationSnapshotRuleNameInput');
+  if(recordId){recordId.value = ''} if(ruleId){ruleId.value = ''} if(ruleName){ruleName.value = ''}
+  highlightedNotificationRecordId = '';
   resetCustomSelect('notificationSnapshotStatusFilter','通知状态'); setUnifiedRangeValues('notificationSnapshotDate','','',false); searchNotificationRecordSnapshots();
 }
 function notificationTemplateIdForChannel(channel){
@@ -10086,6 +10161,7 @@ function exportNotificationDetail(id,channel,recordId){
   window.setTimeout(()=>URL.revokeObjectURL(link.href),0);
 }
 function openNotificationSnapshotDetail(id,channel,recordId){
+  markNotificationRecordViewed(id);
   const source = notificationRecordData.find(entry => entry.id === id); if(!source){return}
   const item = channel ? notificationRecordChannelRows(source).find(entry => entry.channel === channel) : source;
   const detail = item.detail || {}; const people = detail.people || [];
