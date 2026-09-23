@@ -767,12 +767,47 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .notification-table{min-width:1120px}
 #consumerManagementPanel{display:flex;flex:1;min-height:0;flex-direction:column}
 #consumerManagementPanel>.system-filter,#consumerManagementPanel>.action-row{flex:none}
-#consumerManagementPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:10px!important;overflow:auto}
+#consumerManagementPanel>.system-filter{padding-bottom:0}
+.consumer-page-description-trigger{position:fixed;top:calc(50% + 54px);right:0;z-index:3;display:flex;align-items:center;justify-content:center;min-height:84px;padding:10px 7px;border:1px solid #dbeafe;border-right:0;border-radius:4px 0 0 4px;background:#f4f9ff;color:#1687e8;font-size:12px;cursor:pointer;writing-mode:vertical-rl;box-shadow:0 2px 8px rgba(31,35,41,.08)}
+.consumer-page-description-trigger:hover{background:#eaf4ff}
+.consumer-page-description-backdrop{display:none;position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.08)}
+.consumer-page-description-backdrop.open{display:block}
+.consumer-page-description-drawer{position:fixed;top:108px;right:0;bottom:0;z-index:21;display:flex;flex-direction:column;width:min(360px,calc(100vw - 32px));border-left:1px solid #e6ebf2;background:#fff;box-shadow:-8px 0 24px rgba(31,35,41,.12);transform:translateX(100%);visibility:hidden;transition:transform .2s ease,visibility .2s ease}
+.consumer-page-description-drawer.open{transform:translateX(0);visibility:visible}
+.consumer-page-description-head{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 18px;border-bottom:1px solid #edf0f5;color:#30343b;font-size:14px;font-weight:600}
+.consumer-page-description-close{width:28px;height:28px;border:0;border-radius:3px;background:transparent;color:#8b95a5;font-size:20px;line-height:1;cursor:pointer}
+.consumer-page-description-close:hover{background:#f2f4f7;color:#30343b}
+.consumer-page-description-body{padding:18px;color:#596273;font-size:13px;line-height:22px}
+.consumer-page-description-body strong{color:#344054;font-weight:600}
+#consumerManagementPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:0!important;overflow:auto}
 #consumerManagementPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
+.consumer-tag-filter-control{position:relative;z-index:2;display:flex;align-items:center;gap:4px;width:100%;min-width:0;min-height:34px;padding:3px 30px 3px 8px;border:1px solid #e5e7eb;border-radius:4px;background:#fff;color:#4b5563;cursor:text}
+.consumer-tag-filter-control.open{z-index:999;border-color:var(--theme-color)}
+.consumer-tag-filter-control:after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:1px solid #b8c0cc;border-bottom:1px solid #b8c0cc;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.consumer-tag-filter-control.has-value{padding-right:56px}
+.consumer-tag-filter-selection{display:flex;flex:0 1 auto;flex-wrap:wrap;align-items:center;gap:4px;min-width:0;max-width:calc(100% - 20px);max-height:56px;overflow:auto}
+.consumer-tag-filter-selection:empty{display:none}
+.consumer-tag-filter-chip{display:inline-flex;align-items:center;gap:4px;max-width:100%;height:22px;padding:0 4px 0 7px;border:1px solid #dbeafe;border-radius:3px;background:#f4f9ff;color:#34638f;font-size:12px;line-height:20px;white-space:nowrap}
+.consumer-tag-filter-chip-label{overflow:hidden;text-overflow:ellipsis}
+.consumer-tag-filter-chip-remove{display:inline-flex;align-items:center;justify-content:center;flex:none;width:18px;height:18px;padding:0;border:0;background:transparent;color:#8a95a5;font-size:15px;line-height:18px;cursor:pointer}
+.consumer-tag-filter-chip-remove:hover{color:#1687e8}
+.consumer-tag-filter-trigger{display:flex;flex:1 1 auto;align-items:center;min-width:0;height:26px;padding:0;border:0;background:transparent;color:#8a95a5;font-size:12px;text-align:left;cursor:pointer}
+.consumer-tag-filter-trigger:focus-visible,.consumer-tag-filter-clear-all:focus-visible,.consumer-tag-filter-chip-remove:focus-visible{outline:2px solid #1687e8;outline-offset:1px}
+.consumer-tag-filter-control.has-value .consumer-tag-filter-trigger{min-width:8px}
+.consumer-tag-filter-control.has-value .consumer-tag-filter-placeholder{display:none}
+.consumer-tag-filter-clear-all{display:none;position:absolute;right:29px;top:50%;align-items:center;justify-content:center;width:18px;height:18px;padding:0;border:0;border-radius:50%;background:transparent;color:#a4adba;font-size:16px;line-height:18px;transform:translateY(-50%);cursor:pointer}
+.consumer-tag-filter-control.has-value .consumer-tag-filter-clear-all{display:flex}
+.consumer-tag-filter-clear-all:hover{background:#edf3fb;color:#1687e8}
+.consumer-tag-filter-dropdown{display:none;position:absolute;top:calc(100% + 2px);left:0;right:0;max-height:220px;overflow:auto;border:1px solid #dfe5ee;border-radius:3px;background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.08);z-index:1000}
+.consumer-tag-filter-control.open .consumer-tag-filter-dropdown{display:block}
+.consumer-tag-filter-option{display:flex;align-items:center;gap:8px;min-height:32px;padding:0 10px;color:#4b5563;font-size:12px;cursor:pointer}
+.consumer-tag-filter-option:hover{background:#f4f8ff;color:#1687e8}
+.consumer-tag-filter-option input{flex:none;margin:0;accent-color:var(--theme-color)}
+.consumer-tag-filter-empty{padding:10px 12px;color:#98a2b3;font-size:12px}
 #consumerTagListPanel,#consumerTagChangeLogPanel{display:flex;flex:1;min-height:0;flex-direction:column}
 #consumerTagListPanel>.system-filter,#consumerTagListPanel>.content-actions,#consumerTagChangeLogPanel>.system-filter{flex:none}
 #consumerTagFilterPanel{padding-bottom:0}
-#consumerTagListPanel>.consumer-tag-actions{justify-content:flex-start;margin-top:16px}
+#consumerTagListPanel>.consumer-tag-actions{justify-content:flex-start;margin-top:0}
 #consumerTagListPanel>.table-card,#consumerTagChangeLogPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:10px!important;overflow:auto}
 #consumerTagListPanel>.pagination,#consumerTagChangeLogPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
 #consumerTagChangeLogPanel>.consumer-tag-detail-content-wrap{flex:none;width:100%}
@@ -782,9 +817,9 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 #consumerTagChangeDetailPanel>.system-filter{flex:none}
 #consumerTagChangeDetailPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:10px!important;overflow:auto}
 #consumerTagChangeDetailPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
-.consumer-tag-record-filter{grid-template-columns:repeat(4,minmax(0,1fr))}.consumer-tag-record-range{display:flex;align-items:center;gap:8px;min-width:0}.consumer-tag-record-range .input{width:100%;min-width:0}.consumer-tag-record-range .date-range-separator{color:#8a95a5;white-space:nowrap}.consumer-tag-record-table{min-width:640px}
-.consumer-management-table{min-width:1240px}
-.consumer-tag-table{min-width:980px}.consumer-tag-change-table{min-width:1580px}.consumer-tag-actions{display:flex;justify-content:flex-end;margin-top:16px}.consumer-tag-panel .table-card{overflow-x:auto}.consumer-tag-change-filter{grid-template-columns:repeat(4,minmax(0,1fr))}.consumer-tag-change-range{display:flex;align-items:center;gap:8px;min-width:0}.consumer-tag-change-range .input{width:100%;min-width:0}.consumer-tag-change-range .date-range-separator{color:#8a95a5;white-space:nowrap}.consumer-tag-record-range{gap:6px}.consumer-tag-status-cell{display:inline-flex;align-items:center;gap:7px}.consumer-tag-status-text{color:#4b5563;font-size:12px}.consumer-tag-status-toggle[disabled]{cursor:default;opacity:.9}.consumer-tag-editor-status{display:inline-flex;align-items:center;gap:8px;height:32px}.consumer-tag-detail-card{background:#fff;border:1px solid #e6ebf2;border-radius:2px;padding:20px}.consumer-tag-detail-title{font-size:16px;font-weight:600;color:#1f2d3d;margin-bottom:18px}.consumer-tag-detail-section{border-top:1px solid #edf0f5;padding-top:16px;margin-top:18px}.consumer-tag-detail-section:first-of-type{border-top:0;padding-top:0;margin-top:0}.consumer-tag-detail-section h4{margin:0 0 14px;color:#344054;font-size:14px}.consumer-tag-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 28px}.consumer-tag-detail-item{display:flex;gap:12px;min-width:0;color:#4b5563;font-size:13px}.consumer-tag-detail-item .detail-label{color:#8a95a5;white-space:nowrap}.consumer-tag-detail-item .detail-value{min-width:0;overflow-wrap:anywhere;color:#344054}.consumer-tag-detail-empty{padding:48px 20px;text-align:center;color:#98a2b3;background:#fff;border:1px solid #e6ebf2}.consumer-tag-modal{width:min(620px,calc(100vw - 48px))}.consumer-tag-modal .form-row{grid-template-columns:112px 1fr!important;margin-bottom:16px}.consumer-tag-modal .input,.consumer-tag-modal .textarea,.consumer-tag-modal .select{width:100%;max-width:none}.consumer-tag-modal .textarea{min-height:88px;resize:vertical}.consumer-tag-modal .field-error{min-height:18px;color:#f04438;font-size:12px;margin-top:4px}.consumer-tag-modal .form-field.invalid .input,.consumer-tag-modal .form-field.invalid .textarea,.consumer-tag-modal .form-field.invalid .select{border-color:#f04438}.consumer-tag-readonly .form-row{grid-template-columns:112px 1fr!important;margin-bottom:14px}.consumer-tag-readonly .detail-value{color:#344054;line-height:32px}
+.consumer-tag-record-filter{grid-template-columns:repeat(4,minmax(0,1fr))}.consumer-tag-record-range{display:flex;align-items:center;gap:8px;min-width:0}.consumer-tag-record-range .input{width:100%;min-width:0}.consumer-tag-record-range .date-range-separator{color:#8a95a5;white-space:nowrap}.consumer-tag-record-table{min-width:900px}
+.consumer-management-table{min-width:1920px}.consumer-detail-modal{width:min(760px,calc(100vw - 48px));max-width:calc(100vw - 48px)}.consumer-detail-modal .modal-body{max-height:calc(100vh - 190px)}.consumer-detail-tabs{margin:20px 0 16px}.consumer-detail-record-panel{display:none;min-width:0}.consumer-detail-record-panel.active{display:block}.consumer-detail-record-panel .table-card{margin-top:10px;overflow:auto}.consumer-detail-order-table{min-width:1920px}.consumer-detail-refund-table{min-width:1080px}.consumer-detail-tags{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.consumer-detail-tag{display:inline-flex;align-items:center;min-height:24px;padding:0 6px 0 10px;border-radius:12px;background:#eef6ff;color:#1687e8;font-size:12px}.consumer-detail-tag-remove,.consumer-detail-tag-add{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:0;background:transparent;cursor:pointer;font-size:15px;line-height:18px}.consumer-detail-tag-remove{margin-left:3px;color:#f04438}.consumer-detail-tag-remove:hover{color:#d92d20}.consumer-detail-tag-add{width:26px;height:26px;border:1px dashed #1687e8;border-radius:50%;color:#1687e8;font-size:18px}.consumer-detail-tag-add:hover{background:#f4f9ff}.consumer-detail-tag-empty{color:#98a2b3;font-size:13px}.consumer-detail-tag-add-modal{width:min(480px,calc(100vw - 48px))}.consumer-detail-tag-add-options{display:flex;flex-direction:column;gap:10px;max-height:280px;overflow:auto}.consumer-detail-tag-add-option{display:flex;align-items:center;gap:8px;min-height:32px;color:#4b5563;font-size:13px}.consumer-detail-tag-add-option input{width:14px;height:14px}.consumer-detail-tag-add-modal .help{margin-top:10px;color:#8b95a5;font-size:12px}
+.consumer-tag-table{min-width:980px}.consumer-tag-change-table{min-width:1580px}.consumer-tag-actions{display:flex;justify-content:flex-end;margin-top:16px}.consumer-tag-panel .table-card{overflow-x:auto}.consumer-tag-change-filter{grid-template-columns:repeat(4,minmax(0,1fr))}.consumer-tag-change-range{display:flex;align-items:center;gap:8px;min-width:0}.consumer-tag-change-range .input{width:100%;min-width:0}.consumer-tag-change-range .date-range-separator{color:#8a95a5;white-space:nowrap}.consumer-tag-record-range{gap:6px}.consumer-tag-status-cell{display:inline-flex;align-items:center;gap:7px}.consumer-tag-status-text{color:#4b5563;font-size:12px}.consumer-tag-editor-status{display:inline-flex;align-items:center;gap:8px;height:32px}.consumer-tag-status-confirm-modal{width:min(480px,calc(100vw - 48px))!important}.consumer-tag-status-confirm-message{color:#4b5563;font-size:14px;line-height:24px;white-space:normal}.consumer-tag-detail-card{background:#fff;border:1px solid #e6ebf2;border-radius:2px;padding:20px}.consumer-tag-detail-title{font-size:16px;font-weight:600;color:#1f2d3d;margin-bottom:18px}.consumer-tag-detail-section{border-top:1px solid #edf0f5;padding-top:16px;margin-top:18px}.consumer-tag-detail-section:first-of-type{border-top:0;padding-top:0;margin-top:0}.consumer-tag-detail-section h4{margin:0 0 14px;color:#344054;font-size:14px}.consumer-tag-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 28px}.consumer-tag-detail-item{display:flex;gap:12px;min-width:0;color:#4b5563;font-size:13px}.consumer-tag-detail-item .detail-label{color:#8a95a5;white-space:nowrap}.consumer-tag-detail-item .detail-value{min-width:0;overflow-wrap:anywhere;color:#344054}.consumer-tag-detail-empty{padding:48px 20px;text-align:center;color:#98a2b3;background:#fff;border:1px solid #e6ebf2}.consumer-tag-modal{width:min(620px,calc(100vw - 48px))}.consumer-tag-modal .form-row{grid-template-columns:112px 1fr!important;margin-bottom:16px}.consumer-tag-modal .input,.consumer-tag-modal .textarea,.consumer-tag-modal .select{width:100%;max-width:none}.consumer-tag-modal .textarea{min-height:88px;resize:vertical}.consumer-tag-modal .field-error{min-height:18px;color:#f04438;font-size:12px;margin-top:4px}.consumer-tag-modal .form-field.invalid .input,.consumer-tag-modal .form-field.invalid .textarea,.consumer-tag-modal .form-field.invalid .select{border-color:#f04438}.consumer-tag-readonly .form-row{grid-template-columns:112px 1fr!important;margin-bottom:14px}.consumer-tag-readonly .detail-value{color:#344054;line-height:32px}
 .consumerTagChangeLogPanel>.consumer-tag-actions{justify-content:flex-start;margin-top:16px;gap:16px}
 #consumerTagAssignmentModalMask .modal.consumer-tag-assignment-modal{width:680px!important;max-width:calc(100vw - 48px);max-height:calc(100vh - 48px)}
 .consumer-tag-assignment-modal .form-row{grid-template-columns:112px 1fr!important;margin-bottom:16px;align-items:start}.consumer-tag-assignment-modal .form-label{color:#8b95a5!important;font-size:13px!important;font-weight:400!important;line-height:32px;white-space:nowrap}.consumer-tag-assignment-modal .input,.consumer-tag-assignment-modal .textarea,.consumer-tag-assignment-modal .select{width:100%;color:#1f2329!important}.consumer-tag-assignment-modal .textarea{min-height:96px;resize:vertical}.consumer-tag-assignment-modal .radio-group{display:flex;align-items:center;gap:24px;min-height:32px;flex-wrap:wrap}.consumer-tag-assignment-modal .radio{margin-right:0;color:#4b5563;font-size:13px}.consumer-tag-assignment-modal .radio.active{color:var(--theme-color)}.consumer-tag-assignment-tags{display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap;min-height:32px;padding:5px 0}.consumer-tag-assignment-tag{display:inline-flex;align-items:center;gap:6px;color:#4b5563;font-size:13px;white-space:nowrap}.consumer-tag-assignment-tag input{margin:0}.consumer-tag-assignment-file-row.hidden,.consumer-tag-assignment-manual-row.hidden{display:none!important}.consumer-tag-assignment-file-name{margin-left:10px;color:#596273;font-size:12px}.consumer-tag-assignment-modal .help{margin-top:7px;color:#8b95a5;white-space:nowrap}.consumer-tag-assignment-modal .field-error{min-height:18px;color:#f04438;font-size:12px;margin-top:4px}.consumer-tag-assignment-modal .form-field.invalid .input,.consumer-tag-assignment-modal .form-field.invalid .textarea,.consumer-tag-assignment-modal .form-field.invalid .select{border-color:#f04438}
@@ -966,12 +1001,23 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 #notificationRecordDetailModalMask{align-items:stretch;justify-content:flex-end;overflow:hidden}
 #notificationRecordDetailModalMask .notification-record-detail-modal{width:min(760px,92vw)!important;max-width:92vw!important;height:100%;max-height:none;margin:0;border-radius:0;transform:translateX(0);animation:notification-detail-drawer-in .2s ease-out both}
 #notificationRecordDetailModalMask .notification-record-detail-modal .modal-body{overflow:auto}
+#consumerDetailModalMask{align-items:stretch;justify-content:flex-end;overflow:hidden}
+#consumerDetailModalMask .consumer-detail-modal{width:min(760px,92vw)!important;max-width:92vw!important;height:100%;max-height:none;margin:0;border-radius:0;transform:translateX(0);animation:notification-detail-drawer-in .2s ease-out both}
+#consumerDetailModalMask .consumer-detail-modal .modal-body{max-height:none;overflow:auto}
+#consumerDetailTagAddModalMask{z-index:6}
 @keyframes notification-detail-drawer-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
 .notification-detail-section{padding:0 0 16px;margin-bottom:16px;border-bottom:1px solid #edf0f5}
 .notification-detail-section:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
 .notification-detail-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
 .notification-detail-title-row .notification-detail-title{margin-bottom:0}
 .notification-detail-title{margin:0 0 12px;font-size:14px;font-weight:600;color:#30343b}
+.consumer-stats-title{display:flex;align-items:center;gap:7px;min-width:0;margin-bottom:12px}
+.consumer-stats-title .notification-detail-title{margin-bottom:0}
+.consumer-stats-tip{position:relative;display:inline-flex;align-items:center;flex:none}
+.consumer-stats-tip-icon{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;padding:0;border:1px solid #1687e8;border-radius:50%;background:#fff;color:#1687e8;font-size:10px;font-weight:600;line-height:13px;cursor:help}
+.consumer-stats-tip-content{display:none;position:absolute;left:0;top:calc(100% + 8px);z-index:40;width:320px;max-width:min(320px,calc(92vw - 32px));padding:9px 12px;border-radius:3px;background:#30343b;color:#fff;font-size:12px;font-weight:400;line-height:20px;text-align:left;white-space:normal;box-shadow:0 8px 20px rgba(31,35,41,.18)}
+.consumer-stats-tip-content:before{content:"";position:absolute;left:5px;bottom:100%;border:5px solid transparent;border-bottom-color:#30343b}
+.consumer-stats-tip:hover .consumer-stats-tip-content,.consumer-stats-tip:focus-within .consumer-stats-tip-content{display:block}
 .notification-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 16px}
 .notification-detail-item{min-height:24px;line-height:20px}
 .notification-detail-label{color:#8b95a5;margin-right:8px}
@@ -1039,6 +1085,11 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="sub" id="menuStrategy" onclick="showPage('strategy')">限速策略</div>
       <div class="sub" id="menuActivityCenter" onclick="showPage('activityCenter')">活动管理</div>
     </div>
+    <div class="menu" id="menuServiceCenter" onclick="toggleMenuGroup('serviceSubMenu','menuServiceCenter')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12a7 7 0 0 1 14 0v4a2 2 0 0 1-2 2h-2v-6h4M5 12H3v4a2 2 0 0 0 2 2h2v-6M9 18h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">服务中心</span><span class="collapse-icon"></span></div>
+    <div class="sub-group" id="serviceSubMenu">
+      <div class="sub" id="menuServiceOverview" onclick="showPage('serviceOverview')">服务概览</div>
+      <div class="sub" id="menuServiceSource" onclick="showPage('serviceSource')">服务来源</div>
+    </div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M6 7v12h12V7M9 11h6M9 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">方案商中心</span></div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 9 5 12l3 3M16 9l3 3-3 3M13 6l-2 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">API集成</span></div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10h16l-2-5H6l-2 5ZM6 10v10h12V10M9 14h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">商户中心</span></div>
@@ -1078,6 +1129,14 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="strategy-subpage-empty"><strong>首页</strong><span>未设计</span></div>
     </section>
 
+    <section id="serviceOverviewPage" class="content hidden">
+      <div class="strategy-subpage-empty"><strong>服务概览</strong><span>未设计</span></div>
+    </section>
+
+    <section id="serviceSourcePage" class="content hidden">
+      <div class="strategy-subpage-empty"><strong>服务来源</strong><span>未设计</span></div>
+    </section>
+
     <section id="consumerManagePage" class="content hidden">
       <div class="inner-tabs consumer-tag-tabs consumer-manage-tabs">
         <span class="inner-tab active" id="consumerManagementTab" onclick="switchConsumerManageTab('consumer')">消费者管理</span>
@@ -1085,6 +1144,12 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <span class="inner-tab" id="consumerTagChangeLogTab" onclick="switchConsumerManageTab('changeLog')">标签变更明细</span>
       </div>
       <div id="consumerManagementPanel" class="consumer-tag-panel">
+      <button type="button" class="consumer-page-description-trigger" id="consumerPageDescriptionTrigger" aria-controls="consumerPageDescriptionDrawer" aria-expanded="false" onclick="toggleConsumerPageDescription(true)">页面说明</button>
+      <div class="consumer-page-description-backdrop" id="consumerPageDescriptionBackdrop" onclick="toggleConsumerPageDescription(false)"></div>
+      <aside class="consumer-page-description-drawer" id="consumerPageDescriptionDrawer" aria-labelledby="consumerPageDescriptionTitle">
+        <div class="consumer-page-description-head"><span id="consumerPageDescriptionTitle">页面说明</span><button type="button" class="consumer-page-description-close" aria-label="关闭页面说明" onclick="toggleConsumerPageDescription(false)">×</button></div>
+        <div class="consumer-page-description-body"><strong>消费者详情：</strong>微信unioid为唯一用户标识，消费者标签、设备与消费统计区域的数据汇总该用户名下所有数据。当消费者标签新增/移除时，同步所有相同微信unioid数据。</div>
+      </aside>
       <div class="system-filter consumer-filter" id="consumerFilterPanel">
         <input class="input" id="consumerOpenidInput" placeholder="微信openid" oninput="searchConsumerManagementRecords()">
         <input class="input" id="consumerPhoneInput" placeholder="手机号" oninput="searchConsumerManagementRecords()">
@@ -1092,13 +1157,19 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <input class="input" id="consumerDeviceNoInput" placeholder="设备号" oninput="searchConsumerManagementRecords()">
         <input class="input" id="consumerMerchantInput" placeholder="商户名称" oninput="searchConsumerManagementRecords()">
         <div class="select custom-select" id="consumerDeviceTypeFilter" data-value=""><span class="select-value">设备类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="MIFI">MIFI</div><div class="dropdown-option" data-value="CPE">CPE</div><div class="dropdown-option" data-value="DTU">DTU</div><div class="dropdown-option" data-value="随身WiFi">随身WiFi</div></div></div>
-        <div class="select custom-select" id="consumerJdPlusFilter" data-value=""><span class="select-value">京东Plus会员</span><div class="dropdown-menu"><div class="dropdown-option" data-value="是">是</div><div class="dropdown-option" data-value="否">否</div></div></div>
+        <input class="input" id="consumerJdPlusInput" placeholder="京东Plus会员账号" oninput="searchConsumerManagementRecords()">
+        <div class="consumer-tag-filter-control" id="consumerTagFilterControl" role="group" aria-label="消费者标签筛选" onclick="if(event.target===this||event.target.closest('.consumer-tag-filter-selection'))toggleConsumerTagFilter()" onkeydown="handleConsumerTagFilterKeydown(event)">
+          <div class="consumer-tag-filter-selection" id="consumerTagFilterSelection"></div>
+          <button class="consumer-tag-filter-trigger" id="consumerTagFilterTrigger" type="button" aria-label="选择消费者标签" aria-haspopup="true" aria-expanded="false" aria-controls="consumerTagFilterDropdown" onclick="toggleConsumerTagFilter()"><span class="consumer-tag-filter-placeholder" id="consumerTagFilterPlaceholder">消费者标签</span></button>
+          <button class="consumer-tag-filter-clear-all" type="button" aria-label="清除全部已选消费者标签" title="全部清除" onclick="clearAllConsumerTagFilters(event)">×</button>
+          <div class="consumer-tag-filter-dropdown" id="consumerTagFilterDropdown" role="group" aria-label="已启用的自定义标签"></div>
+        </div>
         <div class="filter-actions new-row"><button class="btn line" onclick="searchConsumerManagementRecords()">搜索</button><button class="btn gray" onclick="resetConsumerManagementRecords()">重置</button></div>
       </div>
       <div class="action-row"><button class="btn primary" onclick="openConsumerTagAssignmentModal()">标签添加/移除</button></div>
       <div class="table-card" style="margin-top:10px">
         <table class="notification-table consumer-management-table">
-          <thead><tr><th>序号</th><th>微信openid</th><th>微信unioid</th><th>手机号码</th><th>是否默认设备</th><th>设备号</th><th>商户名称</th><th>设备类型</th><th>绑定时间</th><th>充值时间</th><th>京东plus会员</th></tr></thead>
+          <thead><tr><th>序号</th><th>微信openid</th><th>微信unioid</th><th>手机号码</th><th>是否默认设备</th><th>设备号</th><th>商户名称</th><th>设备类型</th><th>绑定时间</th><th>充值时间</th><th>京东plus会员</th><th>消费者标签</th><th>历史绑定设备数</th><th>当前绑定设备数</th><th>充值总金额</th><th>充值次数</th><th>退款总金额</th><th>退款次数</th><th class="sticky-action">操作</th></tr></thead>
           <tbody id="consumerManagementRows"></tbody>
         </table>
       </div>
@@ -1109,6 +1180,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <div class="system-filter consumer-tag-record-filter" id="consumerTagChangeRecordFilterPanel">
           <input class="input" id="consumerTagChangeRecordBatchFilter" placeholder="批次号" oninput="searchConsumerTagChangeRecords()">
           <div class="select custom-select" id="consumerTagChangeRecordTypeFilter" data-value=""><span class="select-value">操作类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="标签添加">标签添加</div><div class="dropdown-option" data-value="标签删除">标签删除</div></div></div>
+          <div class="select custom-select" id="consumerTagChangeRecordStatusFilter" data-value=""><span class="select-value">操作状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="处理中">处理中</div><div class="dropdown-option" data-value="部分成功">部分成功</div><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="失败">失败</div></div></div>
           <input class="input" id="consumerTagChangeRecordRemarkFilter" placeholder="备注" oninput="searchConsumerTagChangeRecords()">
           <div class="device-date-range consumer-tag-record-range" id="consumerTagChangeRecordRange" data-range="consumerTagChangeRecordDate" onclick="openDeviceRangePicker(event,'consumerTagChangeRecordDate')">
             <span class="date-icon"></span><span class="device-date-text" data-part="start">操作开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">操作结束日期</span><span class="date-range-clear" onclick="clearDeviceRange(event,'consumerTagChangeRecordDate')"></span>
@@ -1119,7 +1191,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         </div>
         <div class="table-card" style="margin-top:10px">
           <table class="notification-table consumer-tag-record-table">
-            <thead><tr><th>批次号</th><th>操作类型</th><th>备注</th><th>操作时间</th><th>操作人</th></tr></thead>
+            <thead><tr><th>批次号</th><th>操作类型</th><th>操作状态</th><th>操作总数</th><th>成功数</th><th>失败数</th><th>备注</th><th>操作时间</th><th>操作人</th></tr></thead>
             <tbody id="consumerTagChangeRecordRows"></tbody>
           </table>
         </div>
@@ -1136,6 +1208,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
           <input class="input" id="consumerTagChangeUnionidFilter" placeholder="微信 UnionID" oninput="searchConsumerTagChangeLogs()">
           <input class="input" id="consumerTagChangePhoneFilter" placeholder="手机号码" oninput="searchConsumerTagChangeLogs()">
           <input class="input" id="consumerTagChangeDeviceFilter" placeholder="设备号" oninput="searchConsumerTagChangeLogs()">
+          <div class="select custom-select" id="consumerTagChangeStatusFilter" data-value=""><span class="select-value">操作状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="成功">成功</div><div class="dropdown-option" data-value="失败">失败</div></div></div>
           <div class="device-date-range consumer-tag-change-range" id="consumerTagChangeRange" data-range="consumerTagChangeLogDate" onclick="openDeviceRangePicker(event,'consumerTagChangeLogDate')">
             <span class="date-icon"></span><span class="device-date-text" data-part="start">操作开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">操作结束日期</span><span class="date-range-clear" onclick="clearDeviceRange(event,'consumerTagChangeLogDate')"></span>
             <input id="consumerTagChangeStartInput" type="hidden"><input id="consumerTagChangeEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="consumerTagChangeLogDatePanel"></div>
@@ -1146,7 +1219,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <div class="content-actions consumer-tag-actions"><button class="btn primary" onclick="exportConsumerTagChangeDetails()">导出</button></div>
         <div class="table-card" style="margin-top:10px">
           <table class="notification-table consumer-tag-change-table">
-            <thead><tr><th>批次号</th><th>操作类型</th><th>标签名称</th><th>标签类型</th><th>微信 OpenID</th><th>微信 UnionID</th><th>手机号码</th><th>设备号</th><th>操作时间</th><th>操作人</th></tr></thead>
+            <thead><tr><th>批次号</th><th>操作类型</th><th>标签名称</th><th>标签类型</th><th>微信 OpenID</th><th>微信 UnionID</th><th>手机号码</th><th>设备号</th><th>操作状态</th><th>失败原因</th><th>操作时间</th><th>操作人</th></tr></thead>
             <tbody id="consumerTagChangeRows"></tbody>
           </table>
         </div>
@@ -1160,7 +1233,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <div class="system-filter consumer-tag-filter" id="consumerTagFilterPanel">
           <input class="input" id="consumerTagNameFilter" placeholder="标签名称" oninput="searchConsumerTags()">
           <div class="select custom-select" id="consumerTagTypeFilter" data-value=""><span class="select-value">标签类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="系统标签">系统标签</div><div class="dropdown-option" data-value="自定义标签">自定义标签</div></div></div>
-          <div class="select custom-select" id="consumerTagStatusFilter" data-value=""><span class="select-value">状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="开启">开启</div><div class="dropdown-option" data-value="关闭">关闭</div></div></div>
+          <div class="select custom-select" id="consumerTagStatusFilter" data-value=""><span class="select-value">状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="启用">启用</div><div class="dropdown-option" data-value="停用">停用</div></div></div>
           <div class="filter-actions new-row"><button class="btn line" onclick="searchConsumerTags()">搜索</button><button class="btn gray" onclick="resetConsumerTags()">重置</button></div>
         </div>
         <div class="content-actions consumer-tag-actions"><button class="btn primary" onclick="openConsumerTagEditor('add')">自定义标签新增</button></div>
@@ -2251,10 +2324,28 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       </div>
       <div class="form-row form-field" id="consumerTagStatusField">
         <div class="form-label req">状态</div>
-        <div><div class="consumer-tag-editor-status"><button type="button" class="switch-toggle on" id="consumerTagStatusToggle" aria-label="切换标签状态" aria-pressed="true" onclick="toggleConsumerTagEditorStatus()"></button><span class="consumer-tag-status-text" id="consumerTagStatusValue">开启</span></div><div class="field-error"></div></div>
+        <div><div class="consumer-tag-editor-status"><button type="button" class="switch-toggle on" id="consumerTagStatusToggle" aria-label="切换标签状态" aria-pressed="true" onclick="toggleConsumerTagEditorStatus()"></button><span class="consumer-tag-status-text" id="consumerTagStatusValue">启用</span></div><div class="field-error"></div></div>
       </div>
     </div>
     <div class="modal-actions"><button class="cancel" onclick="closeConsumerTagEditor()">取消</button><button class="confirm" onclick="saveConsumerTagEditor()">保存</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="consumerTagStatusConfirmModalMask" onclick="if(event.target===this)closeConsumerTagStatusConfirm()">
+  <div class="modal consumer-tag-status-confirm-modal">
+    <div class="close" onclick="closeConsumerTagStatusConfirm()">×</div>
+    <div class="modal-title" id="consumerTagStatusConfirmTitle">标签启用</div>
+    <div class="modal-body"><div class="consumer-tag-status-confirm-message" id="consumerTagStatusConfirmMessage"></div></div>
+    <div class="modal-actions"><button class="cancel" onclick="closeConsumerTagStatusConfirm()">取消</button><button class="confirm" onclick="confirmConsumerTagStatusChange()">确定</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="consumerTagDeleteConfirmModalMask" onclick="if(event.target===this)closeConsumerTagDeleteConfirm()">
+  <div class="modal consumer-tag-status-confirm-modal">
+    <div class="close" onclick="closeConsumerTagDeleteConfirm()">×</div>
+    <div class="modal-title">标签删除</div>
+    <div class="modal-body"><div class="consumer-tag-status-confirm-message" id="consumerTagDeleteConfirmMessage"></div></div>
+    <div class="modal-actions"><button class="cancel" onclick="closeConsumerTagDeleteConfirm()">取消</button><button class="confirm" onclick="confirmConsumerTagDelete()">确定删除</button></div>
   </div>
 </div>
 
@@ -2276,12 +2367,12 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         <div class="radio-group"><span class="radio active" id="consumerTagAssignmentManualRadio" onclick="switchConsumerTagAssignmentEntry('manual')"><i></i>手动录入</span><span class="radio" id="consumerTagAssignmentFileRadio" onclick="switchConsumerTagAssignmentEntry('file')"><i></i>文件导入</span></div>
       </div>
       <div class="form-row form-field consumer-tag-assignment-manual-row" id="consumerTagAssignmentManualField">
-        <div class="form-label req">手机号</div>
-        <div><textarea class="textarea" id="consumerTagAssignmentPhoneInput" placeholder="请输入手机号，多个手机号用逗号或换行分隔" oninput="clearConsumerTagAssignmentFieldError('consumerTagAssignmentManualField')"></textarea><div class="field-error"></div></div>
+        <div class="form-label req">微信unioid</div>
+        <div><textarea class="textarea" id="consumerTagAssignmentUnionIdInput" placeholder="请输入微信unioid，多个unioid用逗号或换行分隔" oninput="clearConsumerTagAssignmentFieldError('consumerTagAssignmentManualField')"></textarea><div class="field-error"></div></div>
       </div>
       <div class="form-row form-field consumer-tag-assignment-file-row hidden" id="consumerTagAssignmentFileField">
         <div class="form-label req">选择文件</div>
-        <div><button type="button" class="filebtn" onclick="document.getElementById('consumerTagAssignmentFileInput').click()">上传文件</button><input class="hidden" id="consumerTagAssignmentFileInput" type="file" accept=".csv,.txt,.xls,.xlsx" onchange="handleConsumerTagAssignmentFileChange()"><span class="consumer-tag-assignment-file-name" id="consumerTagAssignmentFileName">未选择文件</span><div class="help">支持 CSV、TXT、XLS、XLSX 文件，文件中填写手机号。</div><div class="field-error"></div></div>
+        <div><button type="button" class="filebtn" onclick="document.getElementById('consumerTagAssignmentFileInput').click()">上传文件</button><button type="button" class="download" onclick="downloadConsumerTagAssignmentTemplate()">下载模板</button><input class="hidden" id="consumerTagAssignmentFileInput" type="file" accept=".csv,.txt,.xls,.xlsx" onchange="handleConsumerTagAssignmentFileChange()"><span class="consumer-tag-assignment-file-name" id="consumerTagAssignmentFileName">未选择文件</span><div class="help">支持 CSV、TXT、XLS、XLSX 文件，文件中填写微信unioid。</div><div class="field-error"></div></div>
       </div>
       <div class="form-row">
         <div class="form-label">备注</div>
@@ -2289,6 +2380,27 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       </div>
     </div>
     <div class="modal-actions"><button class="cancel" onclick="closeConsumerTagAssignmentModal()">取消</button><button class="confirm" onclick="submitConsumerTagAssignment()">确认</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="consumerDetailTagAddModalMask" onclick="if(event.target===this)closeConsumerDetailTagAddModal()">
+  <div class="modal consumer-detail-tag-add-modal">
+    <div class="close" onclick="closeConsumerDetailTagAddModal()">×</div>
+    <div class="modal-title">增加消费者标签</div>
+    <div class="modal-body">
+      <div class="consumer-detail-tag-add-options" id="consumerDetailTagAddOptions"></div>
+      <div class="help">请选择需要增加的消费者标签</div>
+    </div>
+    <div class="modal-actions"><button class="cancel" onclick="closeConsumerDetailTagAddModal()">取消</button><button class="confirm" onclick="saveConsumerDetailTagAdd()">保存</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="consumerDetailModalMask" onclick="if(event.target===this)closeConsumerDetailModal()">
+  <div class="modal consumer-detail-modal">
+    <div class="close" onclick="closeConsumerDetailModal()">×</div>
+    <div class="modal-title">消费者详情</div>
+    <div class="modal-body" id="consumerDetailModalBody"></div>
+    <div class="modal-actions"><button class="confirm" onclick="closeConsumerDetailModal()">关闭</button></div>
   </div>
 </div>
 
@@ -2891,36 +3003,36 @@ const authWhitelistData = {
   ]
 };
 const consumerManagementData = [
-  {openid:'o7crs64vkd8m2a01',unionid:'oK2G56CR9x81a01',phone:'13800138001',defaultDevice:'是',deviceNo:'MBB202605290001',merchant:'上海智联商贸',deviceType:'MIFI',boundAt:'2026-01-15 09:20:00',rechargeAt:'2026-09-18 10:24:16',jdPlus:'是'},
-  {openid:'o7crs64vkd6q9b02',unionid:'oK2G56CR7b32b02',phone:'13900139002',defaultDevice:'否',deviceNo:'MBB202605290002',merchant:'杭州云旅科技',deviceType:'CPE',boundAt:'2026-02-03 11:08:45',rechargeAt:'2026-09-17 15:12:44',jdPlus:'否'},
-  {openid:'o7crs64vkd3p1c03',unionid:'oK2G56CR5c76c03',phone:'13700137003',defaultDevice:'是',deviceNo:'MBB202605290003',merchant:'苏州星河酒店',deviceType:'随身WiFi',boundAt:'2026-03-12 13:45:22',rechargeAt:'2026-09-16 09:42:08',jdPlus:'是'},
-  {openid:'o7crs64vkd2e5d04',unionid:'oK2G56CR3f90d04',phone:'13600136004',defaultDevice:'否',deviceNo:'MBB202605280018',merchant:'南京万联物流',deviceType:'DTU',boundAt:'2026-04-08 08:36:10',rechargeAt:'2026-09-15 18:21:39',jdPlus:'否'},
-  {openid:'o7crs64vkd9t4e05',unionid:'oK2G56CR2a11e05',phone:'13500135005',defaultDevice:'是',deviceNo:'MBB202604300086',merchant:'广州启明商贸',deviceType:'CPE',boundAt:'2026-04-12 10:22:16',rechargeAt:'2026-09-14 11:05:20',jdPlus:'否'},
-  {openid:'o7crs64vkd1n8f06',unionid:'oK2G56CR8d48f06',phone:'13400134006',defaultDevice:'是',deviceNo:'MBB202604150021',merchant:'深圳远帆科技',deviceType:'MIFI',boundAt:'2026-04-15 15:02:31',rechargeAt:'2026-09-13 14:36:55',jdPlus:'是'},
-  {openid:'o7crs64vkd4r7g07',unionid:'oK2G56CR6e27g07',phone:'13300133007',defaultDevice:'否',deviceNo:'MBB202606010011',merchant:'北京数联科技',deviceType:'CPE',boundAt:'2026-05-02 10:10:11',rechargeAt:'2026-09-12 16:48:12',jdPlus:'否'},
-  {openid:'o7crs64vkd5s6h08',unionid:'oK2G56CR4f36h08',phone:'13200132008',defaultDevice:'是',deviceNo:'MBB202606010012',merchant:'成都天府互联',deviceType:'随身WiFi',boundAt:'2026-05-06 15:33:21',rechargeAt:'2026-09-11 08:18:09',jdPlus:'否'}
+  {openid:'o7crs64vkd8m2a01',unionid:'oK2G56CR9x81a01',phone:'13800138001',defaultDevice:'是',deviceNo:'MBB202605290001',merchant:'上海智联商贸',deviceType:'MIFI',boundAt:'2026-01-15 09:20:00',rechargeAt:'2026-09-18 10:24:16',jdPlus:'jdplus_13800138001',consumerTags:['重点客户','高价值用户'],historicalDeviceCount:3,currentDeviceCount:1,rechargeTotal:'¥3,280.00',rechargeCount:8,refundTotal:'¥200.00',refundCount:1},
+  {openid:'o7crs64vkd6q9b02',unionid:'oK2G56CR7b32b02',phone:'13900139002',defaultDevice:'否',deviceNo:'MBB202605290002',merchant:'杭州云旅科技',deviceType:'CPE',boundAt:'2026-02-03 11:08:45',rechargeAt:'2026-09-17 15:12:44',jdPlus:'--',consumerTags:['售后跟进'],historicalDeviceCount:2,currentDeviceCount:1,rechargeTotal:'¥1,680.00',rechargeCount:4,refundTotal:'¥0.00',refundCount:0},
+  {openid:'o7crs64vkd3p1c03',unionid:'oK2G56CR5c76c03',phone:'13700137003',defaultDevice:'是',deviceNo:'MBB202605290003',merchant:'苏州星河酒店',deviceType:'随身WiFi',boundAt:'2026-03-12 13:45:22',rechargeAt:'2026-09-16 09:42:08',jdPlus:'jdplus_13700137003',consumerTags:['高价值用户'],historicalDeviceCount:4,currentDeviceCount:2,rechargeTotal:'¥4,520.00',rechargeCount:11,refundTotal:'¥560.00',refundCount:2},
+  {openid:'o7crs64vkd2e5d04',unionid:'oK2G56CR3f90d04',phone:'13600136004',defaultDevice:'否',deviceNo:'MBB202605280018',merchant:'南京万联物流',deviceType:'DTU',boundAt:'2026-04-08 08:36:10',rechargeAt:'2026-09-15 18:21:39',jdPlus:'--',consumerTags:[],historicalDeviceCount:1,currentDeviceCount:1,rechargeTotal:'¥980.00',rechargeCount:3,refundTotal:'¥120.00',refundCount:1},
+  {openid:'o7crs64vkd9t4e05',unionid:'oK2G56CR2a11e05',phone:'13500135005',defaultDevice:'是',deviceNo:'MBB202604300086',merchant:'广州启明商贸',deviceType:'CPE',boundAt:'2026-04-12 10:22:16',rechargeAt:'2026-09-14 11:05:20',jdPlus:'--',consumerTags:['重点客户'],historicalDeviceCount:5,currentDeviceCount:1,rechargeTotal:'¥2,160.00',rechargeCount:6,refundTotal:'¥300.00',refundCount:1},
+  {openid:'o7crs64vkd1n8f06',unionid:'oK2G56CR8d48f06',phone:'13400134006',defaultDevice:'是',deviceNo:'MBB202604150021',merchant:'深圳远帆科技',deviceType:'MIFI',boundAt:'2026-04-15 15:02:31',rechargeAt:'2026-09-13 14:36:55',jdPlus:'jdplus_13400134006',consumerTags:['重点客户','高价值用户'],historicalDeviceCount:2,currentDeviceCount:2,rechargeTotal:'¥5,880.00',rechargeCount:13,refundTotal:'¥0.00',refundCount:0},
+  {openid:'o7crs64vkd4r7g07',unionid:'oK2G56CR6e27g07',phone:'13300133007',defaultDevice:'否',deviceNo:'MBB202606010011',merchant:'北京数联科技',deviceType:'CPE',boundAt:'2026-05-02 10:10:11',rechargeAt:'2026-09-12 16:48:12',jdPlus:'--',consumerTags:[],historicalDeviceCount:3,currentDeviceCount:1,rechargeTotal:'¥1,240.00',rechargeCount:5,refundTotal:'¥80.00',refundCount:1},
+  {openid:'o7crs64vkd5s6h08',unionid:'oK2G56CR4f36h08',phone:'13200132008',defaultDevice:'是',deviceNo:'MBB202606010012',merchant:'成都天府互联',deviceType:'随身WiFi',boundAt:'2026-05-06 15:33:21',rechargeAt:'2026-09-11 08:18:09',jdPlus:'--',consumerTags:['重点客户'],historicalDeviceCount:1,currentDeviceCount:1,rechargeTotal:'¥760.00',rechargeCount:2,refundTotal:'¥0.00',refundCount:0}
 ];
 const consumerTagData = [
-  {id:'TAG-SYS-001',name:'高价值用户',type:'系统标签',description:'',triggerRule:'近90天累计充值金额 ≥ 1000元',status:'开启',updatedAt:'2026-09-18 10:20:00',operator:'系统',linkedUserCount:126},
-  {id:'TAG-SYS-002',name:'沉默用户',type:'系统标签',description:'',triggerRule:'连续90天未产生充值或设备使用记录',status:'开启',updatedAt:'2026-09-15 08:00:00',operator:'系统',linkedUserCount:42},
-  {id:'TAG-CUS-001',name:'重点客户',type:'自定义标签',description:'由运营团队维护的重点服务客户',triggerRule:'',status:'开启',createdAt:'2026-08-20 11:15:08',updatedAt:'2026-09-19 16:30:12',operator:'张可昕',linkedUserCount:0},
-  {id:'TAG-CUS-002',name:'售后跟进',type:'自定义标签',description:'需要售后专员持续跟进的客户',triggerRule:'',status:'关闭',createdAt:'2026-08-12 09:26:40',updatedAt:'2026-09-12 14:05:36',operator:'王敏',linkedUserCount:18}
+  {id:'TAG-SYS-001',name:'高价值用户',type:'系统标签',description:'',triggerRule:'近90天累计充值金额 ≥ 1000元',status:'启用',updatedAt:'2026-09-18 10:20:00',operator:'系统',linkedUserCount:126},
+  {id:'TAG-SYS-002',name:'沉默用户',type:'系统标签',description:'',triggerRule:'连续90天未产生充值或设备使用记录',status:'启用',updatedAt:'2026-09-15 08:00:00',operator:'系统',linkedUserCount:42},
+  {id:'TAG-CUS-001',name:'重点客户',type:'自定义标签',description:'由运营团队维护的重点服务客户',triggerRule:'',status:'启用',createdAt:'2026-08-20 11:15:08',updatedAt:'2026-09-19 16:30:12',operator:'张可昕',linkedUserCount:0},
+  {id:'TAG-CUS-002',name:'售后跟进',type:'自定义标签',description:'需要售后专员持续跟进的客户',triggerRule:'',status:'停用',createdAt:'2026-08-12 09:26:40',updatedAt:'2026-09-12 14:05:36',operator:'王敏',linkedUserCount:18}
 ];
 const consumerUserTagAssignments = {};
 const consumerTagChangeData = [
   {id:'TAG-LOG-202609190001',batchNo:'TAG-BATCH-202609190001',changedAt:'2026-09-19 16:31:04',userId:'U100001',openid:'o7crs64vkd8m2a01',unionid:'oK2G56CR9x81a01',phone:'13800138001',deviceNo:'MBB202605290001',tagId:'TAG-CUS-001',tagName:'重点客户',tagType:'自定义标签',changeType:'标签添加',source:'人工操作',operator:'张可昕'},
   {id:'TAG-LOG-202609180001',batchNo:'TAG-BATCH-202609180001',changedAt:'2026-09-18 10:24:18',userId:'U100001',openid:'o7crs64vkd8m2a01',unionid:'oK2G56CR9x81a01',phone:'13800138001',deviceNo:'MBB202605290001',tagId:'TAG-SYS-001',tagName:'高价值用户',tagType:'系统标签',changeType:'标签添加',source:'系统规则',operator:'系统',triggerRule:'近90天累计充值金额 ≥ 1000元',triggerReason:'该用户近90天累计充值金额为1286元'},
-  {id:'TAG-LOG-202609170002',batchNo:'TAG-BATCH-202609170002',changedAt:'2026-09-17 15:13:02',userId:'U100002',openid:'o7crs64vkd6q9b02',unionid:'oK2G56CR7b32b02',phone:'13900139002',deviceNo:'MBB202605290002',tagId:'TAG-CUS-002',tagName:'售后跟进',tagType:'自定义标签',changeType:'标签删除',source:'人工操作',operator:'李四'},
+  {id:'TAG-LOG-202609170002',batchNo:'TAG-BATCH-202609170002',changedAt:'2026-09-17 15:13:02',userId:'U100002',openid:'o7crs64vkd6q9b02',unionid:'oK2G56CR7b32b02',phone:'13900139002',deviceNo:'MBB202605290002',tagId:'TAG-CUS-002',tagName:'售后跟进',tagType:'自定义标签',changeType:'标签删除',operationStatus:'失败',failureReason:'用户标签关系校验失败',source:'人工操作',operator:'李四'},
   {id:'TAG-LOG-202609160003',batchNo:'TAG-BATCH-202609160003',changedAt:'2026-09-16 09:43:10',userId:'U100003',openid:'o7crs64vkd3p1c03',unionid:'oK2G56CR5c76c03',phone:'13700137003',deviceNo:'MBB202605290003',tagId:'TAG-SYS-002',tagName:'沉默用户',tagType:'系统标签',changeType:'标签添加',source:'系统规则',operator:'系统',triggerRule:'连续90天未产生充值或设备使用记录',triggerReason:'该用户连续90天无充值和设备使用记录'},
   {id:'TAG-LOG-202609150004',batchNo:'TAG-BATCH-202609150004',changedAt:'2026-09-15 18:22:01',userId:'U100004',openid:'o7crs64vkd2e5d04',unionid:'oK2G56CR3f90d04',phone:'13600136004',deviceNo:'MBB202605280018',tagId:'TAG-CUS-001',tagName:'重点客户',tagType:'自定义标签',changeType:'标签添加',source:'人工操作',operator:'张可昕'},
-  {id:'TAG-LOG-202609150005',batchNo:'TAG-BATCH-202609150004',changedAt:'2026-09-15 18:22:07',userId:'U100004',openid:'o7crs64vkd2e5d04',unionid:'oK2G56CR3f90d04',phone:'13600136004',deviceNo:'MBB202605280019',tagId:'TAG-CUS-001',tagName:'重点客户',tagType:'自定义标签',changeType:'标签添加',source:'人工操作',operator:'张可昕'}
+  {id:'TAG-LOG-202609150005',batchNo:'TAG-BATCH-202609150004',changedAt:'2026-09-15 18:22:07',userId:'U100004',openid:'o7crs64vkd2e5d04',unionid:'oK2G56CR3f90d04',phone:'13600136004',deviceNo:'MBB202605280019',tagId:'TAG-CUS-001',tagName:'重点客户',tagType:'自定义标签',changeType:'标签添加',operationStatus:'失败',failureReason:'该设备未匹配到有效的标签关联对象',source:'人工操作',operator:'张可昕'}
 ];
 const consumerTagChangeRecordData = [
-  {batchNo:'TAG-BATCH-202609190001',operationType:'标签添加',remark:'重点客户运营分组',operationTime:'2026-09-19 16:31:04',operator:'张可昕'},
-  {batchNo:'TAG-BATCH-202609180001',operationType:'标签添加',remark:'系统规则自动维护',operationTime:'2026-09-18 10:24:18',operator:'系统'},
-  {batchNo:'TAG-BATCH-202609170002',operationType:'标签删除',remark:'售后跟进结束',operationTime:'2026-09-17 15:13:02',operator:'李四'},
-  {batchNo:'TAG-BATCH-202609160003',operationType:'标签添加',remark:'系统规则自动维护',operationTime:'2026-09-16 09:43:10',operator:'系统'},
-  {batchNo:'TAG-BATCH-202609150004',operationType:'标签添加',remark:'批量标记重点客户',operationTime:'2026-09-15 18:22:01',operator:'张可昕'}
+  {batchNo:'TAG-BATCH-202609190001',operationType:'标签添加',operationTotal:1,successCount:1,failureCount:0,remark:'重点客户运营分组',operationTime:'2026-09-19 16:31:04',operator:'张可昕'},
+  {batchNo:'TAG-BATCH-202609180001',operationType:'标签添加',operationStatus:'处理中',operationTotal:2,successCount:1,failureCount:0,remark:'系统规则自动维护',operationTime:'2026-09-18 10:24:18',operator:'系统'},
+  {batchNo:'TAG-BATCH-202609170002',operationType:'标签删除',operationStatus:'失败',operationTotal:1,successCount:0,failureCount:1,remark:'售后跟进结束',operationTime:'2026-09-17 15:13:02',operator:'李四'},
+  {batchNo:'TAG-BATCH-202609160003',operationType:'标签添加',operationTotal:1,successCount:1,failureCount:0,remark:'系统规则自动维护',operationTime:'2026-09-16 09:43:10',operator:'系统'},
+  {batchNo:'TAG-BATCH-202609150004',operationType:'标签添加',operationStatus:'部分成功',operationTotal:2,successCount:1,failureCount:1,remark:'批量标记重点客户',operationTime:'2026-09-15 18:22:01',operator:'张可昕'}
 ];
 const deviceManagementData = [
   {sn:'MBB202605290001', externalSn:'EXT-SH-0001', group:'华东直营组', marketName:'畅连MIFI Pro', category:'本地卡', package:'月包 100GB', vendor:'智联方案', region:'上海', merchant:'上海智联商贸', mainMerchant:'上海智联商贸', secondAuth:'开启', serviceExpire:'2026-12-31', iccid:'898604C01925D0207595', smartNetwork:'开启', network:'中国移动', smartLock:true, hideWifi:false, disabled:false, speedLimit:'关闭', localCardDevice:'是', connectedAt:'2026-05-29 10:58:24', offlineDays:0, appVersion:'V2.1.3', mac:'6E:A4:34:5E:14:70', activatedAt:'2026-01-15 09:20:00', createdAt:'2026-01-10 14:32:18', activeStatus:'已激活', packageExpired:'否', type:'MIFI', version:'V2.1.3'},
@@ -2988,6 +3100,34 @@ const refundOrderData = [
   {orderNo:'RFUND202606120019', sn:'MBB202604300086', merchant:'广州启明商贸', reason:'支付异常', packageName:'华南代理60GB体验包', amount:'29.00', refundMethod:'线下退费', remark:'支付回调异常产生退费单', status:'已退费', createdAt:'2026-06-12 11:33:48', updatedAt:'2026-06-12 14:10:12', operator:'张可昕'},
   {orderNo:'RFUND202606100021', sn:'MBB202604150021', merchant:'深圳远帆科技', reason:'余额抵扣异常', packageName:'企业500GB专享包', amount:'299.00', refundMethod:'商户转账', remark:'钱包余额抵扣后人工退差价', status:'已退费', createdAt:'2026-06-10 08:42:16', updatedAt:'2026-06-10 09:35:40', operator:'王敏'}
 ];
+function getConsumerIdentityRows(row){
+  if(!row){return []}
+  const unionid = String(row.unionid || '').trim();
+  return unionid ? consumerManagementData.filter(item => String(item.unionid || '').trim() === unionid) : [row];
+}
+function parseConsumerStatistic(value){
+  const parsed = Number(String(value ?? '').replace(/[^0-9.-]/g,''));
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+function formatConsumerStatisticAmount(value){
+  return `¥${value.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+}
+function getConsumerIdentityStats(row){
+  const identityRows = getConsumerIdentityRows(row);
+  if(identityRows.length <= 1){return row || {}}
+  const sum = field => identityRows.reduce((total,item) => total + parseConsumerStatistic(item[field]),0);
+  return {
+    historicalDeviceCount:sum('historicalDeviceCount'),
+    currentDeviceCount:sum('currentDeviceCount'),
+    rechargeTotal:formatConsumerStatisticAmount(sum('rechargeTotal')),
+    rechargeCount:sum('rechargeCount'),
+    refundTotal:formatConsumerStatisticAmount(sum('refundTotal')),
+    refundCount:sum('refundCount')
+  };
+}
+function getConsumerIdentityDeviceNos(row){
+  return new Set(getConsumerIdentityRows(row).map(item => item.deviceNo).filter(Boolean));
+}
 const refundManageData = [
   {orderNo:'ORD202607170031', paidAt:'2026-07-17 09:16:42', deviceNo:'MBB202607170031', wechatPayNo:'WX20260717091642031', mainMerchant:'上海智联商贸', agent:'华东直营代理', packageName:'月包100GB畅享版', payAmount:'99.00', refundAmount:'99.00', wechatRefundAmount:'99.00', balanceRefundAmount:'0.00', status:'未退费', refundMethod:'', refundPrompt:'当前转账商户已经达到每日可转账金额上限，请联系管理员处理。', remark:'商户当日转账额度已达上限', creator:'王敏', createdAt:'2026-07-17 09:20:18', refundedAt:''},
   {orderNo:'ORD202607170032', paidAt:'2026-07-17 10:08:25', deviceNo:'MBB202607170032', wechatPayNo:'WX20260717100825032', mainMerchant:'杭州云旅科技', agent:'旅游渠道代理', packageName:'旅游渠道200GB套餐', payAmount:'6888.00', refundAmount:'6888.00', wechatRefundAmount:'0.00', balanceRefundAmount:'6888.00', status:'未退费', refundMethod:'', refundPrompt:'转账金额超出当前转账商户单笔可转账金额上限，请联系管理员处理。', remark:'单笔转账金额超出商户限额', creator:'李凡', createdAt:'2026-07-17 10:12:36', refundedAt:''},
@@ -3351,7 +3491,7 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {home:'首页', consumerManage:'消费者管理', consumerTags:'消费者标签', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
+const pageTitles = {home:'首页', serviceOverview:'服务概览', serviceSource:'服务来源', consumerManage:'消费者管理', consumerTags:'消费者标签', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
 let openTabs = [];
 let activePage = '';
 let deviceTypeCarrierOrder = [];
@@ -3370,10 +3510,17 @@ let currentAuthWhitelistTab = 'sim';
 let currentAuthWhitelistModalType = 'sim';
 let currentConsumerManageTab = 'consumer';
 let currentConsumerTagTab = 'list';
+let selectedConsumerTagFilterIds = [];
 let currentConsumerTagDetailId = '';
+let currentConsumerDetailPhone = '';
+let currentConsumerDetailTab = 'orders';
+let consumerDetailTagEditMode = false;
+let consumerDetailTagDraftIds = [];
 let consumerTagEditorMode = 'add';
 let consumerTagEditingId = '';
-let consumerTagEditorStatus = '开启';
+let consumerTagEditorStatus = '启用';
+let pendingConsumerTagStatusChange = null;
+let pendingConsumerTagDeleteId = '';
 let consumerTagAssignmentEntry = 'manual';
 let currentAuthWhitelistEntry = 'manual';
 let currentAuthWhitelistModalMode = 'add';
@@ -3605,6 +3752,7 @@ function activateTab(type){
   closeNotificationAccountModal();
   closeDeviceTypeModal();
   closeConsumerTagEditor();
+  closeConsumerDetailModal();
 }
 function closeTab(event,type){
   event.stopPropagation();
@@ -3626,6 +3774,8 @@ function closeTab(event,type){
 }
 function applyPageState(type){
   document.getElementById('homePage').classList.toggle('hidden', type !== 'home');
+  document.getElementById('serviceOverviewPage').classList.toggle('hidden', type !== 'serviceOverview');
+  document.getElementById('serviceSourcePage').classList.toggle('hidden', type !== 'serviceSource');
   document.getElementById('consumerManagePage').classList.toggle('hidden', type !== 'consumerManage');
   document.getElementById('consumerTagsPage').classList.toggle('hidden', type !== 'consumerTags');
   document.getElementById('devicePage').classList.toggle('hidden', type !== 'device');
@@ -3667,6 +3817,9 @@ function applyPageState(type){
   document.getElementById('notificationRecordDetailPage').classList.toggle('hidden', type !== 'notificationRecordDetail');
   document.getElementById('notificationConfigEditPage').classList.toggle('hidden', type !== 'notificationConfigEdit');
   document.getElementById('menuHome').classList.toggle('active', type === 'home');
+  document.getElementById('menuServiceCenter').classList.toggle('active', ['serviceOverview','serviceSource'].includes(type));
+  document.getElementById('menuServiceOverview').classList.toggle('active', type === 'serviceOverview');
+  document.getElementById('menuServiceSource').classList.toggle('active', type === 'serviceSource');
   document.getElementById('menuConsumerManage').classList.toggle('active', type === 'consumerManage');
   document.getElementById('menuConsumerTags').classList.toggle('active', type === 'consumerTags');
   document.getElementById('menuDeviceManage').classList.toggle('active', type === 'device');
@@ -4759,14 +4912,101 @@ function resetDeviceTypeRecords(){
 function renderConsumerManagementTable(rows){
   const rowsNode = document.getElementById('consumerManagementRows');
   if(!rowsNode){return}
-  rowsNode.innerHTML = rows.length ? rows.map((row,index) => `
-    <tr>
-      <td>${index + 1}</td><td>${escapeHtml(row.openid)}</td><td>${escapeHtml(row.unionid)}</td><td>${escapeHtml(row.phone)}</td>
-      <td>${escapeHtml(row.defaultDevice)}</td><td>${escapeHtml(row.deviceNo)}</td><td>${escapeHtml(row.merchant)}</td><td>${escapeHtml(row.deviceType)}</td>
-      <td>${escapeHtml(row.boundAt)}</td><td>${escapeHtml(row.rechargeAt)}</td><td>${escapeHtml(row.jdPlus)}</td>
-    </tr>
-  `).join('') : '<tr><td colspan="11" class="notification-empty">暂无符合条件的消费者</td></tr>';
+  rowsNode.innerHTML = rows.length ? rows.map((row,index) => {
+    const stats = getConsumerIdentityStats(row);
+    return `
+      <tr>
+        <td>${index + 1}</td><td>${escapeHtml(row.openid)}</td><td>${escapeHtml(row.unionid)}</td><td>${escapeHtml(row.phone)}</td>
+        <td>${escapeHtml(row.defaultDevice)}</td><td>${escapeHtml(row.deviceNo)}</td><td>${escapeHtml(row.merchant)}</td><td>${escapeHtml(row.deviceType)}</td>
+        <td>${escapeHtml(row.boundAt)}</td><td>${escapeHtml(row.rechargeAt)}</td><td>${escapeHtml(row.jdPlus)}</td><td>${escapeHtml((row.consumerTags || []).join('、') || '--')}</td>
+        <td>${escapeHtml(stats.historicalDeviceCount)}</td><td>${escapeHtml(stats.currentDeviceCount)}</td><td>${escapeHtml(stats.rechargeTotal)}</td><td>${escapeHtml(stats.rechargeCount)}</td><td>${escapeHtml(stats.refundTotal)}</td><td>${escapeHtml(stats.refundCount)}</td>
+        <td class="sticky-action"><span class="text-action" onclick="openConsumerDetail('${escapeHtml(row.phone)}')">查看</span></td>
+      </tr>
+    `;
+  }).join('') : '<tr><td colspan="19" class="notification-empty">暂无符合条件的消费者</td></tr>';
   updatePagination('consumerManagementPagination',rows.length);
+}
+function getEnabledConsumerTagFilterOptions(){
+  return consumerTagData.filter(tag => tag.type === '自定义标签' && tag.status === '启用');
+}
+function syncConsumerTagFilterSelection(){
+  const control = document.getElementById('consumerTagFilterControl');
+  const selection = document.getElementById('consumerTagFilterSelection');
+  if(!control || !selection){return}
+  selectedConsumerTagFilterIds = selectedConsumerTagFilterIds.filter(id => consumerTagData.some(tag => tag.id === id && tag.type === '自定义标签'));
+  selection.innerHTML = selectedConsumerTagFilterIds.map(id => {
+    const tag = consumerTagData.find(item => item.id === id);
+    if(!tag){return ''}
+    return `<span class="consumer-tag-filter-chip"><span class="consumer-tag-filter-chip-label">${escapeHtml(tag.name)}</span><button class="consumer-tag-filter-chip-remove" type="button" aria-label="移除标签 ${escapeHtml(tag.name)}" title="移除" onclick="removeConsumerTagFilterSelection('${escapeHtml(tag.id)}',event)">×</button></span>`;
+  }).join('');
+  control.classList.toggle('has-value',selectedConsumerTagFilterIds.length > 0);
+  document.getElementById('consumerTagFilterTrigger')?.setAttribute('aria-label',selectedConsumerTagFilterIds.length ? `选择消费者标签，已选${selectedConsumerTagFilterIds.length}项` : '选择消费者标签');
+}
+function renderConsumerTagFilterOptions(){
+  const dropdown = document.getElementById('consumerTagFilterDropdown');
+  if(!dropdown){return}
+  const options = getEnabledConsumerTagFilterOptions();
+  dropdown.innerHTML = options.length ? options.map(tag => `
+    <label class="consumer-tag-filter-option">
+      <input type="checkbox" value="${escapeHtml(tag.id)}" ${selectedConsumerTagFilterIds.includes(tag.id) ? 'checked' : ''} onchange="setConsumerTagFilterSelection('${escapeHtml(tag.id)}',this.checked)">
+      <span>${escapeHtml(tag.name)}</span>
+    </label>
+  `).join('') : '<div class="consumer-tag-filter-empty">暂无已启用的自定义标签</div>';
+}
+function toggleConsumerTagFilter(){
+  const control = document.getElementById('consumerTagFilterControl');
+  const trigger = document.getElementById('consumerTagFilterTrigger');
+  if(!control || !trigger){return}
+  if(control.classList.contains('open')){
+    closeConsumerTagFilter();
+    return;
+  }
+  const selectedBeforeSync = selectedConsumerTagFilterIds.length;
+  syncConsumerTagFilterSelection();
+  renderConsumerTagFilterOptions();
+  control.classList.add('open');
+  trigger.setAttribute('aria-expanded','true');
+  if(selectedBeforeSync !== selectedConsumerTagFilterIds.length){searchConsumerManagementRecords()}
+}
+function closeConsumerTagFilter(){
+  const control = document.getElementById('consumerTagFilterControl');
+  const trigger = document.getElementById('consumerTagFilterTrigger');
+  control?.classList.remove('open');
+  trigger?.setAttribute('aria-expanded','false');
+}
+function handleConsumerTagFilterKeydown(event){
+  if(event.key === 'Escape' && document.getElementById('consumerTagFilterControl')?.classList.contains('open')){
+    closeConsumerTagFilter();
+    document.getElementById('consumerTagFilterTrigger')?.focus();
+    event.stopPropagation();
+  }
+}
+function setConsumerTagFilterSelection(tagId,checked){
+  const tag = getEnabledConsumerTagFilterOptions().find(item => item.id === tagId);
+  if(!tag){return}
+  if(checked){
+    if(!selectedConsumerTagFilterIds.includes(tagId)){selectedConsumerTagFilterIds.push(tagId)}
+  }else{
+    selectedConsumerTagFilterIds = selectedConsumerTagFilterIds.filter(id => id !== tagId);
+  }
+  syncConsumerTagFilterSelection();
+  searchConsumerManagementRecords();
+}
+function removeConsumerTagFilterSelection(tagId,event){
+  event?.stopPropagation();
+  selectedConsumerTagFilterIds = selectedConsumerTagFilterIds.filter(id => id !== tagId);
+  syncConsumerTagFilterSelection();
+  renderConsumerTagFilterOptions();
+  searchConsumerManagementRecords();
+  document.getElementById('consumerTagFilterTrigger')?.focus();
+}
+function clearAllConsumerTagFilters(event){
+  event?.stopPropagation();
+  selectedConsumerTagFilterIds = [];
+  syncConsumerTagFilterSelection();
+  renderConsumerTagFilterOptions();
+  searchConsumerManagementRecords();
+  document.getElementById('consumerTagFilterTrigger')?.focus();
 }
 function getFilteredConsumerManagementRows(){
   const openid = normalizeText(document.getElementById('consumerOpenidInput')?.value);
@@ -4775,7 +5015,8 @@ function getFilteredConsumerManagementRows(){
   const deviceNo = normalizeText(document.getElementById('consumerDeviceNoInput')?.value);
   const merchant = normalizeText(document.getElementById('consumerMerchantInput')?.value);
   const deviceType = getSelectValue('consumerDeviceTypeFilter');
-  const jdPlus = getSelectValue('consumerJdPlusFilter');
+  const jdPlus = normalizeText(document.getElementById('consumerJdPlusInput')?.value);
+  const consumerTagNames = selectedConsumerTagFilterIds.map(id => consumerTagData.find(tag => tag.id === id)?.name).filter(Boolean);
   return consumerManagementData.filter(row => {
     return (!openid || normalizeText(row.openid).includes(openid)) &&
       (!phone || normalizeText(row.phone).includes(phone)) &&
@@ -4783,7 +5024,8 @@ function getFilteredConsumerManagementRows(){
       (!deviceNo || normalizeText(row.deviceNo).includes(deviceNo)) &&
       (!merchant || normalizeText(row.merchant).includes(merchant)) &&
       (!deviceType || row.deviceType === deviceType) &&
-      (!jdPlus || row.jdPlus === jdPlus);
+      (!jdPlus || normalizeText(row.jdPlus).includes(jdPlus)) &&
+      (!consumerTagNames.length || consumerTagNames.some(tagName => (row.consumerTags || []).includes(tagName)));
   });
 }
 function searchConsumerManagementRecords(){
@@ -4798,8 +5040,171 @@ function resetConsumerManagementRecords(){
   });
   resetCustomSelect('consumerDefaultDeviceFilter','是否默认设备');
   resetCustomSelect('consumerDeviceTypeFilter','设备类型');
-  resetCustomSelect('consumerJdPlusFilter','京东Plus会员');
+  const jdPlusInput = document.getElementById('consumerJdPlusInput');
+  if(jdPlusInput){jdPlusInput.value = ''}
+  selectedConsumerTagFilterIds = [];
+  closeConsumerTagFilter();
+  syncConsumerTagFilterSelection();
   searchConsumerManagementRecords();
+}
+function renderConsumerDetailOrderRows(row){
+  const deviceNos = getConsumerIdentityDeviceNos(row);
+  const records = paymentOrderData.filter(item => deviceNos.has(item.sn));
+  return records.length ? records.map((item,index) => `<tr><td>${index + 1}</td><td>${escapeHtml(item.orderNo)}</td><td>${escapeHtml(item.orderType)}</td><td>${escapeHtml(item.sn)}</td><td>${escapeHtml(item.packageName)}</td><td>${escapeHtml(item.merchantNo)}</td><td>${escapeHtml(item.merchant)}</td><td>${escapeHtml(item.mainMerchant)}</td><td>${escapeHtml(item.couponName)}</td><td>${escapeHtml(item.packagePrice)}</td><td>${escapeHtml(item.speedPackPrice)}</td><td>${escapeHtml(item.discountPrice)}</td><td>${escapeHtml(item.payablePrice)}</td><td>${escapeHtml(item.couponDeduct)}</td><td>${escapeHtml(item.paidPrice)}</td><td>${escapeHtml(item.wechatAmount)}</td><td>${escapeHtml(item.walletAmount)}</td><td>${escapeHtml(item.status)}</td><td>${escapeHtml(item.payType)}</td><td>${escapeHtml(item.paidAt)}</td><td>${escapeHtml(item.payNo)}</td><td>${escapeHtml(item.beforeExpire)}</td><td>${escapeHtml(item.afterExpire)}</td><td>${escapeHtml(item.coupon)}</td><td>${escapeHtml(item.creator)}</td><td>${escapeHtml(item.createdAt)}</td><td>${escapeHtml(item.autoRenew)}</td></tr>`).join('') : '<tr><td colspan="27" class="notification-empty">暂无历史充值订单</td></tr>';
+}
+function renderConsumerDetailRefundRows(row){
+  const deviceNos = getConsumerIdentityDeviceNos(row);
+  const records = refundOrderData.filter(item => deviceNos.has(item.sn));
+  return records.length ? records.map((item,index) => `<tr><td>${index + 1}</td><td>${escapeHtml(item.orderNo)}</td><td>${escapeHtml(item.sn)}</td><td>${escapeHtml(item.merchant)}</td><td>${escapeHtml(item.reason)}</td><td>${escapeHtml(item.packageName)}</td><td>${escapeHtml(item.amount)}</td><td>${escapeHtml(item.refundMethod || '--')}</td><td>${escapeHtml(item.remark)}</td><td>${escapeHtml(item.status)}</td><td>${escapeHtml(item.createdAt)}</td><td>${escapeHtml(item.updatedAt)}</td><td>${escapeHtml(item.operator)}</td></tr>`).join('') : '<tr><td colspan="13" class="notification-empty">暂无退费记录</td></tr>';
+}
+function switchConsumerDetailTab(tab){
+  currentConsumerDetailTab = tab || 'orders';
+  document.querySelectorAll('#consumerDetailModalBody .consumer-detail-tabs .inner-tab').forEach(node => node.classList.toggle('active', node.dataset.tab === currentConsumerDetailTab));
+  document.getElementById('consumerDetailOrdersPanel')?.classList.toggle('active', currentConsumerDetailTab === 'orders');
+  document.getElementById('consumerDetailRefundsPanel')?.classList.toggle('active', currentConsumerDetailTab === 'refunds');
+  const row = consumerManagementData.find(item => item.phone === currentConsumerDetailPhone);
+  if(!row){return}
+  if(currentConsumerDetailTab === 'orders'){
+    const body = document.getElementById('consumerDetailOrdersRows');
+    if(body){body.innerHTML = renderConsumerDetailOrderRows(row)}
+  }else{
+    const body = document.getElementById('consumerDetailRefundRows');
+    if(body){body.innerHTML = renderConsumerDetailRefundRows(row)}
+  }
+}
+function renderConsumerDetailTags(row){
+  const editMode = consumerDetailTagEditMode && row.phone === currentConsumerDetailPhone;
+  const tagIds = editMode ? consumerDetailTagDraftIds : getConsumerUserTagIds(row);
+  const tags = tagIds.map(tagId => consumerTagData.find(item => item.id === tagId)).filter(Boolean);
+  const tagHtml = tags.length ? tags.map(tag => `<span class="consumer-detail-tag">${escapeHtml(tag.name)}${editMode ? `<button type="button" class="consumer-detail-tag-remove" title="移除标签" aria-label="移除${escapeHtml(tag.name)}" onclick="removeConsumerDetailTag('${escapeHtml(row.phone)}','${escapeHtml(tag.id)}')">×</button>` : ''}</span>`).join('') : '<span class="consumer-detail-tag-empty">暂无消费者标签</span>';
+  return `${tagHtml}${editMode ? `<button type="button" class="consumer-detail-tag-add" title="增加标签" aria-label="增加消费者标签" onclick="openConsumerDetailTagAddModal('${escapeHtml(row.phone)}')">+</button>` : ''}`;
+}
+function refreshConsumerDetailTags(){
+  const row = consumerManagementData.find(item => item.phone === currentConsumerDetailPhone);
+  const container = document.querySelector('#consumerDetailModalBody .consumer-detail-tags');
+  const actions = document.getElementById('consumerDetailTagActions');
+  if(row && container){container.innerHTML = renderConsumerDetailTags(row)}
+  if(row && actions){actions.innerHTML = consumerDetailTagEditMode ? '<button type="button" class="btn primary" onclick="saveConsumerDetailTags()">保存</button>' : '<button type="button" class="btn line" onclick="startConsumerDetailTagEdit()">编辑</button>'}
+}
+function getConsumerUserTagIds(user){
+  if(!user){return []}
+  const assignmentKey = getConsumerTagAssignmentKey(user);
+  if(!Array.isArray(consumerUserTagAssignments[assignmentKey])){
+    const tagNames = getConsumerIdentityRows(user).flatMap(item => item.consumerTags || []);
+    consumerUserTagAssignments[assignmentKey] = Array.from(new Set(tagNames)).map(tagName => consumerTagData.find(tag => tag.name === tagName)?.id).filter(Boolean);
+  }
+  return consumerUserTagAssignments[assignmentKey];
+}
+function getConsumerTagAssignmentKey(user){
+  const unionid = String(user?.unionid || '').trim();
+  return unionid ? `unionid:${unionid}` : `phone:${user?.phone || ''}`;
+}
+function appendConsumerTagChange(user,tag,changeType,batchNo,changedAt){
+  consumerTagChangeData.unshift({id:`TAG-LOG-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,batchNo,changedAt,userId:`U${String(consumerManagementData.indexOf(user)+100001).padStart(6,'0')}`,openid:user.openid,unionid:user.unionid,phone:user.phone,deviceNo:user.deviceNo,tagId:tag.id,tagName:tag.name,tagType:tag.type,changeType,operationStatus:'成功',source:'人工操作',operator:'当前用户',remark:'消费者详情标签维护'});
+}
+function syncConsumerTagChangeViews(){
+  searchConsumerManagementRecords();
+  searchConsumerTagChangeRecords();
+  searchConsumerTagChangeLogs();
+  refreshConsumerDetailTags();
+}
+function startConsumerDetailTagEdit(){
+  const row = consumerManagementData.find(item => item.phone === currentConsumerDetailPhone);
+  if(!row){return}
+  consumerDetailTagDraftIds = getConsumerUserTagIds(row).slice();
+  consumerDetailTagEditMode = true;
+  refreshConsumerDetailTags();
+}
+function openConsumerDetailTagAddModal(phone = currentConsumerDetailPhone){
+  const row = consumerManagementData.find(item => item.phone === phone);
+  const options = document.getElementById('consumerDetailTagAddOptions');
+  const mask = document.getElementById('consumerDetailTagAddModalMask');
+  if(!row || !options || !mask || !consumerDetailTagEditMode){return}
+  currentConsumerDetailPhone = phone;
+  const assignedIds = new Set(consumerDetailTagDraftIds);
+  const availableTags = consumerTagData.filter(tag => tag.type === '自定义标签' && !assignedIds.has(tag.id));
+  options.innerHTML = availableTags.length ? availableTags.map(tag => `<label class="consumer-detail-tag-add-option"><input type="checkbox" value="${escapeHtml(tag.id)}">${escapeHtml(tag.name)}</label>`).join('') : '<span class="consumer-detail-tag-empty">暂无可增加的消费者标签</span>';
+  mask.style.display = 'flex';
+}
+function closeConsumerDetailTagAddModal(){
+  const mask = document.getElementById('consumerDetailTagAddModalMask');
+  if(mask){mask.style.display = 'none'}
+}
+function saveConsumerDetailTagAdd(){
+  const selectedTagIds = Array.from(document.querySelectorAll('#consumerDetailTagAddOptions input[type="checkbox"]:checked')).map(node => node.value);
+  if(!selectedTagIds.length){
+    alert('请选择至少一个标签');
+    return;
+  }
+  selectedTagIds.forEach(tagId => {
+    if(!consumerDetailTagDraftIds.includes(tagId)){consumerDetailTagDraftIds.push(tagId)}
+  });
+  closeConsumerDetailTagAddModal();
+  refreshConsumerDetailTags();
+}
+function removeConsumerDetailTag(phone,tagId){
+  if(!consumerDetailTagEditMode || phone !== currentConsumerDetailPhone){return}
+  const index = consumerDetailTagDraftIds.indexOf(tagId);
+  if(index < 0){return}
+  consumerDetailTagDraftIds.splice(index,1);
+  refreshConsumerDetailTags();
+}
+function saveConsumerDetailTags(){
+  const row = consumerManagementData.find(item => item.phone === currentConsumerDetailPhone);
+  if(!row){return}
+  const originalIds = getConsumerUserTagIds(row).slice();
+  const draftIds = Array.from(new Set(consumerDetailTagDraftIds));
+  const addedIds = draftIds.filter(tagId => !originalIds.includes(tagId));
+  const removedIds = originalIds.filter(tagId => !draftIds.includes(tagId));
+  const now = formatConsumerTagNow();
+  if(addedIds.length){
+    const batchNo = `TAG-BATCH-${Date.now()}-ADD`;
+    addedIds.forEach(tagId => {
+      const tag = consumerTagData.find(item => item.id === tagId);
+      if(!tag){return}
+      tag.linkedUserCount = Number(tag.linkedUserCount) + 1;
+      appendConsumerTagChange(row,tag,'标签添加',batchNo,now);
+    });
+    consumerTagChangeRecordData.unshift({batchNo,operationType:'标签添加',operationStatus:'成功',operationTotal:addedIds.length,successCount:addedIds.length,failureCount:0,remark:'消费者详情标签维护',operationTime:now,operator:'当前用户'});
+  }
+  if(removedIds.length){
+    const batchNo = `TAG-BATCH-${Date.now()}-REMOVE`;
+    removedIds.forEach(tagId => {
+      const tag = consumerTagData.find(item => item.id === tagId);
+      if(!tag){return}
+      tag.linkedUserCount = Math.max(0,Number(tag.linkedUserCount) - 1);
+      appendConsumerTagChange(row,tag,'标签删除',batchNo,now);
+    });
+    consumerTagChangeRecordData.unshift({batchNo,operationType:'标签删除',operationStatus:'成功',operationTotal:removedIds.length,successCount:removedIds.length,failureCount:0,remark:'消费者详情标签维护',operationTime:now,operator:'当前用户'});
+  }
+  const assignmentKey = getConsumerTagAssignmentKey(row);
+  const tagNames = draftIds.map(tagId => consumerTagData.find(tag => tag.id === tagId)?.name).filter(Boolean);
+  consumerUserTagAssignments[assignmentKey] = draftIds;
+  getConsumerIdentityRows(row).forEach(item => {item.consumerTags = tagNames.slice()});
+  consumerDetailTagEditMode = false;
+  consumerDetailTagDraftIds = [];
+  syncConsumerTagChangeViews();
+}
+function openConsumerDetail(phone){
+  const row = consumerManagementData.find(item => item.phone === phone);
+  const body = document.getElementById('consumerDetailModalBody');
+  const mask = document.getElementById('consumerDetailModalMask');
+  if(!row || !body || !mask){return}
+  currentConsumerDetailPhone = phone;
+  currentConsumerDetailTab = 'orders';
+  consumerDetailTagEditMode = false;
+  consumerDetailTagDraftIds = [];
+  const stats = getConsumerIdentityStats(row);
+  const item = (label,value) => `<div class="notification-detail-item"><span class="notification-detail-label">${label}</span><span class="notification-detail-value">${escapeHtml(value ?? '--')}</span></div>`;
+  body.innerHTML = `<div class="notification-detail-section"><h3 class="notification-detail-title">基本信息</h3><div class="notification-detail-grid">${item('微信openid',row.openid)}${item('微信unioid',row.unionid)}${item('手机号码',row.phone)}${item('是否默认设备',row.defaultDevice)}${item('设备号',row.deviceNo)}${item('商户名称',row.merchant)}${item('设备类型',row.deviceType)}${item('京东plus会员',row.jdPlus)}${item('绑定时间',row.boundAt)}${item('充值时间',row.rechargeAt)}</div></div><div class="notification-detail-section"><div class="notification-detail-title-row"><h3 class="notification-detail-title">消费者标签</h3><span id="consumerDetailTagActions"><button type="button" class="btn line" onclick="startConsumerDetailTagEdit()">编辑</button></span></div><div class="consumer-detail-tags">${renderConsumerDetailTags(row)}</div></div><div class="notification-detail-section"><div class="consumer-stats-title"><h3 class="notification-detail-title">设备与消费统计</h3><span class="consumer-stats-tip"><button type="button" class="consumer-stats-tip-icon" aria-label="提示">i</button><span class="consumer-stats-tip-content" role="tooltip">以下数据汇总该用户名下所有设备的绑定与消费情况。</span></span></div><div class="notification-detail-grid">${item('历史绑定设备数',stats.historicalDeviceCount)}${item('当前绑定设备数',stats.currentDeviceCount)}${item('充值总金额',stats.rechargeTotal)}${item('充值次数',stats.rechargeCount)}${item('退款总金额',stats.refundTotal)}${item('退款次数',stats.refundCount)}</div></div><div class="inner-tabs consumer-detail-tabs"><span class="inner-tab active" data-tab="orders" onclick="switchConsumerDetailTab('orders')">历史充值订单</span><span class="inner-tab" data-tab="refunds" onclick="switchConsumerDetailTab('refunds')">退费记录</span></div><div id="consumerDetailOrdersPanel" class="consumer-detail-record-panel active"><div class="table-card"><table class="notification-table consumer-detail-order-table"><thead><tr><th>序号</th><th>订单号</th><th>订单类型</th><th>设备SN</th><th>套餐名称</th><th>商户号</th><th>商户名称</th><th>主商户</th><th>优惠券名称</th><th>套餐价格</th><th>加速包价格</th><th>折扣价</th><th>应付价格</th><th>优惠券减免金额（元）</th><th>实际支付价格</th><th>微信支付金额</th><th>钱包支付金额</th><th>订单状态</th><th>支付类型</th><th>支付时间</th><th>支付单号</th><th>续费前的服务有效期</th><th>续费后的服务有效期</th><th>优惠券</th><th>创建人</th><th>创建时间</th><th>余额自动续费状态</th></tr></thead><tbody id="consumerDetailOrdersRows"></tbody></table></div></div><div id="consumerDetailRefundsPanel" class="consumer-detail-record-panel"><div class="table-card"><table class="notification-table consumer-detail-refund-table"><thead><tr><th>序号</th><th>订单号</th><th>设备SN</th><th>所属商户</th><th>退费原因</th><th>套餐名称</th><th>退费金额</th><th>退费方式</th><th>备注</th><th>状态</th><th>创建时间</th><th>更新时间</th><th>操作人</th></tr></thead><tbody id="consumerDetailRefundRows"></tbody></table></div></div>`;
+  switchConsumerDetailTab('orders');
+  mask.style.display = 'flex';
+}
+function closeConsumerDetailModal(){
+  const mask = document.getElementById('consumerDetailModalMask');
+  if(mask){mask.style.display = 'none'}
+  consumerDetailTagEditMode = false;
+  consumerDetailTagDraftIds = [];
 }
 function formatConsumerTagNow(){
   const date = new Date();
@@ -4829,31 +5234,41 @@ function handleConsumerTagAssignmentFileChange(){
   if(name){name.textContent = input?.files?.[0]?.name || '未选择文件'}
   clearConsumerTagAssignmentFieldError('consumerTagAssignmentFileField');
 }
-function openConsumerTagAssignmentModal(){
+function downloadConsumerTagAssignmentTemplate(){
+  const csv = '\uFEFF微信unioid\n';
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  link.download = '消费者标签导入模板.csv';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(()=>URL.revokeObjectURL(link.href),0);
+}
+function openConsumerTagAssignmentModal(unionid = ''){
   setCustomSelectValue('consumerTagAssignmentOperation','add','标签添加');
   renderConsumerTagAssignmentOptions();
   consumerTagAssignmentEntry = 'manual';
   switchConsumerTagAssignmentEntry('manual');
-  const phoneInput = document.getElementById('consumerTagAssignmentPhoneInput');
+  const unionIdInput = document.getElementById('consumerTagAssignmentUnionIdInput');
   const remarkInput = document.getElementById('consumerTagAssignmentRemarkInput');
   const fileInput = document.getElementById('consumerTagAssignmentFileInput');
   const fileName = document.getElementById('consumerTagAssignmentFileName');
-  if(phoneInput){phoneInput.value = ''}
+  if(unionIdInput){unionIdInput.value = unionid || ''}
   if(remarkInput){remarkInput.value = ''}
   if(fileInput){fileInput.value = ''}
   if(fileName){fileName.textContent = '未选择文件'}
   ['consumerTagAssignmentOperationField','consumerTagAssignmentTagField','consumerTagAssignmentManualField','consumerTagAssignmentFileField'].forEach(clearConsumerTagAssignmentFieldError);
   const modal = document.getElementById('consumerTagAssignmentModalMask');
   if(modal){modal.style.display = 'flex'}
-  phoneInput?.focus();
+  unionIdInput?.focus();
 }
 function closeConsumerTagAssignmentModal(){
   const modal = document.getElementById('consumerTagAssignmentModalMask');
   if(modal){modal.style.display = 'none'}
 }
-function getConsumerTagAssignmentPhoneValues(){
-  const input = document.getElementById('consumerTagAssignmentPhoneInput');
-  return parseAuthWhitelistValues(input ? input.value : '');
+function getConsumerTagAssignmentUnionIds(){
+  const input = document.getElementById('consumerTagAssignmentUnionIdInput');
+  return parseAuthWhitelistValues(input ? input.value : '').map(value => value.trim()).filter(Boolean);
 }
 async function submitConsumerTagAssignment(){
   const operation = getSelectValue('consumerTagAssignmentOperation') || 'add';
@@ -4866,7 +5281,7 @@ async function submitConsumerTagAssignment(){
   }
   const field = consumerTagAssignmentEntry === 'file' ? document.getElementById('consumerTagAssignmentFileField') : document.getElementById('consumerTagAssignmentManualField');
   const error = field ? field.querySelector('.field-error') : null;
-  let phones = [];
+  let unionIds = [];
   if(consumerTagAssignmentEntry === 'file'){
     const fileInput = document.getElementById('consumerTagAssignmentFileInput');
     const file = fileInput?.files?.[0];
@@ -4877,24 +5292,25 @@ async function submitConsumerTagAssignment(){
     }
     if(/\.(csv|txt)$/i.test(file.name)){
       const content = await file.text();
-      phones = parseAuthWhitelistValues(content).filter(value => /^1\d{10}$/.test(value));
+      unionIds = parseAuthWhitelistValues(content.replace(/^\uFEFF/,'')).map(value => value.trim()).filter(value => value && !['微信unioid','微信unionid','unionid'].includes(value.toLowerCase()));
     }else{
       closeConsumerTagAssignmentModal();
-      alert('文件已提交导入，原型中将按手机号处理。');
+      alert('文件已提交导入，原型中将按微信unioid处理。');
       return;
     }
   }else{
-    phones = getConsumerTagAssignmentPhoneValues();
+    unionIds = getConsumerTagAssignmentUnionIds();
   }
-  if(!phones.length){
+  unionIds = Array.from(new Set(unionIds));
+  if(!unionIds.length){
     field?.classList.add('invalid');
-    if(error){error.textContent = '请输入有效的手机号'}
+    if(error){error.textContent = '请输入微信unioid'}
     return;
   }
-  const matchedUsers = consumerManagementData.filter(row => phones.includes(row.phone));
+  const matchedUsers = Array.from(new Map(consumerManagementData.filter(row => unionIds.includes(String(row.unionid || '').trim())).map(row => [String(row.unionid || '').trim(),row])).values());
   if(!matchedUsers.length){
     field?.classList.add('invalid');
-    if(error){error.textContent = '未找到匹配的消费者手机号'}
+    if(error){error.textContent = '未找到匹配的微信unioid'}
     return;
   }
   const now = formatConsumerTagNow();
@@ -4904,7 +5320,7 @@ async function submitConsumerTagAssignment(){
   let changedCount = 0;
   let sequence = 0;
   matchedUsers.forEach(user => {
-    const assignments = consumerUserTagAssignments[user.phone] || (consumerUserTagAssignments[user.phone] = []);
+    const assignments = getConsumerUserTagIds(user);
     let userChanged = false;
     selectedTagIds.forEach(tagId => {
       const tag = consumerTagData.find(row => row.id === tagId);
@@ -4922,17 +5338,26 @@ async function submitConsumerTagAssignment(){
         return;
       }
       changedCount += 1;
-      consumerTagChangeData.unshift({id:`TAG-LOG-${Date.now()}-${sequence++}`,batchNo,changedAt:now,userId:`U${String(consumerManagementData.indexOf(user)+100001).padStart(6,'0')}`,openid:user.openid,unionid:user.unionid,phone:user.phone,deviceNo:user.deviceNo,tagId,tagName:tag.name,tagType:tag.type,changeType,source:'人工操作',operator:'当前用户',remark});
+      consumerTagChangeData.unshift({id:`TAG-LOG-${Date.now()}-${sequence++}`,batchNo,changedAt:now,userId:`U${String(consumerManagementData.indexOf(user)+100001).padStart(6,'0')}`,openid:user.openid,unionid:user.unionid,phone:user.phone,deviceNo:user.deviceNo,tagId,tagName:tag.name,tagType:tag.type,changeType,operationStatus:'成功',source:'人工操作',operator:'当前用户',remark});
     });
-    if(userChanged){affectedUsers += 1}
+    if(userChanged){
+      affectedUsers += 1;
+      const tagNames = assignments.map(tagId => consumerTagData.find(tag => tag.id === tagId)?.name).filter(Boolean);
+      getConsumerIdentityRows(user).forEach(item => {item.consumerTags = tagNames.slice()});
+    }
   });
   if(!changedCount){
     field?.classList.add('invalid');
     if(error){error.textContent = operation === 'remove' ? '所选用户未关联这些标签' : '所选用户已关联这些标签'}
     return;
   }
-  consumerTagChangeRecordData.unshift({batchNo,operationType:changeType,remark,operationTime:now,operator:'当前用户'});
+  const operationTotal = unionIds.length * selectedTagIds.length;
+  const failureCount = Math.max(0,operationTotal - changedCount);
+  const operationStatus = changedCount > 0 && failureCount > 0 ? '部分成功' : failureCount > 0 ? '失败' : '成功';
+  consumerTagChangeRecordData.unshift({batchNo,operationType:changeType,operationStatus,operationTotal,successCount:changedCount,failureCount,remark,operationTime:now,operator:'当前用户'});
   closeConsumerTagAssignmentModal();
+  searchConsumerManagementRecords();
+  refreshConsumerDetailTags();
   alert(`${changeType}成功，共${affectedUsers}位消费者、${changedCount}条标签关系`);
 }
 function switchConsumerManageTab(tab){
@@ -4940,6 +5365,7 @@ function switchConsumerManageTab(tab){
   const activeTabId = {consumer:'consumerManagementTab',detail:'consumerTagChangeDetailTab',changeLog:'consumerTagChangeLogTab'}[currentConsumerManageTab] || 'consumerManagementTab';
   document.querySelectorAll('#consumerManagePage .consumer-manage-tabs .inner-tab').forEach(node => node.classList.toggle('active', node.id === activeTabId));
   document.getElementById('consumerManagementPanel')?.classList.toggle('hidden', currentConsumerManageTab !== 'consumer');
+  if(currentConsumerManageTab !== 'consumer'){toggleConsumerPageDescription(false)}
   document.getElementById('consumerTagChangeDetailPanel')?.classList.toggle('hidden', currentConsumerManageTab !== 'detail');
   document.getElementById('consumerTagChangeLogPanel')?.classList.toggle('hidden', currentConsumerManageTab !== 'changeLog');
   if(currentConsumerManageTab === 'consumer'){
@@ -4951,6 +5377,16 @@ function switchConsumerManageTab(tab){
     searchConsumerTagChangeLogs();
     renderConsumerTagChangeDetail(currentConsumerTagDetailId);
   }
+}
+function toggleConsumerPageDescription(forceOpen){
+  const drawer = document.getElementById('consumerPageDescriptionDrawer');
+  const backdrop = document.getElementById('consumerPageDescriptionBackdrop');
+  const trigger = document.getElementById('consumerPageDescriptionTrigger');
+  if(!drawer || !backdrop){return}
+  const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !drawer.classList.contains('open');
+  drawer.classList.toggle('open',isOpen);
+  backdrop.classList.toggle('open',isOpen);
+  if(trigger){trigger.setAttribute('aria-expanded',isOpen ? 'true' : 'false')}
 }
 function switchConsumerTagTab(tab){
   currentConsumerTagTab = tab || 'list';
@@ -4967,7 +5403,7 @@ function renderConsumerTagTable(rows){
     const actions = row.type === '自定义标签'
       ? `<span class="text-action" onclick="openConsumerTagEditor('edit','${escapeHtml(row.id)}')">编辑</span><span class="text-action danger" onclick="deleteConsumerTag('${escapeHtml(row.id)}')">删除</span>`
       : '';
-    const statusToggle = `<span class="consumer-tag-status-cell"><button type="button" class="switch-toggle consumer-tag-status-toggle ${row.status === '开启' ? 'on' : ''}" onclick="toggleConsumerTagStatus('${escapeHtml(row.id)}')" aria-label="${escapeHtml(row.status)}" aria-pressed="${row.status === '开启' ? 'true' : 'false'}"></button><span class="consumer-tag-status-text">${escapeHtml(row.status)}</span></span>`;
+    const statusToggle = `<span class="consumer-tag-status-cell"><button type="button" class="switch-toggle consumer-tag-status-toggle ${row.status === '启用' ? 'on' : ''}" onclick="toggleConsumerTagStatus('${escapeHtml(row.id)}')" aria-label="${escapeHtml(row.status)}" aria-pressed="${row.status === '启用' ? 'true' : 'false'}"></button><span class="consumer-tag-status-text">${escapeHtml(row.status)}</span></span>`;
     return `<tr><td>${escapeHtml(row.name)}</td><td>${escapeHtml(row.type)}</td><td>${escapeHtml(description || '--')}</td><td>${statusToggle}</td><td>${escapeHtml(row.linkedUserCount ?? 0)}</td><td>${escapeHtml(row.updatedAt)}</td><td>${escapeHtml(row.operator)}</td><td class="sticky-action">${actions ? `<span class="device-type-action-list">${actions}</span>` : ''}</td></tr>`;
   }).join('') : '<tr><td colspan="8" class="notification-empty">暂无符合条件的标签</td></tr>';
   updatePagination('consumerTagPagination', rows.length);
@@ -4992,12 +5428,29 @@ function resetConsumerTags(){
 function renderConsumerTagChangeRecordTable(rows){
   const rowsNode = document.getElementById('consumerTagChangeRecordRows');
   if(!rowsNode){return}
-  rowsNode.innerHTML = rows.length ? rows.map(row => `<tr><td><span class="text-action" onclick="openConsumerTagChangeBatch('${escapeHtml(row.batchNo)}')">${escapeHtml(row.batchNo)}</span></td><td>${escapeHtml(row.operationType)}</td><td>${escapeHtml(row.remark || '--')}</td><td>${escapeHtml(row.operationTime)}</td><td>${escapeHtml(row.operator)}</td></tr>`).join('') : '<tr><td colspan="5" class="notification-empty">暂无符合条件的标签变更记录</td></tr>';
+  rowsNode.innerHTML = rows.length ? rows.map(row => `<tr><td><span class="text-action" onclick="openConsumerTagChangeBatch('${escapeHtml(row.batchNo)}')">${escapeHtml(row.batchNo)}</span></td><td>${escapeHtml(row.operationType)}</td><td>${consumerTagOperationStatusTag(getConsumerTagBatchStatus(row))}</td><td>${escapeHtml(row.operationTotal ?? 0)}</td><td>${escapeHtml(row.successCount ?? 0)}</td><td>${escapeHtml(row.failureCount ?? 0)}</td><td>${escapeHtml(row.remark || '--')}</td><td>${escapeHtml(row.operationTime)}</td><td>${escapeHtml(row.operator)}</td></tr>`).join('') : '<tr><td colspan="9" class="notification-empty">暂无符合条件的标签变更记录</td></tr>';
   updatePagination('consumerTagChangeRecordPagination', rows.length);
+}
+function getConsumerTagBatchStatus(row){
+  if(['处理中','部分成功','成功','失败'].includes(row?.operationStatus)){return row.operationStatus}
+  const total = Number(row?.operationTotal || 0);
+  const success = Number(row?.successCount || 0);
+  const failure = Number(row?.failureCount || 0);
+  if(total > 0 && success + failure < total){return '处理中'}
+  if(success > 0 && failure > 0){return '部分成功'}
+  if(success > 0 || (total > 0 && failure === 0)){return '成功'}
+  if(failure > 0){return '失败'}
+  return '处理中';
+}
+function consumerTagOperationStatusTag(status){
+  const normalized = ['处理中','部分成功','成功','失败'].includes(status) ? status : '处理中';
+  const className = normalized === '成功' ? 'success' : normalized === '部分成功' ? 'partial' : normalized === '失败' ? 'failed' : 'unsent';
+  return `<span class="notification-result ${className}">${normalized}</span>`;
 }
 function getFilteredConsumerTagChangeRecords(){
   const batchNo = normalizeText(document.getElementById('consumerTagChangeRecordBatchFilter')?.value);
   const operationType = getSelectValue('consumerTagChangeRecordTypeFilter');
+  const operationStatus = getSelectValue('consumerTagChangeRecordStatusFilter');
   const remark = normalizeText(document.getElementById('consumerTagChangeRecordRemarkFilter')?.value);
   const start = document.getElementById('consumerTagChangeRecordStartInput')?.value || '';
   const end = document.getElementById('consumerTagChangeRecordEndInput')?.value || '';
@@ -5006,6 +5459,7 @@ function getFilteredConsumerTagChangeRecords(){
     const date = row.operationTime.slice(0,10);
     return (!batchNo || normalizeText(row.batchNo).includes(batchNo)) &&
       (!operationType || row.operationType === operationType) &&
+      (!operationStatus || getConsumerTagBatchStatus(row) === operationStatus) &&
       (!remark || normalizeText(row.remark).includes(remark)) &&
       (!start || date >= start) && (!end || date <= end) &&
       (!operator || normalizeText(row.operator).includes(operator));
@@ -5018,6 +5472,7 @@ function searchConsumerTagChangeRecords(){
 function resetConsumerTagChangeRecords(){
   ['consumerTagChangeRecordBatchFilter','consumerTagChangeRecordRemarkFilter','consumerTagChangeRecordOperatorFilter'].forEach(id => {const node = document.getElementById(id);if(node){node.value = ''}});
   resetCustomSelect('consumerTagChangeRecordTypeFilter','操作类型');
+  resetCustomSelect('consumerTagChangeRecordStatusFilter','操作状态');
   setUnifiedRangeValues('consumerTagChangeRecordDate','','',false);
   searchConsumerTagChangeRecords();
 }
@@ -5032,7 +5487,7 @@ function openConsumerTagChangeBatch(batchNo){
 function renderConsumerTagChangeTable(rows){
   const rowsNode = document.getElementById('consumerTagChangeRows');
   if(!rowsNode){return}
-  rowsNode.innerHTML = rows.length ? rows.map(row => `<tr><td>${escapeHtml(row.batchNo || '--')}</td><td>${escapeHtml(row.changeType)}</td><td>${escapeHtml(row.tagName)}</td><td>${escapeHtml(row.tagType)}</td><td>${escapeHtml(row.openid)}</td><td>${escapeHtml(row.unionid)}</td><td>${escapeHtml(row.phone)}</td><td>${escapeHtml(row.deviceNo)}</td><td>${escapeHtml(row.changedAt)}</td><td>${escapeHtml(row.operator)}</td></tr>`).join('') : '<tr><td colspan="10" class="notification-empty">暂无符合条件的标签变更记录</td></tr>';
+  rowsNode.innerHTML = rows.length ? rows.map(row => `<tr><td>${escapeHtml(row.batchNo || '--')}</td><td>${escapeHtml(row.changeType)}</td><td>${escapeHtml(row.tagName)}</td><td>${escapeHtml(row.tagType)}</td><td>${escapeHtml(row.openid)}</td><td>${escapeHtml(row.unionid)}</td><td>${escapeHtml(row.phone)}</td><td>${escapeHtml(row.deviceNo)}</td><td>${consumerTagOperationStatusTag(row.operationStatus || '成功')}</td><td>${escapeHtml(row.failureReason || '--')}</td><td>${escapeHtml(row.changedAt)}</td><td>${escapeHtml(row.operator)}</td></tr>`).join('') : '<tr><td colspan="12" class="notification-empty">暂无符合条件的标签变更记录</td></tr>';
   updatePagination('consumerTagChangePagination', rows.length);
 }
 function getFilteredConsumerTagChangeLogs(){
@@ -5049,6 +5504,7 @@ function getFilteredConsumerTagChangeLogs(){
   };
   const tagType = getSelectValue('consumerTagChangeTagTypeFilter');
   const changeType = getSelectValue('consumerTagChangeTypeFilter');
+  const operationStatus = getSelectValue('consumerTagChangeStatusFilter');
   return consumerTagChangeData.filter(row => {
     const date = row.changedAt.slice(0,10);
     return (!values.batchNo || normalizeText(row.batchNo).includes(values.batchNo)) &&
@@ -5059,6 +5515,7 @@ function getFilteredConsumerTagChangeLogs(){
       (!values.deviceNo || normalizeText(row.deviceNo).includes(values.deviceNo)) &&
       (!values.tagName || normalizeText(row.tagName).includes(values.tagName)) &&
       (!values.operator || normalizeText(row.operator).includes(values.operator)) &&
+      (!operationStatus || (row.operationStatus || '成功') === operationStatus) &&
       (!tagType || row.tagType === tagType) && (!changeType || row.changeType === changeType);
   });
 }
@@ -5071,12 +5528,13 @@ function resetConsumerTagChangeLogs(){
   setUnifiedRangeValues('consumerTagChangeLogDate','','',false);
   resetCustomSelect('consumerTagChangeTagTypeFilter','标签类型');
   resetCustomSelect('consumerTagChangeTypeFilter','操作类型');
+  resetCustomSelect('consumerTagChangeStatusFilter','操作状态');
   searchConsumerTagChangeLogs();
 }
 function exportConsumerTagChangeDetails(){
   const rows = getFilteredConsumerTagChangeLogs();
-  const header = ['批次号','操作类型','标签名称','标签类型','微信 OpenID','微信 UnionID','手机号码','设备号','操作时间','操作人'];
-  const body = rows.map(row => [row.batchNo,row.changeType,row.tagName,row.tagType,row.openid,row.unionid,row.phone,row.deviceNo,row.changedAt,row.operator]);
+  const header = ['批次号','操作类型','标签名称','标签类型','微信 OpenID','微信 UnionID','手机号码','设备号','操作状态','失败原因','操作时间','操作人'];
+  const body = rows.map(row => [row.batchNo,row.changeType,row.tagName,row.tagType,row.openid,row.unionid,row.phone,row.deviceNo,row.operationStatus || '成功',row.failureReason || '--',row.changedAt,row.operator]);
   const csv = '\ufeff' + [header].concat(body).map(items => items.map(item => `"${String(item ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
   const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
   const link = document.createElement('a');
@@ -5094,21 +5552,40 @@ function setConsumerTagEditorError(fieldId,message){
   if(field){field.classList.add('invalid');const error = field.querySelector('.field-error');if(error){error.textContent = message || ''}}
 }
 function setConsumerTagEditorStatus(value){
-  consumerTagEditorStatus = value === '关闭' ? '关闭' : '开启';
+  consumerTagEditorStatus = value === '停用' ? '停用' : '启用';
   const toggle = document.getElementById('consumerTagStatusToggle');
   const valueNode = document.getElementById('consumerTagStatusValue');
-  if(toggle){toggle.classList.toggle('on',consumerTagEditorStatus === '开启');toggle.setAttribute('aria-pressed',consumerTagEditorStatus === '开启' ? 'true' : 'false')}
+  if(toggle){toggle.classList.toggle('on',consumerTagEditorStatus === '启用');toggle.setAttribute('aria-pressed',consumerTagEditorStatus === '启用' ? 'true' : 'false')}
   if(valueNode){valueNode.textContent = consumerTagEditorStatus}
 }
-function toggleConsumerTagEditorStatus(){setConsumerTagEditorStatus(consumerTagEditorStatus === '开启' ? '关闭' : '开启')}
+function toggleConsumerTagEditorStatus(){setConsumerTagEditorStatus(consumerTagEditorStatus === '启用' ? '停用' : '启用')}
 function toggleConsumerTagStatus(id){
   const row = consumerTagData.find(item => item.id === id);
   if(!row){return}
-  if(Number(row.linkedUserCount) > 0){alert('当前标签已关联用户，不支持操作。');return}
-  if(row.type === '系统标签'){alert('系统标签由系统规则维护，不支持手动改变状态。');return}
-  row.status = row.status === '开启' ? '关闭' : '开启';
+  const nextStatus = row.status === '启用' ? '停用' : '启用';
+  const confirmMessage = nextStatus === '启用'
+    ? `确定启用「${row.name}」？启用后，该标签将可用于消费者画像打标及筛选。`
+    : `确定停用「${row.name}」？停用后，该标签不可用于消费者画像打标，已使用该标签的数据会保留标签。`;
+  pendingConsumerTagStatusChange = {id, nextStatus};
+  const titleNode = document.getElementById('consumerTagStatusConfirmTitle');
+  if(titleNode){titleNode.textContent = `标签${nextStatus}`}
+  const messageNode = document.getElementById('consumerTagStatusConfirmMessage');
+  if(messageNode){messageNode.textContent = confirmMessage}
+  document.getElementById('consumerTagStatusConfirmModalMask').style.display = 'flex';
+}
+function closeConsumerTagStatusConfirm(){
+  pendingConsumerTagStatusChange = null;
+  const modal = document.getElementById('consumerTagStatusConfirmModalMask');
+  if(modal){modal.style.display = 'none'}
+}
+function confirmConsumerTagStatusChange(){
+  const pending = pendingConsumerTagStatusChange;
+  const row = pending ? consumerTagData.find(item => item.id === pending.id) : null;
+  if(!row){closeConsumerTagStatusConfirm();return}
+  row.status = pending.nextStatus;
   row.updatedAt = formatConsumerTagNow();
   row.operator = '当前用户';
+  closeConsumerTagStatusConfirm();
   searchConsumerTags();
 }
 function openConsumerTagEditor(mode,id){
@@ -5120,7 +5597,7 @@ function openConsumerTagEditor(mode,id){
   document.getElementById('consumerTagEditorModalTitle').textContent = mode === 'edit' ? '自定义标签编辑' : '自定义标签新增';
   document.getElementById('consumerTagNameInput').value = row?.name || '';
   document.getElementById('consumerTagDescriptionInput').value = row?.description || '';
-  setConsumerTagEditorStatus(row?.status || '开启');
+  setConsumerTagEditorStatus(row?.status || '启用');
   ['consumerTagNameField','consumerTagDescriptionField','consumerTagStatusField'].forEach(clearConsumerTagEditorError);
   document.getElementById('consumerTagEditorModalMask').style.display = 'flex';
 }
@@ -5152,9 +5629,24 @@ function deleteConsumerTag(id){
   const row = consumerTagData.find(item => item.id === id);
   if(!row || row.type !== '自定义标签'){return}
   if(Number(row.linkedUserCount) > 0){alert('当前标签已关联用户，不支持操作。');return}
-  if(!confirm(`确定删除标签“${row.name}”吗？删除后不可恢复。`)){return}
+  pendingConsumerTagDeleteId = id;
+  const message = document.getElementById('consumerTagDeleteConfirmMessage');
+  if(message){message.textContent = `确定删除标签“${row.name}”吗？删除后不可恢复。`}
+  document.getElementById('consumerTagDeleteConfirmModalMask').style.display = 'flex';
+}
+function closeConsumerTagDeleteConfirm(){
+  pendingConsumerTagDeleteId = '';
+  const modal = document.getElementById('consumerTagDeleteConfirmModalMask');
+  if(modal){modal.style.display = 'none'}
+}
+function confirmConsumerTagDelete(){
+  const id = pendingConsumerTagDeleteId;
+  const row = consumerTagData.find(item => item.id === id);
+  if(!row || row.type !== '自定义标签'){closeConsumerTagDeleteConfirm();return}
+  if(Number(row.linkedUserCount) > 0){closeConsumerTagDeleteConfirm();alert('当前标签已关联用户，不支持操作。');return}
   const index = consumerTagData.findIndex(item => item.id === id);
   if(index >= 0){consumerTagData.splice(index,1)}
+  closeConsumerTagDeleteConfirm();
   searchConsumerTags();
 }
 function openConsumerTagChangeDetail(id){
@@ -5171,7 +5663,7 @@ function renderConsumerTagChangeDetail(id){
   contentWrap?.classList.remove('hidden');
   const item = (label,value) => `<div class="consumer-tag-detail-item"><span class="detail-label">${label}</span><span class="detail-value">${escapeHtml(value || '--')}</span></div>`;
   const trigger = row.source === '系统规则' ? `<div class="consumer-tag-detail-section"><h4>触发信息</h4><div class="consumer-tag-detail-grid">${item('触发规则',row.triggerRule)}${item('触发原因 / 命中条件',row.triggerReason || '--')}</div></div>` : '';
-  container.innerHTML = `<div class="consumer-tag-detail-card"><div class="consumer-tag-detail-title">标签变更明细 <button class="btn line" style="float:right" onclick="currentConsumerTagDetailId='';renderConsumerTagChangeDetail('')">返回明细列表</button></div><div class="consumer-tag-detail-section"><h4>变更信息</h4><div class="consumer-tag-detail-grid">${item('批次号',row.batchNo)}${item('操作类型',row.changeType)}${item('标签名称',row.tagName)}${item('标签类型',row.tagType)}${item('操作时间',row.changedAt)}${item('操作人',row.operator)}</div></div><div class="consumer-tag-detail-section"><h4>用户信息</h4><div class="consumer-tag-detail-grid">${item('微信 OpenID',row.openid)}${item('微信 UnionID',row.unionid)}${item('手机号码',row.phone)}${item('设备号',row.deviceNo)}</div></div>${trigger}</div>`;
+  container.innerHTML = `<div class="consumer-tag-detail-card"><div class="consumer-tag-detail-title">标签变更明细 <button class="btn line" style="float:right" onclick="currentConsumerTagDetailId='';renderConsumerTagChangeDetail('')">返回明细列表</button></div><div class="consumer-tag-detail-section"><h4>变更信息</h4><div class="consumer-tag-detail-grid">${item('批次号',row.batchNo)}${item('操作类型',row.changeType)}${item('操作状态',row.operationStatus || '成功')}${item('标签名称',row.tagName)}${item('标签类型',row.tagType)}${item('操作时间',row.changedAt)}${item('操作人',row.operator)}</div></div><div class="consumer-tag-detail-section"><h4>用户信息</h4><div class="consumer-tag-detail-grid">${item('微信 OpenID',row.openid)}${item('微信 UnionID',row.unionid)}${item('手机号码',row.phone)}${item('设备号',row.deviceNo)}</div></div>${trigger}</div>`;
 }
 function handleDeviceTypeAction(action,typeCode){
   const row = deviceTypeData.find(item => item.typeCode === typeCode);
@@ -8846,14 +9338,17 @@ function setCustomSelectValue(target,value,label,emitChange){
   if(['deviceOfflineCondition','deviceNetworkFilter','deviceSpeedFilter','deviceDisabledFilter','deviceActiveFilter','devicePackageExpiredFilter','deviceSecondAuthFilter'].includes(select.id)){
     searchDeviceManageRecords();
   }
-  if(['consumerDefaultDeviceFilter','consumerDeviceTypeFilter','consumerJdPlusFilter'].includes(select.id)){
+  if(['consumerDefaultDeviceFilter','consumerDeviceTypeFilter'].includes(select.id)){
     searchConsumerManagementRecords();
   }
   if(['consumerTagTypeFilter','consumerTagStatusFilter'].includes(select.id)){
     searchConsumerTags();
   }
-  if(['consumerTagChangeTagTypeFilter','consumerTagChangeTypeFilter'].includes(select.id)){
+  if(['consumerTagChangeTagTypeFilter','consumerTagChangeTypeFilter','consumerTagChangeStatusFilter'].includes(select.id)){
     searchConsumerTagChangeLogs();
+  }
+  if(['consumerTagChangeRecordTypeFilter','consumerTagChangeRecordStatusFilter'].includes(select.id)){
+    searchConsumerTagChangeRecords();
   }
   if(['strategyUsageStatusFilter','strategyTimeStatusFilter'].includes(select.id)){
     searchStrategyRecords();
@@ -8959,7 +9454,8 @@ function initDropdowns(){
       event.stopPropagation();
     });
   });
-  document.addEventListener('click', () => {
+  document.addEventListener('click', event => {
+    if(!event.target.closest('#consumerTagFilterControl')){closeConsumerTagFilter()}
     closeDropdowns();
     closeInputCombos();
     closeDatePickers();
