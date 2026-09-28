@@ -193,7 +193,7 @@
     .rule-center-page{gap:0}
     .rule-center-filter{padding-top:0}
     .rule-center-filter .filter-actions{grid-column:1 / -1}
-    .rule-center-actions{margin-bottom:10px}
+    .rule-center-actions{margin-bottom:16px}
     #ruleTriggerRecordsPage #ruleTriggerFilter{padding-bottom:0;margin-bottom:16px}
     #ruleTriggerRecordsPage #ruleTriggerFilter .filter-actions{height:32px}
     #ruleTriggerRecordsPage .rule-center-actions{margin-bottom:16px}

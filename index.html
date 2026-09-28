@@ -540,12 +540,31 @@ input[type="checkbox"],input[type="radio"]{accent-color:var(--theme-color)}
 .filter-actions{height:34px;display:flex;align-items:center;gap:8px;min-width:0}
 .filter-actions.new-row{grid-column:1 / -1}
 .filter-actions .btn{height:32px;flex:none;width:auto;white-space:nowrap}
+:is(.device-filter,.device-type-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter,.notification-filter,.notification-account-filter):has(+ .action-row),
+:is(.device-filter,.device-type-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter,.notification-filter,.notification-account-filter):has(+ .content-actions){padding-bottom:0;margin-bottom:16px}
+:is(.device-filter,.device-type-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter,.notification-filter,.notification-account-filter):has(+ .action-row)>.filter-actions,
+:is(.device-filter,.device-type-filter,.config-filter,.sim-filter,.flow-filter,.payment-filter,.wallet-filter,.strategy-filter,.activity-filter,.package-filter,.task-filter,.factory-filter,.network-log-filter,.system-filter,.notification-filter,.notification-account-filter):has(+ .content-actions)>.filter-actions{height:32px}
 .filter-toggle-btn{display:inline-flex;align-items:center;gap:6px;height:32px;border:0!important;background:transparent!important;color:var(--theme-color)!important;padding:0 4px;box-shadow:none!important}
 .filter-toggle-btn:hover,.filter-toggle-btn:active{background:transparent!important;border-color:transparent!important;color:#0b6ed0!important;box-shadow:none!important;transform:none!important}
 .filter-toggle-arrow{width:7px;height:7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(-135deg);transition:transform .16s ease;margin-top:4px}
 .filter-toggle-btn.collapsed .filter-toggle-arrow{transform:rotate(45deg);margin-top:-3px}
 .table-card{background:#fff;border:1px solid #e6ebf2;flex:1;overflow:auto}
 .content > .table-card,.strategy-subpage > .table-card,.auth-manage-panel > .table-card,#fieldVersionListView > .table-card{width:100%;margin:0!important}
+.service-overview-table{min-width:1200px}
+.service-source-table{min-width:1400px}
+.service-overview-status-switch{border:0;font:inherit;color:inherit}
+.service-overview-th-label{display:inline-flex;align-items:center;gap:5px;position:relative;white-space:nowrap}.service-overview-help-wrap{position:relative;display:inline-flex;align-items:center}.service-overview-help-icon{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;padding:0;border:1px solid #1687e8;border-radius:50%;background:#1687e8;color:#fff;font-size:10px;font-weight:700;line-height:12px;cursor:help}.service-overview-help-icon:hover,.service-overview-help-icon:focus{border-color:#0b76d1;background:#0b76d1;color:#fff;outline:0}.service-overview-help-tip{display:none;position:absolute;left:50%;top:calc(100% + 8px);width:220px;padding:8px 10px;border-radius:3px;background:#30343b;color:#fff;font-size:12px;font-weight:400;line-height:20px;white-space:normal;text-align:left;transform:translateX(-50%);box-shadow:0 8px 20px rgba(31,35,41,.18);z-index:30}.service-overview-help-tip:before{content:"";position:absolute;left:50%;bottom:100%;margin-left:-5px;border:5px solid transparent;border-bottom-color:#30343b}.service-overview-help-wrap:hover .service-overview-help-tip,.service-overview-help-icon:focus + .service-overview-help-tip{display:block}
+.service-account-operation-group{display:flex;align-items:center;justify-content:center;gap:16px}
+.service-account-operation{border:0;padding:0;background:transparent;color:var(--theme-color);font-size:12px;cursor:pointer}.service-account-operation:hover{text-decoration:underline}.service-account-operation.danger{color:#f04438}.service-account-operation.danger:hover{color:#d92d20}
+.service-account-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.service-owner-source-note{margin:0 0 14px;color:#667085;font-size:13px;line-height:20px}
+.service-account-form .form-row{grid-template-columns:140px minmax(0,1fr)!important;margin-bottom:16px;align-items:start}.service-account-form .form-label{font-size:13px!important;font-weight:400!important;color:#4e5969!important;line-height:32px;white-space:nowrap}.service-account-form .input{width:100%;color:#1f2329!important}.service-account-readonly{background:#f8fafc!important;color:#667085!important}.service-account-lookup-hint{min-height:18px;margin-top:6px;color:#8b95a5;font-size:12px;line-height:18px}.service-account-lookup-hint.found{color:#1a9b5a}.service-account-lookup-hint.not-found,.service-account-form-error{color:#d92d20}
+.service-account-form .input[aria-invalid="true"]{border-color:#d92d20!important}.service-account-form-error{min-height:18px;margin-top:-4px;font-size:12px;line-height:18px}
+#serviceAccountEditorModalMask .service-account-editor-modal{width:min(640px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px)}
+#serviceAccountEditorModalMask .service-account-editor-modal .close{border:0;background:transparent;padding:0;cursor:pointer}
+#serviceAccountDeleteModalMask .auth-whitelist-delete-modal{width:min(480px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px)}
+#serviceAccountDeleteModalMask .confirm.danger{background:#f04438;border-color:#f04438}
+#serviceAccountDeleteModalMask .confirm.danger:hover{background:#d92d20;border-color:#d92d20}
 .content > .pagination,.strategy-subpage > .pagination,.auth-manage-panel > .pagination,#fieldVersionListView > .pagination{width:100%;margin-left:0;margin-right:0}
 .content > .inner-tabs,.content > .device-detail-tabs,.auth-manage-panel > .inner-tabs{margin-bottom:16px}
 table{width:100%;border-collapse:collapse;background:#fff}
@@ -793,6 +812,14 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .consumer-page-description-close:hover{background:#f2f4f7;color:#30343b}
 .consumer-page-description-body{padding:18px;color:#596273;font-size:13px;line-height:22px}
 .consumer-page-description-body strong{color:#344054;font-weight:600}
+.service-source-description-drawer{width:min(760px,calc(100vw - 32px))}
+.service-source-description-body{flex:1;min-height:0;overflow:auto;padding:18px}
+.service-source-description-table{min-width:680px;table-layout:fixed}
+.service-source-description-table th,.service-source-description-table td{text-align:left;white-space:normal;word-break:break-word}
+.service-source-description-table th:nth-child(1){width:24%}
+.service-source-description-table th:nth-child(2){width:27%}
+.service-source-description-table th:nth-child(3){width:49%}
+.service-source-description-table code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#475467;font-size:12px}
 #consumerManagementPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:0!important;overflow:auto}
 #consumerManagementPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
 .consumer-tag-filter-control{position:relative;z-index:2;display:flex;align-items:center;gap:4px;width:100%;min-width:0;min-height:34px;padding:3px 30px 3px 8px;border:1px solid #e5e7eb;border-radius:4px;background:#fff;color:#4b5563;cursor:text}
@@ -822,7 +849,8 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 #consumerTagListPanel>.system-filter,#consumerTagListPanel>.content-actions,#consumerTagChangeLogPanel>.system-filter{flex:none}
 #consumerTagFilterPanel{padding-bottom:0}
 #consumerTagListPanel>.consumer-tag-actions{justify-content:flex-start;margin-top:0}
-#consumerTagListPanel>.table-card,#consumerTagChangeLogPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:10px!important;overflow:auto}
+#consumerTagListPanel>.consumer-tag-actions,#consumerTagChangeLogPanel>.consumer-tag-actions{margin-bottom:16px}
+#consumerTagListPanel>.table-card,#consumerTagChangeLogPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:0!important;overflow:auto}
 #consumerTagListPanel>.pagination,#consumerTagChangeLogPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
 #consumerTagChangeLogPanel>.consumer-tag-detail-content-wrap{flex:none;width:100%}
 #consumerTagChangeLogPanel>.table-card{flex:0 0 auto;overflow-x:auto;overflow-y:hidden}
@@ -834,7 +862,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .consumer-tag-record-filter{grid-template-columns:repeat(4,minmax(0,1fr))}.consumer-tag-record-range{display:flex;align-items:center;gap:8px;min-width:0}.consumer-tag-record-range .input{width:100%;min-width:0}.consumer-tag-record-range .date-range-separator{color:#8a95a5;white-space:nowrap}.consumer-tag-record-table{min-width:900px}
 .consumer-management-table{min-width:1920px}.consumer-detail-modal{width:min(760px,calc(100vw - 48px));max-width:calc(100vw - 48px)}.consumer-detail-modal .modal-body{max-height:calc(100vh - 190px)}.consumer-detail-tabs{margin:20px 0 16px}.consumer-detail-record-panel{display:none;min-width:0}.consumer-detail-record-panel.active{display:block}.consumer-detail-record-panel .table-card{margin-top:10px;overflow:auto}.consumer-detail-order-table{min-width:1920px}.consumer-detail-refund-table{min-width:1080px}.consumer-detail-tags{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.consumer-detail-tag{display:inline-flex;align-items:center;min-height:24px;padding:0 6px 0 10px;border-radius:12px;background:#eef6ff;color:#1687e8;font-size:12px}.consumer-detail-tag-remove,.consumer-detail-tag-add{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:0;background:transparent;cursor:pointer;font-size:15px;line-height:18px}.consumer-detail-tag-remove{margin-left:3px;color:#f04438}.consumer-detail-tag-remove:hover{color:#d92d20}.consumer-detail-tag-add{width:26px;height:26px;border:1px dashed #1687e8;border-radius:50%;color:#1687e8;font-size:18px}.consumer-detail-tag-add:hover{background:#f4f9ff}.consumer-detail-tag-empty{color:#98a2b3;font-size:13px}.consumer-detail-tag-add-modal{width:min(480px,calc(100vw - 48px))}.consumer-detail-tag-add-options{display:flex;flex-direction:column;gap:10px;max-height:280px;overflow:auto}.consumer-detail-tag-add-option{display:flex;align-items:center;gap:8px;min-height:32px;color:#4b5563;font-size:13px}.consumer-detail-tag-add-option input{width:14px;height:14px}.consumer-detail-tag-add-modal .help{margin-top:10px;color:#8b95a5;font-size:12px}
 .consumer-tag-table{min-width:980px}.consumer-tag-change-table{min-width:1580px}.consumer-tag-actions{display:flex;justify-content:flex-end;margin-top:16px}.consumer-tag-panel .table-card{overflow-x:auto}.consumer-tag-change-filter{grid-template-columns:repeat(4,minmax(0,1fr))}.consumer-tag-change-range{display:flex;align-items:center;gap:8px;min-width:0}.consumer-tag-change-range .input{width:100%;min-width:0}.consumer-tag-change-range .date-range-separator{color:#8a95a5;white-space:nowrap}.consumer-tag-record-range{gap:6px}.consumer-tag-status-cell{display:inline-flex;align-items:center;gap:7px}.consumer-tag-status-text{color:#4b5563;font-size:12px}.consumer-tag-editor-status{display:inline-flex;align-items:center;gap:8px;height:32px}.consumer-tag-status-confirm-modal{width:min(480px,calc(100vw - 48px))!important}.consumer-tag-status-confirm-message{color:#4b5563;font-size:14px;line-height:24px;white-space:normal}.consumer-tag-detail-card{background:#fff;border:1px solid #e6ebf2;border-radius:2px;padding:20px}.consumer-tag-detail-title{font-size:16px;font-weight:600;color:#1f2d3d;margin-bottom:18px}.consumer-tag-detail-section{border-top:1px solid #edf0f5;padding-top:16px;margin-top:18px}.consumer-tag-detail-section:first-of-type{border-top:0;padding-top:0;margin-top:0}.consumer-tag-detail-section h4{margin:0 0 14px;color:#344054;font-size:14px}.consumer-tag-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 28px}.consumer-tag-detail-item{display:flex;gap:12px;min-width:0;color:#4b5563;font-size:13px}.consumer-tag-detail-item .detail-label{color:#8a95a5;white-space:nowrap}.consumer-tag-detail-item .detail-value{min-width:0;overflow-wrap:anywhere;color:#344054}.consumer-tag-detail-empty{padding:48px 20px;text-align:center;color:#98a2b3;background:#fff;border:1px solid #e6ebf2}.consumer-tag-modal{width:min(620px,calc(100vw - 48px))}.consumer-tag-modal .form-row{grid-template-columns:112px 1fr!important;margin-bottom:16px}.consumer-tag-modal .input,.consumer-tag-modal .textarea,.consumer-tag-modal .select{width:100%;max-width:none}.consumer-tag-modal .textarea{min-height:88px;resize:vertical}.consumer-tag-modal .field-error{min-height:18px;color:#f04438;font-size:12px;margin-top:4px}.consumer-tag-modal .form-field.invalid .input,.consumer-tag-modal .form-field.invalid .textarea,.consumer-tag-modal .form-field.invalid .select{border-color:#f04438}.consumer-tag-readonly .form-row{grid-template-columns:112px 1fr!important;margin-bottom:14px}.consumer-tag-readonly .detail-value{color:#344054;line-height:32px}
-.consumerTagChangeLogPanel>.consumer-tag-actions{justify-content:flex-start;margin-top:16px;gap:16px}
+#consumerTagChangeLogPanel>.consumer-tag-actions{justify-content:flex-start;margin-top:0;gap:16px}
 #consumerTagAssignmentModalMask .modal.consumer-tag-assignment-modal{width:680px!important;max-width:calc(100vw - 48px);max-height:calc(100vh - 48px)}
 .consumer-tag-assignment-modal .form-row{grid-template-columns:112px 1fr!important;margin-bottom:16px;align-items:start}.consumer-tag-assignment-modal .form-label{color:#8b95a5!important;font-size:13px!important;font-weight:400!important;line-height:32px;white-space:nowrap}.consumer-tag-assignment-modal .input,.consumer-tag-assignment-modal .textarea,.consumer-tag-assignment-modal .select{width:100%;color:#1f2329!important}.consumer-tag-assignment-modal .textarea{min-height:96px;resize:vertical}.consumer-tag-assignment-modal .radio-group{display:flex;align-items:center;gap:24px;min-height:32px;flex-wrap:wrap}.consumer-tag-assignment-modal .radio{margin-right:0;color:#4b5563;font-size:13px}.consumer-tag-assignment-modal .radio.active{color:var(--theme-color)}.consumer-tag-assignment-tags{display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap;min-height:32px;padding:5px 0}.consumer-tag-assignment-tag{display:inline-flex;align-items:center;gap:6px;color:#4b5563;font-size:13px;white-space:nowrap}.consumer-tag-assignment-tag input{margin:0}.consumer-tag-assignment-file-row.hidden,.consumer-tag-assignment-manual-row.hidden{display:none!important}.consumer-tag-assignment-file-name{margin-left:10px;color:#596273;font-size:12px}.consumer-tag-assignment-modal .help{margin-top:7px;color:#8b95a5;white-space:nowrap}.consumer-tag-assignment-modal .field-error{min-height:18px;color:#f04438;font-size:12px;margin-top:4px}.consumer-tag-assignment-modal .form-field.invalid .input,.consumer-tag-assignment-modal .form-field.invalid .textarea,.consumer-tag-assignment-modal .form-field.invalid .select{border-color:#f04438}
 .notification-table th{text-align:center}.notification-table th,.notification-table td{white-space:nowrap}
@@ -1010,7 +1038,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .notification-account-table{min-width:780px}
 .notification-account-table th,.notification-account-table td{white-space:nowrap}
 .notification-account-check-col{width:56px}
-.notification-account-table input[type="checkbox"]{width:14px;height:14px}
+.notification-account-table input[type="checkbox"],.notification-account-table input[type="radio"]{width:14px;height:14px;accent-color:#1687e8}
 .notification-record-detail-modal{width:min(960px,calc(100vw - 48px))!important;max-width:calc(100vw - 48px)!important}
 #notificationRecordDetailModalMask{align-items:stretch;justify-content:flex-end;overflow:hidden}
 #notificationRecordDetailModalMask .notification-record-detail-modal{width:min(760px,92vw)!important;max-width:92vw!important;height:100%;max-height:none;margin:0;border-radius:0;transform:translateX(0);animation:notification-detail-drawer-in .2s ease-out both}
@@ -1144,11 +1172,58 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     </section>
 
     <section id="serviceOverviewPage" class="content hidden">
-      <div class="strategy-subpage-empty"><strong>服务概览</strong><span>未设计</span></div>
+      <div class="action-row"><button class="btn" id="serviceOverviewAddButton" type="button" onclick="openServiceAccountEditor()">企业微信账号新增</button><button class="btn line" id="serviceOverviewSyncButton" type="button" onclick="syncServiceAccountData(this)">同步账号数据</button></div>
+      <div class="table-card">
+        <table class="service-overview-table">
+          <thead><tr><th scope="col">企业名称（企业CorpID）</th><th scope="col">成员UserID</th><th scope="col">成员名称</th><th scope="col"><span class="service-overview-th-label">累计添加用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="累计添加用户数说明" aria-describedby="serviceOverviewTotalUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewTotalUsersTip" role="tooltip">历史上成功添加过该企微账号的去重用户数</span></span></span></th><th scope="col"><span class="service-overview-th-label">当前用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="当前用户数说明" aria-describedby="serviceOverviewCurrentUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewCurrentUsersTip" role="tooltip">当前仍保持企微客户关系的用户数</span></span></span></th><th scope="col"><span class="service-overview-th-label">今日新增用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="今日新增用户数说明" aria-describedby="serviceOverviewTodayAddedUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewTodayAddedUsersTip" role="tooltip">当天首次成功添加该企微账号的用户数</span></span></span></th><th scope="col">同步时间</th><th scope="col">操作</th></tr></thead>
+          <tbody id="serviceOverviewRows"></tbody>
+        </table>
+      </div>
+      <div class="service-account-status" id="serviceOverviewStatus" role="status" aria-live="polite"></div>
+      <div class="pagination" id="serviceOverviewPagination">共3条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
     <section id="serviceSourcePage" class="content hidden">
-      <div class="strategy-subpage-empty"><strong>服务来源</strong><span>未设计</span></div>
+      <button type="button" class="consumer-page-description-trigger" id="serviceSourceDescriptionTrigger" aria-controls="serviceSourceDescriptionDrawer" aria-expanded="false" onclick="toggleServiceSourceDescription(true)">页面说明</button>
+      <div class="consumer-page-description-backdrop" id="serviceSourceDescriptionBackdrop" onclick="toggleServiceSourceDescription(false)"></div>
+      <aside class="consumer-page-description-drawer service-source-description-drawer" id="serviceSourceDescriptionDrawer" aria-labelledby="serviceSourceDescriptionTitle">
+        <div class="consumer-page-description-head"><span id="serviceSourceDescriptionTitle">页面说明</span><button type="button" class="consumer-page-description-close" aria-label="关闭页面说明" onclick="toggleServiceSourceDescription(false)">×</button></div>
+        <div class="consumer-page-description-body service-source-description-body">
+          <table class="service-source-description-table">
+            <thead><tr><th scope="col">字段</th><th scope="col">七鱼字段</th><th scope="col">用途</th></tr></thead>
+            <tbody>
+              <tr><td>会话ID</td><td><code>id</code></td><td>唯一标识一次会话</td></tr>
+              <tr><td>访客ID</td><td><code>externalUserId</code></td><td>标识企业微信渠道中的访客</td></tr>
+              <tr><td>七鱼访客ID</td><td><code>userId</code></td><td>七鱼内部的访客标识</td></tr>
+              <tr><td>接待客服ID</td><td><code>staffId</code></td><td>标识实际接待客服</td></tr>
+              <tr><td>接待客服名称</td><td><code>staffName</code></td><td>页面展示</td></tr>
+              <tr><td>接待客服账号</td><td><code>staffAccount</code></td><td>辅助识别客服</td></tr>
+              <tr><td>企微接待账号 ID</td><td><code>externalEscrowId</code></td><td>标识该会话对应哪个企微接待账号</td></tr>
+              <tr><td>会话开始时间</td><td><code>startTime</code></td><td>确定接待发生时间</td></tr>
+              <tr><td>会话结束时间</td><td><code>endTime</code></td><td>确定会话结束时间</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+      <div class="system-filter service-source-filter" id="serviceSourceFilterPanel">
+        <input class="input" id="serviceSourceSessionIdInput" placeholder="会话ID" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceVisitorIdInput" placeholder="访客ID" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceQiyuVisitorIdInput" placeholder="七鱼访客ID" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceReceptionAgentIdInput" placeholder="接待客服ID" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceReceptionAgentNameInput" placeholder="接待客服名称" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceReceptionAgentAccountInput" placeholder="接待客服账号" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceWecomReceptionAccountIdInput" placeholder="企业微信接待账号ID" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceSessionStartedAtInput" placeholder="会话开始时间" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceSessionEndedAtInput" placeholder="会话结束时间" oninput="searchServiceSourceRecords()">
+        <div class="filter-actions new-row"><button class="btn line" onclick="searchServiceSourceRecords()">搜索</button><button class="btn gray" onclick="resetServiceSourceRecords()">重置</button></div>
+      </div>
+      <div class="table-card">
+        <table class="service-source-table">
+          <thead><tr><th scope="col">会话ID</th><th scope="col">访客ID</th><th scope="col">七鱼访客ID</th><th scope="col">接待客服ID</th><th scope="col">接待客服名称</th><th scope="col">接待客服账号</th><th scope="col">企业微信接待账号ID</th><th scope="col">会话开始时间</th><th scope="col">会话结束时间</th></tr></thead>
+          <tbody id="serviceSourceRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="serviceSourcePagination">共4条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
     <section id="consumerManagePage" class="content hidden">
@@ -2308,9 +2383,9 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 </div>
 
 <div class="modal-mask" id="notificationAccountModalMask">
-  <div class="modal notification-account-modal">
+  <div class="modal notification-account-modal" role="dialog" aria-modal="true" aria-labelledby="notificationAccountModalTitle">
     <div class="close" onclick="closeNotificationAccountModal()">×</div>
-    <div class="modal-title">选择通知对象</div>
+    <div class="modal-title" id="notificationAccountModalTitle">选择通知对象</div>
     <div class="modal-body notification-account-modal-body">
       <div class="notification-account-filter">
         <input class="input" id="notificationAccountMerchantInput" placeholder="商户名称" oninput="searchNotificationAccounts()">
@@ -2324,7 +2399,30 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
         </table>
       </div>
     </div>
-    <div class="modal-actions"><button class="cancel" onclick="closeNotificationAccountModal()">取消</button><button class="confirm" onclick="confirmNotificationAccounts()">确认选择</button></div>
+    <div class="modal-actions"><button class="cancel" onclick="closeNotificationAccountModal()">取消</button><button class="confirm" id="notificationAccountConfirmButton" onclick="confirmNotificationAccounts()">确认选择</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="serviceAccountEditorModalMask" onclick="if(event.target===this)closeServiceAccountEditor()">
+  <div class="modal service-account-editor-modal" role="dialog" aria-modal="true" aria-labelledby="serviceAccountEditorTitle" aria-describedby="serviceAccountFormError" tabindex="-1" onkeydown="handleServiceAccountEditorKeydown(event)">
+    <button class="close" type="button" aria-label="关闭企业微信账号表单" onclick="closeServiceAccountEditor()">×</button>
+    <div class="modal-title" id="serviceAccountEditorTitle">企业微信账号新增</div>
+    <form class="modal-body service-account-form" id="serviceAccountEditorForm" novalidate onsubmit="saveServiceAccount(event)">
+      <div class="form-row" id="serviceAccountCorpIdField"><label class="form-label req" for="serviceAccountCorpIdInput">企业名称（企业CorpID）</label><div><input class="input" id="serviceAccountCorpIdInput" name="corpId" autocomplete="off" maxlength="128" placeholder="请输入企业CorpID" required aria-describedby="serviceAccountFormError" oninput="handleServiceAccountIdentityInput()"><div class="field-error"></div></div></div>
+      <div class="form-row" id="serviceAccountUserIdField"><label class="form-label req" for="serviceAccountUserIdInput">成员UserID</label><div><input class="input" id="serviceAccountUserIdInput" name="memberUserId" autocomplete="off" maxlength="128" placeholder="请输入成员UserID" required aria-describedby="serviceAccountLookupMessage serviceAccountFormError" oninput="handleServiceAccountIdentityInput()"><div class="field-error"></div></div></div>
+      <div class="form-row" id="serviceAccountMemberNameField"><label class="form-label" for="serviceAccountMemberNameInput">成员名称</label><div><input class="input service-account-readonly" id="serviceAccountMemberNameInput" name="memberName" readonly aria-readonly="true" aria-describedby="serviceAccountLookupMessage"><div class="service-account-lookup-hint" id="serviceAccountLookupMessage" role="status" aria-live="polite">根据企业CorpID和成员UserID查询，不可手动编辑。</div></div></div>
+      <div class="service-account-form-error" id="serviceAccountFormError" role="alert" aria-live="assertive"></div>
+    </form>
+    <div class="modal-actions"><button class="cancel" type="button" onclick="closeServiceAccountEditor()">取消</button><button class="confirm" type="submit" form="serviceAccountEditorForm">保存</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="serviceAccountDeleteModalMask" onclick="if(event.target===this)closeServiceAccountDelete()">
+  <div class="modal auth-whitelist-delete-modal" role="dialog" aria-modal="true" aria-labelledby="serviceAccountDeleteTitle" aria-describedby="serviceAccountDeleteMessage" onkeydown="handleServiceAccountDeleteKeydown(event)">
+    <button class="close" type="button" aria-label="关闭删除确认" onclick="closeServiceAccountDelete()">×</button>
+    <div class="modal-title" id="serviceAccountDeleteTitle">企业微信账号删除</div>
+    <div class="modal-body"><div class="auth-whitelist-delete-message" id="serviceAccountDeleteMessage"></div></div>
+    <div class="modal-actions"><button class="cancel" type="button" onclick="closeServiceAccountDelete()">取消</button><button class="confirm danger" type="button" onclick="confirmServiceAccountDelete()">确认删除</button></div>
   </div>
 </div>
 
@@ -3310,6 +3408,27 @@ const notificationPeople = [
   {id:'u3',account:'wangwu',name:'王五',phone:'139****5678',email:'',wechat:'wangwu',wechatUserId:'wangwu',role:'财务专员',merchant:'苏州星河酒店'},
   {id:'u4',account:'zhaoliu',name:'赵六',phone:'137****2468',email:'zhaoliu@example.com',wechat:'',wechatUserId:'',role:'运营主管',merchant:'广州启明商贸'}
 ];
+const serviceOverviewData = [
+  {id:'service-a',name:'企业微信服务账号A',corpId:'wwcorp_demo_001',memberUserId:'zhangsan',memberName:'张三',ownerId:'u1',totalUsers:'1,286',currentUsers:'1,102',todayAddedUsers:'12',syncTime:'2026-09-27 09:10:00'},
+  {id:'service-b',name:'企业微信服务账号B',corpId:'wwcorp_demo_002',memberUserId:'lisi',memberName:'李四',ownerId:'u2',totalUsers:'936',currentUsers:'824',todayAddedUsers:'9',syncTime:'2026-09-27 09:12:00'},
+  {id:'service-c',name:'企业微信服务账号C',corpId:'wwcorp_demo_003',memberUserId:'wangwu',memberName:'王五',ownerId:'u3',totalUsers:'714',currentUsers:'608',todayAddedUsers:'6',syncTime:'2026-09-27 09:15:00'}
+];
+const serviceMemberDirectory = [
+  {corpId:'wwcorp_demo_001',userId:'zhangsan',name:'张三'},
+  {corpId:'wwcorp_demo_002',userId:'lisi',name:'李四'},
+  {corpId:'wwcorp_demo_003',userId:'wangwu',name:'王五'},
+  {corpId:'wwcorp_demo_001',userId:'lili',name:'李丽'}
+];
+const serviceSourceData = [
+  {sessionId:'QY202609220001',visitorId:'V202609220001',qiyuVisitorId:'7Y202609220001',receptionAgentId:'AGENT001',receptionAgentName:'张三',receptionAgentAccount:'zhangsan',wecomReceptionAccountId:'WM202609220001',sessionStartedAt:'2026-09-22 09:18:36',sessionEndedAt:'2026-09-22 09:26:10',serviceId:'service-a'},
+  {sessionId:'QY202609210002',visitorId:'V202609210002',qiyuVisitorId:'7Y202609210002',receptionAgentId:'AGENT002',receptionAgentName:'李四',receptionAgentAccount:'lisi',wecomReceptionAccountId:'WM202609210002',sessionStartedAt:'2026-09-21 14:42:08',sessionEndedAt:'2026-09-21 14:51:32',serviceId:'service-b'},
+  {sessionId:'QY202609200003',visitorId:'V202609200003',qiyuVisitorId:'7Y202609200003',receptionAgentId:'AGENT001',receptionAgentName:'张三',receptionAgentAccount:'zhangsan',wecomReceptionAccountId:'WM202609200003',sessionStartedAt:'2026-09-20 11:06:51',sessionEndedAt:'2026-09-20 11:17:45',serviceId:'service-a'},
+  {sessionId:'QY202609190004',visitorId:'V202609190004',qiyuVisitorId:'7Y202609190004',receptionAgentId:'AGENT003',receptionAgentName:'王五',receptionAgentAccount:'wangwu',wecomReceptionAccountId:'WM202609190004',sessionStartedAt:'2026-09-19 16:25:14',sessionEndedAt:'2026-09-19 16:34:09',serviceId:'service-c'}
+];
+let serviceAccountEditingId = '';
+let serviceAccountEditorTrigger = null;
+let serviceAccountDeleteTargetId = '';
+let serviceAccountResolvedKey = '';
 const notificationConfigs = [
   {id:'NC202609130001',name:'卡流量查询结果通知',business:'设备中心',event:'卡流量查询完成',recipients:{initiator:true,people:['u1','u2']},channels:['站内通知','短信','邮件'],status:'启用',updatedAt:'2026-09-13 16:28:40',updatedBy:'张三',templates:{station:{title:'卡流量查询已完成',body:'{任务名称}已执行完成，本次共处理{查询总数}条数据，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'},sms:{templateId:'SMS_100021',templateName:'任务执行结果通知',mappings:{'{1}':'任务名称','{2}':'成功数量','{3}':'失败数量'}},email:{title:'卡流量查询结果通知',body:'任务{任务名称}已执行完成，执行结果：{执行结果}。',url:''},wechat:{title:'卡流量查询完成',body:'任务{任务名称}已完成，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'}}},
   {id:'NC202609120008',name:'批量卡状态查询通知',business:'SIM卡中心',event:'批量卡状态查询完成',recipients:{initiator:true,people:['u3']},channels:['站内通知','企业微信'],status:'启用',updatedAt:'2026-09-12 11:36:12',updatedBy:'李四',templates:{station:{title:'批量卡状态查询完成',body:'{任务名称}已完成，{执行结果}。',url:''},sms:{templateId:'',templateName:'',mappings:{}},email:{title:'',body:'',url:''},wechat:{title:'批量卡状态查询完成',body:'{任务名称}已执行完成，请查看任务详情。',url:'{任务详情地址}'}}},
@@ -3797,6 +3916,8 @@ function activateTab(type){
   closeAuthWhitelistDeleteModal();
   closeNotificationRecordDetail();
   closeNotificationAccountModal();
+  closeServiceAccountEditor(false);
+  closeServiceAccountDelete(false);
   closeDeviceTypeModal();
   closeConsumerTagEditor();
   closeConsumerDetailModal();
@@ -3820,6 +3941,7 @@ function closeTab(event,type){
   renderTabs();
 }
 function applyPageState(type){
+  toggleServiceSourceDescription(false);
   document.getElementById('homePage').classList.toggle('hidden', type !== 'home');
   document.getElementById('serviceOverviewPage').classList.toggle('hidden', type !== 'serviceOverview');
   document.getElementById('serviceSourcePage').classList.toggle('hidden', type !== 'serviceSource');
@@ -4237,13 +4359,17 @@ function openNotificationAccountModal(){
   notificationAccountTempSelection = notificationSelectedPeopleIds.slice();
   document.getElementById('notificationAccountMerchantInput').value = '';
   document.getElementById('notificationAccountKeywordInput').value = '';
+  document.getElementById('notificationAccountModalTitle').textContent = '选择通知对象';
+  document.getElementById('notificationAccountConfirmButton').textContent = '确认选择';
+  document.getElementById('notificationAccountConfirmButton').disabled = false;
   searchNotificationAccounts();
-  document.getElementById('notificationAccountModalMask').style.display = 'flex';
+  const mask = document.getElementById('notificationAccountModalMask');
+  mask.style.display = 'flex';
 }
 function renderNotificationAccountRows(){
   const merchant = document.getElementById('notificationAccountMerchantInput').value.trim().toLowerCase();
   const keyword = document.getElementById('notificationAccountKeywordInput').value.trim().toLowerCase();
-  const rows = notificationPeople.filter(person => (!merchant || person.merchant.toLowerCase().includes(merchant)) && (!keyword || [person.account,person.phone,person.name,person.wechatUserId || person.wechat || ''].some(value => value.toLowerCase().includes(keyword))));
+  const rows = notificationPeople.filter(person => (!merchant || String(person.merchant || '').toLowerCase().includes(merchant)) && (!keyword || [person.account,person.phone,person.name,person.wechatUserId || person.wechat || ''].some(value => String(value || '').toLowerCase().includes(keyword))));
   const body = document.getElementById('notificationAccountRows');
   body.innerHTML = rows.length ? rows.map(person => '<tr><td><input type="checkbox" ' + (notificationAccountTempSelection.includes(person.id) ? 'checked' : '') + ' aria-label="选择' + escapeHtml(person.name) + '" onchange="toggleNotificationAccountSelection(&quot;' + person.id + '&quot;,this.checked)"></td><td>' + escapeHtml(person.account) + '</td><td>' + escapeHtml(person.phone || '--') + '</td><td>' + escapeHtml(person.email || '--') + '</td><td>' + escapeHtml(person.wechatUserId || person.wechat || '--') + '</td><td>' + escapeHtml(person.name) + '</td><td>' + escapeHtml(person.role) + '</td><td>' + escapeHtml(person.merchant) + '</td></tr>').join('') : '<tr><td colspan="8" class="notification-empty">暂无账号数据</td></tr>';
 }
@@ -4267,7 +4393,253 @@ function confirmNotificationAccounts(){
   closeNotificationAccountModal();
 }
 function closeNotificationAccountModal(){
-  document.getElementById('notificationAccountModalMask').style.display = 'none';
+  const mask = document.getElementById('notificationAccountModalMask');
+  if(!mask){return}
+  mask.style.display = 'none';
+  document.getElementById('notificationAccountModalTitle').textContent = '选择通知对象';
+  document.getElementById('notificationAccountConfirmButton').textContent = '确认选择';
+  document.getElementById('notificationAccountConfirmButton').disabled = false;
+}
+function serviceOwnerName(ownerId){
+  const person = notificationPeople.find(item => item.id === ownerId);
+  return person ? person.name : '未配置';
+}
+function renderServiceOverviewTable(){
+  const rows = document.getElementById('serviceOverviewRows');
+  if(!rows){return}
+  if(serviceOverviewData.length){rows.innerHTML = serviceOverviewData.map(item => {
+    const encodedId = encodeURIComponent(item.id);
+    const actions = '<div class="service-account-operation-group"><button type="button" class="service-account-operation" data-service-account-edit="' + encodedId + '" onclick="openServiceAccountEditor(&quot;' + encodedId + '&quot;)">编辑</button><button type="button" class="service-account-operation danger" onclick="openServiceAccountDelete(&quot;' + encodedId + '&quot;)">删除</button></div>';
+    return '<tr><td>' + escapeHtml(item.corpId) + '</td><td>' + escapeHtml(item.memberUserId) + '</td><td>' + escapeHtml(item.memberName) + '</td><td>' + escapeHtml(item.totalUsers) + '</td><td>' + escapeHtml(item.currentUsers) + '</td><td>' + escapeHtml(item.todayAddedUsers) + '</td><td>' + escapeHtml(item.syncTime || '--') + '</td><td>' + actions + '</td></tr>';
+  }).join('')}else{rows.innerHTML = '<tr><td colspan="8" class="notification-empty">暂无企业微信账号</td></tr>'}
+  updatePagination('serviceOverviewPagination',serviceOverviewData.length);
+}
+function syncServiceAccountData(button){
+  if(button && button.disabled){return}
+  if(!serviceOverviewData.length){
+    const emptyStatus = document.getElementById('serviceOverviewStatus');
+    if(emptyStatus){emptyStatus.textContent = '暂无企业微信账号，无需同步。'}
+    return;
+  }
+  const originalText = button ? button.textContent : '同步账号数据';
+  if(button){button.disabled = true;button.textContent = '同步中…'}
+  window.setTimeout(() => {
+    const now = new Date();
+    const pad = value => String(value).padStart(2,'0');
+    const syncTime = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    serviceOverviewData.forEach(item => {item.syncTime = syncTime});
+    renderServiceOverviewTable();
+    const status = document.getElementById('serviceOverviewStatus');
+    if(status){status.textContent = `账号数据同步完成，共同步${serviceOverviewData.length}个账号。`}
+    if(button){button.disabled = false;button.textContent = originalText}
+  },350);
+}
+function renderServiceSourceTable(sourceRows = serviceSourceData){
+  const rows = document.getElementById('serviceSourceRows');
+  if(!rows){return}
+  rows.innerHTML = sourceRows.map(item => {
+    return '<tr><td>' + escapeHtml(item.sessionId) + '</td><td>' + escapeHtml(item.visitorId) + '</td><td>' + escapeHtml(item.qiyuVisitorId) + '</td><td>' + escapeHtml(item.receptionAgentId) + '</td><td>' + escapeHtml(item.receptionAgentName) + '</td><td>' + escapeHtml(item.receptionAgentAccount) + '</td><td>' + escapeHtml(item.wecomReceptionAccountId) + '</td><td>' + escapeHtml(item.sessionStartedAt || '--') + '</td><td>' + escapeHtml(item.sessionEndedAt || '--') + '</td></tr>';
+  }).join('');
+  updatePagination('serviceSourcePagination', sourceRows.length);
+}
+function getFilteredServiceSourceRows(){
+  const fields = [
+    ['serviceSourceSessionIdInput','sessionId'],
+    ['serviceSourceVisitorIdInput','visitorId'],
+    ['serviceSourceQiyuVisitorIdInput','qiyuVisitorId'],
+    ['serviceSourceReceptionAgentIdInput','receptionAgentId'],
+    ['serviceSourceReceptionAgentNameInput','receptionAgentName'],
+    ['serviceSourceReceptionAgentAccountInput','receptionAgentAccount'],
+    ['serviceSourceWecomReceptionAccountIdInput','wecomReceptionAccountId'],
+    ['serviceSourceSessionStartedAtInput','sessionStartedAt'],
+    ['serviceSourceSessionEndedAtInput','sessionEndedAt']
+  ];
+  const filters = fields.map(([inputId,field]) => [field,normalizeText(document.getElementById(inputId).value)]);
+  return serviceSourceData.filter(item => filters.every(([field,value]) => !value || normalizeText(item[field]).includes(value)));
+}
+function searchServiceSourceRecords(){
+  renderServiceSourceTable(getFilteredServiceSourceRows());
+}
+function resetServiceSourceRecords(){
+  ['serviceSourceSessionIdInput','serviceSourceVisitorIdInput','serviceSourceQiyuVisitorIdInput','serviceSourceReceptionAgentIdInput','serviceSourceReceptionAgentNameInput','serviceSourceReceptionAgentAccountInput','serviceSourceWecomReceptionAccountIdInput','serviceSourceSessionStartedAtInput','serviceSourceSessionEndedAtInput'].forEach(id => {document.getElementById(id).value = ''});
+  searchServiceSourceRecords();
+}
+function serviceAccountLookupKey(corpId,userId){
+  return String(corpId || '').trim() + '\u0000' + String(userId || '').trim();
+}
+function lookupServiceAccountMember(corpId,userId){
+  return serviceMemberDirectory.find(member => member.corpId === String(corpId || '').trim() && member.userId === String(userId || '').trim()) || null;
+}
+function clearServiceAccountEditorError(){
+  const error = document.getElementById('serviceAccountFormError');
+  if(error){error.textContent = ''}
+  ['serviceAccountCorpIdInput','serviceAccountUserIdInput'].forEach(id => {
+    const input = document.getElementById(id);
+    if(input){input.removeAttribute('aria-invalid')}
+  });
+}
+function handleServiceAccountIdentityInput(){
+  clearServiceAccountEditorError();
+  const corpId = document.getElementById('serviceAccountCorpIdInput').value.trim();
+  const userId = document.getElementById('serviceAccountUserIdInput').value.trim();
+  const memberName = document.getElementById('serviceAccountMemberNameInput');
+  const message = document.getElementById('serviceAccountLookupMessage');
+  memberName.value = '';
+  serviceAccountResolvedKey = '';
+  if(!corpId || !userId){
+    message.textContent = '根据企业CorpID和成员UserID查询，不可手动编辑。';
+    message.classList.remove('found','not-found');
+    return;
+  }
+  const matched = lookupServiceAccountMember(corpId,userId);
+  if(matched){
+    memberName.value = matched.name;
+    serviceAccountResolvedKey = serviceAccountLookupKey(corpId,userId);
+    message.textContent = '已查询到成员名称：' + matched.name;
+    message.classList.add('found');
+    message.classList.remove('not-found');
+  }else{
+    message.textContent = '未查询到成员名称，请核对企业CorpID和成员UserID。';
+    message.classList.add('not-found');
+    message.classList.remove('found');
+  }
+}
+function openServiceAccountEditor(encodedId){
+  const id = encodedId ? decodeURIComponent(encodedId) : '';
+  const item = id ? serviceOverviewData.find(row => row.id === id) : null;
+  if(id && !item){return}
+  serviceAccountEditorTrigger = document.activeElement;
+  serviceAccountEditingId = id;
+  clearServiceAccountEditorError();
+  const corpId = document.getElementById('serviceAccountCorpIdInput');
+  const userId = document.getElementById('serviceAccountUserIdInput');
+  const title = document.getElementById('serviceAccountEditorTitle');
+  corpId.value = item ? item.corpId : '';
+  userId.value = item ? item.memberUserId : '';
+  title.textContent = item ? '企业微信账号编辑' : '企业微信账号新增';
+  const message = document.getElementById('serviceAccountLookupMessage');
+  message.textContent = '根据企业CorpID和成员UserID查询，不可手动编辑。';
+  message.classList.remove('found','not-found');
+  document.getElementById('serviceAccountMemberNameInput').value = '';
+  serviceAccountResolvedKey = '';
+  if(item){handleServiceAccountIdentityInput()}
+  const mask = document.getElementById('serviceAccountEditorModalMask');
+  mask.style.display = 'flex';
+  corpId.focus();
+}
+function closeServiceAccountEditor(restoreFocus){
+  const mask = document.getElementById('serviceAccountEditorModalMask');
+  if(!mask){return}
+  mask.style.display = 'none';
+  const trigger = serviceAccountEditorTrigger;
+  serviceAccountEditorTrigger = null;
+  serviceAccountEditingId = '';
+  serviceAccountResolvedKey = '';
+  document.getElementById('serviceAccountEditorForm').reset();
+  document.getElementById('serviceAccountMemberNameInput').value = '';
+  const message = document.getElementById('serviceAccountLookupMessage');
+  message.textContent = '根据企业CorpID和成员UserID查询，不可手动编辑。';
+  message.classList.remove('found','not-found');
+  clearServiceAccountEditorError();
+  if(restoreFocus !== false && trigger && trigger.isConnected){trigger.focus()}
+}
+function saveServiceAccount(event){
+  if(event){event.preventDefault()}
+  clearServiceAccountEditorError();
+  const corpIdInput = document.getElementById('serviceAccountCorpIdInput');
+  const userIdInput = document.getElementById('serviceAccountUserIdInput');
+  const corpId = corpIdInput.value.trim();
+  const userId = userIdInput.value.trim();
+  const error = document.getElementById('serviceAccountFormError');
+  if(!corpId){error.textContent = '请输入企业CorpID。';corpIdInput.setAttribute('aria-invalid','true');corpIdInput.focus();return}
+  if(!userId){error.textContent = '请输入成员UserID。';userIdInput.setAttribute('aria-invalid','true');userIdInput.focus();return}
+  const matched = lookupServiceAccountMember(corpId,userId);
+  const lookupKey = serviceAccountLookupKey(corpId,userId);
+  if(!matched || serviceAccountResolvedKey !== lookupKey){
+    handleServiceAccountIdentityInput();
+    error.textContent = '未查询到成员名称，请核对企业CorpID和成员UserID后再保存。';
+    userIdInput.setAttribute('aria-invalid','true');
+    userIdInput.focus();
+    return;
+  }
+  const duplicate = serviceOverviewData.find(row => row.id !== serviceAccountEditingId && row.corpId === corpId && row.memberUserId === userId);
+  if(duplicate){error.textContent = '该企业CorpID与成员UserID已存在。';corpIdInput.setAttribute('aria-invalid','true');corpIdInput.focus();return}
+  let savedId = serviceAccountEditingId;
+  if(savedId){
+    const item = serviceOverviewData.find(row => row.id === savedId);
+    if(!item){return}
+    item.corpId = corpId;
+    item.memberUserId = userId;
+    item.memberName = matched.name;
+  }else{
+    savedId = 'service-' + Date.now();
+    serviceOverviewData.unshift({id:savedId,name:'企业微信服务账号 ' + corpId,corpId,memberUserId:userId,memberName:matched.name,ownerId:'',totalUsers:'0',currentUsers:'0',todayAddedUsers:'0',syncTime:'--'});
+  }
+  renderServiceOverviewTable();
+  renderServiceSourceTable();
+  const status = document.getElementById('serviceOverviewStatus');
+  if(status){status.textContent = '企业微信账号' + (serviceAccountEditingId ? '已更新' : '新增成功') + '：' + corpId}
+  closeServiceAccountEditor(false);
+  const editButton = document.querySelector('[data-service-account-edit="' + encodeURIComponent(savedId) + '"]');
+  if(editButton){editButton.focus()}else{document.getElementById('serviceOverviewAddButton').focus()}
+}
+function openServiceAccountDelete(encodedId){
+  const id = decodeURIComponent(encodedId || '');
+  const item = serviceOverviewData.find(row => row.id === id);
+  if(!item){return}
+  serviceAccountDeleteTargetId = id;
+  serviceAccountEditorTrigger = document.activeElement;
+  document.getElementById('serviceAccountDeleteMessage').textContent = '确定删除企业微信账号「' + item.corpId + '」吗？删除后该账号将不再显示在服务概览列表中。';
+  document.getElementById('serviceAccountDeleteModalMask').style.display = 'flex';
+  document.querySelector('#serviceAccountDeleteModalMask .cancel').focus();
+}
+function closeServiceAccountDelete(restoreFocus){
+  const mask = document.getElementById('serviceAccountDeleteModalMask');
+  if(mask){mask.style.display = 'none'}
+  serviceAccountDeleteTargetId = '';
+  const trigger = serviceAccountEditorTrigger;
+  serviceAccountEditorTrigger = null;
+  if(restoreFocus !== false && trigger && trigger.isConnected){trigger.focus()}
+}
+function confirmServiceAccountDelete(){
+  const id = serviceAccountDeleteTargetId;
+  const index = serviceOverviewData.findIndex(row => row.id === id);
+  if(index < 0){closeServiceAccountDelete();return}
+  const removed = serviceOverviewData[index];
+  serviceSourceData.filter(row => row.serviceId === id).forEach(row => {
+    row.serviceNameSnapshot = removed.name;
+    row.serviceOwnerSnapshot = removed.ownerId ? serviceOwnerName(removed.ownerId) : '--';
+  });
+  serviceOverviewData.splice(index,1);
+  renderServiceOverviewTable();
+  renderServiceSourceTable();
+  const status = document.getElementById('serviceOverviewStatus');
+  if(status){status.textContent = '企业微信账号已删除：' + removed.corpId}
+  closeServiceAccountDelete();
+  const nextAction = document.querySelector('#serviceOverviewRows .service-account-operation') || document.getElementById('serviceOverviewAddButton');
+  if(nextAction){nextAction.focus()}
+}
+function handleServiceAccountEditorKeydown(event){
+  if(event.key === 'Escape'){
+    event.preventDefault();
+    closeServiceAccountEditor();
+    return;
+  }
+  if(event.key !== 'Tab'){return}
+  const modal = document.querySelector('#serviceAccountEditorModalMask .service-account-editor-modal');
+  if(!modal){return}
+  const focusable = Array.from(modal.querySelectorAll('button:not(:disabled),input:not(:disabled):not([type="hidden"])'));
+  if(!focusable.length){event.preventDefault();modal.focus();return}
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if(event.shiftKey && document.activeElement === first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey && document.activeElement === last){event.preventDefault();first.focus()}
+}
+function handleServiceAccountDeleteKeydown(event){
+  if(event.key === 'Escape'){
+    event.preventDefault();
+    closeServiceAccountDelete();
+  }
 }
 function updateNotificationContactWarning(){
   const warning = document.getElementById('notificationContactWarning');
@@ -5429,6 +5801,16 @@ function toggleConsumerPageDescription(forceOpen){
   const drawer = document.getElementById('consumerPageDescriptionDrawer');
   const backdrop = document.getElementById('consumerPageDescriptionBackdrop');
   const trigger = document.getElementById('consumerPageDescriptionTrigger');
+  if(!drawer || !backdrop){return}
+  const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !drawer.classList.contains('open');
+  drawer.classList.toggle('open',isOpen);
+  backdrop.classList.toggle('open',isOpen);
+  if(trigger){trigger.setAttribute('aria-expanded',isOpen ? 'true' : 'false')}
+}
+function toggleServiceSourceDescription(forceOpen){
+  const drawer = document.getElementById('serviceSourceDescriptionDrawer');
+  const backdrop = document.getElementById('serviceSourceDescriptionBackdrop');
+  const trigger = document.getElementById('serviceSourceDescriptionTrigger');
   if(!drawer || !backdrop){return}
   const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !drawer.classList.contains('open');
   drawer.classList.toggle('open',isOpen);
@@ -10196,6 +10578,8 @@ initDropdowns();
 initInputCombos();
 initQueryInputClears();
 initClipboardSmartSearch('#clipboardSmartSearch');
+renderServiceOverviewTable();
+renderServiceSourceTable();
 renderMessageNotifications();
 Object.keys(deviceRangeState).forEach(syncDeviceRange);
 syncDeviceFilterCollapse();

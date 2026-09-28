@@ -76,6 +76,8 @@ The interface uses an Arial-first sans stack with Chinese fallbacks. Controls an
 
 The application uses a fixed top bar, a 226px navigation rail, a tab strip, and a 16px content inset. Query controls use four-column grids on desktop and collapse to fewer columns at narrow widths. Tables own horizontal overflow while pagination remains outside the table frame.
 
+When a page places an action row between its search/reset controls and list, keep 16px between the search/reset controls and action buttons, and 16px between the action buttons and the list.
+
 ## Elevation & Depth
 
 Hierarchy comes from borders, light gray surfaces, and the active blue rail. Static content stays flat. Shadows are reserved for menus, dialogs, and transient overlays.
