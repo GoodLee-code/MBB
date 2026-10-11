@@ -10,9 +10,6 @@
   };
   let state = Object.assign({}, initialState);
   let nodes = {};
-  let clipboardReadInFlight = false;
-  let clipboardEntryAttempted = false;
-  let lastAutoReadAt = 0;
 
   function escapeText(value){
     return String(value === undefined || value === null ? '' : value).replace(/[&<>"']/g, char => ({
@@ -315,57 +312,6 @@
       toast:root.querySelector('.cqs-toast')
     };
   }
-  function shouldSkipRepeatedClipboardValue(keyword){
-    return keyword === state.keyword && state.source === 'clipboard' && ['loading','success','empty'].includes(state.queryStatus);
-  }
-  function tryReadClipboard(options){
-    const config = Object.assign({silent:false}, options || {});
-    if(clipboardEntryAttempted){
-      return;
-    }
-    clipboardEntryAttempted = true;
-    if(!navigator.clipboard || !navigator.clipboard.readText){
-      if(!config.silent){setState({clipboardStatus:'denied'})}
-      return;
-    }
-    if(clipboardReadInFlight){
-      return;
-    }
-    clipboardReadInFlight = true;
-    if(!config.silent){setState({clipboardStatus:'loading'})}
-    navigator.clipboard.readText().then(text => {
-      const keyword = String(text || '').trim();
-      if(!keyword){
-        if(!config.silent){setState({clipboardStatus:'idle'})}
-        return;
-      }
-      if(shouldSkipRepeatedClipboardValue(keyword)){
-        setState({clipboardStatus:'success'});
-        return;
-      }
-      nodes.input.value = keyword;
-      setState({
-        keyword,
-        source:'clipboard',
-        clipboardStatus:'success',
-        queryStatus:'idle',
-        results:[],
-        noticeVisible:false
-      });
-      runQuery('clipboard');
-    }).catch(() => {
-      if(!config.silent){setState({clipboardStatus:'denied',queryStatus:'idle',noticeVisible:false})}
-    }).finally(() => {
-      clipboardReadInFlight = false;
-    });
-  }
-  function tryReadClipboardOnReturn(){
-    if(document.visibilityState && document.visibilityState !== 'visible'){return}
-    const now = Date.now();
-    if(now - lastAutoReadAt < 600){return}
-    lastAutoReadAt = now;
-    tryReadClipboard({silent:true});
-  }
   function initClipboardSmartSearch(selector){
     const root = typeof selector === 'string' ? document.querySelector(selector) : selector;
     if(!root){return}
@@ -374,12 +320,6 @@
     cacheNodes(root);
     bindEvents();
     render();
-    tryReadClipboard();
-    document.addEventListener('visibilitychange', () => {
-      if(document.visibilityState === 'visible'){tryReadClipboardOnReturn()}
-    });
-    window.addEventListener('focus', tryReadClipboardOnReturn);
-    window.addEventListener('pageshow', tryReadClipboardOnReturn);
   }
   window.initClipboardSmartSearch = initClipboardSmartSearch;
 })();

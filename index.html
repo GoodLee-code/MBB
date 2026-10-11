@@ -550,21 +550,65 @@ input[type="checkbox"],input[type="radio"]{accent-color:var(--theme-color)}
 .filter-toggle-btn.collapsed .filter-toggle-arrow{transform:rotate(45deg);margin-top:-3px}
 .table-card{background:#fff;border:1px solid #e6ebf2;flex:1;overflow:auto}
 .content > .table-card,.strategy-subpage > .table-card,.auth-manage-panel > .table-card,#fieldVersionListView > .table-card{width:100%;margin:0!important}
-.service-overview-table{min-width:1200px}
-.service-source-table{min-width:1400px}
-.service-overview-status-switch{border:0;font:inherit;color:inherit}
+.service-overview-table{min-width:1740px}
+.service-qr-management-table{min-width:1840px}
+.service-qr-management-image{display:block;width:48px;height:48px;margin:auto;padding:3px;border:1px solid #e6ebf2;border-radius:3px;background:#fff;image-rendering:pixelated}
+.service-qr-placement-switch{appearance:none;-webkit-appearance:none;border:0;padding:2px;font:inherit;color:inherit;cursor:pointer}
+.service-qr-placement-switch:focus-visible{outline:2px solid rgba(22,135,232,.45);outline-offset:2px}
+.service-qr-create-mask{z-index:20}
+.service-qr-create-modal{width:min(720px,calc(100vw - 32px));max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);padding:0!important;display:flex;flex-direction:column;overflow:hidden}
+.service-qr-create-modal>.modal-title{flex:0 0 52px;padding-right:52px!important}
+.service-qr-create-modal .service-qr-create-close{width:28px;height:28px;padding:0;border:0;background:transparent;line-height:28px;text-align:center}
+.service-qr-create-modal .service-qr-create-form{max-height:calc(100vh - 150px);overflow-y:auto}
+.service-qr-create-form .form-row{grid-template-columns:160px minmax(0,1fr);align-items:start;margin-bottom:16px}
+.service-qr-create-form .form-label{font-size:13px!important;font-weight:400!important;line-height:34px;white-space:nowrap}
+.service-qr-create-form .input{width:100%;height:34px;color:#1f2329}
+.service-qr-create-form .form-row .select{width:100%}
+#serviceQrCreateForm select:required:invalid,#serviceQrCreateForm select:disabled{color:#98a2b3!important}
+#serviceQrCreateForm select option:not([value=""]){color:#1f2329}
+.service-qr-create-form .service-qr-create-readonly{background:#f8fafc;color:#667085}
+.service-qr-create-radio-group{display:flex;align-items:center;gap:24px;min-height:34px;flex-wrap:wrap}
+.service-qr-create-radio-group label{display:inline-flex;align-items:center;gap:7px;color:#4b5563;font-size:13px;cursor:pointer}
+.service-qr-create-radio-group input{margin:0;accent-color:var(--theme-color)}
+.service-qr-create-form .field-error{min-height:18px;margin-top:4px;color:#f04438;font-size:12px;line-height:18px}
+.service-qr-create-form .form-row.invalid .field-error{display:block}
+.service-qr-create-form .form-row.invalid .input{border-color:#f04438}
+.service-qr-create-error{min-height:20px;color:#f04438;font-size:12px;line-height:20px}
+.service-qr-create-discard,.service-qr-create-result{padding:24px;overflow:auto;color:#4b5563;font-size:13px;line-height:22px}
+.service-qr-create-discard p{margin:0}
+.service-qr-create-result{text-align:center}
+.service-qr-create-result-title{margin:0 0 14px;color:#1a9b5a;font-size:15px;font-weight:600}
+.service-qr-create-result-image{display:block;width:180px;height:180px;margin:0 auto 16px;padding:6px;border:1px solid #e6ebf2;background:#fff}
+.service-qr-create-result-details{display:grid;grid-template-columns:130px minmax(0,1fr);gap:8px 12px;margin:0;text-align:left}
+.service-qr-create-result-details dt{color:#667085}
+.service-qr-create-result-details dd{min-width:0;margin:0;color:#1f2329;overflow-wrap:anywhere}
+.service-qr-create-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.service-qr-create-result-actions .service-qr-create-download{width:112px!important;min-width:112px!important}
+@media(max-width:600px){.service-qr-create-form .form-row{grid-template-columns:minmax(0,1fr)}.service-qr-create-form .form-label{line-height:22px}.service-qr-create-result-details{grid-template-columns:100px minmax(0,1fr)}}
+.service-source-table{min-width:1200px}
+.service-overview-status-switch{appearance:none;-webkit-appearance:none;border:0;padding:2px;font:inherit;color:inherit}
 .service-overview-th-label{display:inline-flex;align-items:center;gap:5px;position:relative;white-space:nowrap}.service-overview-help-wrap{position:relative;display:inline-flex;align-items:center}.service-overview-help-icon{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;padding:0;border:1px solid #1687e8;border-radius:50%;background:#1687e8;color:#fff;font-size:10px;font-weight:700;line-height:12px;cursor:help}.service-overview-help-icon:hover,.service-overview-help-icon:focus{border-color:#0b76d1;background:#0b76d1;color:#fff;outline:0}.service-overview-help-tip{display:none;position:absolute;left:50%;top:calc(100% + 8px);width:220px;padding:8px 10px;border-radius:3px;background:#30343b;color:#fff;font-size:12px;font-weight:400;line-height:20px;white-space:normal;text-align:left;transform:translateX(-50%);box-shadow:0 8px 20px rgba(31,35,41,.18);z-index:30}.service-overview-help-tip:before{content:"";position:absolute;left:50%;bottom:100%;margin-left:-5px;border:5px solid transparent;border-bottom-color:#30343b}.service-overview-help-wrap:hover .service-overview-help-tip,.service-overview-help-icon:focus + .service-overview-help-tip{display:block}
 .service-account-operation-group{display:flex;align-items:center;justify-content:center;gap:16px}
 .service-account-operation{border:0;padding:0;background:transparent;color:var(--theme-color);font-size:12px;cursor:pointer}.service-account-operation:hover{text-decoration:underline}.service-account-operation.danger{color:#f04438}.service-account-operation.danger:hover{color:#d92d20}
 .service-account-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .service-owner-source-note{margin:0 0 14px;color:#667085;font-size:13px;line-height:20px}
-.service-account-form .form-row{grid-template-columns:140px minmax(0,1fr)!important;margin-bottom:16px;align-items:start}.service-account-form .form-label{font-size:13px!important;font-weight:400!important;color:#4e5969!important;line-height:32px;white-space:nowrap}.service-account-form .input{width:100%;color:#1f2329!important}.service-account-readonly{background:#f8fafc!important;color:#667085!important}.service-account-lookup-hint{min-height:18px;margin-top:6px;color:#8b95a5;font-size:12px;line-height:18px}.service-account-lookup-hint.found{color:#1a9b5a}.service-account-lookup-hint.not-found,.service-account-form-error{color:#d92d20}
+.service-account-form .form-row{grid-template-columns:184px minmax(0,1fr)!important;margin-bottom:16px;align-items:start}.service-account-form .form-label{font-size:13px!important;font-weight:400!important;color:#4e5969!important;line-height:32px;white-space:normal;overflow-wrap:anywhere}.service-account-form .input{width:100%;color:#1f2329!important}.service-account-readonly{background:#f8fafc!important;color:#667085!important}.service-account-lookup-hint{min-height:18px;margin-top:6px;color:#8b95a5;font-size:12px;line-height:18px}.service-account-lookup-hint.found{color:#1a9b5a}.service-account-lookup-hint.not-found,.service-account-form-error{color:#d92d20}
+.service-account-form .textarea{width:100%;min-height:92px;resize:vertical;color:#1f2329!important}
 .service-account-form .input[aria-invalid="true"]{border-color:#d92d20!important}.service-account-form-error{min-height:18px;margin-top:-4px;font-size:12px;line-height:18px}
 #serviceAccountEditorModalMask .service-account-editor-modal{width:min(640px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px)}
 #serviceAccountEditorModalMask .service-account-editor-modal .close{border:0;background:transparent;padding:0;cursor:pointer}
 #serviceAccountDeleteModalMask .auth-whitelist-delete-modal{width:min(480px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px)}
 #serviceAccountDeleteModalMask .confirm.danger{background:#f04438;border-color:#f04438}
 #serviceAccountDeleteModalMask .confirm.danger:hover{background:#d92d20;border-color:#d92d20}
+#serviceQrDeleteModalMask .auth-whitelist-delete-modal{width:min(480px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px)}
+#serviceQrDeleteModalMask .confirm.danger{background:#f04438;border-color:#f04438}
+#serviceQrDeleteModalMask .confirm.danger:hover{background:#d92d20;border-color:#d92d20}
+#serviceStatusConfirmModalMask{z-index:30}
+#serviceStatusConfirmModalMask .service-status-confirm-modal{width:min(480px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px)}
+#serviceStatusConfirmModalMask .service-status-confirm-message{color:#1f2329;font-size:14px;line-height:24px;white-space:normal}
+#serviceStatusConfirmModalMask .confirm.danger{background:#f04438;border-color:#f04438}
+#serviceStatusConfirmModalMask .confirm.danger:hover{background:#d92d20;border-color:#d92d20}
+@media(max-width:480px){#serviceAccountEditorModalMask .service-account-form .form-row{grid-template-columns:minmax(0,1fr)!important;row-gap:4px}#serviceAccountEditorModalMask .service-account-form .form-label{line-height:20px;padding-right:0}}
 .content > .pagination,.strategy-subpage > .pagination,.auth-manage-panel > .pagination,#fieldVersionListView > .pagination{width:100%;margin-left:0;margin-right:0}
 .content > .inner-tabs,.content > .device-detail-tabs,.auth-manage-panel > .inner-tabs{margin-bottom:16px}
 table{width:100%;border-collapse:collapse;background:#fff}
@@ -820,6 +864,12 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 .service-source-description-table th:nth-child(2){width:27%}
 .service-source-description-table th:nth-child(3){width:49%}
 .service-source-description-table code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#475467;font-size:12px}
+.service-qr-description-drawer{width:min(520px,calc(100vw - 32px))}
+.service-qr-description-body{flex:1;min-height:0;overflow:auto;padding:18px}
+.service-qr-description-table{width:100%;table-layout:fixed}
+.service-qr-description-table th,.service-qr-description-table td{text-align:left;white-space:normal;word-break:break-word}
+.service-qr-description-table th:first-child{width:50%}
+.service-qr-description-table code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#475467;font-size:12px}
 #consumerManagementPanel>.table-card{flex:1;min-height:0;width:100%;margin-top:0!important;overflow:auto}
 #consumerManagementPanel>.pagination{flex:none;width:100%;margin:0;padding-left:16px;padding-right:16px}
 .consumer-tag-filter-control{position:relative;z-index:2;display:flex;align-items:center;gap:4px;width:100%;min-width:0;min-height:34px;padding:3px 30px 3px 8px;border:1px solid #e5e7eb;border-radius:4px;background:#fff;color:#4b5563;cursor:text}
@@ -1129,8 +1179,9 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     </div>
     <div class="menu" id="menuServiceCenter" onclick="toggleMenuGroup('serviceSubMenu','menuServiceCenter')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12a7 7 0 0 1 14 0v4a2 2 0 0 1-2 2h-2v-6h4M5 12H3v4a2 2 0 0 0 2 2h2v-6M9 18h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">服务中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="serviceSubMenu">
-      <div class="sub" id="menuServiceOverview" onclick="showPage('serviceOverview')">服务概览</div>
-      <div class="sub" id="menuServiceSource" onclick="showPage('serviceSource')">服务来源</div>
+      <div class="sub" id="menuServiceOverview" onclick="showPage('serviceOverview')">企业微信账号管理</div>
+      <div class="sub" id="menuServiceQrManagement" onclick="showPage('serviceQrManagement')">企业微信二维码管理</div>
+      <div class="sub" id="menuServiceSource" onclick="showPage('serviceSource')">用户添加记录</div>
     </div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M6 7v12h12V7M9 11h6M9 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">方案商中心</span></div>
     <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 9 5 12l3 3M16 9l3 3-3 3M13 6l-2 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">API集成</span></div>
@@ -1172,15 +1223,65 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     </section>
 
     <section id="serviceOverviewPage" class="content hidden">
-      <div class="action-row"><button class="btn" id="serviceOverviewAddButton" type="button" onclick="openServiceAccountEditor()">企业微信账号新增</button><button class="btn line" id="serviceOverviewSyncButton" type="button" onclick="syncServiceAccountData(this)">同步账号数据</button></div>
+      <div class="action-row"><button class="btn" id="serviceOverviewAddButton" type="button" onclick="openServiceAccountEditor()">企业微信账号新增</button><button class="btn line" id="serviceOverviewSyncButton" type="button" onclick="syncServiceAccountData(this)">更新账户数据</button></div>
       <div class="table-card">
         <table class="service-overview-table">
-          <thead><tr><th scope="col">企业名称（企业CorpID）</th><th scope="col">成员UserID</th><th scope="col">成员名称</th><th scope="col"><span class="service-overview-th-label">累计添加用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="累计添加用户数说明" aria-describedby="serviceOverviewTotalUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewTotalUsersTip" role="tooltip">历史上成功添加过该企微账号的去重用户数</span></span></span></th><th scope="col"><span class="service-overview-th-label">当前用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="当前用户数说明" aria-describedby="serviceOverviewCurrentUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewCurrentUsersTip" role="tooltip">当前仍保持企微客户关系的用户数</span></span></span></th><th scope="col"><span class="service-overview-th-label">今日新增用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="今日新增用户数说明" aria-describedby="serviceOverviewTodayAddedUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewTodayAddedUsersTip" role="tooltip">当天首次成功添加该企微账号的用户数</span></span></span></th><th scope="col">同步时间</th><th scope="col">操作</th></tr></thead>
+          <thead><tr><th scope="col">企业名称</th><th scope="col">成员名称</th><th scope="col">企业CorpID</th><th scope="col">成员UserID</th><th scope="col">账号启用状态</th><th scope="col"><span class="service-overview-th-label">累计添加用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="累计添加用户数说明" aria-describedby="serviceOverviewTotalUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewTotalUsersTip" role="tooltip">历史上成功添加过该企微账号的去重用户数</span></span></span></th><th scope="col"><span class="service-overview-th-label">当前用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="当前用户数说明" aria-describedby="serviceOverviewCurrentUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewCurrentUsersTip" role="tooltip">当前仍保持企微客户关系的用户数</span></span></span></th><th scope="col"><span class="service-overview-th-label">今日新增用户数<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" aria-label="今日新增用户数说明" aria-describedby="serviceOverviewTodayAddedUsersTip">?</button><span class="service-overview-help-tip" id="serviceOverviewTodayAddedUsersTip" role="tooltip">当天首次成功添加该企微账号的用户数</span></span></span></th><th scope="col">备注</th><th scope="col">创建时间</th><th scope="col">更新时间</th><th scope="col">操作</th></tr></thead>
           <tbody id="serviceOverviewRows"></tbody>
         </table>
       </div>
       <div class="service-account-status" id="serviceOverviewStatus" role="status" aria-live="polite"></div>
       <div class="pagination" id="serviceOverviewPagination">共3条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+    </section>
+
+    <section id="serviceQrManagementPage" class="content hidden">
+      <button type="button" class="consumer-page-description-trigger" id="serviceQrDescriptionTrigger" aria-controls="serviceQrDescriptionDrawer" aria-expanded="false" onclick="toggleServiceQrDescription(true)">页面说明</button>
+      <div class="consumer-page-description-backdrop" id="serviceQrDescriptionBackdrop" onclick="toggleServiceQrDescription(false)"></div>
+      <aside class="consumer-page-description-drawer service-qr-description-drawer" id="serviceQrDescriptionDrawer" aria-labelledby="serviceQrDescriptionTitle">
+        <div class="consumer-page-description-head"><span id="serviceQrDescriptionTitle">页面说明</span><button type="button" class="consumer-page-description-close" aria-label="关闭页面说明" onclick="toggleServiceQrDescription(false)">×</button></div>
+        <div class="consumer-page-description-body service-qr-description-body">
+          <table class="service-qr-description-table">
+            <thead><tr><th scope="col">页面字段</th><th scope="col">企业微信官方字段</th></tr></thead>
+            <tbody><tr><td>二维码ID</td><td><code>config_id</code></td></tr></tbody>
+          </table>
+          <p>同一个企业微信账号下，相同投放应用且相同投放页面仅允许存在一个二维码。</p>
+        </div>
+      </aside>
+      <div class="system-filter service-qr-filter" id="serviceQrFilterPanel">
+        <div class="select custom-select" id="serviceQrTypeFilter" data-value=""><span class="select-value">二维码类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="页面专属二维码">页面专属二维码</div><div class="dropdown-option" data-value="通用二维码">通用二维码</div></div></div>
+        <div class="select custom-select" id="serviceQrEnterpriseFilter" data-value=""><span class="select-value">企业名称</span><div class="dropdown-menu"><div class="dropdown-option" data-value="诺达通信">诺达通信</div><div class="dropdown-option" data-value="华米云联">华米云联</div><div class="dropdown-option" data-value="富思德">富思德</div></div></div>
+        <div class="select custom-select" id="serviceQrAppFilter" data-value=""><span class="select-value">投放应用</span><div class="dropdown-menu"><div class="dropdown-option" data-value="诺达通信">诺达通信</div><div class="dropdown-option" data-value="达智物联">达智物联</div><div class="dropdown-option" data-value="极速智连">极速智连</div><div class="dropdown-option" data-value="思德速连">思德速连</div><div class="dropdown-option" data-value="诺达极速畅联">诺达极速畅联</div><div class="dropdown-option" data-value="诺达通信服务号">诺达通信服务号</div><div class="dropdown-option" data-value="全平台">全平台</div></div></div>
+        <div class="select custom-select" id="serviceQrPageFilter" data-value=""><span class="select-value">投放页面</span><div class="dropdown-menu"><div class="dropdown-option" data-value="首页">首页</div><div class="dropdown-option" data-value="设备充值">设备充值</div><div class="dropdown-option" data-value="实名认证">实名认证</div><div class="dropdown-option" data-value="网络优选">网络优选</div><div class="dropdown-option" data-value="智能诊断">智能诊断</div><div class="dropdown-option" data-value="充值记录">充值记录</div><div class="dropdown-option" data-value="设备绑定">设备绑定</div><div class="dropdown-option" data-value="诺达通信服务号">诺达通信服务号</div></div></div>
+        <div class="select custom-select" id="serviceQrPlacementFilter" data-value=""><span class="select-value">投放状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="投放中">投放中</div><div class="dropdown-option" data-value="已停用">已停用</div></div></div>
+        <div class="filter-actions new-row"><button class="btn line" type="button" onclick="searchServiceQrRecords()">搜索</button><button class="btn gray" type="button" onclick="resetServiceQrRecords()">重置</button></div>
+      </div>
+      <div class="action-row service-qr-create-actions"><button type="button" class="btn" id="serviceQrCreateOpenButton" onclick="openServiceQrCreate()">企业二维码新增</button></div>
+      <div class="table-card">
+        <table class="service-qr-management-table">
+          <thead><tr><th scope="col">二维码ID</th><th scope="col">二维码类型</th><th scope="col">企业名称</th><th scope="col">成员UserID</th><th scope="col">二维码图片</th><th scope="col">投放应用</th><th scope="col">AppID</th><th scope="col">投放页面</th><th scope="col">来源标记</th><th scope="col">投放状态</th><th scope="col">创建时间</th><th scope="col">更新时间</th><th scope="col" class="sticky-action">操作</th></tr></thead>
+          <tbody id="serviceQrManagementRows"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="serviceQrManagementPagination">共3条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
+      <div class="service-qr-create-status" id="serviceQrCreateStatus" role="status" aria-live="polite"></div>
+      <div class="modal-mask service-qr-create-mask" id="serviceQrCreateModalMask" onclick="if(event.target===this)requestCloseServiceQrCreate()">
+        <div class="modal service-qr-create-modal" role="dialog" aria-modal="true" aria-labelledby="serviceQrCreateModalTitle" aria-describedby="serviceQrCreateError" tabindex="-1" onkeydown="handleServiceQrCreateKeydown(event)">
+          <button type="button" class="close service-qr-create-close" aria-label="关闭企业微信二维码新增" onclick="requestCloseServiceQrCreate()">×</button>
+          <div class="modal-title" id="serviceQrCreateModalTitle">企业微信二维码新增</div>
+          <form class="modal-body service-qr-create-form" id="serviceQrCreateForm" novalidate onsubmit="submitServiceQrCreate(event)">
+            <div class="form-row" id="serviceQrCreateAccountField"><label class="form-label req" for="serviceQrCreateAccount">成员UserID</label><div><select class="input select" id="serviceQrCreateAccount" name="memberUserId" required aria-describedby="serviceQrCreateAccountError" onchange="clearServiceQrCreateError('serviceQrCreateAccountField')"><option value="" disabled selected hidden>请选择成员UserID</option></select><div class="field-error" id="serviceQrCreateAccountError"></div></div></div>
+            <div class="form-row" id="serviceQrCreateTypeField"><div class="form-label req" id="serviceQrCreateTypeLabel">二维码类型</div><div><div class="service-qr-create-radio-group" role="radiogroup" aria-labelledby="serviceQrCreateTypeLabel" aria-describedby="serviceQrCreateTypeError"><label><input type="radio" name="qrType" value="页面专属二维码" required checked onchange="handleServiceQrCreateTypeChange()">页面专属二维码</label><label><input type="radio" name="qrType" value="通用二维码" onchange="handleServiceQrCreateTypeChange()">通用二维码</label></div><div class="field-error" id="serviceQrCreateTypeError"></div></div></div>
+            <div class="form-row" id="serviceQrCreateAppField"><label class="form-label req" for="serviceQrCreateApp">投放应用</label><div><select class="input select" id="serviceQrCreateApp" name="sourceApp" required aria-describedby="serviceQrCreateAppError" onchange="handleServiceQrCreateAppChange()"><option value="" disabled selected hidden>请选择投放应用</option><option>诺达通信</option><option>达智物联</option><option>极速智连</option><option>思德速连</option><option>诺达极速畅联</option><option>诺达通信服务号</option></select><div class="field-error" id="serviceQrCreateAppError"></div></div></div>
+            <div class="form-row" id="serviceQrCreatePageField"><label class="form-label req" for="serviceQrCreatePage">投放页面</label><div id="serviceQrCreatePageControl"><select class="input select" id="serviceQrCreatePage" name="sourcePage" disabled aria-describedby="serviceQrCreatePageError" onchange="clearServiceQrCreateError('serviceQrCreatePageField')"><option value="" disabled selected>请先选择投放应用</option></select><div class="field-error" id="serviceQrCreatePageError"></div></div></div>
+            <div class="service-qr-create-error" id="serviceQrCreateError" role="alert" aria-live="assertive"></div>
+          </form>
+          <div class="service-qr-create-discard hidden" id="serviceQrCreateDiscardView"><p>当前二维码信息尚未保存，确定放弃新增吗？</p></div>
+          <div class="service-qr-create-result hidden" id="serviceQrCreateResultView"></div>
+          <div class="modal-actions" id="serviceQrCreateFormActions"><button type="button" class="cancel" onclick="closeServiceQrCreate()">取消</button><button type="submit" class="confirm" id="serviceQrCreateSubmitButton" form="serviceQrCreateForm">确认创建</button></div>
+          <div class="modal-actions hidden" id="serviceQrCreateDiscardActions"><button type="button" class="cancel" onclick="returnToServiceQrCreateForm()">返回编辑</button><button type="button" class="confirm" onclick="discardServiceQrCreate()">放弃创建</button></div>
+          <div class="modal-actions hidden service-qr-create-result-actions" id="serviceQrCreateResultActions"><button type="button" class="cancel service-qr-create-download" onclick="downloadServiceQrCreateResult()">下载二维码</button><button type="button" class="confirm" onclick="closeServiceQrCreate()">关闭结果</button></div>
+        </div>
+      </div>
     </section>
 
     <section id="serviceSourcePage" class="content hidden">
@@ -1192,34 +1293,27 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
           <table class="service-source-description-table">
             <thead><tr><th scope="col">字段</th><th scope="col">七鱼字段</th><th scope="col">用途</th></tr></thead>
             <tbody>
-              <tr><td>会话ID</td><td><code>id</code></td><td>唯一标识一次会话</td></tr>
               <tr><td>访客ID</td><td><code>externalUserId</code></td><td>标识企业微信渠道中的访客</td></tr>
               <tr><td>七鱼访客ID</td><td><code>userId</code></td><td>七鱼内部的访客标识</td></tr>
-              <tr><td>接待客服ID</td><td><code>staffId</code></td><td>标识实际接待客服</td></tr>
-              <tr><td>接待客服名称</td><td><code>staffName</code></td><td>页面展示</td></tr>
-              <tr><td>接待客服账号</td><td><code>staffAccount</code></td><td>辅助识别客服</td></tr>
               <tr><td>企微接待账号 ID</td><td><code>externalEscrowId</code></td><td>标识该会话对应哪个企微接待账号</td></tr>
-              <tr><td>会话开始时间</td><td><code>startTime</code></td><td>确定接待发生时间</td></tr>
-              <tr><td>会话结束时间</td><td><code>endTime</code></td><td>确定会话结束时间</td></tr>
             </tbody>
           </table>
         </div>
       </aside>
       <div class="system-filter service-source-filter" id="serviceSourceFilterPanel">
-        <input class="input" id="serviceSourceSessionIdInput" placeholder="会话ID" oninput="searchServiceSourceRecords()">
-        <input class="input" id="serviceSourceVisitorIdInput" placeholder="访客ID" oninput="searchServiceSourceRecords()">
-        <input class="input" id="serviceSourceQiyuVisitorIdInput" placeholder="七鱼访客ID" oninput="searchServiceSourceRecords()">
-        <input class="input" id="serviceSourceReceptionAgentIdInput" placeholder="接待客服ID" oninput="searchServiceSourceRecords()">
-        <input class="input" id="serviceSourceReceptionAgentNameInput" placeholder="接待客服名称" oninput="searchServiceSourceRecords()">
-        <input class="input" id="serviceSourceReceptionAgentAccountInput" placeholder="接待客服账号" oninput="searchServiceSourceRecords()">
-        <input class="input" id="serviceSourceWecomReceptionAccountIdInput" placeholder="企业微信接待账号ID" oninput="searchServiceSourceRecords()">
-        <input class="input" id="serviceSourceSessionStartedAtInput" placeholder="会话开始时间" oninput="searchServiceSourceRecords()">
-        <input class="input" id="serviceSourceSessionEndedAtInput" placeholder="会话结束时间" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceEnterpriseNameInput" placeholder="企业名称" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceWecomAccountInput" placeholder="企业微信账号" oninput="searchServiceSourceRecords()">
+        <div class="select custom-select" id="serviceSourceVisitorSourceFilter" data-value=""><span class="select-value">来源应用</span><div class="dropdown-menu"><div class="dropdown-option" data-value="极速智连">极速智连</div><div class="dropdown-option" data-value="达智物联">达智物联</div><div class="dropdown-option" data-value="极速畅连">极速畅连</div><div class="dropdown-option" data-value="诺达通信">诺达通信</div><div class="dropdown-option" data-value="服务号">服务号</div></div></div>
+        <div class="select custom-select" id="serviceSourceOriginPageFilter" data-value=""><span class="select-value">来源页面</span><div class="dropdown-menu"><div class="dropdown-option" data-value="实名认证">实名认证</div><div class="dropdown-option" data-value="套餐充值">套餐充值</div><div class="dropdown-option" data-value="添加亲情号码">添加亲情号码</div><div class="dropdown-option" data-value="服务号">服务号</div></div></div>
+        <input class="input" id="serviceSourceUserUnionIdInput" placeholder="用户UnionID" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceDeviceSnInput" placeholder="设备SN" oninput="searchServiceSourceRecords()">
+        <input class="input" id="serviceSourceAddedAtInput" placeholder="添加好友时间" oninput="searchServiceSourceRecords()">
         <div class="filter-actions new-row"><button class="btn line" onclick="searchServiceSourceRecords()">搜索</button><button class="btn gray" onclick="resetServiceSourceRecords()">重置</button></div>
       </div>
+      <div class="action-row"><button class="btn" id="serviceSourceExportButton" type="button" onclick="exportServiceSourceRecords()">导出</button></div>
       <div class="table-card">
         <table class="service-source-table">
-          <thead><tr><th scope="col">会话ID</th><th scope="col">访客ID</th><th scope="col">七鱼访客ID</th><th scope="col">接待客服ID</th><th scope="col">接待客服名称</th><th scope="col">接待客服账号</th><th scope="col">企业微信接待账号ID</th><th scope="col">会话开始时间</th><th scope="col">会话结束时间</th></tr></thead>
+          <thead><tr><th scope="col">企业名称</th><th scope="col">企业微信账号</th><th scope="col">来源应用</th><th scope="col">来源页面</th><th scope="col">用户UnionID</th><th scope="col">设备SN</th><th scope="col">添加好友时间</th></tr></thead>
           <tbody id="serviceSourceRows"></tbody>
         </table>
       </div>
@@ -2408,9 +2502,11 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <button class="close" type="button" aria-label="关闭企业微信账号表单" onclick="closeServiceAccountEditor()">×</button>
     <div class="modal-title" id="serviceAccountEditorTitle">企业微信账号新增</div>
     <form class="modal-body service-account-form" id="serviceAccountEditorForm" novalidate onsubmit="saveServiceAccount(event)">
-      <div class="form-row" id="serviceAccountCorpIdField"><label class="form-label req" for="serviceAccountCorpIdInput">企业名称（企业CorpID）</label><div><input class="input" id="serviceAccountCorpIdInput" name="corpId" autocomplete="off" maxlength="128" placeholder="请输入企业CorpID" required aria-describedby="serviceAccountFormError" oninput="handleServiceAccountIdentityInput()"><div class="field-error"></div></div></div>
+      <div class="form-row" id="serviceAccountEnterpriseNameField"><label class="form-label req" for="serviceAccountEnterpriseNameInput">企业名称</label><div><select class="input" id="serviceAccountEnterpriseNameInput" name="enterpriseName" required aria-describedby="serviceAccountFormError"><option value="" disabled selected hidden>请选择企业名称</option><option value="诺达通信">诺达通信</option><option value="华米云联">华米云联</option><option value="富思德">富思德</option></select><div class="field-error"></div></div></div>
+      <div class="form-row" id="serviceAccountCorpIdField"><label class="form-label req" for="serviceAccountCorpIdInput">企业CorpID</label><div><input class="input" id="serviceAccountCorpIdInput" name="corpId" autocomplete="off" maxlength="128" placeholder="请输入企业CorpID" required aria-describedby="serviceAccountFormError" oninput="handleServiceAccountIdentityInput()"><div class="field-error"></div></div></div>
       <div class="form-row" id="serviceAccountUserIdField"><label class="form-label req" for="serviceAccountUserIdInput">成员UserID</label><div><input class="input" id="serviceAccountUserIdInput" name="memberUserId" autocomplete="off" maxlength="128" placeholder="请输入成员UserID" required aria-describedby="serviceAccountLookupMessage serviceAccountFormError" oninput="handleServiceAccountIdentityInput()"><div class="field-error"></div></div></div>
       <div class="form-row" id="serviceAccountMemberNameField"><label class="form-label" for="serviceAccountMemberNameInput">成员名称</label><div><input class="input service-account-readonly" id="serviceAccountMemberNameInput" name="memberName" readonly aria-readonly="true" aria-describedby="serviceAccountLookupMessage"><div class="service-account-lookup-hint" id="serviceAccountLookupMessage" role="status" aria-live="polite">根据企业CorpID和成员UserID查询，不可手动编辑。</div></div></div>
+      <div class="form-row" id="serviceAccountRemarkField"><label class="form-label" for="serviceAccountRemarkInput">备注</label><div><textarea class="textarea" id="serviceAccountRemarkInput" name="remark" rows="4" placeholder="请输入备注（选填）"></textarea></div></div>
       <div class="service-account-form-error" id="serviceAccountFormError" role="alert" aria-live="assertive"></div>
     </form>
     <div class="modal-actions"><button class="cancel" type="button" onclick="closeServiceAccountEditor()">取消</button><button class="confirm" type="submit" form="serviceAccountEditorForm">保存</button></div>
@@ -2423,6 +2519,24 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="modal-title" id="serviceAccountDeleteTitle">企业微信账号删除</div>
     <div class="modal-body"><div class="auth-whitelist-delete-message" id="serviceAccountDeleteMessage"></div></div>
     <div class="modal-actions"><button class="cancel" type="button" onclick="closeServiceAccountDelete()">取消</button><button class="confirm danger" type="button" onclick="confirmServiceAccountDelete()">确认删除</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="serviceQrDeleteModalMask" onclick="if(event.target===this)closeServiceQrDelete()">
+  <div class="modal auth-whitelist-delete-modal" role="dialog" aria-modal="true" aria-labelledby="serviceQrDeleteTitle" aria-describedby="serviceQrDeleteMessage" onkeydown="handleServiceQrDeleteKeydown(event)">
+    <button class="close" type="button" aria-label="关闭二维码删除确认" onclick="closeServiceQrDelete()">×</button>
+    <div class="modal-title" id="serviceQrDeleteTitle">企业微信二维码删除</div>
+    <div class="modal-body"><div class="auth-whitelist-delete-message" id="serviceQrDeleteMessage"></div></div>
+    <div class="modal-actions"><button class="cancel" type="button" onclick="closeServiceQrDelete()">取消</button><button class="confirm danger" type="button" onclick="confirmServiceQrDelete()">确认删除</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="serviceStatusConfirmModalMask" onclick="if(event.target===this)closeServiceStatusConfirm()">
+  <div class="modal service-status-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="serviceStatusConfirmTitle" aria-describedby="serviceStatusConfirmMessage" tabindex="-1" onkeydown="handleServiceStatusConfirmKeydown(event)">
+    <button class="close" type="button" aria-label="关闭状态确认" onclick="closeServiceStatusConfirm()">×</button>
+    <div class="modal-title" id="serviceStatusConfirmTitle">状态确认</div>
+    <div class="modal-body"><div class="service-status-confirm-message" id="serviceStatusConfirmMessage"></div></div>
+    <div class="modal-actions"><button class="cancel" type="button" onclick="closeServiceStatusConfirm()">取消</button><button class="confirm" type="button" id="serviceStatusConfirmButton" onclick="confirmServiceStatusChange()">确认</button></div>
   </div>
 </div>
 
@@ -3408,10 +3522,15 @@ const notificationPeople = [
   {id:'u3',account:'wangwu',name:'王五',phone:'139****5678',email:'',wechat:'wangwu',wechatUserId:'wangwu',role:'财务专员',merchant:'苏州星河酒店'},
   {id:'u4',account:'zhaoliu',name:'赵六',phone:'137****2468',email:'zhaoliu@example.com',wechat:'',wechatUserId:'',role:'运营主管',merchant:'广州启明商贸'}
 ];
+const serviceEnterpriseDirectory = [
+  {corpId:'wwcorp_demo_001',name:'诺达通信'},
+  {corpId:'wwcorp_demo_002',name:'华米云联'},
+  {corpId:'wwcorp_demo_003',name:'富思德'}
+];
 const serviceOverviewData = [
-  {id:'service-a',name:'企业微信服务账号A',corpId:'wwcorp_demo_001',memberUserId:'zhangsan',memberName:'张三',ownerId:'u1',totalUsers:'1,286',currentUsers:'1,102',todayAddedUsers:'12',syncTime:'2026-09-27 09:10:00'},
-  {id:'service-b',name:'企业微信服务账号B',corpId:'wwcorp_demo_002',memberUserId:'lisi',memberName:'李四',ownerId:'u2',totalUsers:'936',currentUsers:'824',todayAddedUsers:'9',syncTime:'2026-09-27 09:12:00'},
-  {id:'service-c',name:'企业微信服务账号C',corpId:'wwcorp_demo_003',memberUserId:'wangwu',memberName:'王五',ownerId:'u3',totalUsers:'714',currentUsers:'608',todayAddedUsers:'6',syncTime:'2026-09-27 09:15:00'}
+  {id:'service-a',name:'企业微信服务账号A',corpId:'wwcorp_demo_001',memberUserId:'zhangsan',memberName:'张三',ownerId:'u1',enabled:true,totalUsers:'1,286',currentUsers:'1,102',todayAddedUsers:'12',remark:'',createdAt:'2026-09-12 15:42:55',syncTime:'2026-09-27 09:10:00'},
+  {id:'service-b',name:'企业微信服务账号B',corpId:'wwcorp_demo_002',memberUserId:'lisi',memberName:'李四',ownerId:'u2',enabled:true,totalUsers:'936',currentUsers:'824',todayAddedUsers:'9',remark:'',createdAt:'2026-09-13 11:24:06',syncTime:'2026-09-27 09:12:00'},
+  {id:'service-c',name:'企业微信服务账号C',corpId:'wwcorp_demo_003',memberUserId:'wangwu',memberName:'王五',ownerId:'u3',enabled:true,totalUsers:'714',currentUsers:'608',todayAddedUsers:'6',remark:'',createdAt:'2026-09-14 08:52:17',syncTime:'2026-09-27 09:15:00'}
 ];
 const serviceMemberDirectory = [
   {corpId:'wwcorp_demo_001',userId:'zhangsan',name:'张三'},
@@ -3420,14 +3539,40 @@ const serviceMemberDirectory = [
   {corpId:'wwcorp_demo_001',userId:'lili',name:'李丽'}
 ];
 const serviceSourceData = [
-  {sessionId:'QY202609220001',visitorId:'V202609220001',qiyuVisitorId:'7Y202609220001',receptionAgentId:'AGENT001',receptionAgentName:'张三',receptionAgentAccount:'zhangsan',wecomReceptionAccountId:'WM202609220001',sessionStartedAt:'2026-09-22 09:18:36',sessionEndedAt:'2026-09-22 09:26:10',serviceId:'service-a'},
-  {sessionId:'QY202609210002',visitorId:'V202609210002',qiyuVisitorId:'7Y202609210002',receptionAgentId:'AGENT002',receptionAgentName:'李四',receptionAgentAccount:'lisi',wecomReceptionAccountId:'WM202609210002',sessionStartedAt:'2026-09-21 14:42:08',sessionEndedAt:'2026-09-21 14:51:32',serviceId:'service-b'},
-  {sessionId:'QY202609200003',visitorId:'V202609200003',qiyuVisitorId:'7Y202609200003',receptionAgentId:'AGENT001',receptionAgentName:'张三',receptionAgentAccount:'zhangsan',wecomReceptionAccountId:'WM202609200003',sessionStartedAt:'2026-09-20 11:06:51',sessionEndedAt:'2026-09-20 11:17:45',serviceId:'service-a'},
-  {sessionId:'QY202609190004',visitorId:'V202609190004',qiyuVisitorId:'7Y202609190004',receptionAgentId:'AGENT003',receptionAgentName:'王五',receptionAgentAccount:'wangwu',wecomReceptionAccountId:'WM202609190004',sessionStartedAt:'2026-09-19 16:25:14',sessionEndedAt:'2026-09-19 16:34:09',serviceId:'service-c'}
+  {visitorSource:'极速智连',originPage:'实名认证',addedAt:'2026-09-22 08:58:02',userUnionId:'UNION202609220001',deviceSn:'MBB-SN-000221',serviceId:'service-a'},
+  {visitorSource:'达智物联',originPage:'套餐充值',addedAt:'2026-09-21 13:22:17',userUnionId:'UNION202609210002',deviceSn:'MBB-SN-000217',serviceId:'service-b'},
+  {visitorSource:'极速畅连',originPage:'添加亲情号码',addedAt:'2026-09-20 10:41:36',userUnionId:'UNION202609200003',deviceSn:'MBB-SN-000193',serviceId:'service-a'},
+  {visitorSource:'诺达通信',originPage:'服务号',addedAt:'2026-09-19 15:09:48',userUnionId:'UNION202609190004',deviceSn:'MBB-SN-000182',serviceId:'service-c'}
 ];
+const serviceQrConfigurationData = [
+  {configId:'QR202610110001',name:'客服A服务号通用码',enterpriseAccount:'客服A',qrType:'通用二维码',scope:'指定应用',sourceApp:'诺达通信服务号',corpId:'wwcorp_demo_001',memberUserId:'zhangsan',qrAddress:'https://example.com/wecom-qr/config-001',sourceMiniProgram:'诺达通信服务号',miniProgramAppId:'wx4b38a265ce9d7012',sourcePage:'诺达通信服务号',state:'service_recharge_01',placementStatus:'投放中',createdAt:'2026-10-08 10:20:00',updatedAt:'2026-10-11 08:45:12'},
+  {configId:'QR202610110002',name:'极速智连首页专属码',enterpriseAccount:'客服B',qrType:'页面专属二维码',sourceApp:'极速智连',corpId:'wwcorp_demo_002',memberUserId:'lisi',qrAddress:'https://example.com/wecom-qr/config-002',sourceMiniProgram:'极速智连',miniProgramAppId:'wx6f80b45c992d1031',sourcePage:'首页',state:'service_realname_02',placementStatus:'投放中',createdAt:'2026-10-06 14:08:31',updatedAt:'2026-10-10 17:32:09'},
+  {configId:'QR202610110003',name:'全平台通用码（已停用）',enterpriseAccount:'客服C',qrType:'通用二维码',scope:'全平台',sourceApp:'',corpId:'wwcorp_demo_003',memberUserId:'wangwu',qrAddress:'https://example.com/wecom-qr/config-003',sourceMiniProgram:'全平台',miniProgramAppId:'--',sourcePage:'',state:'service_family_03',placementStatus:'已停用',createdAt:'2026-09-28 09:12:44',updatedAt:'2026-10-02 11:06:28'}
+];
+const serviceQrEnabledAccounts = [
+  {name:'客服A',corpId:'wwcorp_demo_001',memberUserId:'zhangsan',memberName:'张三',enabled:true},
+  {name:'客服B',corpId:'wwcorp_demo_002',memberUserId:'lisi',memberName:'李四',enabled:true},
+  {name:'客服C',corpId:'wwcorp_demo_003',memberUserId:'wangwu',memberName:'王五',enabled:true}
+];
+const serviceQrSourceApps = [
+  {name:'诺达通信',appId:'wx8d31a271b60f112a'},
+  {name:'达智物联',appId:'wx6f80b45c992d1031'},
+  {name:'极速智连',appId:'wx9a31e241bb730f2a'},
+  {name:'思德速连',appId:'wx4c29a158d75e3021'},
+  {name:'诺达极速畅联',appId:'wx35d7eabc604f1287'},
+  {name:'诺达通信服务号',appId:'wx4b38a265ce9d7012'}
+];
+let serviceQrCreateTrigger = null;
+let serviceQrCreateSubmitting = false;
+let serviceQrCreateLastType = '页面专属二维码';
+let serviceQrCreateResult = null;
 let serviceAccountEditingId = '';
 let serviceAccountEditorTrigger = null;
 let serviceAccountDeleteTargetId = '';
+let serviceQrDeleteTargetId = '';
+let serviceQrDeleteTrigger = null;
+let serviceStatusConfirmPending = null;
+let serviceStatusConfirmTrigger = null;
 let serviceAccountResolvedKey = '';
 const notificationConfigs = [
   {id:'NC202609130001',name:'卡流量查询结果通知',business:'设备中心',event:'卡流量查询完成',recipients:{initiator:true,people:['u1','u2']},channels:['站内通知','短信','邮件'],status:'启用',updatedAt:'2026-09-13 16:28:40',updatedBy:'张三',templates:{station:{title:'卡流量查询已完成',body:'{任务名称}已执行完成，本次共处理{查询总数}条数据，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'},sms:{templateId:'SMS_100021',templateName:'任务执行结果通知',mappings:{'{1}':'任务名称','{2}':'成功数量','{3}':'失败数量'}},email:{title:'卡流量查询结果通知',body:'任务{任务名称}已执行完成，执行结果：{执行结果}。',url:''},wechat:{title:'卡流量查询完成',body:'任务{任务名称}已完成，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'}}},
@@ -3657,7 +3802,7 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {home:'首页', serviceOverview:'服务概览', serviceSource:'服务来源', consumerManage:'消费者管理', consumerTags:'消费者标签', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
+const pageTitles = {home:'首页', serviceOverview:'企业微信账号管理', serviceQrManagement:'企业微信二维码管理', serviceSource:'用户添加记录', consumerManage:'消费者管理', consumerTags:'消费者标签', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
 let openTabs = [];
 let activePage = '';
 let deviceTypeCarrierOrder = [];
@@ -3942,8 +4087,10 @@ function closeTab(event,type){
 }
 function applyPageState(type){
   toggleServiceSourceDescription(false);
+  toggleServiceQrDescription(false);
   document.getElementById('homePage').classList.toggle('hidden', type !== 'home');
   document.getElementById('serviceOverviewPage').classList.toggle('hidden', type !== 'serviceOverview');
+  document.getElementById('serviceQrManagementPage').classList.toggle('hidden', type !== 'serviceQrManagement');
   document.getElementById('serviceSourcePage').classList.toggle('hidden', type !== 'serviceSource');
   document.getElementById('consumerManagePage').classList.toggle('hidden', type !== 'consumerManage');
   document.getElementById('consumerTagsPage').classList.toggle('hidden', type !== 'consumerTags');
@@ -3986,8 +4133,9 @@ function applyPageState(type){
   document.getElementById('notificationRecordDetailPage').classList.toggle('hidden', type !== 'notificationRecordDetail');
   document.getElementById('notificationConfigEditPage').classList.toggle('hidden', type !== 'notificationConfigEdit');
   document.getElementById('menuHome').classList.toggle('active', type === 'home');
-  document.getElementById('menuServiceCenter').classList.toggle('active', ['serviceOverview','serviceSource'].includes(type));
+  document.getElementById('menuServiceCenter').classList.toggle('active', ['serviceOverview','serviceQrManagement','serviceSource'].includes(type));
   document.getElementById('menuServiceOverview').classList.toggle('active', type === 'serviceOverview');
+  document.getElementById('menuServiceQrManagement').classList.toggle('active', type === 'serviceQrManagement');
   document.getElementById('menuServiceSource').classList.toggle('active', type === 'serviceSource');
   document.getElementById('menuConsumerManage').classList.toggle('active', type === 'consumerManage');
   document.getElementById('menuConsumerTags').classList.toggle('active', type === 'consumerTags');
@@ -4400,6 +4548,13 @@ function closeNotificationAccountModal(){
   document.getElementById('notificationAccountConfirmButton').textContent = '确认选择';
   document.getElementById('notificationAccountConfirmButton').disabled = false;
 }
+function serviceEnterpriseName(corpId){
+  const enterprise = serviceEnterpriseDirectory.find(item => item.corpId === String(corpId || ''));
+  return enterprise ? enterprise.name : (corpId || '--');
+}
+function serviceAccountEnterpriseName(item){
+  return item && item.enterpriseName ? item.enterpriseName : serviceEnterpriseName(item && item.corpId);
+}
 function serviceOwnerName(ownerId){
   const person = notificationPeople.find(item => item.id === ownerId);
   return person ? person.name : '未配置';
@@ -4410,9 +4565,18 @@ function renderServiceOverviewTable(){
   if(serviceOverviewData.length){rows.innerHTML = serviceOverviewData.map(item => {
     const encodedId = encodeURIComponent(item.id);
     const actions = '<div class="service-account-operation-group"><button type="button" class="service-account-operation" data-service-account-edit="' + encodedId + '" onclick="openServiceAccountEditor(&quot;' + encodedId + '&quot;)">编辑</button><button type="button" class="service-account-operation danger" onclick="openServiceAccountDelete(&quot;' + encodedId + '&quot;)">删除</button></div>';
-    return '<tr><td>' + escapeHtml(item.corpId) + '</td><td>' + escapeHtml(item.memberUserId) + '</td><td>' + escapeHtml(item.memberName) + '</td><td>' + escapeHtml(item.totalUsers) + '</td><td>' + escapeHtml(item.currentUsers) + '</td><td>' + escapeHtml(item.todayAddedUsers) + '</td><td>' + escapeHtml(item.syncTime || '--') + '</td><td>' + actions + '</td></tr>';
-  }).join('')}else{rows.innerHTML = '<tr><td colspan="8" class="notification-empty">暂无企业微信账号</td></tr>'}
+    const enabled = item.enabled !== false;
+    const enterpriseName = serviceAccountEnterpriseName(item);
+    const statusSwitch = '<button type="button" class="switch-toggle service-overview-status-switch' + (enabled ? ' on' : '') + '" data-service-account-status="' + encodedId + '" role="switch" aria-checked="' + (enabled ? 'true' : 'false') + '" aria-label="' + escapeHtml(enterpriseName) + '账号启用状态" onclick="toggleServiceAccountEnabled(&quot;' + encodedId + '&quot;)"></button>';
+    return '<tr><td>' + escapeHtml(enterpriseName) + '</td><td>' + escapeHtml(item.memberName) + '</td><td>' + escapeHtml(item.corpId || '--') + '</td><td>' + escapeHtml(item.memberUserId) + '</td><td>' + statusSwitch + '</td><td>' + escapeHtml(item.totalUsers) + '</td><td>' + escapeHtml(item.currentUsers) + '</td><td>' + escapeHtml(item.todayAddedUsers) + '</td><td>' + escapeHtml(item.remark || '--') + '</td><td>' + escapeHtml(item.createdAt || '--') + '</td><td>' + escapeHtml(item.syncTime || '--') + '</td><td>' + actions + '</td></tr>';
+  }).join('')}else{rows.innerHTML = '<tr><td colspan="12" class="notification-empty">暂无企业微信账号</td></tr>'}
   updatePagination('serviceOverviewPagination',serviceOverviewData.length);
+}
+function toggleServiceAccountEnabled(encodedId){
+  const id = decodeURIComponent(encodedId || '');
+  const item = serviceOverviewData.find(row => row.id === id);
+  if(!item){return}
+  openServiceStatusConfirm('account',id);
 }
 function syncServiceAccountData(button){
   if(button && button.disabled){return}
@@ -4421,8 +4585,8 @@ function syncServiceAccountData(button){
     if(emptyStatus){emptyStatus.textContent = '暂无企业微信账号，无需同步。'}
     return;
   }
-  const originalText = button ? button.textContent : '同步账号数据';
-  if(button){button.disabled = true;button.textContent = '同步中…'}
+  const originalText = button ? button.textContent : '更新账户数据';
+  if(button){button.disabled = true;button.textContent = '更新中…'}
   window.setTimeout(() => {
     const now = new Date();
     const pad = value => String(value).padStart(2,'0');
@@ -4430,38 +4594,548 @@ function syncServiceAccountData(button){
     serviceOverviewData.forEach(item => {item.syncTime = syncTime});
     renderServiceOverviewTable();
     const status = document.getElementById('serviceOverviewStatus');
-    if(status){status.textContent = `账号数据同步完成，共同步${serviceOverviewData.length}个账号。`}
+    if(status){status.textContent = `账户数据更新完成，共更新${serviceOverviewData.length}个账号。`}
     if(button){button.disabled = false;button.textContent = originalText}
   },350);
+}
+function serviceQrManagementImageDataUri(item){
+  if(item && item.qrImageDataUrl){return item.qrImageDataUrl}
+  const size = 29;
+  const modules = Array.from({length:size},()=>Array(size).fill(null));
+  let seed = 2166136261;
+  const seedText = String(item && (item.qrAddress || item.configId) || 'service-qr');
+  for(let index=0;index<seedText.length;index++){seed = Math.imul(seed ^ seedText.charCodeAt(index),16777619) >>> 0}
+  const nextBit = () => {seed ^= seed << 13;seed ^= seed >>> 17;seed ^= seed << 5;return (seed >>> 0) & 1};
+  const drawFinder = (left,top) => {
+    for(let y=0;y<7;y++)for(let x=0;x<7;x++){modules[top+y][left+x] = x===0 || x===6 || y===0 || y===6 || (x>=2 && x<=4 && y>=2 && y<=4)}
+  };
+  drawFinder(0,0);drawFinder(size-7,0);drawFinder(0,size-7);
+  for(let index=8;index<size-8;index++){
+    if(modules[6][index] === null){modules[6][index] = index%2===0}
+    if(modules[index][6] === null){modules[index][6] = index%2===0}
+  }
+  for(let y=0;y<size;y++)for(let x=0;x<size;x++){if(modules[y][x] === null){modules[y][x] = nextBit() === 1}}
+  const path = [];
+  for(let y=0;y<size;y++)for(let x=0;x<size;x++){if(modules[y][x])path.push(`M${x} ${y}h1v1h-1z`)}
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 ${size+2} ${size+2}" shape-rendering="crispEdges"><rect x="-1" y="-1" width="${size+2}" height="${size+2}" fill="#fff"/><path d="${path.join('')}" fill="#17202a"/></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+function getFilteredServiceQrRows(){
+  const qrType = getSelectValue('serviceQrTypeFilter');
+  const enterprise = getSelectValue('serviceQrEnterpriseFilter');
+  const app = getSelectValue('serviceQrAppFilter');
+  const page = getSelectValue('serviceQrPageFilter');
+  const placementStatus = getSelectValue('serviceQrPlacementFilter');
+  return serviceQrConfigurationData.filter(item =>
+    (!qrType || item.qrType === qrType) &&
+    (!enterprise || serviceEnterpriseName(item.corpId) === enterprise) &&
+    (!app || (item.sourceMiniProgram || '') === app) &&
+    (!page || (item.sourcePage || '') === page) &&
+    (!placementStatus || item.placementStatus === placementStatus)
+  );
+}
+function searchServiceQrRecords(){
+  renderServiceQrManagementTable(getFilteredServiceQrRows());
+}
+function resetServiceQrRecords(){
+  resetCustomSelect('serviceQrTypeFilter','二维码类型');
+  resetCustomSelect('serviceQrEnterpriseFilter','企业名称');
+  resetCustomSelect('serviceQrAppFilter','投放应用');
+  resetCustomSelect('serviceQrPageFilter','投放页面');
+  resetCustomSelect('serviceQrPlacementFilter','投放状态');
+  searchServiceQrRecords();
+}
+function renderServiceQrManagementTable(filteredRows){
+  const rows = document.getElementById('serviceQrManagementRows');
+  if(!rows){return}
+  const visibleRows = filteredRows || getFilteredServiceQrRows();
+  rows.innerHTML = visibleRows.map(item => {
+    const qrImage = '<img class="service-qr-management-image" src="' + escapeHtml(serviceQrManagementImageDataUri(item)) + '" alt="' + escapeHtml(item.configId) + '二维码">';
+    const encodedConfigId = encodeURIComponent(item.configId);
+    const isPlaced = item.placementStatus !== '已停用';
+    const statusSwitch = '<button type="button" class="switch-toggle service-qr-placement-switch' + (isPlaced ? ' on' : '') + '" data-service-qr-status="' + encodedConfigId + '" role="switch" aria-checked="' + (isPlaced ? 'true' : 'false') + '" aria-label="二维码 ' + escapeHtml(item.configId) + ' 投放状态" onclick="toggleServiceQrPlacement(&quot;' + encodedConfigId + '&quot;)"></button>';
+    const deleteAction = '<div class="service-account-operation-group"><button type="button" class="service-account-operation danger" data-service-qr-delete="' + encodedConfigId + '" onclick="openServiceQrDelete(&quot;' + encodedConfigId + '&quot;)">删除</button></div>';
+    return '<tr><td>' + escapeHtml(item.configId) + '</td><td>' + escapeHtml(item.qrType || '--') + '</td><td>' + escapeHtml(serviceEnterpriseName(item.corpId)) + '</td><td>' + escapeHtml(item.memberUserId) + '</td><td>' + qrImage + '</td><td>' + escapeHtml(item.sourceMiniProgram) + '</td><td>' + escapeHtml(item.miniProgramAppId) + '</td><td>' + escapeHtml(item.sourcePage) + '</td><td>' + escapeHtml(item.state) + '</td><td>' + statusSwitch + '</td><td>' + escapeHtml(item.createdAt) + '</td><td>' + escapeHtml(item.updatedAt) + '</td><td class="sticky-action">' + deleteAction + '</td></tr>';
+  }).join('');
+  if(!visibleRows.length){rows.innerHTML = '<tr><td colspan="13" class="notification-empty">' + (serviceQrConfigurationData.length ? '暂无符合条件的企业微信二维码配置' : '暂无企业微信二维码配置') + '</td></tr>'}
+  updatePagination('serviceQrManagementPagination',visibleRows.length);
+}
+function openServiceQrDelete(encodedConfigId){
+  const id = decodeURIComponent(encodedConfigId || '');
+  const item = serviceQrConfigurationData.find(row => row.configId === id);
+  if(!item){return}
+  if(item.placementStatus !== '已停用'){
+    alert('二维码仍处于投放状态，请先关闭投放后再删除。');
+    return;
+  }
+  serviceQrDeleteTargetId = id;
+  serviceQrDeleteTrigger = document.activeElement;
+  document.getElementById('serviceQrDeleteMessage').textContent = '确定删除二维码「' + id + '」吗？删除后不可恢复。';
+  document.getElementById('serviceQrDeleteModalMask').style.display = 'flex';
+  document.querySelector('#serviceQrDeleteModalMask .cancel').focus();
+}
+function closeServiceQrDelete(restoreFocus){
+  const mask = document.getElementById('serviceQrDeleteModalMask');
+  if(mask){mask.style.display = 'none'}
+  serviceQrDeleteTargetId = '';
+  const trigger = serviceQrDeleteTrigger;
+  serviceQrDeleteTrigger = null;
+  if(restoreFocus !== false && trigger && trigger.isConnected){trigger.focus()}
+}
+function confirmServiceQrDelete(){
+  const id = serviceQrDeleteTargetId;
+  const index = serviceQrConfigurationData.findIndex(row => row.configId === id);
+  if(index < 0){closeServiceQrDelete();return}
+  const item = serviceQrConfigurationData[index];
+  if(item.placementStatus !== '已停用'){
+    closeServiceQrDelete(false);
+    alert('二维码仍处于投放状态，请先关闭投放后再删除。');
+    return;
+  }
+  serviceQrConfigurationData.splice(index,1);
+  renderServiceQrManagementTable();
+  const status = document.getElementById('serviceQrCreateStatus');
+  if(status){status.textContent = '企业微信二维码已删除：' + id}
+  closeServiceQrDelete(false);
+  const nextAction = document.querySelector('#serviceQrManagementRows [data-service-qr-delete]') || document.getElementById('serviceQrCreateOpenButton');
+  if(nextAction){nextAction.focus()}
+}
+function handleServiceQrDeleteKeydown(event){
+  if(event.key === 'Escape'){
+    event.preventDefault();
+    closeServiceQrDelete();
+  }
+}
+function toggleServiceQrPlacement(encodedConfigId){
+  const configId = decodeURIComponent(encodedConfigId || '');
+  const item = serviceQrConfigurationData.find(row => row.configId === configId);
+  if(!item){return}
+  openServiceStatusConfirm('qr',configId);
+}
+function openServiceStatusConfirm(type,id){
+  const item = type === 'account' ? serviceOverviewData.find(row => row.id === id) : serviceQrConfigurationData.find(row => row.configId === id);
+  if(!item){return}
+  const isAccount = type === 'account';
+  const currentlyEnabled = isAccount ? item.enabled !== false : item.placementStatus !== '已停用';
+  const willEnable = !currentlyEnabled;
+  const targetName = isAccount ? serviceAccountEnterpriseName(item) : item.configId;
+  serviceStatusConfirmPending = {type,id,willEnable};
+  serviceStatusConfirmTrigger = document.activeElement;
+  const action = willEnable ? '启用' : '停用';
+  document.getElementById('serviceStatusConfirmTitle').textContent = (isAccount ? '企业微信账号' : '二维码投放') + action + '确认';
+  document.getElementById('serviceStatusConfirmMessage').textContent = isAccount
+    ? '确定' + action + '「' + targetName + '」企业微信账号吗？' + (willEnable ? '启用后，该账号可用于新建二维码。' : '停用后，该账号不可用于新建二维码，关联二维码将同步停止投放。')
+    : '确定' + action + '二维码「' + targetName + '」吗？' + (willEnable ? '启用后，该二维码将恢复投放。' : '停用后，该二维码将停止投放。');
+  const confirmButton = document.getElementById('serviceStatusConfirmButton');
+  confirmButton.textContent = '确认' + action;
+  confirmButton.classList.toggle('danger',!willEnable);
+  document.getElementById('serviceStatusConfirmModalMask').style.display = 'flex';
+  document.querySelector('#serviceStatusConfirmModalMask .cancel').focus();
+}
+function closeServiceStatusConfirm(restoreFocus){
+  const mask = document.getElementById('serviceStatusConfirmModalMask');
+  if(mask){mask.style.display = 'none'}
+  serviceStatusConfirmPending = null;
+  const trigger = serviceStatusConfirmTrigger;
+  serviceStatusConfirmTrigger = null;
+  if(restoreFocus !== false && trigger && trigger.isConnected){trigger.focus()}
+}
+function confirmServiceStatusChange(){
+  const pending = serviceStatusConfirmPending;
+  if(!pending){return}
+  if(pending.type === 'account'){
+    const item = serviceOverviewData.find(row => row.id === pending.id);
+    if(!item){closeServiceStatusConfirm(false);return}
+    item.enabled = pending.willEnable;
+    serviceQrEnabledAccounts.filter(account => account.corpId === item.corpId && account.memberUserId === item.memberUserId).forEach(account => {account.enabled = item.enabled});
+    let stoppedQrCount = 0;
+    if(!item.enabled){
+      serviceQrConfigurationData.forEach(config => {
+        if(config.corpId === item.corpId && config.memberUserId === item.memberUserId && config.placementStatus !== '已停用'){
+          config.placementStatus = '已停用';
+          stoppedQrCount += 1;
+        }
+      });
+      renderServiceQrManagementTable();
+    }
+    renderServiceOverviewTable();
+    const status = document.getElementById('serviceOverviewStatus');
+    if(status){status.textContent = '企业微信账号「' + serviceAccountEnterpriseName(item) + '」已' + (item.enabled ? '启用' : '停用') + '。' + (!item.enabled ? '已同步关闭' + stoppedQrCount + '个关联二维码投放。' : '')}
+  }else{
+    const item = serviceQrConfigurationData.find(row => row.configId === pending.id);
+    if(!item){closeServiceStatusConfirm(false);return}
+    item.placementStatus = pending.willEnable ? '投放中' : '已停用';
+    renderServiceQrManagementTable();
+    const status = document.getElementById('serviceQrCreateStatus');
+    if(status){status.textContent = '二维码「' + item.configId + '」已' + (pending.willEnable ? '启用' : '停用') + '。'}
+  }
+  closeServiceStatusConfirm(false);
+  const selector = pending.type === 'account' ? '[data-service-account-status="' + encodeURIComponent(pending.id) + '"]' : '[data-service-qr-status="' + encodeURIComponent(pending.id) + '"]';
+  const nextSwitch = document.querySelector(selector);
+  if(nextSwitch){nextSwitch.focus()}
+}
+function handleServiceStatusConfirmKeydown(event){
+  if(event.key === 'Escape'){event.preventDefault();closeServiceStatusConfirm();return}
+  if(event.key !== 'Tab'){return}
+  const modal = event.currentTarget;
+  const focusable = Array.from(modal.querySelectorAll('button:not(:disabled)')).filter(node => node.getClientRects().length);
+  if(!focusable.length){event.preventDefault();modal.focus();return}
+  const first = focusable[0];
+  const last = focusable[focusable.length-1];
+  if(event.shiftKey && document.activeElement === first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey && document.activeElement === last){event.preventDefault();first.focus()}
+}
+function getServiceQrCreateRadioValue(name){
+  const selected = document.querySelector('input[name="' + name + '"]:checked');
+  return selected ? selected.value : '';
+}
+function clearServiceQrCreateError(fieldId){
+  if(fieldId){
+    const field = document.getElementById(fieldId);
+    if(field){
+      field.classList.remove('invalid');
+      field.querySelectorAll('input,select').forEach(control => control.removeAttribute('aria-invalid'));
+      const group = field.querySelector('[role="radiogroup"]');
+      if(group){group.removeAttribute('aria-invalid')}
+      const error = field.querySelector('.field-error');
+      if(error){error.textContent = ''}
+    }
+  }else{
+    ['serviceQrCreateAccountField','serviceQrCreateTypeField','serviceQrCreateAppField','serviceQrCreatePageField'].forEach(id => clearServiceQrCreateError(id));
+  }
+  const commonError = document.getElementById('serviceQrCreateError');
+  if(commonError){commonError.textContent = ''}
+}
+function setServiceQrCreateFieldError(fieldId,message){
+  const field = document.getElementById(fieldId);
+  if(!field){return}
+  field.classList.add('invalid');
+  const error = field.querySelector('.field-error');
+  if(error){error.textContent = message}
+  const control = field.querySelector('input:not([type="radio"]),select');
+  if(control){control.setAttribute('aria-invalid','true');control.focus()}
+  else{
+    const group = field.querySelector('[role="radiogroup"]');
+    if(group){group.setAttribute('aria-invalid','true');const radio = group.querySelector('input[type="radio"]');if(radio){radio.focus()}}
+  }
+}
+function getServiceQrCreatePageValue(){
+  const control = document.getElementById('serviceQrCreatePage');
+  return control ? control.value.trim() : '';
+}
+function renderServiceQrCreateAccounts(){
+  const select = document.getElementById('serviceQrCreateAccount');
+  if(!select){return}
+  const enabledAccounts = serviceQrEnabledAccounts.filter(account => account.enabled);
+  select.innerHTML = '<option value="" disabled selected hidden>请选择成员UserID</option>' + enabledAccounts.map(account => '<option value="' + escapeHtml(account.memberUserId) + '">' + escapeHtml(account.memberUserId) + '</option>').join('');
+}
+function renderServiceQrCreatePageControl(){
+  const host = document.getElementById('serviceQrCreatePageControl');
+  const appSelect = document.getElementById('serviceQrCreateApp');
+  if(!host || !appSelect){return}
+  const app = appSelect.value;
+  const pageOptions = ['首页','设备充值','实名认证','网络优选','智能诊断','充值记录','设备绑定'];
+  let control = '';
+  if(app === '诺达通信服务号' && getServiceQrCreateRadioValue('qrType') === '页面专属二维码'){
+    control = '<input class="input service-qr-create-readonly" id="serviceQrCreatePage" name="sourcePage" value="诺达通信服务号" readonly aria-readonly="true" aria-describedby="serviceQrCreatePageError">';
+  }else if(app){
+    control = '<select class="input select" id="serviceQrCreatePage" name="sourcePage" aria-describedby="serviceQrCreatePageError" onchange="clearServiceQrCreateError(\'serviceQrCreatePageField\')"><option value="" disabled selected hidden>请选择投放页面</option>' + pageOptions.map(page => '<option value="' + escapeHtml(page) + '">' + escapeHtml(page) + '</option>').join('') + '</select>';
+  }else{
+    control = '<select class="input select" id="serviceQrCreatePage" name="sourcePage" disabled aria-disabled="true" aria-describedby="serviceQrCreatePageError"><option value="" disabled selected>请先选择投放应用</option></select>';
+  }
+  host.innerHTML = control + '<div class="field-error" id="serviceQrCreatePageError"></div>';
+}
+function syncServiceQrCreateFields(){
+  const qrType = getServiceQrCreateRadioValue('qrType');
+  const isGeneral = qrType === '通用二维码';
+  const isPageDedicated = qrType === '页面专属二维码';
+  const needsApp = isPageDedicated || isGeneral;
+  document.getElementById('serviceQrCreateAppField').classList.toggle('hidden',!needsApp);
+  document.getElementById('serviceQrCreatePageField').classList.toggle('hidden',!isPageDedicated);
+  const app = document.getElementById('serviceQrCreateApp');
+  app.required = needsApp;
+  app.disabled = !needsApp;
+  const page = document.getElementById('serviceQrCreatePage');
+  if(page){page.required = isPageDedicated;page.disabled = !isPageDedicated || (page.tagName === 'SELECT' && !app.value)}
+  const typeGroup = document.querySelector('#serviceQrCreateTypeField [role="radiogroup"]');
+  if(typeGroup){typeGroup.setAttribute('aria-required','true')}
+}
+function handleServiceQrCreateTypeChange(){
+  const qrType = getServiceQrCreateRadioValue('qrType');
+  if(qrType !== serviceQrCreateLastType){
+    const page = document.getElementById('serviceQrCreatePage');
+    if(page && !page.readOnly){page.value = ''}
+    serviceQrCreateLastType = qrType;
+  }
+  clearServiceQrCreateError();
+  renderServiceQrCreatePageControl();
+  syncServiceQrCreateFields();
+}
+function handleServiceQrCreateAppChange(){
+  clearServiceQrCreateError('serviceQrCreateAppField');
+  clearServiceQrCreateError('serviceQrCreatePageField');
+  renderServiceQrCreatePageControl();
+  syncServiceQrCreateFields();
+}
+function openServiceQrCreate(){
+  const mask = document.getElementById('serviceQrCreateModalMask');
+  const form = document.getElementById('serviceQrCreateForm');
+  if(!mask || !form){return}
+  serviceQrCreateTrigger = document.activeElement;
+  form.reset();
+  renderServiceQrCreateAccounts();
+  renderServiceQrCreatePageControl();
+  serviceQrCreateLastType = '页面专属二维码';
+  serviceQrCreateSubmitting = false;
+  serviceQrCreateResult = null;
+  document.getElementById('serviceQrCreateModalTitle').textContent = '企业微信二维码新增';
+  document.getElementById('serviceQrCreateResultView').innerHTML = '';
+  document.getElementById('serviceQrCreateForm').classList.remove('hidden');
+  document.getElementById('serviceQrCreateDiscardView').classList.add('hidden');
+  document.getElementById('serviceQrCreateResultView').classList.add('hidden');
+  document.getElementById('serviceQrCreateFormActions').classList.remove('hidden');
+  document.getElementById('serviceQrCreateDiscardActions').classList.add('hidden');
+  document.getElementById('serviceQrCreateResultActions').classList.add('hidden');
+  clearServiceQrCreateError();
+  syncServiceQrCreateFields();
+  mask.style.display = 'flex';
+  document.getElementById('serviceQrCreateAccount').focus();
+}
+function isServiceQrCreateDirty(){
+  const account = document.getElementById('serviceQrCreateAccount');
+  const app = document.getElementById('serviceQrCreateApp');
+  return Boolean((account && account.value) || (app && app.value) || getServiceQrCreatePageValue() || getServiceQrCreateRadioValue('qrType') !== '页面专属二维码');
+}
+function requestCloseServiceQrCreate(){
+  if(serviceQrCreateSubmitting){return}
+  const mask = document.getElementById('serviceQrCreateModalMask');
+  if(!mask || mask.style.display === 'none'){return}
+  if(document.getElementById('serviceQrCreateResultView').classList.contains('hidden')){
+    if(isServiceQrCreateDirty()){
+      document.getElementById('serviceQrCreateModalTitle').textContent = '确认放弃新增';
+      document.getElementById('serviceQrCreateForm').classList.add('hidden');
+      document.getElementById('serviceQrCreateFormActions').classList.add('hidden');
+      document.getElementById('serviceQrCreateDiscardView').classList.remove('hidden');
+      document.getElementById('serviceQrCreateDiscardActions').classList.remove('hidden');
+      document.getElementById('serviceQrCreateResultActions').classList.add('hidden');
+      document.querySelector('#serviceQrCreateDiscardActions button').focus();
+      return;
+    }
+  }
+  closeServiceQrCreate();
+}
+function returnToServiceQrCreateForm(){
+  document.getElementById('serviceQrCreateModalTitle').textContent = '企业微信二维码新增';
+  document.getElementById('serviceQrCreateDiscardView').classList.add('hidden');
+  document.getElementById('serviceQrCreateDiscardActions').classList.add('hidden');
+  document.getElementById('serviceQrCreateForm').classList.remove('hidden');
+  document.getElementById('serviceQrCreateFormActions').classList.remove('hidden');
+  document.getElementById('serviceQrCreateAccount').focus();
+}
+function discardServiceQrCreate(){
+  closeServiceQrCreate();
+}
+function closeServiceQrCreate(){
+  if(serviceQrCreateSubmitting){return}
+  const mask = document.getElementById('serviceQrCreateModalMask');
+  if(mask){mask.style.display = 'none'}
+  const form = document.getElementById('serviceQrCreateForm');
+  if(form){form.reset();form.classList.remove('hidden')}
+  document.getElementById('serviceQrCreateResultView').innerHTML = '';
+  document.getElementById('serviceQrCreateDiscardView').classList.add('hidden');
+  document.getElementById('serviceQrCreateResultView').classList.add('hidden');
+  document.getElementById('serviceQrCreateFormActions').classList.remove('hidden');
+  document.getElementById('serviceQrCreateDiscardActions').classList.add('hidden');
+  document.getElementById('serviceQrCreateResultActions').classList.add('hidden');
+  clearServiceQrCreateError();
+  serviceQrCreateResult = null;
+  serviceQrCreateLastType = '页面专属二维码';
+  if(serviceQrCreateTrigger && serviceQrCreateTrigger.isConnected){serviceQrCreateTrigger.focus()}
+}
+function handleServiceQrCreateKeydown(event){
+  if(event.key === 'Escape'){
+    event.preventDefault();
+    if(!document.getElementById('serviceQrCreateDiscardView').classList.contains('hidden')){returnToServiceQrCreateForm()}
+    else{requestCloseServiceQrCreate()}
+    return;
+  }
+  if(event.key !== 'Tab'){return}
+  const modal = event.currentTarget;
+  const focusable = Array.from(modal.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),[tabindex]:not([tabindex="-1"])')).filter(node => node.getClientRects().length && !node.closest('.hidden'));
+  if(!focusable.length){event.preventDefault();modal.focus();return}
+  const first = focusable[0];
+  const last = focusable[focusable.length-1];
+  if(event.shiftKey && document.activeElement === first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey && document.activeElement === last){event.preventDefault();first.focus()}
+}
+function getServiceQrCreatePayload(){
+  const qrType = getServiceQrCreateRadioValue('qrType');
+  const sourceApp = (qrType === '页面专属二维码' || qrType === '通用二维码') ? (document.getElementById('serviceQrCreateApp').value || '') : '';
+  const sourcePage = sourceApp === '诺达通信服务号' ? sourceApp : qrType === '页面专属二维码' ? getServiceQrCreatePageValue() : '';
+  return {memberUserId:document.getElementById('serviceQrCreateAccount').value,qrType,sourceApp,sourcePage};
+}
+function findServiceQrCreateConflict(payload){
+  const activeConfigs = serviceQrConfigurationData.filter(config => config.placementStatus !== '已停用');
+  if(payload.qrType === '页面专属二维码'){
+    const conflict = activeConfigs.find(config => config.qrType === '页面专属二维码' && config.sourceApp === payload.sourceApp && config.sourcePage === payload.sourcePage);
+    return conflict ? '创建失败：该投放应用和投放页面已有启用的页面专属二维码，请更换配置。' : '';
+  }
+  const conflict = activeConfigs.find(config => config.qrType === '通用二维码' && config.sourceApp === payload.sourceApp);
+  return conflict ? '创建失败：该投放应用已有启用的通用二维码，请更换应用或停用现有配置。' : '';
+}
+function validateServiceQrCreatePayload(payload){
+  clearServiceQrCreateError();
+  if(!payload.memberUserId){setServiceQrCreateFieldError('serviceQrCreateAccountField','请选择成员UserID。');return false}
+  if(!serviceQrEnabledAccounts.some(account => account.enabled && account.memberUserId === payload.memberUserId)){setServiceQrCreateFieldError('serviceQrCreateAccountField','请选择有效的已启用成员UserID。');return false}
+  if(!payload.qrType){setServiceQrCreateFieldError('serviceQrCreateTypeField','请选择二维码类型。');return false}
+  if((payload.qrType === '页面专属二维码' || payload.qrType === '通用二维码') && !payload.sourceApp){setServiceQrCreateFieldError('serviceQrCreateAppField','请选择投放应用。');return false}
+  if(payload.qrType === '页面专属二维码' && !payload.sourcePage){setServiceQrCreateFieldError('serviceQrCreatePageField','请选择投放页面。');return false}
+  const conflict = findServiceQrCreateConflict(payload);
+  if(conflict){document.getElementById('serviceQrCreateError').textContent = conflict;return false}
+  return true;
+}
+function buildServiceQrCreateRecord(payload){
+  const account = serviceQrEnabledAccounts.find(item => item.memberUserId === payload.memberUserId && item.enabled);
+  const app = serviceQrSourceApps.find(item => item.name === payload.sourceApp);
+  const now = new Date();
+  const pad = value => String(value).padStart(2,'0');
+  const createdAt = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+  const idSuffix = `${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}${String(Math.floor(Math.random()*1000)).padStart(3,'0')}`;
+  const configId = 'QR' + idSuffix;
+  const state = 'noda_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+  const qrCode = 'https://wecom.example.test/contact/' + encodeURIComponent(state);
+  return {
+    configId,
+    enterpriseAccount:account ? account.name : '',
+    qrType:payload.qrType,
+    sourceApp:payload.sourceApp,
+    corpId:account ? account.corpId : '',
+    memberUserId:account ? account.memberUserId : payload.memberUserId,
+    memberName:account ? account.memberName : '',
+    qrAddress:qrCode,
+    qr_code:qrCode,
+    sourceMiniProgram:payload.sourceApp,
+    miniProgramAppId:app && app.appId || '--',
+    sourcePage:payload.sourcePage || '',
+    state,
+    placementStatus:'投放中',
+    creator:'当前操作人',
+    createdBy:'当前操作人',
+    createdAt,
+    updatedAt:createdAt
+  };
+}
+function simulateServiceQrCreateApi(payload){
+  return new Promise(resolve => window.setTimeout(() => {
+    resolve({success:true,record:buildServiceQrCreateRecord(payload)});
+  },350));
+}
+async function submitServiceQrCreate(event){
+  if(event){event.preventDefault()}
+  if(serviceQrCreateSubmitting){return}
+  const payload = getServiceQrCreatePayload();
+  if(!validateServiceQrCreatePayload(payload)){return}
+  const button = document.getElementById('serviceQrCreateSubmitButton');
+  serviceQrCreateSubmitting = true;
+  button.disabled = true;
+  button.setAttribute('aria-busy','true');
+  button.textContent = '创建中…';
+  const status = document.getElementById('serviceQrCreateStatus');
+  if(status){status.textContent = '正在创建企业微信二维码。'}
+  let response;
+  try{response = await simulateServiceQrCreateApi(payload)}catch(error){response = {success:false,message:'企业微信接口调用失败，请检查后重试。'}}
+  serviceQrCreateSubmitting = false;
+  button.disabled = false;
+  button.removeAttribute('aria-busy');
+  button.textContent = '确认创建';
+  if(!response.success){
+    document.getElementById('serviceQrCreateError').textContent = response.message || '创建失败，请保留表单内容并重试。';
+    if(status){status.textContent = '企业微信二维码创建失败。'}
+    return;
+  }
+  serviceQrConfigurationData.unshift(response.record);
+  renderServiceQrManagementTable();
+  serviceQrCreateResult = response.record;
+  renderServiceQrCreateResult(response.record);
+  if(status){status.textContent = '企业微信二维码创建成功。'}
+}
+function renderServiceQrCreateResult(record){
+  document.getElementById('serviceQrCreateForm').classList.add('hidden');
+  document.getElementById('serviceQrCreateDiscardView').classList.add('hidden');
+  document.getElementById('serviceQrCreateFormActions').classList.add('hidden');
+  document.getElementById('serviceQrCreateDiscardActions').classList.add('hidden');
+  document.getElementById('serviceQrCreateResultActions').classList.remove('hidden');
+  document.getElementById('serviceQrCreateModalTitle').textContent = '企业微信二维码创建结果';
+  document.getElementById('serviceQrCreateResultView').innerHTML = '<div class="service-qr-create-result-title" role="status">创建成功</div><img class="service-qr-create-result-image" src="' + escapeHtml(serviceQrManagementImageDataUri(record)) + '" alt="' + escapeHtml(record.configId) + '二维码"><dl class="service-qr-create-result-details"><dt>成员UserID</dt><dd>' + escapeHtml(record.memberUserId) + '</dd><dt>二维码类型</dt><dd>' + escapeHtml(record.qrType) + '</dd><dt>投放应用</dt><dd>' + escapeHtml(record.sourceApp || '--') + '</dd><dt>投放页面</dt><dd>' + escapeHtml(record.sourcePage || '--') + '</dd><dt>来源标记 state</dt><dd>' + escapeHtml(record.state) + '</dd><dt>二维码ID</dt><dd>' + escapeHtml(record.configId) + '</dd><dt>二维码地址 qr_code</dt><dd>' + escapeHtml(record.qr_code) + '</dd><dt>创建人</dt><dd>' + escapeHtml(record.creator) + '</dd><dt>创建时间</dt><dd>' + escapeHtml(record.createdAt) + '</dd></dl>';
+  document.getElementById('serviceQrCreateResultView').classList.remove('hidden');
+  document.querySelector('#serviceQrCreateResultActions button:last-child').focus();
+}
+function downloadServiceQrCreateResult(){
+  if(!serviceQrCreateResult){return}
+  const imageUri = serviceQrManagementImageDataUri(serviceQrCreateResult);
+  const svg = decodeURIComponent(imageUri.slice(imageUri.indexOf(',')+1));
+  const blob = new Blob([svg],{type:'image/svg+xml;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  const safeName = String(serviceQrCreateResult.configId).replace(/[\\/:*?"<>|]/g,'_');
+  link.href = url;
+  link.download = safeName + '.svg';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url),1000);
 }
 function renderServiceSourceTable(sourceRows = serviceSourceData){
   const rows = document.getElementById('serviceSourceRows');
   if(!rows){return}
   rows.innerHTML = sourceRows.map(item => {
-    return '<tr><td>' + escapeHtml(item.sessionId) + '</td><td>' + escapeHtml(item.visitorId) + '</td><td>' + escapeHtml(item.qiyuVisitorId) + '</td><td>' + escapeHtml(item.receptionAgentId) + '</td><td>' + escapeHtml(item.receptionAgentName) + '</td><td>' + escapeHtml(item.receptionAgentAccount) + '</td><td>' + escapeHtml(item.wecomReceptionAccountId) + '</td><td>' + escapeHtml(item.sessionStartedAt || '--') + '</td><td>' + escapeHtml(item.sessionEndedAt || '--') + '</td></tr>';
+    const account = serviceOverviewData.find(row => row.id === item.serviceId);
+    return '<tr><td>' + escapeHtml(account ? serviceAccountEnterpriseName(account) : '--') + '</td><td>' + escapeHtml(account ? account.name : '--') + '</td><td>' + escapeHtml(item.visitorSource) + '</td><td>' + escapeHtml(item.originPage) + '</td><td>' + escapeHtml(item.userUnionId) + '</td><td>' + escapeHtml(item.deviceSn) + '</td><td>' + escapeHtml(item.addedAt || '--') + '</td></tr>';
   }).join('');
   updatePagination('serviceSourcePagination', sourceRows.length);
 }
 function getFilteredServiceSourceRows(){
   const fields = [
-    ['serviceSourceSessionIdInput','sessionId'],
-    ['serviceSourceVisitorIdInput','visitorId'],
-    ['serviceSourceQiyuVisitorIdInput','qiyuVisitorId'],
-    ['serviceSourceReceptionAgentIdInput','receptionAgentId'],
-    ['serviceSourceReceptionAgentNameInput','receptionAgentName'],
-    ['serviceSourceReceptionAgentAccountInput','receptionAgentAccount'],
-    ['serviceSourceWecomReceptionAccountIdInput','wecomReceptionAccountId'],
-    ['serviceSourceSessionStartedAtInput','sessionStartedAt'],
-    ['serviceSourceSessionEndedAtInput','sessionEndedAt']
+    ['serviceSourceEnterpriseNameInput','corpId'],
+    ['serviceSourceWecomAccountInput','name'],
+    ['serviceSourceUserUnionIdInput','userUnionId'],
+    ['serviceSourceDeviceSnInput','deviceSn'],
+    ['serviceSourceAddedAtInput','addedAt']
   ];
   const filters = fields.map(([inputId,field]) => [field,normalizeText(document.getElementById(inputId).value)]);
-  return serviceSourceData.filter(item => filters.every(([field,value]) => !value || normalizeText(item[field]).includes(value)));
+  const visitorSource = getSelectValue('serviceSourceVisitorSourceFilter');
+  const originPage = getSelectValue('serviceSourceOriginPageFilter');
+  return serviceSourceData.filter(item => {
+    const account = serviceOverviewData.find(row => row.id === item.serviceId);
+    return filters.every(([field,value]) => {
+      if(!value){return true}
+      const actual = field === 'corpId' ? account ? serviceAccountEnterpriseName(account) + ' ' + account.corpId : '' : field === 'name' ? account && account.name : item[field];
+      return normalizeText(actual).includes(value);
+    }) && (!visitorSource || item.visitorSource === visitorSource) && (!originPage || item.originPage === originPage);
+  });
 }
 function searchServiceSourceRecords(){
   renderServiceSourceTable(getFilteredServiceSourceRows());
 }
+function exportServiceSourceRecords(){
+  const headers = ['企业名称','企业微信账号','来源应用','来源页面','用户UnionID','设备SN','添加好友时间'];
+  const rows = getFilteredServiceSourceRows().map(item => {
+    const account = serviceOverviewData.find(row => row.id === item.serviceId);
+    return [account ? serviceAccountEnterpriseName(account) : '',account ? account.name : '',item.visitorSource,item.originPage,item.userUnionId,item.deviceSn,item.addedAt].map(value => value == null ? '' : value);
+  });
+  const csv = '\uFEFF' + [headers,...rows].map(row => row.map(value => `"${String(value).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  link.download = '用户添加记录.csv';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(()=>URL.revokeObjectURL(link.href),0);
+}
 function resetServiceSourceRecords(){
-  ['serviceSourceSessionIdInput','serviceSourceVisitorIdInput','serviceSourceQiyuVisitorIdInput','serviceSourceReceptionAgentIdInput','serviceSourceReceptionAgentNameInput','serviceSourceReceptionAgentAccountInput','serviceSourceWecomReceptionAccountIdInput','serviceSourceSessionStartedAtInput','serviceSourceSessionEndedAtInput'].forEach(id => {document.getElementById(id).value = ''});
+  ['serviceSourceEnterpriseNameInput','serviceSourceWecomAccountInput','serviceSourceUserUnionIdInput','serviceSourceDeviceSnInput','serviceSourceAddedAtInput'].forEach(id => {document.getElementById(id).value = ''});
+  resetCustomSelect('serviceSourceVisitorSourceFilter','来源应用');
+  resetCustomSelect('serviceSourceOriginPageFilter','来源页面');
   searchServiceSourceRecords();
 }
 function serviceAccountLookupKey(corpId,userId){
@@ -4473,7 +5147,7 @@ function lookupServiceAccountMember(corpId,userId){
 function clearServiceAccountEditorError(){
   const error = document.getElementById('serviceAccountFormError');
   if(error){error.textContent = ''}
-  ['serviceAccountCorpIdInput','serviceAccountUserIdInput'].forEach(id => {
+  ['serviceAccountEnterpriseNameInput','serviceAccountCorpIdInput','serviceAccountUserIdInput'].forEach(id => {
     const input = document.getElementById(id);
     if(input){input.removeAttribute('aria-invalid')}
   });
@@ -4511,11 +5185,15 @@ function openServiceAccountEditor(encodedId){
   serviceAccountEditorTrigger = document.activeElement;
   serviceAccountEditingId = id;
   clearServiceAccountEditorError();
+  const enterpriseName = document.getElementById('serviceAccountEnterpriseNameInput');
   const corpId = document.getElementById('serviceAccountCorpIdInput');
   const userId = document.getElementById('serviceAccountUserIdInput');
+  const remark = document.getElementById('serviceAccountRemarkInput');
   const title = document.getElementById('serviceAccountEditorTitle');
+  enterpriseName.value = item ? (item.enterpriseName || serviceEnterpriseName(item.corpId)) : '';
   corpId.value = item ? item.corpId : '';
   userId.value = item ? item.memberUserId : '';
+  remark.value = item ? item.remark || '' : '';
   title.textContent = item ? '企业微信账号编辑' : '企业微信账号新增';
   const message = document.getElementById('serviceAccountLookupMessage');
   message.textContent = '根据企业CorpID和成员UserID查询，不可手动编辑。';
@@ -4525,7 +5203,7 @@ function openServiceAccountEditor(encodedId){
   if(item){handleServiceAccountIdentityInput()}
   const mask = document.getElementById('serviceAccountEditorModalMask');
   mask.style.display = 'flex';
-  corpId.focus();
+  enterpriseName.focus();
 }
 function closeServiceAccountEditor(restoreFocus){
   const mask = document.getElementById('serviceAccountEditorModalMask');
@@ -4546,11 +5224,15 @@ function closeServiceAccountEditor(restoreFocus){
 function saveServiceAccount(event){
   if(event){event.preventDefault()}
   clearServiceAccountEditorError();
+  const enterpriseNameInput = document.getElementById('serviceAccountEnterpriseNameInput');
   const corpIdInput = document.getElementById('serviceAccountCorpIdInput');
+  const enterpriseName = enterpriseNameInput.value.trim();
   const userIdInput = document.getElementById('serviceAccountUserIdInput');
   const corpId = corpIdInput.value.trim();
   const userId = userIdInput.value.trim();
+  const remark = document.getElementById('serviceAccountRemarkInput').value.trim();
   const error = document.getElementById('serviceAccountFormError');
+  if(!enterpriseName){error.textContent = '请选择企业名称。';enterpriseNameInput.setAttribute('aria-invalid','true');enterpriseNameInput.focus();return}
   if(!corpId){error.textContent = '请输入企业CorpID。';corpIdInput.setAttribute('aria-invalid','true');corpIdInput.focus();return}
   if(!userId){error.textContent = '请输入成员UserID。';userIdInput.setAttribute('aria-invalid','true');userIdInput.focus();return}
   const matched = lookupServiceAccountMember(corpId,userId);
@@ -4568,17 +5250,22 @@ function saveServiceAccount(event){
   if(savedId){
     const item = serviceOverviewData.find(row => row.id === savedId);
     if(!item){return}
+    item.enterpriseName = enterpriseName;
     item.corpId = corpId;
     item.memberUserId = userId;
     item.memberName = matched.name;
+    item.remark = remark;
   }else{
     savedId = 'service-' + Date.now();
-    serviceOverviewData.unshift({id:savedId,name:'企业微信服务账号 ' + corpId,corpId,memberUserId:userId,memberName:matched.name,ownerId:'',totalUsers:'0',currentUsers:'0',todayAddedUsers:'0',syncTime:'--'});
+    const now = new Date();
+    const pad = value => String(value).padStart(2,'0');
+    const createdAt = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    serviceOverviewData.unshift({id:savedId,name:'企业微信服务账号 ' + enterpriseName,enterpriseName,corpId,memberUserId:userId,memberName:matched.name,ownerId:'',enabled:true,totalUsers:'0',currentUsers:'0',todayAddedUsers:'0',remark,createdAt,syncTime:'--'});
   }
   renderServiceOverviewTable();
   renderServiceSourceTable();
   const status = document.getElementById('serviceOverviewStatus');
-  if(status){status.textContent = '企业微信账号' + (serviceAccountEditingId ? '已更新' : '新增成功') + '：' + corpId}
+  if(status){status.textContent = '企业微信账号' + (serviceAccountEditingId ? '已更新' : '新增成功') + '：' + enterpriseName}
   closeServiceAccountEditor(false);
   const editButton = document.querySelector('[data-service-account-edit="' + encodeURIComponent(savedId) + '"]');
   if(editButton){editButton.focus()}else{document.getElementById('serviceOverviewAddButton').focus()}
@@ -4589,7 +5276,7 @@ function openServiceAccountDelete(encodedId){
   if(!item){return}
   serviceAccountDeleteTargetId = id;
   serviceAccountEditorTrigger = document.activeElement;
-  document.getElementById('serviceAccountDeleteMessage').textContent = '确定删除企业微信账号「' + item.corpId + '」吗？删除后该账号将不再显示在服务概览列表中。';
+  document.getElementById('serviceAccountDeleteMessage').textContent = '确定删除企业微信账号「' + serviceAccountEnterpriseName(item) + '」吗？删除后该账号将不再显示在企业微信账号管理列表中。';
   document.getElementById('serviceAccountDeleteModalMask').style.display = 'flex';
   document.querySelector('#serviceAccountDeleteModalMask .cancel').focus();
 }
@@ -4614,7 +5301,7 @@ function confirmServiceAccountDelete(){
   renderServiceOverviewTable();
   renderServiceSourceTable();
   const status = document.getElementById('serviceOverviewStatus');
-  if(status){status.textContent = '企业微信账号已删除：' + removed.corpId}
+  if(status){status.textContent = '企业微信账号已删除：' + serviceAccountEnterpriseName(removed)}
   closeServiceAccountDelete();
   const nextAction = document.querySelector('#serviceOverviewRows .service-account-operation') || document.getElementById('serviceOverviewAddButton');
   if(nextAction){nextAction.focus()}
@@ -5811,6 +6498,16 @@ function toggleServiceSourceDescription(forceOpen){
   const drawer = document.getElementById('serviceSourceDescriptionDrawer');
   const backdrop = document.getElementById('serviceSourceDescriptionBackdrop');
   const trigger = document.getElementById('serviceSourceDescriptionTrigger');
+  if(!drawer || !backdrop){return}
+  const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !drawer.classList.contains('open');
+  drawer.classList.toggle('open',isOpen);
+  backdrop.classList.toggle('open',isOpen);
+  if(trigger){trigger.setAttribute('aria-expanded',isOpen ? 'true' : 'false')}
+}
+function toggleServiceQrDescription(forceOpen){
+  const drawer = document.getElementById('serviceQrDescriptionDrawer');
+  const backdrop = document.getElementById('serviceQrDescriptionBackdrop');
+  const trigger = document.getElementById('serviceQrDescriptionTrigger');
   if(!drawer || !backdrop){return}
   const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !drawer.classList.contains('open');
   drawer.classList.toggle('open',isOpen);
@@ -9770,6 +10467,9 @@ function setCustomSelectValue(target,value,label,emitChange){
   if(['consumerDefaultDeviceFilter','consumerDeviceTypeFilter'].includes(select.id)){
     searchConsumerManagementRecords();
   }
+  if(['serviceSourceVisitorSourceFilter','serviceSourceOriginPageFilter'].includes(select.id)){
+    searchServiceSourceRecords();
+  }
   if(['consumerTagTypeFilter','consumerTagStatusFilter'].includes(select.id)){
     searchConsumerTags();
   }
@@ -10579,6 +11279,7 @@ initInputCombos();
 initQueryInputClears();
 initClipboardSmartSearch('#clipboardSmartSearch');
 renderServiceOverviewTable();
+renderServiceQrManagementTable();
 renderServiceSourceTable();
 renderMessageNotifications();
 Object.keys(deviceRangeState).forEach(syncDeviceRange);
