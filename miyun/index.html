@@ -1578,6 +1578,56 @@ body.phone-fixed-header-active #root>.system-status-bar{position:sticky;top:0;le
 .dialog-title-area>.home-recharge-reminder-icon{margin-top:0}
 .activation-result-dialog .miyun-dialog-body .activation-result-heading{padding-right:0}
 </style>
+<style id="home-complaint-style">
+.home-complaint-entry{left:61.3%;min-width:44px;min-height:64px;border:0;padding:0;background:transparent;cursor:pointer;pointer-events:auto}
+.home-complaint-entry .home-diagnostics-entry-icon{background:linear-gradient(145deg,#fff3e3,#ffe1c8)}
+.home-complaint-entry:focus-visible{outline:2px solid #087cff;outline-offset:4px;border-radius:12px}
+.page.home-complaint-page{width:min(var(--ui-page-width),100vw);max-width:var(--ui-page-width);zoom:1;min-height:0;margin:0 auto;padding:0;overflow:visible;background:#f4faff;color:#102747;font-family:var(--ui-font-sans);font-size:var(--ui-text-body);line-height:var(--ui-leading-body)}
+.home-complaint-screen{width:100%;min-height:var(--ui-reference-height);background:linear-gradient(180deg,#e5f5ff 84px,#f4faff 320px)}
+.home-complaint-screen .real-name-nav{background:#fff}
+.home-complaint-screen .real-name-nav h1{font-size:var(--ui-text-h2);line-height:var(--ui-leading-h2);font-weight:var(--ui-weight-semibold)}
+.home-complaint-screen .real-name-back{top:2px;left:12px;width:var(--ui-tap-size);height:var(--ui-tap-size)}
+.home-complaint-screen .real-name-back i{left:16px;top:14px}
+.home-complaint-body{display:flex;flex-direction:column;gap:16px;padding:16px var(--ui-page-inset) max(24px,env(safe-area-inset-bottom))}
+.home-complaint-intro{margin:0;color:#657a9f;font-size:14px;line-height:22px}
+.home-complaint-reasons{margin:0;padding:0 16px;list-style:none;border-radius:20px;background:#fff}
+.home-complaint-reasons li+li{border-top:1px solid #edf1f6}
+.home-complaint-reason{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:64px;padding:16px 0;border:0;background:transparent;color:#102747;text-align:left;font:500 16px/24px var(--ui-font-sans);cursor:pointer}
+.home-complaint-chevron{flex:0 0 8px;width:8px;height:8px;margin-right:4px;border-top:1.5px solid #8a94a6;border-right:1.5px solid #8a94a6;transform:rotate(45deg)}
+.home-complaint-form{display:flex;flex-direction:column;gap:16px;margin:0}
+.home-complaint-card{display:flex;flex-direction:column;gap:20px;min-width:0;padding:16px;border-radius:20px;background:#fff}
+.home-complaint-selected{display:flex;flex-direction:column;gap:4px;margin:0;padding:12px 16px;border:1px solid #dceeff;border-radius:16px;background:#ecf7ff;color:#657a9f;font-size:12px;line-height:18px}
+.home-complaint-selected strong{color:#102747;font-size:14px;font-weight:500;line-height:22px;overflow-wrap:anywhere}
+.home-complaint-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.home-complaint-label{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#102747;font-size:16px;font-weight:500;line-height:24px}
+.home-complaint-count{color:#8a94a6;font-size:12px;font-weight:400;line-height:18px;font-variant-numeric:tabular-nums}
+.home-complaint-input,.home-complaint-content{box-sizing:border-box;width:100%;min-width:0;padding:12px;border:1px solid #e0e8f2;border-radius:12px;outline:0;background:#f8fbff;color:#102747;font:400 16px/24px var(--ui-font-sans)}
+.home-complaint-input{height:48px}
+.home-complaint-content{min-height:168px;resize:none}
+.home-complaint-input::placeholder,.home-complaint-content::placeholder{color:#8a94a6}
+.home-complaint-input:focus,.home-complaint-content:focus{border-color:#087cff;box-shadow:0 0 0 2px #087cff18}
+.home-complaint-input[aria-invalid="true"],.home-complaint-content[aria-invalid="true"]{border-color:#d94343}
+.home-complaint-upload{position:relative;width:96px;height:96px}
+.home-complaint-image-pick{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:96px;height:96px;padding:0;border:1px dashed #b7d6f4;border-radius:16px;background:#edf7ff;color:#657a9f;font:400 12px/18px var(--ui-font-sans);cursor:pointer}
+.home-complaint-image-pick svg{width:28px;height:28px;color:#087cff}
+.home-complaint-image-preview{display:block;width:96px;height:96px;object-fit:cover;border-radius:16px}
+.home-complaint-image-remove{position:absolute;top:-8px;right:-8px;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer}
+.home-complaint-image-remove span{display:grid;place-items:center;width:24px;height:24px;border:2px solid #fff;border-radius:50%;background:#64758d;color:#fff;font:400 18px/1 var(--ui-font-sans)}
+.home-complaint-help,.home-complaint-error{margin:0;font-size:12px;line-height:18px}
+.home-complaint-help{color:#657a9f}
+.home-complaint-error{color:#d94343}
+.home-complaint-error:empty{display:none}
+.home-complaint-submit{display:flex;align-items:center;justify-content:center;width:100%;height:48px;padding:0 16px;border:0;border-radius:24px;background:linear-gradient(110deg,#03a8ff,#087cff);color:#fff;font:500 16px/24px var(--ui-font-sans);cursor:pointer}
+.home-complaint-submit:disabled,.home-complaint-image-pick:disabled{opacity:.55;cursor:not-allowed}
+.home-complaint-screen button:focus-visible{outline:3px solid #087cff;outline-offset:3px}
+.home-complaint-screen button:hover:not(:disabled){filter:brightness(.98)}
+.home-complaint-success{align-items:center;gap:12px;padding:32px 16px;text-align:center}
+.home-complaint-success-icon{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#e3f8ec;color:#18b46b}
+.home-complaint-success-icon svg{width:28px;height:28px}
+.home-complaint-success h2{margin:0;font-size:18px;font-weight:600;line-height:26px}
+.home-complaint-success p{margin:0;color:#657a9f;font-size:14px;line-height:22px}
+.home-complaint-success .home-complaint-submit{margin-top:12px}
+</style>
 </head>
   <body>
     <aside class="desktop-page-nav" aria-label="页面导航">
@@ -2356,6 +2406,163 @@ function persistFamilyNumbers() {
 
 const homePage = { id: 'home', title: '首页-正常可用', description: '查看首页正常可用状态' };
 const homeProfilePage = { id: 'home-profile-edit', title: '编辑用户信息', menuTitle: '编辑用户信息', description: '编辑孩子的头像、名称和性别', parentId: homePage.id };
+const homeComplaintPage = { id: 'home-complaint', title: '售后投诉', menuTitle: '售后投诉', description: '选择投诉原因', parentId: homePage.id };
+const homeComplaintFormPage = { id: 'home-complaint-form', title: '填写投诉', menuTitle: '填写投诉', description: '填写联系方式、上传图片并描述问题', parentId: homeComplaintPage.id };
+function isHomeComplaintRoute(id) { return id === homeComplaintPage.id || id === homeComplaintFormPage.id; }
+const homeComplaintEntryMarkup = `<button type="button" class="home-diagnostics-entry home-complaint-entry" data-home-action="complaint" aria-label="售后投诉"><span class="home-diagnostics-entry-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><defs><linearGradient id="home-complaint-icon-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb755"/><stop offset="1" stop-color="#ff784c"/></linearGradient></defs><path d="M10 12a6 6 0 0 1 6-6h16a6 6 0 0 1 6 6v21a6 6 0 0 1-6 6H22l-8 5v-6a6 6 0 0 1-4-5Z" fill="url(#home-complaint-icon-gradient)"/><path d="M24 14v12" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="32" r="2.3" fill="#fff"/><path d="M15 9h14" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".4"/></svg></span><span class="home-diagnostics-entry-label">售后投诉</span></button>`;
+// The reference repeats the harassment reason; one entry represents that reason.
+const complaintReasons = [
+  { id: 'harassment', label: '发布不适当内容对我造成骚扰' },
+  { id: 'fraud', label: '存在欺诈骗钱行为' },
+  { id: 'account-stolen', label: '此账号可能被盗用' },
+  { id: 'infringement', label: '存在侵权行为' },
+  { id: 'counterfeit', label: '发布仿冒品信息' },
+  { id: 'impersonation', label: '冒充他人' },
+  { id: 'minor-rights', label: '侵犯未成年人权益' },
+  { id: 'other', label: '其它' },
+];
+let complaintDraft = { reasonId: '', contact: '', content: '', image: '' };
+let complaintSubmitted = false;
+let complaintUploadPending = false;
+let complaintSubmitPending = false;
+let complaintComposing = false;
+let complaintViewVersion = 0;
+let complaintReturnStateId = null;
+let complaintReturnScroll = 0;
+function complaintUploadMarkup() {
+  return complaintDraft.image
+    ? `<img class="home-complaint-image-preview" src="${escapeHtml(complaintDraft.image)}" alt="已选择的投诉图片"><button type="button" class="home-complaint-image-remove" data-complaint-image-remove aria-label="移除投诉图片"><span aria-hidden="true">×</span></button>`
+    : `<button type="button" class="home-complaint-image-pick" data-complaint-image-pick aria-label="上传投诉图片" aria-describedby="complaint-image-help complaint-image-error"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>上传图片</span></button>`;
+}
+function renderHomeComplaintPage(id) {
+  const header = orderPageHeader('售后投诉').replace('data-go-back', 'data-complaint-back');
+  if (id === homeComplaintPage.id) {
+    return `<section class="home-complaint-screen" aria-label="售后投诉">${header}<div class="home-complaint-body"><p class="home-complaint-intro">请选择投诉原因：</p><ul class="home-complaint-reasons">${complaintReasons.map((reason) => `<li><button type="button" class="home-complaint-reason" data-complaint-reason="${reason.id}"><span>${reason.label}</span><i class="home-complaint-chevron" aria-hidden="true"></i></button></li>`).join('')}</ul></div></section>`;
+  }
+  if (complaintSubmitted) {
+    return `<section class="home-complaint-screen" aria-label="售后投诉">${header}<div class="home-complaint-body"><section class="home-complaint-card home-complaint-success" tabindex="-1" data-complaint-success role="status" aria-labelledby="complaint-success-title"><span class="home-complaint-success-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h2 id="complaint-success-title">提交成功</h2><p>您的投诉信息已记录。</p><button type="button" class="home-complaint-submit" data-complaint-home>返回首页</button></section></div></section>`;
+  }
+  const reason = complaintReasons.find((entry) => entry.id === complaintDraft.reasonId);
+  return `<section class="home-complaint-screen" aria-label="填写投诉">${header}<div class="home-complaint-body"><form class="home-complaint-form" data-complaint-form novalidate>
+    <div class="home-complaint-selected"><span>投诉原因</span><strong>${reason ? reason.label : '请选择投诉原因'}</strong><button type="button" class="home-complaint-reason" data-complaint-change-reason aria-describedby="complaint-reason-error" style="min-height:44px;padding:8px 0;font-size:14px">${reason ? '重新选择' : '选择原因'}<i class="home-complaint-chevron" aria-hidden="true"></i></button><p class="home-complaint-error" id="complaint-reason-error" role="alert"></p></div>
+    <div class="home-complaint-card">
+      <div class="home-complaint-field"><label class="home-complaint-label" for="complaint-contact">联系方式<span class="home-complaint-count">必填</span></label><input id="complaint-contact" class="home-complaint-input" data-complaint-contact type="text" autocomplete="tel" maxlength="60" required placeholder="请填写联系方式" value="${escapeHtml(complaintDraft.contact)}" aria-describedby="complaint-contact-error"><p id="complaint-contact-error" class="home-complaint-error" role="alert"></p></div>
+      <div class="home-complaint-field"><div class="home-complaint-label" id="complaint-image-title">图片上传<span class="home-complaint-count" data-complaint-image-count aria-live="polite">${complaintDraft.image ? '1' : '0'}/1</span></div><div class="home-complaint-upload" data-complaint-upload>${complaintUploadMarkup()}</div><input type="file" data-complaint-image-input accept="image/png,image/jpeg,image/webp" aria-labelledby="complaint-image-title" hidden><p id="complaint-image-help" class="home-complaint-help">最多上传1张图片，支持 JPG、PNG、WebP，不超过5MB。</p><p id="complaint-image-error" class="home-complaint-error" role="alert"></p></div>
+      <div class="home-complaint-field"><label class="home-complaint-label" for="complaint-content">投诉内容<span class="home-complaint-count">必填</span></label><textarea id="complaint-content" class="home-complaint-content" data-complaint-content maxlength="500" required placeholder="请描述你所发生的问题" aria-describedby="complaint-content-count complaint-content-error">${escapeHtml(complaintDraft.content)}</textarea><span id="complaint-content-count" class="home-complaint-count" data-complaint-content-count>${Array.from(complaintDraft.content).length}/500</span><p id="complaint-content-error" class="home-complaint-error" role="alert"></p></div>
+    </div><button type="submit" class="home-complaint-submit" data-complaint-submit>提交</button>
+  </form></div></section>`;
+}
+function openHomeComplaint() {
+  complaintReturnStateId = activeHomeStateId;
+  complaintReturnScroll = shell.scrollTop;
+  if (complaintSubmitted) {
+    complaintDraft = { reasonId: '', contact: '', content: '', image: '' };
+    complaintSubmitted = false;
+  }
+  setPage(homeComplaintPage.id);
+}
+function returnComplaintHome() {
+  setHomeState(homeStatePageIds.has(complaintReturnStateId) ? complaintReturnStateId : homeNormalPage.id);
+  shell.scrollTop = complaintReturnScroll;
+  pageNode.querySelector('[data-home-action="complaint"]')?.focus({ preventScroll: true });
+}
+function backFromComplaint() {
+  if (currentPageId() === homeComplaintFormPage.id && !complaintSubmitted) setPage(homeComplaintPage.id);
+  else returnComplaintHome();
+}
+function syncComplaintField(input, key) {
+  if (currentPageId() !== homeComplaintFormPage.id || complaintSubmitted) return;
+  complaintDraft[key] = input.value;
+  input.removeAttribute('aria-invalid');
+  const error = pageNode.querySelector('#complaint-' + key + '-error');
+  if (error) error.textContent = '';
+  if (key === 'content') {
+    const counter = pageNode.querySelector('[data-complaint-content-count]');
+    if (counter) counter.textContent = Array.from(input.value).length + '/500';
+  }
+}
+function syncComplaintImage() {
+  const preview = pageNode.querySelector('[data-complaint-upload]');
+  if (preview) preview.innerHTML = complaintUploadMarkup();
+  const counter = pageNode.querySelector('[data-complaint-image-count]');
+  if (counter) counter.textContent = (complaintDraft.image ? '1' : '0') + '/1';
+}
+function readComplaintImage(input) {
+  if (currentPageId() !== homeComplaintFormPage.id || complaintSubmitted || complaintUploadPending || complaintSubmitPending) return;
+  const file = input.files?.[0];
+  if (!file) return;
+  const error = pageNode.querySelector('#complaint-image-error');
+  if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type) || file.size > 5 * 1024 * 1024 || file.size === 0) {
+    if (error) error.textContent = '请选择不超过5MB的 JPG、PNG 或 WebP 图片';
+    input.value = ''; return;
+  }
+  const version = ++complaintViewVersion;
+  complaintUploadPending = true;
+  const submit = pageNode.querySelector('[data-complaint-submit]');
+  if (submit) submit.disabled = true;
+  const picker = pageNode.querySelector('[data-complaint-image-pick]');
+  if (picker) { picker.disabled = true; picker.setAttribute('aria-busy', 'true'); }
+  if (error) error.textContent = '';
+  const finish = (message = '') => {
+    if (version !== complaintViewVersion || currentPageId() !== homeComplaintFormPage.id) return false;
+    complaintUploadPending = false;
+    if (submit) submit.disabled = false;
+    if (picker) { picker.disabled = false; picker.removeAttribute('aria-busy'); }
+    if (error) error.textContent = message;
+    input.value = '';
+    return true;
+  };
+  const reader = new FileReader();
+  reader.onload = () => {
+    if (version !== complaintViewVersion || currentPageId() !== homeComplaintFormPage.id) return;
+    const result = String(reader.result || '');
+    if (!/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(result)) { finish('图片读取失败，请重新选择'); return; }
+    const image = new Image();
+    image.onload = () => {
+      if (!finish()) return;
+      complaintDraft.image = result;
+      syncComplaintImage();
+      pageNode.querySelector('[data-complaint-image-remove]')?.focus({ preventScroll: true });
+    };
+    image.onerror = () => finish('图片无法打开，请选择有效的图片');
+    image.src = result;
+  };
+  reader.onerror = () => finish('图片读取失败，请重新选择');
+  reader.onabort = () => finish('图片读取已取消，请重新选择');
+  try { reader.readAsDataURL(file); } catch { finish('图片读取失败，请重新选择'); }
+}
+function submitComplaint(form, event) {
+  if (currentPageId() !== homeComplaintFormPage.id || complaintSubmitted || complaintUploadPending || complaintSubmitPending || complaintComposing || event?.isComposing) return;
+  const contact = form.querySelector('[data-complaint-contact]');
+  const content = form.querySelector('[data-complaint-content]');
+  complaintDraft.contact = contact.value.trim();
+  complaintDraft.content = content.value.trim();
+  const invalid = [
+    { valid: complaintReasons.some((entry) => entry.id === complaintDraft.reasonId), target: form.querySelector('[data-complaint-change-reason]'), error: '#complaint-reason-error', message: '请选择投诉原因' },
+    { valid: Boolean(complaintDraft.contact) && complaintDraft.contact.length <= 60, target: contact, error: '#complaint-contact-error', message: '请填写联系方式，不超过60个字符' },
+    { valid: Boolean(complaintDraft.content) && Array.from(complaintDraft.content).length <= 500, target: content, error: '#complaint-content-error', message: '请描述你所发生的问题，不超过500个字' },
+  ];
+  invalid.forEach((field) => {
+    const error = form.querySelector(field.error);
+    if (error) error.textContent = field.valid ? '' : field.message;
+    field.target?.setAttribute('aria-invalid', String(!field.valid));
+  });
+  const firstError = invalid.find((field) => !field.valid);
+  if (firstError) { firstError.target?.focus(); return; }
+  complaintSubmitPending = true;
+  const button = form.querySelector('[data-complaint-submit]');
+  button.disabled = true;
+  button.textContent = '提交中…';
+  button.setAttribute('aria-busy', 'true');
+  const version = complaintViewVersion;
+  // This standalone prototype demonstrates submission without an external service.
+  window.setTimeout(() => {
+    if (version !== complaintViewVersion || currentPageId() !== homeComplaintFormPage.id) return;
+    complaintSubmitted = true;
+    renderRoute(homeComplaintFormPage.id);
+    pageNode.querySelector('[data-complaint-success]')?.focus({ preventScroll: true });
+  }, 350);
+}
 const homeRealNameProcessingPage = { id: 'home-realname-processing', title: '实名处理中弹窗', menuTitle: '实名处理中弹窗', description: '首页提醒实名认证仍在加急处理中，可继续等待或重新实名', parentId: homePage.id };
 function isRealNameSubmissionPopup(id) { return id === realNameSubmittedPage.id || id === homeRealNameProcessingPage.id; }
 function hasRealNameProcessingCountdown(id) { return isRealNameSubmissionPopup(id) || id === realNameProcessingPage.id; }
@@ -2744,7 +2951,7 @@ function showFuelPurchaseNotice(planId) {
 
 const realNameProcessingPage = { ...realNamePage, id: 'real-name-processing', status: '实名处理中', menuTitle: '实名认证（实名处理中）', parentId: realNamePage.id };
 const realNameVerifiedPage = { ...realNamePage, id: 'real-name-verified', status: '已实名', menuTitle: '实名认证（已实名）', parentId: realNamePage.id };
-const routeTable = [followServicePage, { ...serviceAccountInfoPage, parentId: followServicePage.id }, { ...serviceAccountChatPage, parentId: followServicePage.id }, rechargePage, { ...rechargeNonFirstPage, parentId: rechargePage.id }, fuelPage, paymentGuidePage, paymentSuccessPage, realNamePage, realNameProcessingPage, realNameVerifiedPage, realNameSubmittedPage, realNameFamilyGuidePage, familyNumberPage, familyRestartGuidePage, familyNumberAddPage, familyNumberAddFirstPage, familySalutationPage, { ...familyNumberAddSuccessPage, parentId: familyNumberAddPage.id, menuTitle: '亲情号提交弹窗' }, { ...familyNumberExistsPage, parentId: familyNumberPage.id }, homePage, ...homeSubmenuStates.map(({ page }) => ({ ...page, parentId: homePage.id })), ...homeReminderPages, homeRealNameProcessingPage, homeProfilePage, ...myOrdersPages, ...orderDetailPages, diagnosticsPage, diagnosticsNormalPage, deviceActivationGuidePage, deviceActivationGuideAbnormalPage];
+const routeTable = [followServicePage, { ...serviceAccountInfoPage, parentId: followServicePage.id }, { ...serviceAccountChatPage, parentId: followServicePage.id }, rechargePage, { ...rechargeNonFirstPage, parentId: rechargePage.id }, fuelPage, paymentGuidePage, paymentSuccessPage, realNamePage, realNameProcessingPage, realNameVerifiedPage, realNameSubmittedPage, realNameFamilyGuidePage, familyNumberPage, familyRestartGuidePage, familyNumberAddPage, familyNumberAddFirstPage, familySalutationPage, { ...familyNumberAddSuccessPage, parentId: familyNumberAddPage.id, menuTitle: '亲情号提交弹窗' }, { ...familyNumberExistsPage, parentId: familyNumberPage.id }, homePage, ...homeSubmenuStates.map(({ page }) => ({ ...page, parentId: homePage.id })), ...homeReminderPages, homeRealNameProcessingPage, homeProfilePage, homeComplaintPage, homeComplaintFormPage, ...myOrdersPages, ...orderDetailPages, diagnosticsPage, diagnosticsNormalPage, deviceActivationGuidePage, deviceActivationGuideAbnormalPage];
 
 // One menu entry per page, with explicit variants kept available to existing URLs.
 const pageStateGroups = [
@@ -3019,6 +3226,7 @@ function renderSpacedHomeCards(state) {
   }
   const diagnosticTop = native ? (1855 - 263 * 848 / 375) + .3476 * 263 * 848 / 375 : geometry.diagnostic / 100 * 1855;
   cards.services.push(withPosition(homeDiagnosticsMarkup, `top:${(diagnosticTop - geometry.services[0]) / geometry.services[1] * 100}%`));
+  cards.services.push(withPosition(homeComplaintEntryMarkup, `top:${(diagnosticTop - geometry.services[0]) / geometry.services[1] * 100}%`));
   if (artworkId === homeFamilyPendingPage.id) cards.guide.push(`<span class="home-spaced-family-avatar" style="top:${(.57574124 * 1855 - geometry.guide[0]) / geometry.guide[1] * 100}%" aria-hidden="true"></span>`);
   const art = (top, height, className = 'home-spaced-card-art', edge = false) => `<svg class="${className}" viewBox="0 ${top} ${edge ? 1 : 848} ${height}"${edge ? ' preserveAspectRatio="none"' : ''} aria-hidden="true" focusable="false"><image width="848" height="1855" href="${source}"/></svg>`;
   const card = (name) => {
@@ -3369,6 +3577,10 @@ function renderPopupBackground(pageId, markup) {
 }
 function renderRoute(id) {
   diagnosticsRefreshVersion += 1;
+  complaintViewVersion += 1;
+  complaintUploadPending = false;
+  complaintSubmitPending = false;
+  complaintComposing = false;
   const previousViewId = pageNode.dataset.pageId;
   if (previousViewId === homeProfilePage.id) { pageNode.removeAttribute('inert'); homeProfileSheetReturnFocus = null; flowSheet.setAttribute('aria-modal', 'true'); }
   if (id !== homeProfilePage.id || previousViewId !== homeProfilePage.id || !homeProfileDraft) {
@@ -3398,12 +3610,13 @@ function renderRoute(id) {
   const homeRoute = isHomeRoute(id);
   const isFuelView = id === fuelPage.id;
   const isHomeProfileView = id === homeProfilePage.id;
+  const isHomeComplaintView = isHomeComplaintRoute(id);
   const isOrderView = isOrderRoute(id);
   const isDiagnosticsView = isDiagnosticsRoute(id);
   const isActivationGuideView = isDeviceActivationGuideRoute(id);
   const isRealNameRoute = id === realNamePage.id || id === realNameProcessingPage.id || id === realNameVerifiedPage.id;
   const isRealNameView = isRealNameRoute || popupBackgroundId === realNameProcessingPage.id || popupBackgroundId === realNameVerifiedPage.id;
-  document.body.classList.toggle('long-poster-page-active', isFuelView || isActivationGuideView || isDiagnosticsView || isOrderView || isRealNameRoute || isRealNameSubmissionPopup(id) || id === realNameFamilyGuidePage.id || isFamilyNumberAddRoute(id) || id === familySalutationPage.id || id === familyNumberAddSuccessPage.id || id === familyRestartGuidePage.id || isHomeProfileView);
+  document.body.classList.toggle('long-poster-page-active', isFuelView || isActivationGuideView || isDiagnosticsView || isOrderView || isRealNameRoute || isRealNameSubmissionPopup(id) || id === realNameFamilyGuidePage.id || isFamilyNumberAddRoute(id) || id === familySalutationPage.id || id === familyNumberAddSuccessPage.id || id === familyRestartGuidePage.id || isHomeProfileView || isHomeComplaintView);
   document.body.classList.toggle('real-name-fixed-viewport-active', isRealNameRoute);
   document.body.classList.toggle('order-detail-fixed-viewport-active', orderDetailIds.has(id));
   document.body.classList.toggle('activation-guide-fixed-viewport-active', isActivationGuideView);
@@ -3423,6 +3636,7 @@ function renderRoute(id) {
     pageNode.dataset.pageId = homeRoute || homeReminderOpen ? homePage.id : id;
     pageNode.classList.toggle('fuel-page', isFuelView);
     pageNode.classList.toggle('home-profile-page', isHomeProfileView);
+    pageNode.classList.toggle('home-complaint-page', isHomeComplaintView);
     pageNode.classList.toggle('diagnostics-page', isDiagnosticsView);
     pageNode.classList.toggle('device-activation-guide-page', isActivationGuideView);
     pageNode.classList.toggle('order-records-page', isMyOrdersRoute(id));
@@ -3452,6 +3666,7 @@ function renderRoute(id) {
     pageNode.classList.toggle('home-restart-page', viewId === homeRestartPage.id);
     pageNode.classList.toggle('home-normal-page', homeArtworkStateId(viewId) === homeNormalPage.id);
     const contentMarkup = isHomeProfileView ? renderHomeProfilePage()
+      : isHomeComplaintView ? renderHomeComplaintPage(id)
       : isFuelView ? renderFuelPage()
       : isActivationGuideView ? renderDeviceActivationGuidePage(id)
       : isDiagnosticsView ? renderDiagnosticsPage(id)
@@ -3573,6 +3788,7 @@ function pinnedPageHeaderProfile(pageId, viewId = pageId) {
   if (isDiagnosticsRoute(pageId)) return { kind: 'native', wrapper: 'diagnostics-screen', topHeight: 84 };
   if (pageId === familySalutationPage.id) return { kind: 'native', wrapper: 'family-salutation-screen', topHeight: 84 };
   if (pageId === homeProfilePage.id) return { kind: 'native', wrapper: 'home-profile-screen', topHeight: 84 };
+  if (isHomeComplaintRoute(pageId)) return { kind: 'native', wrapper: 'home-complaint-screen', topHeight: 84 };
   if ([rechargePage.id, rechargeNonFirstPage.id].includes(pageId)) return { kind: 'recharge', topHeight: 151, sourceWidth: 850 };
   if (isFamilyNumberAddRoute(pageId)) return { kind: 'raster', wrapper: 'family-number-add-screen', sourceWidth: 375, topHeight: 65, familyAdd: true };
   return {
@@ -3652,7 +3868,7 @@ function syncSystemStatusBar() {
   else if (id === paymentGuidePage.id) coverHeight = 40 * width / 750;
   else if (isFamilyNumberAddRoute(id)) coverHeight = 28 * width / 375;
   else if ([realNamePage.id, realNameProcessingPage.id, realNameVerifiedPage.id, familySalutationPage.id].includes(id)) coverHeight = 35;
-  else if (id === followServicePage.id || id === fuelPage.id || id === homeProfilePage.id || isOrderRoute(id) || isDiagnosticsRoute(id) || isDeviceActivationGuideRoute(id)) coverHeight = 35;
+  else if (id === followServicePage.id || id === fuelPage.id || id === homeProfilePage.id || isHomeComplaintRoute(id) || isOrderRoute(id) || isDiagnosticsRoute(id) || isDeviceActivationGuideRoute(id)) coverHeight = 35;
   systemStatusBar.style.setProperty('--system-status-cover-height', coverHeight + 'px');
   pageNode.querySelectorAll('.status, .real-name-status-bar').forEach((status) => status.setAttribute('aria-hidden', 'true'));
 }
@@ -3671,7 +3887,7 @@ function fitPhone() {
     return;
   }
   pageNode.style.removeProperty('zoom');
-  if (pageNode.dataset.pageId === fuelPage.id || pageNode.dataset.pageId === homeProfilePage.id || isOrderRoute(pageNode.dataset.pageId) || isDiagnosticsRoute(pageNode.dataset.pageId) || isDeviceActivationGuideRoute(pageNode.dataset.pageId)) { pageNode.style.setProperty('--page-zoom', '1'); return; }
+  if (pageNode.dataset.pageId === fuelPage.id || pageNode.dataset.pageId === homeProfilePage.id || isHomeComplaintRoute(pageNode.dataset.pageId) || isOrderRoute(pageNode.dataset.pageId) || isDiagnosticsRoute(pageNode.dataset.pageId) || isDeviceActivationGuideRoute(pageNode.dataset.pageId)) { pageNode.style.setProperty('--page-zoom', '1'); return; }
   if ([homePage.id, homeRechargePage.id, homeRealnamePage.id, homeFamilyPendingPage.id, followServicePage.id, serviceAccountInfoPage.id, serviceAccountChatPage.id, paymentGuidePage.id, paymentSuccessPage.id, familyNumberPage.id, familyNumberExistsPage.id, familyNumberAddPage.id, familyNumberAddFirstPage.id, familySalutationPage.id, familyNumberAddSuccessPage.id].includes(pageNode.dataset.pageId)) {
     pageNode.style.setProperty('--page-zoom', '1');
     return;
@@ -4273,6 +4489,7 @@ function closeRealNameFamilyGuide() {
   pageNode.querySelector('.real-name-back')?.focus({ preventScroll: true });
 }
 function goBack() {
+  if (isHomeComplaintRoute(currentPageId())) { backFromComplaint(); return; }
   if (currentPageId() === homeProfilePage.id) { requestHomeProfileBack(); return; }
   if (isDeviceActivationGuideRoute(currentPageId()) && (history.state?.activationGuideReturnPageId === familyNumberExistsPage.id || history.state?.previousPageId === familyRestartGuidePage.id)) { closeFamilyRestartGuide(); return; }
   if (currentPageId() === familyRestartGuidePage.id) { closeFamilyRestartGuide(); return; }
@@ -4312,6 +4529,26 @@ document.addEventListener('click', (event) => {
   const desktopRoute = event.target.closest('#desktop-route-list [data-route]');
   if (desktopRoute) { navigateFromMenu(desktopRoute.dataset.route, { groupId: desktopRoute.dataset.pageGroup }); return; }
   if (event.target.closest('[data-popup-background]')) return;
+  if (isHomeComplaintRoute(currentPageId()) && pageNode.contains(event.target)) {
+    if (event.target.closest('[data-complaint-back]')) { backFromComplaint(); return; }
+    if (event.target.closest('[data-complaint-home]')) { returnComplaintHome(); return; }
+    if (event.target.closest('[data-complaint-change-reason]')) { setPage(homeComplaintPage.id); return; }
+    const reasonButton = event.target.closest('[data-complaint-reason]');
+    if (reasonButton && complaintReasons.some((entry) => entry.id === reasonButton.dataset.complaintReason)) {
+      complaintDraft.reasonId = reasonButton.dataset.complaintReason;
+      complaintSubmitted = false;
+      setPage(homeComplaintFormPage.id); return;
+    }
+    if (event.target.closest('[data-complaint-image-pick]')) { pageNode.querySelector('[data-complaint-image-input]')?.click(); return; }
+    if (event.target.closest('[data-complaint-image-remove]') && !complaintSubmitPending) {
+      complaintDraft.image = '';
+      syncComplaintImage();
+      const error = pageNode.querySelector('#complaint-image-error');
+      if (error) error.textContent = '';
+      pageNode.querySelector('[data-complaint-image-pick]')?.focus({ preventScroll: true });
+      return;
+    }
+  }
   if (currentPageId() === homeProfilePage.id) {
     if (!flowOverlay.hidden && flowSheet.contains(event.target) && flowSheet.querySelector('[data-home-profile-sheet]')) {
       if (event.target.closest('[data-home-profile-discard]')) returnHomeProfileEditor();
@@ -4392,6 +4629,7 @@ document.addEventListener('click', (event) => {
   const salutationOption = event.target.closest('[data-family-salutation-option]');
   if (salutationOption) { chooseFamilySalutation(salutationOption.dataset.familySalutationOption); return; }
   if (isHomeRoute(currentPageId()) && pageNode.contains(event.target) && event.target.closest('[data-home-profile-edit]')) { showHomeProfileEditor(); return; }
+  if (isHomeRoute(currentPageId()) && pageNode.contains(event.target) && event.target.closest('[data-home-action="complaint"]')) { openHomeComplaint(); return; }
   const currentHomeStateId = currentPageId() === homePage.id ? activeHomeStateId : currentPageId();
   const stateReminder = homeReminderPages.find((entry) => entry.homeStateId === currentHomeStateId);
   if (stateReminder && pageNode.contains(event.target) && !event.target.closest(stateReminder.excludedSelector) && !event.target.closest('[data-home-activation-progress]')) {
@@ -4673,6 +4911,10 @@ document.addEventListener('click', (event) => {
   if (plan) { document.querySelectorAll('.plan').forEach((item) => item.style.outline = ''); plan.style.outline = '2px solid #78b8ff'; selectedPlan = plan.classList.contains('recommended-plan') ? 'recommended' : 'standard'; }
 });
 document.addEventListener('input', (event) => {
+  const complaintContact = event.target.closest('[data-complaint-contact]');
+  if (complaintContact) { syncComplaintField(complaintContact, 'contact'); return; }
+  const complaintContent = event.target.closest('[data-complaint-content]');
+  if (complaintContent) { syncComplaintField(complaintContent, 'content'); return; }
   const profileName = event.target.closest('[data-home-profile-name-input]');
   if (profileName && currentPageId() === homeProfilePage.id) { syncHomeProfileName(profileName); return; }
   const orderInput = event.target.closest('[data-order-search]');
@@ -4727,6 +4969,8 @@ document.addEventListener('keydown', (event) => {
   if (index > 0) codeInputs[index - 1]?.focus({ preventScroll: true });
 });
 document.addEventListener('change', (event) => {
+  const complaintImageInput = event.target.closest('[data-complaint-image-input]');
+  if (complaintImageInput) { readComplaintImage(complaintImageInput); return; }
   const avatarInput = event.target.closest('[data-home-profile-avatar-input]');
   if (avatarInput) { readHomeProfileAvatar(avatarInput); return; }
   const gender = event.target.closest('[data-home-profile-gender]');
@@ -4740,6 +4984,8 @@ document.addEventListener('change', (event) => {
   if (event.target.closest('[data-family-name-add]')) syncFamilySmsSummary();
 });
 document.addEventListener('submit', (event) => {
+  const complaintForm = event.target.closest('[data-complaint-form]');
+  if (complaintForm) { event.preventDefault(); submitComplaint(complaintForm, event); return; }
   const profileForm = event.target.closest('[data-home-profile-form]');
   if (profileForm) { event.preventDefault(); saveHomeProfile(profileForm, event); return; }
   const orderForm = event.target.closest('[data-order-search-form]');
@@ -4771,10 +5017,12 @@ document.addEventListener('submit', (event) => {
   }, 650);
 });
 document.addEventListener('compositionstart', (event) => {
+  if (event.target.closest('[data-complaint-contact], [data-complaint-content]')) complaintComposing = true;
   if (event.target.closest('[data-home-profile-name-input]') && currentPageId() === homeProfilePage.id) homeProfileNameComposing = true;
   if (event.target.closest('[data-order-search]') && isMyOrdersRoute(currentPageId())) orderSearchComposing = true;
 });
 document.addEventListener('compositionend', (event) => {
+  if (event.target.closest('[data-complaint-contact], [data-complaint-content]')) complaintComposing = false;
   const profileName = event.target.closest('[data-home-profile-name-input]');
   if (profileName && currentPageId() === homeProfilePage.id) { homeProfileNameComposing = false; syncHomeProfileName(profileName); }
   if (event.target.closest('[data-order-search]') && isMyOrdersRoute(currentPageId())) orderSearchComposing = false;
