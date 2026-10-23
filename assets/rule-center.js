@@ -68,7 +68,7 @@
     </div>`;
 
   const ruleMenuMarkup = `
-    <div class="menu rule-center-menu" id="menuRuleCenter" onclick="toggleMenuGroup('ruleCenterSubMenu','menuRuleCenter')">
+    <div class="menu rule-center-menu collapsed" id="menuRuleCenter" onclick="toggleMenuGroup('ruleCenterSubMenu','menuRuleCenter')">
       <svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5v9L12 21l8-4.5v-9M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
       <span class="menu-title">规则中心</span><span class="collapse-icon"></span>
     </div>
@@ -1441,13 +1441,10 @@
     renderRuleList();
   }
   function syncRuleNav(type){
-    const menu = document.getElementById('menuRuleCenter');
-    const group = document.getElementById('ruleCenterSubMenu');
     const active = RULE_PAGE_TYPES.includes(type);
-    if(menu){menu.classList.toggle('active',active);}
-    document.getElementById('menuRuleList')?.classList.toggle('active',type === 'ruleList' || type === 'ruleCreate' || type === 'ruleDetail');
-    document.getElementById('menuRuleTriggerRecords')?.classList.toggle('active',['ruleTriggerRecords','ruleTriggerSummary'].includes(type));
-    if(group && active && type !== 'ruleCreate'){group.classList.remove('collapsed');menu?.classList.remove('collapsed');}
+    window.setMenuActive('menuRuleCenter',active);
+    window.setMenuActive('menuRuleList',type === 'ruleList' || type === 'ruleCreate' || type === 'ruleDetail');
+    window.setMenuActive('menuRuleTriggerRecords',['ruleTriggerRecords','ruleTriggerSummary'].includes(type));
   }
   function boot(){
     if(document.getElementById('menuRuleCenter')){return;}

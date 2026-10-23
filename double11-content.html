@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#edf8ff">
+  <title>双11福利 · 充值下单免费抽奖</title>
+  <link rel="stylesheet" href="assets/double11-h5.css">
+  <script src="assets/activity-screenshot.js" defer></script>
+  <script src="assets/double11-h5.js" defer></script>
+</head>
+<body>
+  <main class="campaign" id="campaign" data-view="participate">
+    <header class="campaign-hero" id="campaignHero">
+      <a class="header-back" href="index.html" target="_top" aria-label="返回活动管理"><img src="assets/double11-icon-caret-left.svg" width="24" height="24" alt=""></a>
+      <h1 class="sr-only">双11福利，充值下单免费抽奖</h1>
+      <img class="hero-image" src="assets/double11-registration-hero.png" width="1635" height="962" alt="双11福利，充值下单免费抽奖。活动时间：2026年11月1日至11月11日。奖品有充电宝、水杯、5元充值优惠券。" fetchpriority="high">
+    </header>
+
+    <section class="prize-panel panel" id="prizePanel" aria-labelledby="prize-title">
+      <h2 class="prize-heading" id="prize-title"><img src="assets/double11-icon-gift.svg" width="27" height="27" alt="">活动奖品</h2>
+      <div class="prize-grid">
+        <article class="prize-card powerbank-card"><div class="prize-badge"><strong>一等奖</strong><span>（500份）</span></div><img class="prize-art powerbank-art" src="assets/double11-registration-powerbank.png" width="1122" height="1402" alt="白色10000mAh充电宝"><h3>10000mAh<br>充电宝</h3></article>
+        <article class="prize-card cup-card"><div class="prize-badge"><strong>二等奖</strong><span>（800份）</span></div><img class="prize-art cups-art" src="assets/double11-registration-cups.png" width="1254" height="1254" alt="蓝色与粉色儿童保温水杯"><h3>儿童保温水杯</h3></article>
+        <article class="prize-card coupon-card"><div class="prize-badge"><strong>三等奖</strong><span>（1500份）</span></div><img class="prize-art coupon-art" src="assets/double11-registration-coupon.png" width="1254" height="1254" alt="5元充值优惠券"><h3>5元充值优惠券</h3></article>
+      </div>
+    </section>
+
+    <section class="entry-panel panel" id="participate" aria-labelledby="entry-title">
+      <div class="section-heading"><img class="blue-icon" src="assets/double11-icon-article.svg" width="24" height="24" alt=""><h2 id="entry-title">双11福利 充值下单免费抽奖</h2></div>
+      <div class="participation-steps" aria-label="参与流程">
+        <div class="participation-step"><img class="blue-icon" src="assets/double11-icon-shopping-cart.svg" width="30" height="30" alt=""><strong>11.1 - 11.11</strong><span>小程序充值下单</span></div>
+        <img class="step-arrow blue-icon" src="assets/double11-icon-arrow-right.svg" width="14" height="14" alt="">
+        <div class="participation-step"><img class="blue-icon" src="assets/double11-icon-note-pencil.svg" width="30" height="30" alt=""><strong>填写设备号</strong><span>上传充值截图</span></div>
+        <img class="step-arrow blue-icon" src="assets/double11-icon-arrow-right.svg" width="14" height="14" alt="">
+        <div class="participation-step"><img class="blue-icon" src="assets/double11-icon-gift.svg" width="30" height="30" alt=""><strong>11月12日12:00</strong><span>开奖</span></div>
+      </div>
+      <form id="entryForm" novalidate onsubmit="Double11.submit(event)">
+        <div class="field-row"><label for="entrySn"><span class="required" aria-hidden="true">*</span>设备SN</label><div class="field-control"><div class="sn-control"><input id="entrySn" autocomplete="off" maxlength="100" placeholder="请输入设备SN" required aria-describedby="entrySnHint entrySnError" oninput="Double11.clearError(this)"><button class="scan-button" id="scanButton" type="button" aria-label="扫描设备SN" onclick="Double11.openScanner()"><img src="assets/double11-icon-scan.svg" width="22" height="22" alt=""></button></div><p class="field-hint" id="entrySnHint">可在设备机身或包装盒上查看设备SN</p><p class="field-error" id="entrySnError" aria-live="polite"></p></div></div>
+        <div class="field-row screenshot-row"><label for="entryScreenshot"><span class="required" aria-hidden="true">*</span>充值截图</label><div class="field-control"><input id="entryScreenshot" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" hidden aria-describedby="screenshotHint entryScreenshotError" onchange="Double11.selectScreenshot(this)"><button class="upload-zone" type="button" id="uploadButton" onclick="document.getElementById('entryScreenshot').click()"><img class="upload-icon blue-icon" src="assets/double11-icon-camera.svg" width="38" height="38" alt=""><strong>上传充值截图</strong><span id="screenshotHint">支持JPG、PNG格式，大小不超过10M</span></button><div class="uploaded-image" id="uploadedImage" hidden><button class="uploaded-preview" type="button" onclick="Double11.openImage()" aria-label="放大查看充值截图"><span id="screenshotThumbnailHost"></span></button><div class="uploaded-copy"><strong id="screenshotName"></strong><button class="text-link" type="button" id="removeScreenshot" onclick="Double11.removeScreenshot()">移除图片</button></div></div><p class="field-error" id="entryScreenshotError" aria-live="polite"></p><p class="upload-status" id="uploadStatus" role="status" aria-live="polite"></p></div></div>
+        <div class="submit-area"><button class="primary-button" id="submitButton" type="submit"><span id="submitButtonText">提交并参与抽奖</span></button><p class="submission-note" id="entryStatus" role="status" aria-live="polite"></p></div>
+        <section class="rules-section" id="activityRules" aria-labelledby="rules-title"><h2 id="rules-title"><img class="rules-icon" src="assets/double11-icon-megaphone.svg" width="27" height="27" alt="">活动规则</h2><ol class="rules-list">
+          <li>活动时间：2026年11月1日 - 11月11日。</li>
+          <li>参与方式：11.1-11.11 小程序充值下单，填写设备号，上传充值截图即可免费抽奖。</li>
+          <li>抽奖方式：活动结束后将从符合条件的参与用户中进行公开、公平、公正的随机抽取。</li>
+          <li>开奖时间：11月12日12:00。</li>
+          <li>兑奖方式：中奖者请于11月12日12:00前填写收货地址，逾期视为自动放弃。</li>
+          <li>活动声明：<ol class="declarations"><li>奖品图片仅供参考，实际奖品以实物为准，不可折现或更换；</li><li>5元充值优惠券，有效期半年，限半年/年套餐充值使用；</li><li>提交收货信息后，平台将统一核验订单信息，核验不符合活动条件者，将取消领取资格；</li><li>收货信息填写错误导致无法配送，视为自动放弃领取资格；</li><li>本活动最终解释权归诺达通讯所有。</li></ol></li>
+        </ol></section>
+      </form>
+    </section>
+    <section class="query-panel panel" id="resultsPanel" aria-labelledby="queryTitle" hidden>
+      <div class="query-heading"><h2 id="queryTitle"><img class="blue-icon" src="assets/double11-icon-magnifying-glass.svg" width="27" height="27" alt="">查询中奖情况</h2><p>请输入设备SN，查询本次活动的中奖结果。</p></div>
+      <form class="query-form" id="resultQueryForm" novalidate onsubmit="Double11.queryResult(event)" onkeydown="if(event.key==='Enter' &amp;&amp; event.isComposing)event.preventDefault()">
+        <div class="field-row"><label for="resultSn"><span class="required" aria-hidden="true">*</span>设备SN</label><div class="field-control"><div class="sn-control query-sn-control"><input id="resultSn" autocomplete="off" maxlength="100" placeholder="请输入设备SN" required aria-describedby="resultSnHint resultSnError" oninput="Double11.editResultQuery(this)"><button class="scan-button query-clear" id="clearResultSn" type="button" aria-label="清除查询设备SN" onclick="Double11.clearResultQuery()" hidden><img src="assets/double11-icon-x-circle.svg" width="20" height="20" alt=""></button><button class="scan-button" id="resultScanButton" type="button" aria-label="扫描查询设备SN" onclick="Double11.openScanner('resultSn')"><img src="assets/double11-icon-scan.svg" width="22" height="22" alt=""></button></div><p class="field-hint" id="resultSnHint">可在设备机身或包装盒上查看设备SN</p><p class="field-error" id="resultSnError" aria-live="polite"></p></div></div>
+        <button class="primary-button" id="queryResultButton" type="submit" aria-busy="false"><span id="queryResultButtonText">查询中奖结果</span></button>
+        <div class="query-result" id="queryResult" role="status" aria-live="polite" aria-atomic="true" hidden><p class="query-result-title" id="queryResultTitle"></p><p class="query-result-message" id="queryResultMessage"></p><img class="query-prize-image" id="queryPrizeImage" src="assets/double11-registration-coupon.png" width="104" height="104" alt="" hidden><p class="query-result-device" id="queryResultDevice"></p></div>
+      </form>
+    </section>
+    <div class="panel query-rules-panel" id="queryRulesHost" hidden></div>
+    <section class="winner-panel" id="winnerPanel" data-prize="cup" aria-labelledby="winnerTitle" hidden>
+      <h1 class="sr-only" id="winnerTitle">恭喜中奖！二等奖，儿童保温水杯，共800份。</h1>
+      <img class="winner-poster" id="winnerPoster" src="assets/double11-winner-cup.png" width="850" height="1850" alt="" onload="window.Double11?.handleWinnerArtwork(true)" onerror="window.Double11?.handleWinnerArtwork(false)">
+      <button class="header-back winner-back" id="winnerBackButton" type="button" aria-label="返回中奖查询" onclick="Double11.backFromWinner()"><img src="assets/double11-icon-caret-left.svg" width="24" height="24" alt=""></button>
+      <div class="winner-message" role="status" aria-live="polite" aria-atomic="true"><img class="winner-message-icon rules-icon" src="assets/double11-icon-confetti.svg" width="48" height="48" alt=""><div><h2 id="winnerMessageTitle">恭喜您获得二等奖！</h2><p id="winnerMessageText">请耐心等待奖品发放，<br>我们会尽快与您联系。</p><p class="winner-prize-fallback" id="winnerPrizeFallback" hidden>二等奖 · 儿童保温水杯 · 共800份</p></div></div>
+      <div class="winner-art-status" id="winnerAssetStatus" role="status" hidden><p>奖品图片暂时无法加载。</p><button class="secondary-button" type="button" onclick="Double11.retryWinnerArtwork()">重新加载图片</button></div>
+    </section>
+    <section class="winner-panel nonwinner-panel" id="nonwinnerPanel" aria-labelledby="nonwinnerTitle" hidden>
+      <h1 class="sr-only" id="nonwinnerTitle">很遗憾，本次未中奖。</h1>
+      <img class="winner-poster" id="nonwinnerPoster" src="assets/double11-nonwinner.png" width="850" height="1850" alt="" onload="window.Double11?.handleNonwinnerArtwork(true)" onerror="window.Double11?.handleNonwinnerArtwork(false)">
+      <button class="header-back winner-back" id="nonwinnerBackButton" type="button" aria-label="返回中奖查询" onclick="Double11.backFromNonwinner()"><img src="assets/double11-icon-caret-left.svg" width="24" height="24" alt=""></button>
+      <div class="winner-message nonwinner-message" role="status" aria-live="polite" aria-atomic="true"><div class="nonwinner-message-heading"><img class="blue-icon" src="assets/double11-icon-megaphone.svg" width="42" height="42" alt=""><h2>感谢您的参与！</h2></div><p>本次未中奖，别灰心，<br>下次还有机会，更多精彩好礼等你来抽！</p><p class="winner-prize-fallback" id="nonwinnerImageFallback" hidden>很遗憾，本次未中奖。</p></div>
+      <div class="winner-art-status" id="nonwinnerAssetStatus" role="status" hidden><p>活动图片暂时无法加载。</p><button class="secondary-button" type="button" onclick="Double11.retryNonwinnerArtwork()">重新加载图片</button></div>
+    </section>
+  </main>
+
+  <dialog class="sheet" id="receiptDialog" aria-labelledby="receiptTitle"><div class="sheet-header"><h2 id="receiptTitle">参与信息已提交</h2><button class="sheet-close" type="button" aria-label="关闭提交结果" onclick="Double11.closePanel('receiptDialog')"><img src="assets/double11-icon-x-circle.svg" width="24" height="24" alt=""></button></div><div class="sheet-body"><img class="receipt-icon blue-icon" src="assets/double11-icon-check-circle.svg" width="52" height="52" alt=""><p class="receipt-lead">感谢参与双11福利活动</p><p class="receipt-note">开奖时间：11月12日12:00</p><dl class="receipt-summary" id="receiptSummary"></dl></div><div class="sheet-footer"><button class="primary-button" type="button" onclick="Double11.closePanel('receiptDialog')">我知道了</button></div></dialog>
+  <dialog class="sheet" id="imageDialog" aria-labelledby="imageTitle"><div class="sheet-header"><h2 id="imageTitle">充值截图</h2><button class="sheet-close" type="button" aria-label="关闭充值截图预览" onclick="Double11.closePanel('imageDialog')"><img src="assets/double11-icon-x-circle.svg" width="24" height="24" alt=""></button></div><div class="sheet-body"><div id="previewImageHost"></div><p class="field-error" id="imageError" role="status"></p></div></dialog>
+  <dialog class="sheet" id="scanDialog" aria-labelledby="scanTitle"><div class="sheet-header"><h2 id="scanTitle">扫描设备SN</h2><button class="sheet-close" type="button" aria-label="关闭设备SN识别" onclick="Double11.closePanel('scanDialog')"><img src="assets/double11-icon-x-circle.svg" width="24" height="24" alt=""></button></div><div class="sheet-body"><p class="scanner-description">拍摄或选择设备机身、包装盒上的条形码或二维码，识别后请核对设备SN。</p><input id="snPhoto" type="file" accept="image/*" capture="environment" hidden onchange="Double11.scanPhoto(this)"><button class="secondary-button" id="scanPhotoButton" type="button" onclick="document.getElementById('snPhoto').click()">拍摄 / 选择条码图片</button><p class="scanner-status" id="scanStatus" role="status" aria-live="polite"></p></div><div class="sheet-footer"><button class="secondary-button" type="button" onclick="Double11.enterSnManually()">手动填写设备SN</button></div></dialog>
+  <noscript><p class="noscript-notice">请开启 JavaScript 后填写参与信息。</p></noscript>
+</body>
+</html>

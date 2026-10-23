@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d7eeff">
+  <title>双11福利 · 手机预览</title>
+  <style>
+    :root{color-scheme:light;background:#d7eeff}
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;overscroll-behavior:none}
+    body{display:grid;grid-template: minmax(0,1fr) / minmax(0,1fr);place-items:center}
+    .preview-stage{position:relative;display:flex;align-items:flex-start;gap:18px;width:529px;height:812px}
+    .phone-preview{
+      width:375px;height:812px;
+      flex:none;
+      overflow:hidden;
+      background:#d7eeff;
+    }
+    .phone-screen{display:block;width:375px;height:812px;border:0}
+    .preview-state-tabs{display:flex;flex-direction:column;gap:8px;width:136px;padding:12px;background:#fff;border:1px solid #d9e2f7;border-radius:12px;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+    .preview-state-label{margin:0 0 4px;font-size:12px;line-height:18px;color:#626b8f}
+    .preview-state-tab{min-height:44px;padding:10px 8px;border:1px solid #d9e2f7;border-radius:6px;background:#fff;color:#10194f;font-family:inherit;font-size:13px;line-height:20px;font-weight:600;cursor:pointer}
+    .preview-state-tab:hover{background:#edf8ff}
+    .preview-state-tab[aria-selected=true]{background:#1265bb;border-color:#1265bb;color:#fff}
+    .preview-state-tab:focus-visible{outline:3px solid #228cff;outline-offset:3px}
+    .preview-state-tab:active{filter:brightness(.95)}
+    @media(min-width:600px){
+      .phone-preview{border-radius:24px;box-shadow:0 20px 60px #0000001f}
+    }
+    @media(max-width:375px){body{justify-items:start}}
+    @media(max-height:812px){body{align-items:start}}
+    @media(max-width:560px){.preview-stage{width:375px}.preview-state-tabs{position:absolute;right:8px;top:12px;z-index:2;width:126px;padding:8px;box-shadow:0 2px 12px #00000018}.preview-state-label{display:none}}
+    @media(forced-colors:active){.preview-state-tab[aria-selected=true]{border:2px solid Highlight}}
+  </style>
+</head>
+<body>
+  <main class="preview-stage" aria-label="双11福利活动状态预览">
+    <div class="phone-preview" id="previewTabPanel" role="tabpanel" aria-labelledby="participationStateTab" aria-label="375 × 812 像素手机预览">
+      <iframe class="phone-screen" id="phoneScreen" src="double11-content.html" width="375" height="812" title="双11福利 · 参与活动"></iframe>
+    </div>
+    <aside class="preview-state-tabs" role="tablist" aria-label="活动页面状态" aria-orientation="vertical">
+      <p class="preview-state-label" aria-hidden="true">页面状态</p>
+      <button class="preview-state-tab" id="participationStateTab" type="button" role="tab" aria-selected="true" aria-controls="previewTabPanel" tabindex="0" data-view="participate" onclick="Double11Preview.selectView('participate')">参与活动</button>
+      <button class="preview-state-tab" id="resultsStateTab" type="button" role="tab" aria-selected="false" aria-controls="previewTabPanel" tabindex="-1" data-view="results" onclick="Double11Preview.selectView('results')">查询中奖结果</button>
+      <button class="preview-state-tab" id="winnerStateTab" type="button" role="tab" aria-selected="false" aria-controls="previewTabPanel" tabindex="-1" data-view="winner" onclick="Double11Preview.selectView('winner')">中奖</button>
+      <button class="preview-state-tab" id="nonwinnerStateTab" type="button" role="tab" aria-selected="false" aria-controls="previewTabPanel" tabindex="-1" data-view="nonwinner" onclick="Double11Preview.selectView('nonwinner')">未中奖</button>
+    </aside>
+  </main>
+  <script>
+    (function(){
+      const screen=document.getElementById('phoneScreen');
+      const tabs=Array.from(document.querySelectorAll('.preview-state-tab'));
+      const states={participate:{label:'参与活动',tab:'participationStateTab'},results:{label:'查询中奖结果',tab:'resultsStateTab'},winner:{label:'中奖',tab:'winnerStateTab'},nonwinner:{label:'未中奖',tab:'nonwinnerStateTab'}};
+      function viewFromFragment(){const view=window.location.hash.slice(1);return Object.hasOwn(states,view) ? view : 'participate';}
+      let activeView=viewFromFragment();
+      function selectView(view,notify=true){
+        if(!Object.hasOwn(states,view)){return}
+        activeView=view;
+        tabs.forEach(tab=>{const selected=tab.dataset.view===view;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected ? 0 : -1;});
+        document.getElementById('previewTabPanel').setAttribute('aria-labelledby',states[view].tab);
+        const label=states[view].label;
+        screen.title='双11福利 · '+label;
+        document.title='双11福利 · '+label+' · 手机预览';
+        if(notify){screen.contentWindow.postMessage({type:'double11:view',view},'*');}
+      }
+      tabs.forEach((tab,index)=>{
+        tab.addEventListener('keydown',event=>{
+          let next;
+          if(event.key==='ArrowDown'){next=(index+1)%tabs.length;}
+          else if(event.key==='ArrowUp'){next=(index+tabs.length-1)%tabs.length;}
+          else if(event.key==='Home'){next=0;}
+          else if(event.key==='End'){next=tabs.length-1;}
+          else{return}
+          event.preventDefault();tabs[next].focus();selectView(tabs[next].dataset.view);
+        });
+      });
+      window.Double11Preview=Object.freeze({selectView});
+      screen.addEventListener('load',()=>selectView(activeView));
+      window.addEventListener('message',event=>{
+        if(event.source!==screen.contentWindow){return}
+        if(event.data?.type==='double11:ready'){selectView(activeView);}
+        else if(event.data?.type==='double11:view-changed'){selectView(event.data.view,false);}
+      });
+      function syncFragment(){
+        activeView=viewFromFragment();
+        const page=new URL('double11-content.html',window.location.href);
+        page.hash=window.location.hash;
+        screen.src=page.href;
+      }
+      if(window.location.hash){syncFragment();}
+      window.addEventListener('hashchange',syncFragment);
+      selectView(activeView);
+    })();
+  </script>
+</body>
+</html>

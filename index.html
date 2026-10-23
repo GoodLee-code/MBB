@@ -195,6 +195,26 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
   .activity-meta{font-size:15px;line-height:24px;flex-wrap:wrap}
   .activity-clock-icon{width:24px;height:24px;margin-right:9px}
 }
+
+.activity-coupon-card .activity-meta{flex-wrap:wrap}
+.activity-coupon-card .activity-meta-value{white-space:normal;overflow-wrap:anywhere}
+.activity-coupon-summary,.activity-lottery-summary{grid-template-columns:repeat(3,minmax(0,1fr));flex:none}
+@media (max-width:640px){.activity-coupon-summary,.activity-lottery-summary{grid-template-columns:minmax(0,1fr)}}
+#activityCouponPage>.activity-filter{margin-bottom:0;padding-bottom:0}
+#activityCouponPage>.action-row{display:flex;align-items:center;gap:12px;margin:16px 0;flex:none}
+#activityCouponPage>.table-card{margin-top:0;min-height:0;overflow:auto}
+.activity-coupon-table{min-width:1080px}
+.activity-coupon-table th,.activity-coupon-table td{white-space:nowrap}
+.activity-coupon-table button.text-action{border:0;padding:0;background:none;color:var(--theme-color);font:inherit;cursor:pointer}
+.activity-coupon-table button.text-action:hover{text-decoration:underline}
+.activity-coupon-table button.text-action:focus-visible{outline:2px solid var(--theme-color);outline-offset:3px}
+.activity-coupon-table button.text-action:active{color:#0b4ea2}
+.activity-coupon-no-order,.activity-coupon-export-status{color:#667085;font-size:12px;line-height:20px}
+#activityCouponExportButton:disabled{opacity:.5;cursor:not-allowed}
+#activityCouponPagination{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+#activityCouponPagination button{font:inherit;cursor:pointer;background:#fff}
+#activityCouponPagination button:disabled{cursor:not-allowed;opacity:.4}
+
 .activity-detail-table{min-width:1680px}
 .activity-detail-table th,.activity-detail-table td{white-space:nowrap}
 .shipping-info-stack{display:flex;flex-direction:column;align-items:flex-start;gap:4px;line-height:18px;text-align:left}
@@ -202,6 +222,67 @@ body{height:100%;margin:0;background:#fff;font-family:-apple-system,BlinkMacSyst
 .shipping-info-stack strong{font-weight:700;color:#4b5563}
 .activity-shipping-status{color:#f04438}
 .activity-shipping-status.shipped{color:#16a34a}
+:root{--z-activity-lottery-drawer:1300;--z-activity-lottery-preview:1400;--z-activity-lottery-confirm:1500}
+.activity-lottery-table{min-width:1680px;border-collapse:separate;border-spacing:0}
+.activity-lottery-table th,.activity-lottery-table td{white-space:nowrap;border:0;border-right:1px solid #e7ebf1;border-bottom:1px solid #e7ebf1}
+.activity-lottery-table th:first-child,.activity-lottery-table td:first-child{border-left:1px solid #e7ebf1}
+.activity-lottery-table thead th{border-top:1px solid #e7ebf1}
+.activity-lottery-table button.text-action{border:0;background:transparent;padding:0;font:inherit;color:#1687e8;cursor:pointer}
+.activity-lottery-actions{display:inline-flex;align-items:center;gap:12px}
+.activity-lottery-table button.text-action:hover,.activity-lottery-editor button.text-action:hover{text-decoration:underline}
+.activity-lottery-table button.text-action.danger,.activity-lottery-editor button.text-action.danger{color:#f04438}
+.activity-lottery-screenshots{display:inline-flex;align-items:flex-start;flex-wrap:wrap;gap:8px}
+.activity-lottery-screenshot{display:inline-flex;align-items:center;justify-content:center;width:44px;height:60px;padding:3px;border:1px solid #e6ebf2;border-radius:3px;background:#fff;color:#1687e8;font:inherit;white-space:normal;cursor:zoom-in}
+.activity-lottery-screenshot:hover{border-color:#1687e8;background:#f0f7ff}
+.activity-lottery-screenshot:active{background:#e6f2ff}
+.activity-lottery-screenshot:focus-visible{outline:2px solid #1687e8;outline-offset:2px}
+.activity-lottery-screenshot img{display:block;width:36px;height:52px;object-fit:contain}
+.activity-lottery-screenshot img[hidden],.activity-lottery-screenshot span[hidden]{display:none}
+.activity-lottery-media-empty{color:#667085}
+#activityLotteryPage>.activity-filter{margin-bottom:0;padding-bottom:0}
+#activityLotteryPage>.action-row{display:flex;align-items:center;gap:12px;margin:16px 0;flex:none}
+#activityLotteryPage>.table-card{margin-top:0;flex:none}
+#activityLotteryPagination{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+#activityLotteryPagination button{font:inherit;background:#fff;cursor:pointer}
+#activityLotteryPagination button:disabled{opacity:.4;cursor:not-allowed}
+#activityLotteryPagination button.active{color:#1687e8;border-color:#1687e8;background:#f0f7ff}
+.activity-lottery-export-status{font-size:12px;color:#667085;line-height:20px}
+#activityLotteryExportButton:disabled{opacity:.45;cursor:not-allowed}
+.activity-lottery-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid #e6ebf2}
+.activity-lottery-drawer-head h2{margin:0;font-size:15px;line-height:24px;color:#1f2329}
+.activity-lottery-drawer-close{width:28px;height:28px;padding:0;border:0;background:transparent;color:#667085;font-size:22px;cursor:pointer}
+.modal-mask.activity-lottery-image-mask{z-index:var(--z-activity-lottery-preview)}
+.modal.activity-lottery-image-preview{display:flex;flex-direction:column;width:min(560px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px)!important;max-height:calc(100vh - 32px);padding:0;overflow:hidden}
+.activity-lottery-image-preview .activity-lottery-drawer-head{flex:none}
+.activity-lottery-image-body{min-height:0;overflow:auto;padding:16px 20px}
+.activity-lottery-image-body figure{margin:0}
+.activity-lottery-image-stage{display:grid;place-items:center;max-width:360px;aspect-ratio:18/31;margin:0 auto;background:#fbfcfe;border:1px solid #e6ebf2}
+.activity-lottery-image-stage img{display:block;width:100%;height:auto}
+.activity-lottery-image-stage img[hidden]{display:none}
+.activity-lottery-image-caption{margin-top:12px;font-size:12px;line-height:20px;color:#667085;overflow-wrap:anywhere}
+.activity-lottery-image-status{min-height:20px;margin-top:8px;font-size:12px;line-height:20px;color:#667085}
+#activityLotteryScreenshotRetry[hidden]{display:none}
+.modal-mask.activity-lottery-editor-mask{z-index:var(--z-activity-lottery-drawer)}
+.modal-mask.activity-lottery-confirm-mask{z-index:var(--z-activity-lottery-confirm)}
+.modal.activity-lottery-editor{width:min(680px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px)}
+.modal.activity-lottery-confirm{width:min(480px,calc(100vw - 32px))!important;max-width:calc(100vw - 32px)}
+.activity-lottery-editor .activity-lottery-drawer-head,.activity-lottery-confirm .activity-lottery-drawer-head{flex:none}
+.activity-lottery-editor .form-row{grid-template-columns:112px minmax(0,1fr)!important}
+.activity-lottery-editor .input,.activity-lottery-editor .textarea{width:100%;min-width:0;color:#1f2329}
+.activity-lottery-editor .textarea{resize:none}
+.activity-lottery-editor .input[aria-invalid="true"],.activity-lottery-editor .textarea[aria-invalid="true"]{border-color:#f04438}
+.activity-lottery-field-error{min-height:18px;margin-top:4px;color:#d92d20;font-size:12px;line-height:18px;overflow-wrap:anywhere}
+.activity-lottery-edit-images{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-top:12px}
+.activity-lottery-edit-image{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:104px}
+.activity-lottery-file-name{max-width:100%;color:#667085;font-size:12px;line-height:18px;overflow-wrap:anywhere}
+.activity-lottery-editor button.text-action{border:0;background:transparent;padding:0;font:inherit;cursor:pointer}
+.activity-lottery-editor button:disabled{opacity:.45;cursor:not-allowed}
+.activity-lottery-editor [hidden]{display:none!important}
+.activity-lottery-editor .activity-lottery-upload-help{margin-top:8px;color:#667085;font-size:12px;line-height:18px}
+.activity-lottery-confirm .modal-body{color:#1f2329;line-height:24px;overflow-wrap:anywhere}
+.activity-lottery-confirm .confirm.danger{background:#f04438;border-color:#f04438}
+.activity-lottery-confirm .confirm.danger:hover{background:#d92d20;border-color:#d92d20}
+@media(max-width:480px){.activity-lottery-editor .form-row{grid-template-columns:minmax(0,1fr)!important;row-gap:4px}}
 .work-status-stack{display:flex;flex-direction:column;gap:4px;align-items:flex-start;line-height:18px;text-align:left}
 .work-status-stack span{display:block}
 .work-status-stack strong{font-weight:700;color:#4b5563}
@@ -1139,6 +1220,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 </style>
 <link rel="stylesheet" href="assets/page-documentation.css">
 <link rel="stylesheet" href="assets/clipboard-smart-search.css">
+<link rel="stylesheet" href="assets/coupon-management.css">
 </head>
 <body>
 <div class="topbar"><div class="logo">无线宽带运营平台</div><div id="clipboardSmartSearch" class="clipboard-smart-search"></div><div class="topbar-actions"><div class="message-notification" id="messageNotification"><button class="message-notification-trigger" type="button" aria-label="消息通知" aria-expanded="false" onclick="toggleMessageNotification(event)"><span class="message-bell-icon" aria-hidden="true"></span><span class="message-badge" id="messageNotificationBadge"></span></button><div class="message-notification-prompt hidden" id="messageNotificationPrompt" role="status" aria-live="polite"></div><div class="message-dropdown" id="messageNotificationDropdown" role="dialog" aria-label="消息通知列表"><div class="message-dropdown-head"><strong>消息通知</strong><span id="messageNotificationCount"></span></div><div class="message-list" id="messageNotificationList"></div><div class="message-dropdown-footer"><button type="button" class="text-action" onclick="markAllMessagesRead()">全部标记为已读</button></div></div></div><div class="user">ifan⌄</div></div></div>
@@ -1169,9 +1251,10 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="sub" id="menuDeviceAfterSale" onclick="showPage('deviceAfterSale')">设备售后</div>
       <div class="sub" id="menuFactoryReturn" onclick="openFactoryReturnPage()">设备返厂</div>
     </div>
-    <div class="menu" id="menuPayment" onclick="toggleMenuGroup('paymentSubMenu','menuPayment')"><svg class="payment-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 7.5h17A2.5 2.5 0 0 1 23 10v7a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 17v-7a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M1.5 11h21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 15.5h4.5M15 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">支付中心</span><span class="collapse-icon"></span></div>
+    <div class="menu" id="menuPayment" onclick="toggleMenuGroup('paymentSubMenu','menuPayment')"><svg class="payment-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 7.5h17A2.5 2.5 0 0 1 23 10v7a2.5 2.5 0 0 1-2.5 2.5h-17A2.5 2.5 0 0 1 1 17v-7a2.5 2.5 0 0 1 2.5-2.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M1.5 11h21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 15.5h4.5M15 15.5h2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">订单中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="paymentSubMenu">
       <div class="sub" id="menuOrder" onclick="showPage('order')">订单管理</div>
+      <div class="sub" id="menuCouponManage" role="button" tabindex="0" onclick="showPage('couponManage')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('couponManage')}">优惠券管理</div>
       <div class="sub" id="menuRefund" onclick="showPage('refund')">退费单管理</div>
       <div class="sub" id="menuRefundManage" onclick="showPage('refundManage')">退费管理</div>
     </div>
@@ -1190,10 +1273,6 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="sub" id="menuServiceQrManagement" onclick="showPage('serviceQrManagement')">二维码管理</div>
       <div class="sub" id="menuServiceSource" onclick="showPage('serviceSource')">用户添加记录</div>
     </div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M6 7v12h12V7M9 11h6M9 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">方案商中心</span></div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 9 5 12l3 3M16 9l3 3-3 3M13 6l-2 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">API集成</span></div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10h16l-2-5H6l-2 5ZM6 10v10h12V10M9 14h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">商户中心</span></div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4h10v16H7zM10 4v4h4V4M10 17h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="menu-title">SIM卡中心</span></div>
     <div class="menu" id="menuPackage" onclick="toggleMenuGroup('packageSubMenu','menuPackage')"><svg class="package-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5v9L12 21l8-4.5v-9M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8 5.2 8 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">套餐中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="packageSubMenu">
       <div class="sub" id="menuUserPackage" onclick="showPage('package')">用户套餐管理</div>
@@ -1202,7 +1281,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="sub-group" id="financeSubMenu">
       <div class="sub" id="menuWallet" onclick="showPage('wallet')">钱包余额管理</div>
     </div>
-    <div class="menu" id="menuNotification" onclick="toggleMenuGroup('notificationSubMenu','menuNotification')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 10a6 6 0 0 1 12 0v4l2 3H4l2-3v-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 20h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">通知中心</span><span class="collapse-icon"></span></div>
+    <div class="menu" id="menuNotification" onclick="toggleMenuGroup('notificationSubMenu','menuNotification')"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 10a6 6 0 0 1 12 0v4l2 3H4l2-3v-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 20h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="menu-title">消息中心</span><span class="collapse-icon"></span></div>
     <div class="sub-group" id="notificationSubMenu">
       <div class="sub" id="menuNotificationChannel" onclick="showPage('notificationChannel')">通知渠道</div>
       <div class="sub" id="menuNotificationTemplate" onclick="showPage('notificationTemplate')">消息模板</div>
@@ -1220,7 +1299,6 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="sub-group" id="systemSubMenu">
       <div class="sub" id="menuFieldVersion" onclick="openFieldVersionPage()">字段说明版本管理</div>
     </div>
-    <div class="menu"><svg class="menu-generic-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h5v5h-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="menu-title">其它功能</span></div>
   </aside>
   <main class="main">
     <div class="tabbar" id="tabbar"></div>
@@ -1788,6 +1866,18 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
       <div class="pagination" id="orderPagination">共0条 <span class="pagebtn">20条/页</span><span class="pagebtn active">1</span> 前往 <span class="pagebtn">1</span> 页</div>
     </section>
 
+    <section id="couponManagePage" class="content hidden" aria-label="优惠券管理">
+      <form class="payment-filter" id="couponManageFilter" novalidate onsubmit="event.preventDefault();CouponManagement.search(event)">
+        <input class="input" id="couponManageNameInput" placeholder="优惠券名称" aria-label="优惠券名称" oninput="CouponManagement.search(event)" oncompositionend="CouponManagement.search(event)">
+        <div class="select custom-select" id="couponManageTypeFilter" data-value="" data-keyboard-select aria-label="优惠券类型"><span class="select-value">优惠券类型</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="满减券">满减券</div><div class="dropdown-option" data-value="抵扣券">抵扣券</div></div></div>
+        <input class="input" id="couponManageIdInput" placeholder="优惠券ID" aria-label="优惠券ID" inputmode="numeric" oninput="CouponManagement.search(event)" oncompositionend="CouponManagement.search(event)">
+        <div class="filter-actions new-row"><button type="submit" class="btn line">搜索</button><button type="button" class="btn gray" onclick="CouponManagement.reset()">重置</button></div>
+      </form>
+      <div class="action-row"><button type="button" class="btn" id="couponManageAddButton" onclick="CouponManagement.openEditor()">新增优惠券</button><span class="coupon-manage-status" id="couponManageStatus" role="status" aria-live="polite"></span></div>
+      <div class="table-card"><table class="coupon-manage-table"><thead><tr><th scope="col">优惠券ID</th><th scope="col">优惠券名称</th><th scope="col">优惠券类型</th><th scope="col">使用门槛</th><th scope="col">优惠金额</th><th scope="col">备注</th><th scope="col">创建人</th><th scope="col">创建时间</th><th scope="col" class="sticky-action">操作</th></tr></thead><tbody id="couponManageRows"></tbody></table></div>
+      <div class="pagination" id="couponManagePagination" aria-label="优惠券管理分页"></div>
+    </section>
+
     <section id="refundPage" class="content hidden">
       <div class="payment-filter">
         <input class="input" id="refundSnInput" placeholder="设备SN" oninput="searchRefundRecords()">
@@ -2034,6 +2124,48 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 
     <section id="activityCenterPage" class="content hidden">
       <div class="activity-card-grid" id="activityCardGrid"></div>
+    </section>
+
+    <section id="activityLotteryPage" class="content hidden" aria-label="双11活动抽奖记录">
+      <div class="activity-filter" id="activityLotteryFilter">
+        <input class="input" id="activityLotteryPhoneInput" placeholder="手机号码" aria-label="手机号码" oninput="searchActivityLotteryRecords()">
+        <input class="input" id="activityLotterySnInput" placeholder="设备SN" aria-label="设备SN" oninput="searchActivityLotteryRecords()">
+        <input class="input" id="activityLotteryMerchantInput" placeholder="所属商户" aria-label="所属商户" oninput="searchActivityLotteryRecords()">
+        <div class="select custom-select" id="activityLotteryCouponClaimStatusFilter" data-value=""><span class="select-value">优惠券领取状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="已领取">已领取</div><div class="dropdown-option" data-value="未领取">未领取</div></div></div>
+        <div class="device-date-range" id="activityLotteryCouponClaimRange" data-range="activityLotteryCouponClaim" role="group" aria-label="优惠券领取时间范围" onclick="openUnifiedRangePicker(event,'activityLotteryCouponClaim')"><span class="date-icon"></span><span class="device-date-text" data-part="start">领取开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">领取结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'activityLotteryCouponClaim')"></span><input id="activityLotteryCouponClaimStartInput" type="hidden"><input id="activityLotteryCouponClaimEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="activityLotteryCouponClaimPanel"></div></div>
+        <div class="select custom-select" id="activityLotteryCouponRedemptionStatusFilter" data-value=""><span class="select-value">优惠券核销状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="已核销">已核销</div><div class="dropdown-option" data-value="未核销">未核销</div></div></div>
+        <div class="device-date-range" id="activityLotteryCouponRedemptionRange" data-range="activityLotteryCouponRedemption" role="group" aria-label="优惠券核销时间范围" onclick="openUnifiedRangePicker(event,'activityLotteryCouponRedemption')"><span class="date-icon"></span><span class="device-date-text" data-part="start">核销开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">核销结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'activityLotteryCouponRedemption')"></span><input id="activityLotteryCouponRedemptionStartInput" type="hidden"><input id="activityLotteryCouponRedemptionEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="activityLotteryCouponRedemptionPanel"></div></div>
+        <div class="filter-actions new-row"><button type="button" class="btn line" onclick="searchActivityLotteryRecords()">搜索</button><button type="button" class="btn gray" onclick="resetActivityLotteryRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button type="button" class="btn" id="activityLotteryExportButton" onclick="exportActivityLotteryRecords()">导出</button><span class="activity-lottery-export-status" id="activityLotteryExportStatus" role="status" aria-live="polite"></span></div>
+      <div class="flow-summary activity-lottery-summary" role="group" aria-label="优惠券统计">
+        <div class="flow-summary-item"><div class="flow-summary-label">优惠券发放总数</div><div class="flow-summary-value" id="activityLotteryCouponIssuedTotal">--</div></div>
+        <div class="flow-summary-item"><div class="flow-summary-label">优惠券核销总数</div><div class="flow-summary-value" id="activityLotteryCouponUsedTotal">--</div></div>
+        <div class="flow-summary-item"><div class="flow-summary-label"><span class="service-overview-th-label">优惠券核销率<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" onclick="this.focus()" aria-label="优惠券核销率计算方式" aria-describedby="activityLotteryCouponUsageTip">?</button><span class="service-overview-help-tip" id="activityLotteryCouponUsageTip" role="tooltip">优惠券核销率 = 优惠券核销总数 / 优惠券发放总数 × 100%。按当前查询结果统计，已核销的优惠券数量为优惠券核销总数；仅计入实际已发放的优惠券，实物奖品不计入。</span></span></span></div><div class="flow-summary-value" id="activityLotteryCouponUsageRate">--</div></div>
+      </div>
+      <div class="table-card">
+        <table class="activity-lottery-table"><thead><tr><th scope="col">序号</th><th scope="col">手机号码</th><th scope="col">设备SN</th><th scope="col">所属商户</th><th scope="col">订单截图</th><th scope="col">优惠券领取状态</th><th scope="col">优惠券领取时间</th><th scope="col">优惠券核销状态</th><th scope="col">优惠券核销时间</th><th scope="col" class="sticky-action">操作</th></tr></thead><tbody id="activityLotteryRows"></tbody></table>
+      </div>
+      <div class="pagination" id="activityLotteryPagination" aria-label="双11抽奖记录分页"></div>
+    </section>
+
+    <section id="activityCouponPage" class="content hidden" aria-label="双11福利优惠券领取情况">
+      <div class="activity-filter">
+        <input class="input" id="activityCouponSnInput" placeholder="设备SN" aria-label="设备SN" oninput="searchActivityCouponRecords()">
+        <div class="device-date-range" id="activityCouponClaimRange" data-range="activityCouponClaim" role="group" aria-label="领取时间范围" onclick="openUnifiedRangePicker(event,'activityCouponClaim')"><span class="date-icon"></span><span class="device-date-text" data-part="start">领取开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">领取结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'activityCouponClaim')"></span><input id="activityCouponClaimStartInput" type="hidden"><input id="activityCouponClaimEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="activityCouponClaimPanel"></div></div>
+        <div class="select custom-select" id="activityCouponStatusFilter" data-value=""><span class="select-value">核销状态</span><div class="dropdown-menu"><div class="dropdown-option" data-value="">全部</div><div class="dropdown-option" data-value="未核销">未核销</div><div class="dropdown-option" data-value="已核销">已核销</div></div></div>
+        <div class="device-date-range" id="activityCouponValidityRange" data-range="activityCouponValidity" role="group" aria-label="有效期时间范围" onclick="openUnifiedRangePicker(event,'activityCouponValidity')"><span class="date-icon"></span><span class="device-date-text" data-part="start">有效期开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">有效期结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'activityCouponValidity')"></span><input id="activityCouponValidityStartInput" type="hidden"><input id="activityCouponValidityEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="activityCouponValidityPanel"></div></div>
+        <div class="device-date-range" id="activityCouponUsedRange" data-range="activityCouponUsed" role="group" aria-label="使用时间范围" onclick="openUnifiedRangePicker(event,'activityCouponUsed')"><span class="date-icon"></span><span class="device-date-text" data-part="start">使用开始日期</span><span class="date-range-to">至</span><span class="device-date-text" data-part="end">使用结束日期</span><span class="date-range-clear" onclick="clearUnifiedRange(event,'activityCouponUsed')"></span><input id="activityCouponUsedStartInput" type="hidden"><input id="activityCouponUsedEndInput" type="hidden"><div class="calendar-panel device-date-panel range-calendar-panel" id="activityCouponUsedPanel"></div></div>
+        <div class="filter-actions new-row"><button type="button" class="btn line" onclick="searchActivityCouponRecords()">搜索</button><button type="button" class="btn gray" onclick="resetActivityCouponRecords()">重置</button></div>
+      </div>
+      <div class="action-row"><button type="button" class="btn" id="activityCouponExportButton" onclick="exportActivityCouponRecords()">导出</button><span class="activity-coupon-export-status" id="activityCouponExportStatus" role="status" aria-live="polite"></span></div>
+      <div class="flow-summary activity-coupon-summary" role="group" aria-label="优惠券统计">
+        <div class="flow-summary-item"><div class="flow-summary-label">发放总数</div><div class="flow-summary-value" id="activityCouponIssuedTotal">--</div></div>
+        <div class="flow-summary-item"><div class="flow-summary-label">已使用总数</div><div class="flow-summary-value" id="activityCouponUsedTotal">--</div></div>
+        <div class="flow-summary-item"><div class="flow-summary-label"><span class="service-overview-th-label">优惠券使用率<span class="service-overview-help-wrap"><button type="button" class="service-overview-help-icon" onclick="this.focus()" aria-label="优惠券使用率计算方式" aria-describedby="activityCouponUsageRateTip">?</button><span class="service-overview-help-tip" id="activityCouponUsageRateTip" role="tooltip">优惠券使用率 = 已使用总数 / 发放总数 × 100%。按当前查询结果统计，初始未筛选时统计全部。</span></span></span></div><div class="flow-summary-value" id="activityCouponUsageRate">--</div></div>
+      </div>
+      <div class="table-card"><table class="activity-coupon-table"><thead><tr><th scope="col">设备SN</th><th scope="col">领取时间</th><th scope="col">核销状态</th><th scope="col">有效期</th><th scope="col">使用时间</th><th scope="col" class="sticky-action">操作</th></tr></thead><tbody id="activityCouponRows"></tbody></table></div>
+      <div class="pagination" id="activityCouponPagination" aria-label="优惠券领取记录分页"></div>
     </section>
 
     <section id="activityDetailPage" class="content hidden">
@@ -2443,6 +2575,63 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
     <div class="modal-title">通知记录详情</div>
     <div class="modal-body" id="notificationRecordDetailBody"></div>
     <div class="modal-actions"><button class="confirm" onclick="closeNotificationRecordDetail()">关闭</button></div>
+  </div>
+</div>
+
+<div class="modal-mask coupon-admin-mask" id="couponEditorMask" onclick="if(event.target===this)CouponManagement.closeEditor()">
+  <form class="modal coupon-editor" id="couponEditorForm" role="dialog" aria-modal="true" aria-labelledby="couponEditorTitle" tabindex="-1" novalidate onsubmit="CouponManagement.save(event)" onkeydown="AdminUI.dialogKeydown(event,CouponManagement.closeEditor)">
+    <button class="close" type="button" aria-label="关闭优惠券表单" onclick="CouponManagement.closeEditor()">×</button>
+    <div class="modal-title" id="couponEditorTitle">新增优惠券</div>
+    <div class="modal-body">
+      <div class="form-row form-field" id="couponEditorNameField"><label class="form-label req" for="couponEditorName">优惠券名称</label><div><input class="input" id="couponEditorName" maxlength="100" required placeholder="请输入优惠券名称" aria-describedby="couponEditorNameError" oninput="CouponManagement.clearError('Name')"><div class="field-error" id="couponEditorNameError" aria-live="polite"></div></div></div>
+      <div class="form-row form-field" id="couponEditorTypeField"><label class="form-label req" id="couponEditorTypeLabel">优惠券类型</label><div><div class="select custom-select no-clear" id="couponEditorType" data-value="满减券" data-keyboard-select aria-labelledby="couponEditorTypeLabel" aria-describedby="couponEditorTypeError" aria-required="true"><span class="select-value">满减券</span><div class="dropdown-menu"><div class="dropdown-option" data-value="满减券">满减券</div><div class="dropdown-option" data-value="抵扣券">抵扣券</div></div></div><div class="field-error" id="couponEditorTypeError" aria-live="polite"></div></div></div>
+      <div class="form-row form-field coupon-threshold-field" id="couponEditorThresholdField"><div class="form-label req" id="couponEditorThresholdLabel">使用门槛</div><div>
+        <div id="couponEditorThreshold" class="coupon-threshold-options" role="group" aria-labelledby="couponEditorThresholdLabel" aria-describedby="couponEditorThresholdHint couponEditorThresholdError">
+          <div class="coupon-threshold-option" id="couponEditorThresholdAmountOption"><label class="coupon-threshold-toggle" for="couponEditorThresholdAmountEnabled"><input type="checkbox" id="couponEditorThresholdAmountEnabled" checked aria-label="启用满额使用门槛" aria-controls="couponEditorThresholdAmount" aria-describedby="couponEditorThresholdError" onchange="CouponManagement.syncThresholds()"><span>满</span></label><input class="input" id="couponEditorThresholdAmount" inputmode="decimal" required placeholder="请输入金额" aria-label="满额使用门槛（元）" aria-describedby="couponEditorThresholdError" oninput="CouponManagement.clearError('Threshold')"><span>元可用</span></div>
+          <div class="coupon-threshold-option" id="couponEditorThresholdDaysOption" hidden><label class="coupon-threshold-toggle" for="couponEditorThresholdDaysEnabled"><input type="checkbox" id="couponEditorThresholdDaysEnabled" disabled aria-label="启用套餐有效天数门槛" aria-controls="couponEditorThresholdDays" aria-describedby="couponEditorThresholdError" onchange="CouponManagement.syncThresholds()"><span>套餐有效天数 ≥</span></label><input class="input" id="couponEditorThresholdDays" inputmode="numeric" disabled placeholder="请输入天数" aria-label="套餐有效天数门槛（天）" aria-describedby="couponEditorThresholdError" oninput="CouponManagement.clearError('Threshold')"><span>天可用</span></div>
+        </div>
+        <div class="coupon-threshold-hint" id="couponEditorThresholdHint">勾选后填写满额门槛。</div><div class="field-error" id="couponEditorThresholdError" aria-live="polite"></div>
+      </div></div>
+      <div class="form-row form-field" id="couponEditorAmountField"><label class="form-label req" for="couponEditorAmount">优惠金额</label><div><input class="input" id="couponEditorAmount" inputmode="decimal" required placeholder="请输入优惠金额" aria-describedby="couponEditorAmountError" oninput="CouponManagement.clearError('Amount')"><div class="field-error" id="couponEditorAmountError" aria-live="polite"></div></div></div>
+      <div class="form-row form-field" id="couponEditorRemarkField"><label class="form-label" for="couponEditorRemark">备注</label><div><textarea class="textarea" id="couponEditorRemark" maxlength="500" style="resize:none" placeholder="请输入备注（选填）" aria-describedby="couponEditorRemarkError" oninput="CouponManagement.clearError('Remark')"></textarea><div class="field-error" id="couponEditorRemarkError" aria-live="polite"></div></div></div>
+    </div>
+    <div class="modal-actions"><button class="cancel" type="button" onclick="CouponManagement.closeEditor()">取消</button><button class="confirm" type="submit">保存</button></div>
+  </form>
+</div>
+<div class="modal-mask coupon-admin-mask" id="couponDeleteMask" onclick="if(event.target===this)CouponManagement.closeDelete()">
+  <div class="modal coupon-delete-modal" role="alertdialog" aria-modal="true" aria-labelledby="couponDeleteTitle" aria-describedby="couponDeleteMessage" tabindex="-1" onkeydown="AdminUI.dialogKeydown(event,CouponManagement.closeDelete)">
+    <button class="close" type="button" aria-label="关闭优惠券删除确认" onclick="CouponManagement.closeDelete()">×</button>
+    <div class="modal-title" id="couponDeleteTitle">优惠券删除</div>
+    <div class="modal-body"><p class="coupon-delete-message" id="couponDeleteMessage"></p></div>
+    <div class="modal-actions"><button class="cancel" id="couponDeleteCancel" type="button" onclick="CouponManagement.closeDelete()">取消</button><button class="confirm danger" type="button" onclick="CouponManagement.confirmDelete()">确认删除</button></div>
+  </div>
+</div>
+
+<div class="modal-mask activity-lottery-image-mask" id="activityLotteryScreenshotMask" onclick="if(event.target===this)closeActivityLotteryScreenshot()">
+  <div class="modal activity-lottery-image-preview" role="dialog" aria-modal="true" aria-labelledby="activityLotteryScreenshotTitle" aria-describedby="activityLotteryScreenshotCaption" tabindex="-1" onkeydown="handleActivityLotteryScreenshotKeydown(event)">
+    <div class="activity-lottery-drawer-head"><h2 id="activityLotteryScreenshotTitle">订单截图</h2><button type="button" class="activity-lottery-drawer-close" aria-label="关闭订单截图预览" onclick="closeActivityLotteryScreenshot()">×</button></div>
+    <div class="activity-lottery-image-body"><figure><div class="activity-lottery-image-stage"><img id="activityLotteryScreenshotImage" width="360" height="620" alt="订单截图" hidden onload="handleActivityLotteryScreenshotResult(true)" onerror="handleActivityLotteryScreenshotResult(false)"></div><figcaption class="activity-lottery-image-caption" id="activityLotteryScreenshotCaption"></figcaption></figure><div class="activity-lottery-image-status" id="activityLotteryScreenshotStatus" role="status" aria-live="polite"></div><button type="button" class="btn line" id="activityLotteryScreenshotRetry" hidden onclick="retryActivityLotteryScreenshot()">重新加载</button></div>
+  </div>
+</div>
+
+<div class="modal-mask activity-lottery-editor-mask" id="activityLotteryEditorMask" onclick="if(event.target===this)requestCloseActivityLotteryEditor()">
+  <form class="modal activity-lottery-editor" id="activityLotteryEditorForm" role="dialog" aria-modal="true" aria-labelledby="activityLotteryEditorTitle" tabindex="-1" novalidate onsubmit="saveActivityLotteryEditor(event)" onkeydown="handleActivityLotteryEditorKeydown(event)">
+    <div class="activity-lottery-drawer-head"><h2 id="activityLotteryEditorTitle">抽奖记录编辑</h2><button type="button" class="activity-lottery-drawer-close" aria-label="关闭抽奖记录编辑" onclick="requestCloseActivityLotteryEditor()">×</button></div>
+    <div class="modal-body">
+      <div class="form-row"><label class="form-label req" for="activityLotteryEditPhone">手机号码</label><div><input class="input" id="activityLotteryEditPhone" type="tel" inputmode="tel" autocomplete="off" maxlength="11" required aria-describedby="activityLotteryEditPhoneError" placeholder="请输入手机号码" oninput="clearActivityLotteryFieldError(this)"><div class="activity-lottery-field-error" id="activityLotteryEditPhoneError" aria-live="polite"></div></div></div>
+      <div class="form-row"><label class="form-label req" for="activityLotteryEditSn">设备SN</label><div><input class="input" id="activityLotteryEditSn" maxlength="100" required aria-describedby="activityLotteryEditSnError" placeholder="请输入设备SN" oninput="clearActivityLotteryFieldError(this)"><div class="activity-lottery-field-error" id="activityLotteryEditSnError" aria-live="polite"></div></div></div>
+      <div class="form-row"><label class="form-label req" for="activityLotteryEditAddress">收货地址</label><div><textarea class="textarea" id="activityLotteryEditAddress" rows="4" maxlength="500" style="resize:none" required aria-describedby="activityLotteryEditAddressError" placeholder="请输入收货地址" oninput="clearActivityLotteryFieldError(this)"></textarea><div class="activity-lottery-field-error" id="activityLotteryEditAddressError" aria-live="polite"></div></div></div>
+      <div class="form-row"><label class="form-label" for="activityLotteryEditScreenshots">订单截图</label><div><button type="button" class="btn line" id="activityLotteryEditUpload" onclick="document.getElementById('activityLotteryEditScreenshots').click()">选择图片</button><input id="activityLotteryEditScreenshots" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" hidden aria-describedby="activityLotteryEditScreenshotHelp activityLotteryEditScreenshotsError" onchange="selectActivityLotteryScreenshots(this)"><div class="activity-lottery-upload-help" id="activityLotteryEditScreenshotHelp">仅支持上传1张 JPG、PNG、WEBP 图片，不超过5MB；如需更换，请先移除已有图片。</div><div class="activity-lottery-edit-images" id="activityLotteryEditImages"></div><div class="activity-lottery-field-error" id="activityLotteryEditScreenshotsError" aria-live="polite"></div><div class="activity-lottery-upload-help" id="activityLotteryEditReadStatus" role="status" aria-live="polite"></div></div></div>
+    </div>
+    <div class="modal-actions"><button type="button" class="cancel" onclick="requestCloseActivityLotteryEditor()">取消</button><button type="submit" class="confirm" id="activityLotteryEditSave">保存</button></div>
+  </form>
+</div>
+
+<div class="modal-mask activity-lottery-confirm-mask" id="activityLotteryConfirmMask" onclick="if(event.target===this)closeActivityLotteryConfirm()">
+  <div class="modal activity-lottery-confirm" role="alertdialog" aria-modal="true" aria-labelledby="activityLotteryConfirmTitle" aria-describedby="activityLotteryConfirmMessage" tabindex="-1" onkeydown="handleActivityLotteryConfirmKeydown(event)">
+    <div class="activity-lottery-drawer-head"><h2 id="activityLotteryConfirmTitle">抽奖记录删除</h2><button type="button" class="activity-lottery-drawer-close" aria-label="关闭确认弹窗" onclick="closeActivityLotteryConfirm()">×</button></div>
+    <div class="modal-body" id="activityLotteryConfirmMessage"></div>
+    <div class="modal-actions"><button type="button" class="cancel" id="activityLotteryConfirmCancel" onclick="closeActivityLotteryConfirm()">取消</button><button type="button" class="confirm danger" id="activityLotteryConfirmSubmit" onclick="confirmActivityLotteryAction()">删除</button></div>
   </div>
 </div>
 
@@ -3191,6 +3380,7 @@ td{height:42px;border:1px solid #e7ebf1;text-align:center;color:#596273;padding:
 <script src="assets/clipboard-smart-search.js"></script>
 <script src="assets/page-documentation-data.js"></script>
 <script src="assets/page-documentation.js"></script>
+<script src="assets/admin-ui.js"></script>
 <script>
 const detailData = {
   SE2026051219238589: [
@@ -3492,7 +3682,8 @@ const factoryReturnDetailData = {
   ]
 };
 const activityCenterData = [
-  {id:'powerbank', title:'感恩回馈', subtitle:'免费送充电宝', createdAt:'2026-07-20 10:00:00'}
+  {id:'powerbank', title:'感恩回馈', subtitle:'免费送充电宝', createdAt:'2026-07-20 10:00:00'},
+  {id:'double11-lottery', title:'双11福利', subtitle:'充值下单免费抽奖', activityStart:'2026-11-01', activityEnd:'2026-11-11', page:'activityLottery'},
 ];
 const activityShipmentData = [
   {activityId:'powerbank', sn:'MBB202607180001', buyDate:'2026-07-01', phone:'13800138001', receiver:'李晨', address:'上海市浦东新区张江路88号2幢1201室', submittedAt:'2026-07-18 09:22:16', shipping:{company:'顺丰速运', no:'SF1234567890', shippedAt:'2026-07-18 14:30:00', remark:'已短信通知客户'}},
@@ -3519,7 +3710,7 @@ const systemFieldCenter = [
 const notificationEvents = [
   {business:'设备中心', name:'卡流量查询完成', code:'CARD_FLOW_QUERY_DONE', variables:['任务名称','任务编号','任务发起人','查询总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']},
   {business:'SIM卡中心', name:'批量卡状态查询完成', code:'CARD_STATUS_QUERY_DONE', variables:['任务名称','任务编号','任务发起人','查询总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']},
-  {business:'支付中心', name:'退款处理完成', code:'REFUND_PROCESS_DONE', variables:['任务名称','任务编号','任务发起人','退款总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']},
+  {business:'订单中心', name:'退款处理完成', code:'REFUND_PROCESS_DONE', variables:['任务名称','任务编号','任务发起人','退款总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']},
   {business:'设备中心', name:'实名信息批量查询完成', code:'REALNAME_BATCH_QUERY_DONE', variables:['任务名称','任务编号','任务发起人','查询总数','成功数量','失败数量','执行结果','完成时间','任务详情地址']}
 ];
 const notificationPeople = [
@@ -3583,14 +3774,14 @@ let serviceAccountResolvedKey = '';
 const notificationConfigs = [
   {id:'NC202609130001',name:'卡流量查询结果通知',business:'设备中心',event:'卡流量查询完成',recipients:{initiator:true,people:['u1','u2']},channels:['站内通知','短信','邮件'],status:'启用',updatedAt:'2026-09-13 16:28:40',updatedBy:'张三',templates:{station:{title:'卡流量查询已完成',body:'{任务名称}已执行完成，本次共处理{查询总数}条数据，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'},sms:{templateId:'SMS_100021',templateName:'任务执行结果通知',mappings:{'{1}':'任务名称','{2}':'成功数量','{3}':'失败数量'}},email:{title:'卡流量查询结果通知',body:'任务{任务名称}已执行完成，执行结果：{执行结果}。',url:''},wechat:{title:'卡流量查询完成',body:'任务{任务名称}已完成，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'}}},
   {id:'NC202609120008',name:'批量卡状态查询通知',business:'SIM卡中心',event:'批量卡状态查询完成',recipients:{initiator:true,people:['u3']},channels:['站内通知','企业微信'],status:'启用',updatedAt:'2026-09-12 11:36:12',updatedBy:'李四',templates:{station:{title:'批量卡状态查询完成',body:'{任务名称}已完成，{执行结果}。',url:''},sms:{templateId:'',templateName:'',mappings:{}},email:{title:'',body:'',url:''},wechat:{title:'批量卡状态查询完成',body:'{任务名称}已执行完成，请查看任务详情。',url:'{任务详情地址}'}}},
-  {id:'NC202609100003',name:'退款处理通知',business:'支付中心',event:'退款处理完成',recipients:{initiator:true,people:['u4']},channels:['短信','邮件'],status:'停用',updatedAt:'2026-09-10 09:18:26',updatedBy:'王五',templates:{station:{title:'',body:'',url:''},sms:{templateId:'SMS_100033',templateName:'退款处理结果通知',mappings:{'{1}':'成功数量','{2}':'失败数量'}},email:{title:'退款处理完成',body:'{任务名称}已完成，成功{成功数量}笔，失败{失败数量}笔。',url:''},wechat:{title:'',body:'',url:''}}},
+  {id:'NC202609100003',name:'退款处理通知',business:'订单中心',event:'退款处理完成',recipients:{initiator:true,people:['u4']},channels:['短信','邮件'],status:'停用',updatedAt:'2026-09-10 09:18:26',updatedBy:'王五',templates:{station:{title:'',body:'',url:''},sms:{templateId:'SMS_100033',templateName:'退款处理结果通知',mappings:{'{1}':'成功数量','{2}':'失败数量'}},email:{title:'退款处理完成',body:'{任务名称}已完成，成功{成功数量}笔，失败{失败数量}笔。',url:''},wechat:{title:'',body:'',url:''}}},
   {id:'NC202609080014',name:'实名查询结果通知',business:'设备中心',event:'实名信息批量查询完成',recipients:{initiator:true,people:['u1','u4']},channels:['站内通知','邮件'],status:'启用',updatedAt:'2026-09-08 14:06:51',updatedBy:'赵六',templates:{station:{title:'实名信息查询完成',body:'{任务名称}已完成，成功{成功数量}条，失败{失败数量}条。',url:'{任务详情地址}'},sms:{templateId:'',templateName:'',mappings:{}},email:{title:'实名信息查询结果',body:'查询总数：{查询总数}\n执行结果：{执行结果}',url:''},wechat:{title:'',body:'',url:''}}}
 ];
 const notificationRecords = [
   {id:'NR202609130001',business:'设备中心',event:'卡流量查询完成',taskId:'BT202609130012',taskName:'华东设备流量查询',initiator:'张三',config:'卡流量查询结果通知',noticeCount:3,noticeObject:'任务发起人、张三、李四',notificationTime:'即时通知',channels:['站内通知','短信','邮件'],result:'全部成功',triggeredAt:'2026-09-13 16:30:08',detail:{initiatorAccount:'zhangsan',configStatus:'启用',overall:'全部成功',contents:[{channel:'站内通知',content:'华东设备流量查询已执行完成，本次共处理1000条数据，成功998条，失败2条。'},{channel:'短信',content:'您的华东设备流量查询任务已完成，成功998条，失败2条。'},{channel:'邮件',content:'任务华东设备流量查询已执行完成，执行结果：部分成功。'}],sends:[{person:'张三',channel:'站内通知',account:'张三',content:'华东设备流量查询已执行完成，本次共处理1000条数据，成功998条，失败2条。',status:'成功',sentAt:'2026-09-13 16:30:08',reason:''},{person:'张三',channel:'短信',account:'138****1234',content:'您的华东设备流量查询任务已完成，成功998条，失败2条。',status:'成功',sentAt:'2026-09-13 16:30:09',reason:''},{person:'李四',channel:'邮件',account:'lisi@example.com',content:'任务华东设备流量查询已执行完成，执行结果：部分成功。',status:'成功',sentAt:'2026-09-13 16:30:10',reason:''}]}},
   {id:'NR202609120002',business:'SIM卡中心',event:'批量卡状态查询完成',taskId:'BT202609120018',taskName:'批量卡状态查询',initiator:'李四',config:'批量卡状态查询通知',noticeCount:3,noticeObject:'任务发起人、李四、王五',notificationTime:'统一设置 09:00',channels:['站内通知','企业微信'],result:'部分成功',triggeredAt:'2026-09-12 11:42:17',detail:{initiatorAccount:'lisi',configStatus:'启用',overall:'部分成功',contents:[{channel:'站内通知',content:'批量卡状态查询已完成，成功86条，失败4条。'},{channel:'企业微信',content:'批量卡状态查询已执行完成，请查看任务详情。'}],sends:[{person:'李四',channel:'站内通知',account:'李四',content:'批量卡状态查询已完成，成功86条，失败4条。',status:'成功',sentAt:'2026-09-12 11:42:17',reason:''},{person:'李四',channel:'企业微信',account:'lisi',content:'批量卡状态查询已执行完成，请查看任务详情。',status:'失败',sentAt:'2026-09-12 11:42:18',reason:'企业微信接口调用失败'},{person:'王五',channel:'企业微信',account:'wangwu',content:'批量卡状态查询已执行完成，请查看任务详情。',status:'成功',sentAt:'2026-09-12 11:42:18',reason:''}]}},
-  {id:'NR202609100003',business:'支付中心',event:'退款处理完成',taskId:'RF202609100006',taskName:'退款批量处理',initiator:'王五',config:'退款处理通知',noticeCount:2,noticeObject:'任务发起人、王五',notificationTime:'单独设置',channels:['短信','邮件'],result:'全部失败',triggeredAt:'2026-09-10 09:22:41',detail:{initiatorAccount:'wangwu',configStatus:'启用',overall:'全部失败',contents:[{channel:'短信',content:'',reason:'缺少必要业务变量：成功数量'},{channel:'邮件',content:'',reason:'缺少必要业务变量：成功数量'}],sends:[{person:'王五',channel:'短信',account:'139****5678',content:'',status:'失败',sentAt:'2026-09-10 09:22:41',reason:'缺少必要业务变量：成功数量'},{person:'王五',channel:'邮件',account:'',content:'',status:'未发送',sentAt:'',reason:'未配置邮箱'}]}},
-  {id:'NR202609080004',business:'支付中心',event:'退款处理完成',taskId:'RF202609080022',taskName:'退款处理',initiator:'王五',config:'退款处理通知',noticeCount:0,noticeObject:'无',notificationTime:'即时通知',channels:['短信','邮件'],result:'待通知',triggeredAt:'2026-09-08 14:10:06',detail:{initiatorAccount:'wangwu',configStatus:'停用',overall:'待通知',notSentReason:'通知配置已停用',contents:[],sends:[]}},
+  {id:'NR202609100003',business:'订单中心',event:'退款处理完成',taskId:'RF202609100006',taskName:'退款批量处理',initiator:'王五',config:'退款处理通知',noticeCount:2,noticeObject:'任务发起人、王五',notificationTime:'单独设置',channels:['短信','邮件'],result:'全部失败',triggeredAt:'2026-09-10 09:22:41',detail:{initiatorAccount:'wangwu',configStatus:'启用',overall:'全部失败',contents:[{channel:'短信',content:'',reason:'缺少必要业务变量：成功数量'},{channel:'邮件',content:'',reason:'缺少必要业务变量：成功数量'}],sends:[{person:'王五',channel:'短信',account:'139****5678',content:'',status:'失败',sentAt:'2026-09-10 09:22:41',reason:'缺少必要业务变量：成功数量'},{person:'王五',channel:'邮件',account:'',content:'',status:'未发送',sentAt:'',reason:'未配置邮箱'}]}},
+  {id:'NR202609080004',business:'订单中心',event:'退款处理完成',taskId:'RF202609080022',taskName:'退款处理',initiator:'王五',config:'退款处理通知',noticeCount:0,noticeObject:'无',notificationTime:'即时通知',channels:['短信','邮件'],result:'待通知',triggeredAt:'2026-09-08 14:10:06',detail:{initiatorAccount:'wangwu',configStatus:'停用',overall:'待通知',notSentReason:'通知配置已停用',contents:[],sends:[]}},
   {id:'NR202609070005',business:'设备中心',event:'实名信息批量查询完成',taskId:'BT202609070009',taskName:'客户实名信息查询',initiator:'赵六',config:'实名查询结果通知',noticeCount:2,noticeObject:'任务发起人、赵六',notificationTime:'统一设置 10:00',channels:['站内通知','邮件'],result:'部分成功',triggeredAt:'2026-09-07 10:06:32',detail:{initiatorAccount:'zhaoliu',configStatus:'启用',overall:'部分成功',contents:[{channel:'站内通知',content:'客户实名信息查询已完成，成功58条，失败2条。'},{channel:'邮件',content:'客户实名信息查询已完成，成功58条，失败2条。'}],sends:[{person:'赵六',channel:'站内通知',account:'赵六',content:'客户实名信息查询已完成，成功58条，失败2条。',status:'成功',sentAt:'2026-09-07 10:06:33',reason:''},{person:'赵六',channel:'邮件',account:'',content:'',status:'未发送',sentAt:'',reason:'未配置邮箱'}]}}
 ];
 const notificationResultOverrides = {
@@ -3808,7 +3999,7 @@ const fieldVersionData = [
 let fieldVersionViewMode = 'list';
 let currentFieldVersionIndex = 0;
 let selectedFieldCompareVersions = [];
-const pageTitles = {home:'首页', serviceOverview:'企业微信账号管理', serviceQrManagement:'二维码管理', serviceSource:'用户添加记录', consumerManage:'消费者管理', consumerTags:'消费者标签', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
+const pageTitles = {home:'首页', serviceOverview:'企业微信账号管理', serviceQrManagement:'二维码管理', serviceSource:'用户添加记录', consumerManage:'消费者管理', consumerTags:'消费者标签', device:'设备管理', deviceType:'设备类型', config:'二次认证管理', sim:'二次认证管理', detail:'二次认证配置详情', flow:'设备流量', devicePreStock:'设备预入库', deviceStockIn:'设备入库', deviceDistribution:'设备分发', peerTransfer:'同级划拨', deviceShipping:'设备发货', workOrder:'换货补发工单', deviceAfterSale:'设备售后', deviceGroup:'设备组管理', order:'订单管理', refund:'退费单管理', refundManage:'退费管理', wallet:'钱包余额管理', refundWorkOrder:'退费工单', factoryReturn:'设备返厂', factoryReturnDetail:'设备返厂详情', factoryReturnCheckDetail:'设备返厂检测详情', strategy:'限速策略', activityCenter:'活动管理', activityDetail:'活动详情', activityCoupon:'活动详情（优惠券领取）', package:'用户套餐管理', task:'批量任务', batchTaskDetail:'批量任务详情', networkLog:'网络状态日志中心', fieldVersion:'字段说明版本管理', fieldVersionEdit:'字段说明编辑', deviceDetail:'设备详情', simDetail:'SIM卡详情', notificationChannel:'通知渠道', notificationTemplate:'消息模板', notificationRecord:'通知记录', notificationConfig:'通知渠道', notificationConfigEdit:'消息模板'};
 let openTabs = [];
 let activePage = '';
 let deviceTypeCarrierOrder = [];
@@ -3846,6 +4037,8 @@ let pendingAuthWhitelistDelete = null;
 let currentDeviceGroupTab = 'list';
 let flowDateMode = 'day';
 let currentFactoryReturnBatch = factoryReturnData[0].batchNo;
+pageTitles.activityLottery = '双11福利';
+pageTitles.couponManage = '优惠券管理';
 let currentActivityId = activityCenterData[0].id;
 let currentShippingEditIndex = null;
 let currentBatchTaskId = batchTaskData[0].id;
@@ -4072,6 +4265,7 @@ function activateTab(type){
   closeDeviceTypeModal();
   closeConsumerTagEditor();
   closeConsumerDetailModal();
+  if(window.CouponManagement){window.CouponManagement.closeDialogs()}
 }
 function closeTab(event,type){
   event.stopPropagation();
@@ -4090,6 +4284,17 @@ function closeTab(event,type){
     }
   }
   renderTabs();
+}
+function setMenuActive(menuId, active){
+  const item = document.getElementById(menuId);
+  if(!item){return}
+  item.classList.toggle('active', active);
+  if(!active){return}
+  const group = item.closest('.sub-group');
+  if(!group){return}
+  group.classList.remove('collapsed');
+  const parentMenu = group.previousElementSibling;
+  if(parentMenu?.classList.contains('menu')){parentMenu.classList.remove('collapsed')}
 }
 function applyPageState(type){
   toggleServiceSourceDescription(false);
@@ -4115,6 +4320,7 @@ function applyPageState(type){
   document.getElementById('deviceAfterSalePage').classList.toggle('hidden', type !== 'deviceAfterSale');
   document.getElementById('deviceGroupPage').classList.toggle('hidden', type !== 'deviceGroup');
   document.getElementById('orderPage').classList.toggle('hidden', type !== 'order');
+  document.getElementById('couponManagePage').classList.toggle('hidden', type !== 'couponManage');
   document.getElementById('refundPage').classList.toggle('hidden', type !== 'refund');
   document.getElementById('refundManagePage').classList.toggle('hidden', type !== 'refundManage');
   document.getElementById('walletPage').classList.toggle('hidden', type !== 'wallet');
@@ -4126,6 +4332,8 @@ function applyPageState(type){
   document.getElementById('strategyPage').classList.toggle('hidden', type !== 'strategy');
   document.getElementById('activityCenterPage').classList.toggle('hidden', type !== 'activityCenter');
   document.getElementById('activityDetailPage').classList.toggle('hidden', type !== 'activityDetail');
+  document.getElementById('activityLotteryPage').classList.toggle('hidden', type !== 'activityLottery');
+  document.getElementById('activityCouponPage').classList.toggle('hidden', type !== 'activityCoupon');
   document.getElementById('packagePage').classList.toggle('hidden', type !== 'package');
   document.getElementById('taskPage').classList.toggle('hidden', type !== 'task');
   document.getElementById('batchTaskDetailPage').classList.toggle('hidden', type !== 'batchTaskDetail');
@@ -4138,40 +4346,42 @@ function applyPageState(type){
   document.getElementById('notificationRecordPage').classList.toggle('hidden', type !== 'notificationRecord');
   document.getElementById('notificationRecordDetailPage').classList.toggle('hidden', type !== 'notificationRecordDetail');
   document.getElementById('notificationConfigEditPage').classList.toggle('hidden', type !== 'notificationConfigEdit');
-  document.getElementById('menuHome').classList.toggle('active', type === 'home');
-  document.getElementById('menuServiceCenter').classList.toggle('active', ['serviceOverview','serviceQrManagement','serviceSource'].includes(type));
-  document.getElementById('menuServiceOverview').classList.toggle('active', type === 'serviceOverview');
-  document.getElementById('menuServiceQrManagement').classList.toggle('active', type === 'serviceQrManagement');
-  document.getElementById('menuServiceSource').classList.toggle('active', type === 'serviceSource');
-  document.getElementById('menuConsumerManage').classList.toggle('active', type === 'consumerManage');
-  document.getElementById('menuConsumerTags').classList.toggle('active', type === 'consumerTags');
-  document.getElementById('menuDeviceManage').classList.toggle('active', type === 'device');
-  document.getElementById('menuDeviceType').classList.toggle('active', type === 'deviceType');
-  document.getElementById('menuConfig').classList.toggle('active', type === 'config');
-  document.getElementById('menuFlow').classList.toggle('active', type === 'flow');
-  document.getElementById('menuDevicePreStock').classList.toggle('active', ['devicePreStock','devicePreStockDetail'].includes(type));
-  document.getElementById('menuDeviceStockIn').classList.toggle('active', ['deviceStockIn','deviceStockInDetail'].includes(type));
-  document.getElementById('menuDeviceDistribution').classList.toggle('active', type === 'deviceDistribution');
-  document.getElementById('menuPeerTransfer').classList.toggle('active', type === 'peerTransfer');
-  document.getElementById('menuDeviceShipping').classList.toggle('active', type === 'deviceShipping');
-  document.getElementById('menuDeviceAfterSale').classList.toggle('active', type === 'deviceAfterSale');
-  document.getElementById('menuDeviceGroup').classList.toggle('active', type === 'deviceGroup');
-  document.getElementById('menuOrder').classList.toggle('active', type === 'order');
-  document.getElementById('menuRefund').classList.toggle('active', type === 'refund');
-  document.getElementById('menuRefundManage').classList.toggle('active', type === 'refundManage');
-  document.getElementById('menuWallet').classList.toggle('active', type === 'wallet');
-  document.getElementById('menuExchangeOrder').classList.toggle('active', type === 'workOrder');
-  document.getElementById('menuRefundWorkOrder').classList.toggle('active', type === 'refundWorkOrder');
-  document.getElementById('menuFactoryReturn').classList.toggle('active', ['factoryReturn','factoryReturnDetail'].includes(type));
-  document.getElementById('menuStrategy').classList.toggle('active', type === 'strategy');
-  document.getElementById('menuActivityCenter').classList.toggle('active', ['activityCenter','activityDetail'].includes(type));
-  document.getElementById('menuUserPackage').classList.toggle('active', type === 'package');
-  document.getElementById('menuBatchTask').classList.toggle('active', ['task','batchTaskDetail'].includes(type));
-  document.getElementById('menuNetworkLog').classList.toggle('active', type === 'networkLog');
-  document.getElementById('menuFieldVersion').classList.toggle('active', ['fieldVersion','fieldVersionEdit'].includes(type));
-  document.getElementById('menuNotificationChannel').classList.toggle('active', type === 'notificationChannel');
-  document.getElementById('menuNotificationTemplate').classList.toggle('active', type === 'notificationTemplate');
-  document.getElementById('menuNotificationRecord').classList.toggle('active', ['notificationRecord','notificationRecordDetail'].includes(type));
+  setMenuActive('menuHome', type === 'home');
+  setMenuActive('menuServiceCenter', ['serviceOverview','serviceQrManagement','serviceSource'].includes(type));
+  setMenuActive('menuServiceOverview', type === 'serviceOverview');
+  setMenuActive('menuServiceQrManagement', type === 'serviceQrManagement');
+  setMenuActive('menuServiceSource', type === 'serviceSource');
+  setMenuActive('menuConsumerManage', type === 'consumerManage');
+  setMenuActive('menuConsumerTags', type === 'consumerTags');
+  setMenuActive('menuDeviceManage', ['device','deviceDetail'].includes(type));
+  setMenuActive('menuDeviceType', type === 'deviceType');
+  setMenuActive('menuConfig', ['config','detail','simDetail'].includes(type));
+  setMenuActive('menuFlow', type === 'flow');
+  setMenuActive('menuDevicePreStock', ['devicePreStock','devicePreStockDetail'].includes(type));
+  setMenuActive('menuDeviceStockIn', ['deviceStockIn','deviceStockInDetail'].includes(type));
+  setMenuActive('menuDeviceDistribution', type === 'deviceDistribution');
+  setMenuActive('menuPeerTransfer', type === 'peerTransfer');
+  setMenuActive('menuDeviceShipping', type === 'deviceShipping');
+  setMenuActive('menuDeviceAfterSale', type === 'deviceAfterSale');
+  setMenuActive('menuDeviceGroup', type === 'deviceGroup');
+  setMenuActive('menuOrder', type === 'order');
+  setMenuActive('menuPayment', ['order','couponManage','refund','refundManage'].includes(type));
+  setMenuActive('menuCouponManage', type === 'couponManage');
+  setMenuActive('menuRefund', type === 'refund');
+  setMenuActive('menuRefundManage', type === 'refundManage');
+  setMenuActive('menuWallet', type === 'wallet');
+  setMenuActive('menuExchangeOrder', type === 'workOrder');
+  setMenuActive('menuRefundWorkOrder', type === 'refundWorkOrder');
+  setMenuActive('menuFactoryReturn', ['factoryReturn','factoryReturnDetail','factoryReturnCheckDetail'].includes(type));
+  setMenuActive('menuStrategy', type === 'strategy');
+  setMenuActive('menuActivityCenter', ['activityCenter','activityDetail','activityLottery','activityCoupon'].includes(type));
+  setMenuActive('menuUserPackage', type === 'package');
+  setMenuActive('menuBatchTask', ['task','batchTaskDetail'].includes(type));
+  setMenuActive('menuNetworkLog', type === 'networkLog');
+  setMenuActive('menuFieldVersion', ['fieldVersion','fieldVersionEdit'].includes(type));
+  setMenuActive('menuNotificationChannel', type === 'notificationChannel');
+  setMenuActive('menuNotificationTemplate', ['notificationTemplate','notificationConfigEdit'].includes(type));
+  setMenuActive('menuNotificationRecord', ['notificationRecord','notificationRecordDetail'].includes(type));
   if(type === 'home'){
     setActiveBatch('');
     setActiveDeviceSn('');
@@ -4226,6 +4436,10 @@ function applyPageState(type){
     searchOrderRecords();
     setActiveBatch('');
     setActiveDeviceSn('');
+  }else if(type === 'couponManage'){
+    if(window.CouponManagement){window.CouponManagement.render()}
+    setActiveBatch('');
+    setActiveDeviceSn('');
   }else if(type === 'refund'){
     searchRefundRecords();
     setActiveBatch('');
@@ -4265,6 +4479,14 @@ function applyPageState(type){
     setActiveDeviceSn('');
   }else if(type === 'activityCenter'){
     renderActivityCards();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'activityLottery'){
+    renderActivityLotteryRecords();
+    setActiveBatch('');
+    setActiveDeviceSn('');
+  }else if(type === 'activityCoupon'){
+    renderActivityCouponRecords();
     setActiveBatch('');
     setActiveDeviceSn('');
   }else if(type === 'activityDetail'){
@@ -7722,6 +7944,17 @@ function getFilteredOrderRows(){
     return orderTypeOk && payTypeOk && statusOk && snOk && orderOk && merchantOk && mainMerchantOk && payNoOk && packageOk && dateOk;
   });
 }
+function openOrderByNumber(orderNo){
+  if(!orderNo || !paymentOrderData.some(row => row.orderNo === orderNo)){return false}
+  resetOrderRecords();
+  document.getElementById('orderNoInput').value = orderNo;
+  if(typeof syncQueryInputClear === 'function'){
+    ['orderSnInput','orderNoInput','orderMerchantInput','orderMainMerchantInput','orderPayNoInput','orderPackageInput'].forEach(id => syncQueryInputClear(document.getElementById(id)));
+  }
+  showPage('order');
+  searchOrderRecords();
+  return true;
+}
 function searchOrderRecords(){
   const rowsNode = document.getElementById('orderRows');
   if(!rowsNode){return}
@@ -8222,26 +8455,28 @@ function exportRefundWorkOrderRecords(){
   URL.revokeObjectURL(link.href);
 }
 function openActivityDetailPage(activityId){
-  currentActivityId = activityId || currentActivityId;
-  showPage('activityDetail');
+  const item = activityCenterData.find(entry => entry.id === (activityId || currentActivityId));
+  if(!item){return}
+  currentActivityId = item.id;
+  showPage(item.page || 'activityDetail');
 }
 function renderActivityCards(){
   const grid = document.getElementById('activityCardGrid');
   if(!grid){return}
   grid.innerHTML = activityCenterData.map(item => `
-    <div class="activity-card" role="button" tabindex="0" onclick="openActivityDetailPage('${escapeHtml(item.id)}')" onkeydown="if(event.key === 'Enter' || event.key === ' '){event.preventDefault();openActivityDetailPage('${escapeHtml(item.id)}')}">
+    <div class="activity-card${item.activityStart ? ' activity-coupon-card' : ''}" role="button" tabindex="0" onclick="openActivityDetailPage('${escapeHtml(item.id)}')" onkeydown="if(event.key === 'Enter' || event.key === ' '){event.preventDefault();openActivityDetailPage('${escapeHtml(item.id)}')}">
       <div class="activity-card-main">
-        <img class="activity-gift-icon" src="assets/activity-gift.png" alt="">
+        <svg class="activity-gift-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect x="4" y="4" width="56" height="56" rx="14" fill="#edf5fe"/><path d="M16 28h32v9H16zM19 37h26v15H19z" fill="#1687e8"/><path d="M32 28v24" fill="none" stroke="#fff" stroke-width="4"/><path d="M32 27c-8-1-15-3-15-9 0-8 14-6 15 9Zm0 0c8-1 15-3 15-9 0-8-14-6-15 9Z" fill="none" stroke="#1687e8" stroke-width="3" stroke-linejoin="round"/></svg>
         <div class="activity-card-copy">
           <div class="activity-title">${escapeHtml(item.title)}</div>
-          <div class="activity-subtitle">${escapeHtml(item.subtitle)}</div>
+          ${item.subtitle ? `<div class="activity-subtitle">${escapeHtml(item.subtitle)}</div>` : ''}
         </div>
       </div>
       <div class="activity-card-divider"></div>
       <div class="activity-meta">
-        <img class="activity-clock-icon" src="assets/activity-clock.png" alt="">
-        <span class="activity-meta-label">活动创建时间：</span>
-        <span class="activity-meta-value">${escapeHtml(item.createdAt)}</span>
+        <svg class="activity-clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="activity-meta-label">${item.activityStart ? '活动时间：' : '活动创建时间：'}</span>
+        <span class="activity-meta-value">${escapeHtml(item.activityStart ? item.activityStart+'～'+item.activityEnd : item.createdAt)}</span>
       </div>
     </div>
   `).join('');
@@ -10420,6 +10655,8 @@ function setCustomSelectValue(target,value,label,emitChange){
   const valueNode = select.querySelector('.select-value');
   if(valueNode){valueNode.textContent = label || select.dataset.placeholder || ''}
   syncCustomSelectState(select);
+  if(emitChange && select.id === 'couponManageTypeFilter' && window.CouponManagement){window.CouponManagement.search()}
+  if(emitChange && select.id === 'couponEditorType' && window.CouponManagement){window.CouponManagement.changeType()}
   if(emitChange && select.dataset.change === 'switchOperation'){
     switchOperation(value);
   }
@@ -10470,6 +10707,12 @@ function setCustomSelectValue(target,value,label,emitChange){
   }
   if(['strategyRecordCategoryFilter','strategyRecordTypeFilter','strategyRecordLimitStatusFilter','strategyRecordReleaseStatusFilter'].includes(select.id)){
     searchStrategySimRecords();
+  }
+  if(emitChange && ['activityLotteryCouponClaimStatusFilter','activityLotteryCouponRedemptionStatusFilter'].includes(select.id)){
+    searchActivityLotteryRecords();
+  }
+  if(emitChange && select.id === 'activityCouponStatusFilter'){
+    searchActivityCouponRecords();
   }
   if(select.id === 'activityShippingStatusFilter'){
     searchActivityDetailRecords();
@@ -10547,6 +10790,7 @@ function clearCustomSelect(select){
 function initDropdowns(){
   document.querySelectorAll('.custom-select').forEach(select => {
     initCustomSelectState(select);
+    if(select.hasAttribute('data-keyboard-select') && window.AdminUI){window.AdminUI.enhanceSelect(select)}
     select.addEventListener('click', event => {
       closeDatePickers();
       closeDeviceRangePickers();
@@ -10587,6 +10831,11 @@ const extraRangePickerState = {
   refundWorkApply:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'refundWorkApplyRange',panelId:'refundWorkApplyPanel',startId:'refundWorkApplyStartInput',endId:'refundWorkApplyEndInput',startPlaceholder:'申请开始时间',endPlaceholder:'申请结束时间'},
   factoryReturn:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'factoryReturnOperationRange',panelId:'factoryReturnOperationPanel',startId:'factoryReturnStartInput',endId:'factoryReturnEndInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'},
   factoryReturnDetail:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'factoryReturnDetailOperationRange',panelId:'factoryReturnDetailOperationPanel',startId:'factoryReturnDetailStartInput',endId:'factoryReturnDetailEndInput',startPlaceholder:'操作开始时间',endPlaceholder:'操作结束时间'},
+  activityLotteryCouponClaim:{viewDate:new Date(2026,10,1),start:'',end:'',rangeId:'activityLotteryCouponClaimRange',panelId:'activityLotteryCouponClaimPanel',startId:'activityLotteryCouponClaimStartInput',endId:'activityLotteryCouponClaimEndInput',startPlaceholder:'领取开始日期',endPlaceholder:'领取结束日期'},
+  activityLotteryCouponRedemption:{viewDate:new Date(2026,10,1),start:'',end:'',rangeId:'activityLotteryCouponRedemptionRange',panelId:'activityLotteryCouponRedemptionPanel',startId:'activityLotteryCouponRedemptionStartInput',endId:'activityLotteryCouponRedemptionEndInput',startPlaceholder:'核销开始日期',endPlaceholder:'核销结束日期'},
+  activityCouponClaim:{viewDate:new Date(2026,10,1),start:'',end:'',rangeId:'activityCouponClaimRange',panelId:'activityCouponClaimPanel',startId:'activityCouponClaimStartInput',endId:'activityCouponClaimEndInput',startPlaceholder:'领取开始日期',endPlaceholder:'领取结束日期'},
+  activityCouponValidity:{viewDate:new Date(2026,10,1),start:'',end:'',rangeId:'activityCouponValidityRange',panelId:'activityCouponValidityPanel',startId:'activityCouponValidityStartInput',endId:'activityCouponValidityEndInput',startPlaceholder:'有效期开始日期',endPlaceholder:'有效期结束日期'},
+  activityCouponUsed:{viewDate:new Date(2026,10,1),start:'',end:'',rangeId:'activityCouponUsedRange',panelId:'activityCouponUsedPanel',startId:'activityCouponUsedStartInput',endId:'activityCouponUsedEndInput',startPlaceholder:'使用开始日期',endPlaceholder:'使用结束日期'},
   activityBuy:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'activityBuyRange',panelId:'activityBuyPanel',startId:'activityBuyStartInput',endId:'activityBuyEndInput',startPlaceholder:'购买开始日期',endPlaceholder:'购买结束日期'},
   activitySubmit:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'activitySubmitRange',panelId:'activitySubmitPanel',startId:'activitySubmitStartInput',endId:'activitySubmitEndInput',startPlaceholder:'提交开始时间',endPlaceholder:'提交结束时间'},
   batchTaskActivation:{viewDate:new Date(new Date().getFullYear(),new Date().getMonth(),1),start:'',end:'',rangeId:'batchTaskActivationRange',panelId:'batchTaskActivationPanel',startId:'batchTaskActivationStartInput',endId:'batchTaskActivationEndInput',startPlaceholder:'客户首次激活开始时间',endPlaceholder:'客户首次激活结束时间'},
@@ -10779,6 +11028,8 @@ function triggerUnifiedRangeChange(key){
   if(key === 'factoryReturn'){searchFactoryReturnRecords()}
   if(key === 'factoryReturnDetail'){searchFactoryReturnDetailRecords()}
   if(key === 'activityBuy' || key === 'activitySubmit'){searchActivityDetailRecords()}
+  if(key === 'activityLotteryCouponClaim' || key === 'activityLotteryCouponRedemption'){searchActivityLotteryRecords()}
+  if(['activityCouponClaim','activityCouponValidity','activityCouponUsed'].includes(key)){searchActivityCouponRecords()}
   if(key === 'batchTaskActivation'){searchBatchTaskDetailRecords()}
   if(key === 'networkLogDate'){searchNetworkLogRecords()}
   if(key === 'strategyRecordCreated'){searchStrategySimRecords()}
@@ -11274,6 +11525,10 @@ document.querySelectorAll('.sub-group').forEach(group=>group.classList.add('coll
 document.querySelectorAll('.menu[onclick*="toggleMenuGroup"]').forEach(menu=>menu.classList.add('collapsed'));
 showPage('home');
 </script>
+<script src="assets/activity-screenshot.js"></script>
+<script src="assets/activity-lottery.js"></script>
+<script src="assets/activity-coupon.js"></script>
+<script src="assets/coupon-management.js"></script>
 <script src="assets/rule-center.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>

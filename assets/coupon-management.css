@@ -1,0 +1,42 @@
+#couponManagePage>.payment-filter{margin-bottom:0;padding-bottom:0}
+#couponManagePage>.action-row{display:flex;align-items:center;gap:12px;margin:16px 0;flex:none}
+#couponManagePage>.table-card{margin-top:0;overflow:auto;flex:none}
+.coupon-manage-table{min-width:1320px}
+.coupon-manage-table th,.coupon-manage-table td{white-space:nowrap}
+.coupon-manage-table .coupon-remark{min-width:180px;max-width:300px;white-space:normal;overflow-wrap:anywhere;line-height:20px}
+.coupon-manage-table .coupon-name{min-width:160px;max-width:240px;white-space:normal;overflow-wrap:anywhere;line-height:20px}
+.coupon-manage-table .coupon-threshold-summary{min-width:210px;line-height:22px}
+.coupon-manage-table .text-action{border:0;padding:0;background:transparent;font:inherit}
+.coupon-manage-type{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border:1px solid #dbeafe;border-radius:3px;background:#edf6ff;color:#0963ae;font-size:12px}
+.coupon-manage-status{color:#4e5969;font-size:12px;line-height:20px}
+#couponManagePagination{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+#couponManagePagination button{font:inherit;cursor:pointer;background:#fff}
+#couponManagePagination .pagebtn.active{color:#fff;background:var(--theme-color)}
+#couponManagePagination button:disabled{opacity:.45;cursor:not-allowed}
+.coupon-admin-mask{z-index:1300;padding:16px}
+.coupon-editor .input,.coupon-editor .select,.coupon-editor .textarea{width:100%;color:#1f2329!important}
+.coupon-editor .textarea{min-height:92px;resize:none}
+.coupon-editor .close,.coupon-delete-modal .close{border:0;padding:0;background:transparent;cursor:pointer}
+.coupon-editor .form-row{grid-template-columns:112px minmax(0,1fr)!important}
+.coupon-editor .coupon-threshold-field{align-items:start}
+.coupon-threshold-options{display:grid;gap:12px;padding-top:3px}
+.coupon-threshold-option{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:32px;font-size:13px;line-height:22px}
+.coupon-threshold-option[hidden]{display:none}
+.coupon-threshold-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap}
+.coupon-threshold-toggle input{width:16px;height:16px;margin:0;accent-color:var(--theme-color);cursor:pointer}
+.coupon-threshold-option .input{width:112px;min-width:0;flex:0 1 112px}
+.coupon-threshold-option .input:disabled{background:#f5f7fa;color:#667085!important;cursor:not-allowed}
+.coupon-editor .coupon-threshold-options .input[aria-invalid="false"]{border-color:#dfe5ee!important}
+.coupon-editor .coupon-threshold-options .input[aria-invalid="false"]:focus{border-color:var(--theme-color)!important}
+.coupon-threshold-hint{margin-top:6px;color:#667085;font-size:12px;line-height:20px}
+.coupon-threshold-toggle input:focus-visible{outline:2px solid var(--theme-color);outline-offset:2px}
+.coupon-editor .field-error:empty{display:none}
+.coupon-editor [aria-invalid="true"]{border-color:#f04438!important}
+.coupon-editor .select{position:relative}
+.coupon-delete-modal{width:480px!important}
+.coupon-delete-modal .confirm.danger{background:#f04438;border-color:#f04438}
+.coupon-delete-modal .confirm.danger:hover{background:#d92d20;border-color:#d92d20}
+.coupon-delete-message{margin:0;color:#4e5969;font-size:13px;line-height:24px;overflow-wrap:anywhere}
+.custom-select[data-keyboard-select] .dropdown-option.keyboard-active{background:#edf6ff;color:#0963ae}
+.custom-select[data-keyboard-select]:focus-visible,.coupon-admin-mask button:focus-visible,#couponManagePage button:focus-visible{outline:2px solid var(--theme-color);outline-offset:2px}
+@media(max-width:520px){.coupon-editor .form-row{grid-template-columns:minmax(0,1fr)!important;gap:4px}.coupon-editor .form-label{line-height:22px;padding-right:0}}

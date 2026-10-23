@@ -1,140 +1,84 @@
-**Comparison Target**
+# 双11福利 H5 — participation, query and outcome-state QA
 
-- Source visual truth: `/var/folders/49/lxglpvh14pbg1n2wljrc4xcm0000gn/T/codex-clipboard-ffd81b75-52de-41e9-93ea-fc14fb8a3aab.png`
-- Implementation screenshot: `/Users/goodlee/Documents/MBB/activity-card-qa.png`
-- Viewport: `1768 x 889`
-- State: 运营管理 / 活动中心，感恩回馈活动卡片默认状态
+final result: blocked
 
-**Full-View Comparison Evidence**
+## Comparison target and evidence
 
-- The reference and implementation were opened together at the same viewport for comparison.
-- The implementation preserves the existing MBB navigation and page shell while matching the reference card's 2.4:1 proportion, white surface, light border, soft shadow, rounded corners, left-aligned icon and text, dashed divider, and creation-time row.
+- Source visual truth: `/Users/goodlee/Documents/MBB/assets/double11-registration-reference.png`, user-supplied 850 × 1850px full-page reference. Opened with `view_image` during this revision.
+- Query-state source visual truth: `/Users/goodlee/Documents/MBB/assets/double11-results-reference.png`, user-supplied 852 × 1616px image. Opened with `view_image` for the current change.
+- Winning-state source visual truth: `/Users/goodlee/Documents/MBB/assets/double11-winner-reference.png`, user-supplied 850 × 1850px image, opened with `view_image`. All three generated winning posters were also opened and inspected individually.
+- Non-winning source visual truth: `/Users/goodlee/Documents/MBB/assets/double11-nonwinner-reference.png`, user-supplied 851 × 1848px image, opened with `view_image`. The generated 850 × 1850px poster was also opened and inspected.
+- Implementation: `/Users/goodlee/Documents/MBB/double11.html`, embedding `/Users/goodlee/Documents/MBB/double11-content.html`.
+- Required viewport: fixed 375 × 812 CSS px phone container, internally scrolling. The host now adds the requested right-side preview state tabs; phone dimensions remain fixed, without scale-to-fit or outer document scrolling.
+- Implementation screenshot path: unavailable. Browser access to local project pages was blocked earlier in this conversation. No alternate browser, HTTP/CDP path, or rendering workaround was used.
+- Density normalization: source CSS size/density is unknown; its physical image is 850 × 1850px. A full-document comparison would normalize its width to 375 CSS px, while testing the implementation's 812px viewport independently. No runtime capture or normalized pair exists yet.
+- State: participation form, result-query view and dedicated winning page, plus validation, uploaded image, submitting, pending-draw receipt, query loading/non-winning/pending/no-record/error, image fallback and SN-helper states require rendered capture.
+- Full-view comparison evidence: blocked, missing browser-rendered implementation.
+- Focused region comparison evidence: blocked for hero/prize cards, form rows, address counter/upload, rules/CTA and dialogs. These are required because typography, wrapping and interactive geometry are material.
 
-**Focused Region Comparison Evidence**
+## Verification blocker
 
-- A separate crop was not required because the complete implementation card is readable at `660 x 274` in the full-view screenshot.
-- The extracted gift and clock assets were inspected separately at their source resolution before placement.
+The source and individual generated assets were inspected, but no source-versus-rendered comparison was performed. Do not treat the static audit, file existence or isolated VM interaction checks as visual verification. There is no passed visual QA iteration for this revision.
 
-**Findings**
+## Required fidelity surfaces
 
-- Fonts and typography: passed. Title, subtitle, metadata label, and date reproduce the reference hierarchy without truncation or negative letter spacing.
-- Spacing and layout rhythm: passed after iteration. Icon/title offsets, divider position, card aspect ratio, and lower metadata spacing align with the reference.
-- Colors and visual tokens: passed. The card uses the existing theme blue and reference-like neutral grays without introducing a conflicting palette.
-- Image quality and asset fidelity: passed. The gift and clock icons are extracted from the supplied reference and remain sharp at rendered size.
-- Copy and content: passed. `感恩回馈`、`免费送充电宝` and the creation time match the reference.
-- Interaction: passed. The card remains keyboard focusable and clicking it opens the activity detail page.
-- Console errors: none observed.
+1. **Fonts and typography:** runtime unverified. Source-compatible Chinese sans, 20px section heading, 16px field values and helper copy at least 12px are specified in CSS; text must remain readable without scaling the phone.
+2. **Spacing and layout rhythm:** runtime unverified. Hero, three prize cards, inline form, process strip, rules and CTA are in source order. Phone scroll containment and narrow wrapping need live inspection.
+3. **Colors and tokens:** runtime unverified. Updated campaign tokens follow the supplied blue/white form, orange/red CTA and warm promotional hero. Console tokens remain separate.
+4. **Image quality and asset fidelity:** hero and all three product cutouts were opened individually and checked against the supplied source. They use raster assets generated through the built-in Image Gen tool, not flattened form artwork. Crop/scale/alpha-edge quality at actual mobile sizes remains unverified. Phosphor icons are unmodified licensed assets.
+5. **Copy and content:** source copy transcribed, including Nov 1–11 dates, Nov 12 12:00 draw wording, prize counts, 200-character address, JPG/PNG upload ≤10MB and supplied declarations. The pictured redemption deadline is the same time as the draw; copied without inventing a new business rule. Runtime clipping/wrapping remains unverified.
 
-**Comparison History**
+## Interaction evidence (isolated VM, not browser)
 
-- Iteration 1: divider and creation-time row rendered slightly higher than the source.
-- Fix: increased card height from `268px` to `274px`, moved the divider down, and increased spacing before the metadata row.
-- Iteration 2: no actionable P0/P1/P2 differences remained.
+- `/private/tmp/mbb-double11-registration-check.js`: passed. Asset/handler bindings, inline field order, required-field and address-length validation, upload options/count guard, preview/dialog scroll lock, pending-draw feedback, duplicate prevention, submission-failure recovery, unsupported scanner fallback, successful scan and late-result cancellation.
+- `/private/tmp/mbb-screenshot-options-check.js`: passed. Existing admin defaults remain 5MB JPG/PNG/WEBP; explicit H5 options are 10MB JPG/PNG. Size boundary, extension/MIME/content signature and decode failure paths verified.
+- Admin inline scripts parse; lottery H5 link remains; coupon reporting card remains removed; fixed phone viewport preserved.
+- Strict project audit: `/private/tmp/mbb-double11-registration-audit.json`. 42 existing project findings remain; zero findings in changed H5/screenshot helper files. This audit does not establish browser compliance.
+- Browser console and touch-device behavior: not checked.
 
-**Implementation Checklist**
+## Comparison history
 
-- [x] Replace the compact card with the reference composition.
-- [x] Use source-faithful gift and clock assets.
-- [x] Preserve hover, focus, keyboard, and click behavior.
-- [x] Verify responsive fallback under `760px`.
-- [x] Verify detail-page navigation and console errors.
+- Iteration 1: source inspected; four generated assets inspected; implementation and VM tests completed. Visual comparison remains blocked by missing runtime capture. No visual pass asserted.
 
-**Follow-up Polish**
+## Remaining verification checklist
 
-- No blocking polish items remain.
+1. Open the H5 in an authorized browser and refresh the existing entry.
+2. Capture the unscaled 375 × 812 viewport and full scrollable content.
+3. Compare the source and capture together, then inspect focused regions listed above.
+4. Exercise wheel/trackpad/touch scrolling, keyboard validation, upload/preview, modal focus restoration, submission and scanner fallback; inspect console errors.
+5. Fix any P0/P1/P2 differences and repeat capture/comparison before changing `final result` to `passed`.
 
-final result: passed
+## Hook follow-up: contrast and hierarchy
 
----
+The current H5 detector now reports zero primary findings after deepening helper/placeholder text, white-on-warm badge/action backgrounds and small link colors, and raising section/dialog headings to 20px. Numeric checks confirm changed body-text/background pairs are at least 4.5:1. `.impeccable/design.json` has been refreshed from current tokens and component CSS. No new detector ignores were added. These checks do not replace the still-blocked browser capture and visual comparison.
 
-## 规则中心增量检查（2026-09-19）
+## Current result-query revision
 
-**Comparison Target**
+- Source: 852 × 1616px query screenshot; implementation screen remains 375 × 812 CSS px. Runtime density and image normalization are still unverified because no implementation capture is available.
+- Existing raster hero, prize cutouts, typography family, palette, SN field, scan helper and primary action are reused. The query heading uses the documented 24px/34px step. One shared rules section moves to the active view; participation values and uploads remain in memory.
+- `/private/tmp/mbb-double11-results-check.js`: passed isolated VM checks for right-side tab selection, roving Up/Down/Home/End focus, message-source validation, fixed host geometry declarations, no iframe reload on tab activation, required SN, clear, duplicate prevention, each mock outcome, unknown SN, offline/retry, stale-request cancellation, shared scanner targeting, session-submission lookup, draft preservation and per-view scroll restoration.
+- Existing registration and screenshot-option checks passed again. No production result API is connected; fixtures use explicit `MBB-DEMO-*` SNs, without assigning random prizes to unknown inputs.
+- The primary image detector reports no broken image or other primary findings. No new ignores were added. Static checks do not establish visual fidelity, actual focus/scroll geometry, mobile touch behavior or console cleanliness.
+- Required focused comparison regions: preview state rail, query hero/card overlap, heading and SN/scan/clear geometry, result messages/prize images, and shared rules panel. These remain blocked pending an authorized browser capture.
+- Final result remains blocked solely for missing rendered visual evidence; the new interaction checks are script evidence, not a browser QA pass.
 
-- Source visual truth: `/Users/goodlee/Downloads/yuque_diagram.jpg`（规则中心结构图，2684 x 2888）
-- Implementation: `http://127.0.0.1:8770/index.html`，Codex In-app Browser live capture at `1280 x 720`
-- State: 首页默认状态；规则中心展开后的规则管理、触发记录、规则新增页签
+## Winning-state revision
 
-**Full-View Comparison Evidence**
+- Current selected visual: 850 × 1850px second-prize winning screenshot. The fixed runtime phone remains 375 × 812 CSS px, with content scrolling inside the iframe. The three generated posters are each 850 × 1850px; no device chrome or live notice/back control was baked into them.
+- Fonts and typography: source promotional type stays in the poster; live result heading uses the existing 20px/28px title role, and notice copy uses 16px/24px. Rendered wrapping and fallback fonts remain unverified.
+- Spacing and layout: default second-prize notice starts at 64% of poster height; the power-bank variant uses 66% to clear its lower count pill. The fixed 375 × 812 host and no outer scrolling declarations are preserved. Actual card bounds and touch scrolling remain unverified.
+- Colors: notice tokens are documented in DESIGN.md and match the H5 CSS variables. Live notice text uses the established darker campaign red and a dark warm body color on cream. Raster skies/confetti are source artwork, not CSS drawings.
+- Asset fidelity: all three generated posters were inspected for Chinese copy, prize rank/name/count, composition and clear notice area. The second-prize poster closely follows the supplied cup image. This asset inspection is not a rendered-page comparison.
+- Copy and behavior: direct 中奖 preview defaults to 二等奖/儿童保温水杯/800份. Successful explicit mock SN queries open the corresponding prize page. Physical-prize notice follows the screenshot; coupon notice uses the previously confirmed validity/package restrictions. No claim form or backend prize allocation was added.
+- `/private/tmp/mbb-double11-winner-check.js`: passed isolated VM checks for default preview, three prize mappings, state visibility, query-to-winning navigation, restored drafts/query/scroll, pending/non-winning/missing records staying in query, stale-request cancellation, image error/retry/cached fallback, host tab sync, keyboard wrap and source checks without message echo or iframe reload.
+- Existing registration and result-query checks passed after adding the third state. These are script checks only; no browser screenshot, console or touch-device claim is made.
+- Full-view and focused comparison remain blocked. Required captures include the default second-prize page, first/third-prize variants, top-left back control, notice wrapping, artwork failure, and the right-side selected state. `final result: blocked` remains in effect.
 
-- 结构图定义的规则管理查询区、规则新增操作、规则列表字段、触发记录查询区和列表字段均已映射到独立页面。
-- 页面沿用现有 MBB 后台的蓝色顶栏、左侧一级菜单、面包屑页签、查询网格、表格、状态点和表格外分页布局。
+## Non-winning revision
 
-**Focused Region Comparison Evidence**
-
-- 规则列表重点检查：规则名称与规则类型为独立列，规则新增为主按钮，筛选下拉提供完整示例选项，分页位于列表框外。
-- 规则新增重点检查：基础信息、监测范围（全平台监测、自定义监测、范围监测同级展示）、监测规则、生效时间和通知方式均可见；供应商、商户、运营商仅在选择范围监测时显示并可编辑，选择自定义监测时才显示上传文件入口。
-
-**Findings**
-
-- Fonts and typography: passed. New screens use the existing Arial/中文回退字体和 12–13px 后台密度。
-- Spacing and layout rhythm: passed. 查询区、表格、页签和分页沿用现有页面节奏，新增页未引入独立头图区域。
-- Colors and visual tokens: passed. 新增页面使用现有主题蓝、边框灰和状态色。
-- Image quality and asset fidelity: passed. 结构图没有需要额外导入的图片资产，菜单图标复用现有线性图标。
-- Copy and content: passed. 图中字段均有对应中文标签，供应商、商户、运营商保持独立。
-- Interaction: passed. 一级菜单展开、规则管理/触发记录切换、规则新增面包屑页签、下拉筛选、自定义监测上传入口和保存返回列表均已验证。
-- Console errors: none observed in the browser-rendered check.
-
-**Implementation Checklist**
-
-- [x] 新增规则中心一级菜单及规则管理、触发记录二级菜单。
-- [x] 新增规则管理列表和触发记录列表页面。
-- [x] 新增规则新增页签及表单交互。
-- [x] 将范围监测调整为与全平台监测、自定义监测同级，范围监测不显示上传文件入口。
-- [x] 通知方式选中后展示对应配置行，可选择通知模板，并通过账号管理弹窗多选通知对象。
-- [x] 保持首页默认打开，其他一级菜单默认折叠。
-- [x] 保留现有页面内容，仅新增 `assets/rule-center.js` 和脚本挂接。
-
-final result: passed
-
----
-
-## 顶部搜索栏 UI 对照检查（2026-09-04）
-
-**Comparison Target**
-
-- Source visual truth: `/Users/goodlee/Documents/MBB/top-search-reference.png`
-- Implementation screenshot: `/Users/goodlee/Documents/MBB/top-search-qa.png`
-- Combined comparison: `/Users/goodlee/Documents/MBB/top-search-comparison.png`
-- Viewport: `1264 x 714`
-- Source pixels: `489 x 57`; implementation focused region: `489 x 57`; CSS search size: `354 x 28`; density normalization: `1x`
-- State: 顶部栏默认状态，搜索类型为“流量卡查询”，输入框为空
-
-**Full-View Comparison Evidence**
-
-- The complete page screenshot confirms the search bar remains centered in the existing top navigation and does not disturb the logo or account area.
-- The existing blue-green topbar background is intentionally preserved because the supplied reference only defines the search control itself.
-
-**Focused Region Comparison Evidence**
-
-- The reference and implementation were placed side by side in `top-search-comparison.png` at the same `489 x 57` frame size.
-- The implementation matches the reference control structure: white pill container, blue left label, light placeholder text, and compact blue search button with icon.
-
-**Findings**
-
-- Fonts and typography: passed after removing the inherited ellipsis that truncated “流量卡查询”.
-- Spacing and layout rhythm: passed. Search control is `354 x 28`, with a `66px` left section and `60 x 22` action button.
-- Colors and visual tokens: passed. The control uses the project theme blue and reference-like neutral border and placeholder colors.
-- Image quality and asset fidelity: passed. No raster assets are required; the existing project search icon style remains sharp at the compact size.
-- Copy and content: passed. Label, placeholder, and action copy match the supplied reference.
-- Interaction: passed. Type selection opens and closes correctly; the input accepts and clears text; no console errors were observed.
-
-**Comparison History**
-
-- Iteration 1: the left label was truncated as “流量卡...”.
-- Fix: applied a search-local override to keep the complete label visible without changing shared dropdown behavior.
-- Iteration 2: no actionable P0/P1/P2 differences remained.
-
-**Implementation Checklist**
-
-- [x] Match compact pill dimensions and border radius.
-- [x] Match label, placeholder, icon, and button composition.
-- [x] Preserve the existing topbar layout and background.
-- [x] Verify input and dropdown interaction.
-- [x] Check browser console errors.
-
-**Follow-up Polish**
-
-- No blocking polish items remain.
-
-final result: passed
+- The selected visual is the supplied 851 × 1848px non-winning screenshot; the new raster is 850 × 1850px, while the runtime remains the fixed 375 × 812 CSS px viewport. No implementation screenshot is available, so no normalized source/implementation comparison or visual pass is claimed.
+- Typography and copy: dimensional headline and ribbon text stay in the raster; the live notice uses the existing 20px/28px title and 16px/24px body roles. Copy follows the screenshot verbatim. Actual line wrapping remains unverified.
+- Layout and color: notice is a cool variant of the established outcome card at 62% of poster height, with the existing blue megaphone, navy heading, darker muted copy and pale panel. The 375 × 812 viewport, inside scrolling and no outer scrolling declarations are preserved. Raster artwork is visually inspected, not recreated through CSS.
+- Behavior: explicit mock non-winning outcomes open this state; pending, awaiting-update, unknown and failed queries retain separate feedback. Direct preview is available as the fourth state. Back and host-tab sync reuse the established navigation; shared image fallback/retry logic serves both outcome pages.
+- `/private/tmp/mbb-double11-nonwinner-check.js`: passed isolated VM checks covering direct preview, both non-winning SNs, return/draft/query/scroll restoration, shared image fallback/retry and cached errors, stale and clear cancellation, four-tab keyboard/source/message synchronization without reload or echo, and separation from pending/no-record/error.
+- Registration, query and winner checks remain regression evidence. Live rendering, focus geometry, touch scrolling and browser console remain unverified. Required focused captures: four-state rail, raster headline/empty gift, notice heading/body wrap, back control and image-failure state. `final result: blocked` remains due to missing authorized browser capture.
