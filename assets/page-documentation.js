@@ -27,8 +27,7 @@
   }
 
   function getPageConfig(pageKey){
-    const documentation = getDocumentation();
-    return documentation[pageKey] || null;
+    return getDocumentation()[pageKey] || null;
   }
 
   function getFieldTarget(field){
@@ -77,43 +76,6 @@
     }).join('')}</div>`;
   }
 
-  function renderMetaRow(label,value){
-    if(!value){return ''}
-    return `<span class="page-doc-meta-label">${escapeHtml(label)}</span><span class="page-doc-meta-value">${renderText(value)}</span>`;
-  }
-
-  function renderChapters(chapters){
-    return chapters.map(chapter => `
-      <section class="page-doc-chapter">
-        <h3 class="page-doc-chapter-title">${escapeHtml(chapter.title || '')}</h3>
-        <ol class="page-doc-numbered-list">
-          ${(chapter.items || []).map(item => `
-            <li>
-              ${item.title ? `<span class="page-doc-numbered-title">${escapeHtml(item.title)}：</span>` : ''}
-              <span class="page-doc-numbered-desc">${escapeHtml(item.description || '')}</span>
-            </li>
-          `).join('')}
-        </ol>
-      </section>
-    `).join('');
-  }
-
-  function renderSupportingSections(config){
-    const sections = [
-      {title:'功能逻辑',items:config.functions,emptyText:'功能逻辑待补充'},
-      {title:'业务规则',items:config.businessRules,emptyText:'业务规则待补充'},
-      {title:'交互说明',items:config.interactions,emptyText:'交互说明待补充'}
-    ];
-    return sections
-      .filter(section => Array.isArray(section.items) && section.items.length)
-      .map(section => `
-        <section class="page-doc-section">
-          <h3 class="page-doc-section-title">${escapeHtml(section.title)}</h3>
-          ${renderList(section.items,section.emptyText)}
-        </section>
-      `).join('');
-  }
-
   function render(){
     if(!body){return}
     const config = getPageConfig(state.pageKey);
@@ -121,42 +83,29 @@
       body.innerHTML = '';
       return;
     }
-    if(config.empty){
-      body.innerHTML = '';
-      return;
-    }
-    if(Array.isArray(config.chapters) && config.chapters.length){
-      body.innerHTML = renderChapters(config.chapters) + renderSupportingSections(config);
-      return;
-    }
     const info = config.page || {};
-    const titleHtml = info.title ? `<div class="page-doc-main-title">${escapeHtml(info.title)}</div>` : '';
-    const fieldSection = config.hideFields ? '' : `
+    body.innerHTML = `
+      <section class="page-doc-section">
+        <h3 class="page-doc-section-title">页面说明</h3>
+        <div class="page-doc-page-name">${escapeHtml(info.title || '页面说明')}</div>
+        <p class="page-doc-copy">${escapeHtml(info.purpose || '待补充')}</p>
+        <div class="page-doc-meta">
+          <span class="page-doc-meta-label">前置条件</span><span class="page-doc-meta-value">${renderText(info.prerequisites)}</span>
+          <span class="page-doc-meta-label">异常与限制</span><span class="page-doc-meta-value">${renderText(info.limitations)}</span>
+        </div>
+      </section>
       <section class="page-doc-section">
         <h3 class="page-doc-section-title">字段说明</h3>
         ${renderFields(config.fields)}
-      </section>`;
-    const businessSection = config.hideBusinessRules ? '' : `
-      <section class="page-doc-section">
-        <h3 class="page-doc-section-title">业务规则</h3>
-        ${renderList(config.businessRules,'业务规则待补充')}
-      </section>`;
-    body.innerHTML = `
-      ${titleHtml}
-      <section class="page-doc-section">
-        <h3 class="page-doc-section-title">${escapeHtml(info.sectionTitle || '页面说明')}</h3>
-        <p class="page-doc-copy">${escapeHtml(info.purpose || '待补充')}</p>
-        <div class="page-doc-meta">
-          ${renderMetaRow('前置条件',info.prerequisites)}
-          ${renderMetaRow('异常与限制',info.limitations)}
-        </div>
       </section>
-      ${fieldSection}
       <section class="page-doc-section">
         <h3 class="page-doc-section-title">功能逻辑</h3>
         ${renderList(config.functions,'功能逻辑待补充')}
       </section>
-      ${businessSection}
+      <section class="page-doc-section">
+        <h3 class="page-doc-section-title">业务规则</h3>
+        ${renderList(config.businessRules,'业务规则待补充')}
+      </section>
       <section class="page-doc-section">
         <h3 class="page-doc-section-title">交互说明</h3>
         ${renderList(config.interactions,'交互说明待补充')}
@@ -164,7 +113,6 @@
   }
 
   function open(){
-    if(!getPageConfig(state.pageKey)){return}
     state.open = true;
     document.body.classList.add('page-doc-open');
     panel.classList.add('open');
@@ -198,9 +146,6 @@
 
   function setPage(pageKey){
     state.pageKey = pageKey;
-    const available = Boolean(getPageConfig(pageKey));
-    if(!available && state.open){close()}
-    if(trigger){trigger.hidden = !available}
     window.setTimeout(() => {
       bindPageFields(pageKey);
       render();
@@ -218,7 +163,6 @@
     trigger.textContent = '页面说明';
     trigger.setAttribute('aria-controls','pageDocumentationPanel');
     trigger.setAttribute('aria-expanded','false');
-    trigger.hidden = true;
     trigger.addEventListener('click',open);
 
     panel = document.createElement('aside');
